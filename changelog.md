@@ -18,6 +18,8 @@ IMPORTANT:
 - MINOR version when you add functionality in a backwards compatible manner, and<br>
 - PATCH version when you make backwards compatible bug fixes. <br>
 - But there is no need to change the version number for correcting spelling errors, (etc).<br>
+- MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
+
 ## [Unreleased]
 
 #### 0.1.3 (2021-07-25)
