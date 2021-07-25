@@ -3,11 +3,15 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To edit .md files use: https://stackedit.io/app#</br>
+> When copying back and forth between slackedit make sure there are no duplicate carriage returns.<br>
 > To add a tag to the git repository do:
 > > git tag -a v0.1.2 -m "my version 0.1.2"</br>
 > > git push origin v0.1.2
 > 
-IMPORTANT: Manually keep the changelog version number in sync with CMakeLists.txt project version.
+
+IMPORTANT: 
+- Manually keep the changelog version number in sync with CMakeLists.txt project version.<br>
+- Keep the changelog.md up to date, neat and tidy, (as it is a convenient tool for code maintenance).
 
 ## [Unreleased]
 
