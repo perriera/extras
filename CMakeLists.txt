@@ -9,6 +9,7 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
 add_subdirectory(extra)
 add_subdirectory(docopt)
+# add_subdirectory(frontdesk)
 
 # add_library(helloworld_lib SHARED
 #     include/HelloWorld/HelloWorld.hpp
