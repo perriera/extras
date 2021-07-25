@@ -8,6 +8,11 @@ set(CMAKE_BUILD_TYPE Debug)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
 add_subdirectory(extra)
+add_subdirectory(extra_colors)
+add_subdirectory(extra_crcs)
+add_subdirectory(extra_files)
+add_subdirectory(extra_keywords)
+add_subdirectory(extra_strings)
 add_subdirectory(docopt)
 
 #
@@ -24,6 +29,11 @@ target_include_directories(run-unittests
 )
 target_link_libraries(run-unittests
    extra
+   extra_crcs
+   extra_colors
+   extra_files
+   extra_keywords
+   extra_strings
 )
 # -Werror
 target_compile_options(run-unittests
