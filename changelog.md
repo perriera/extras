@@ -20,6 +20,12 @@ IMPORTANT:
 
 ## [Unreleased]
 
+#### 1.0.1 (2021-07-25)
+### Added
+- extra header (more generic) files
+### Changed
+- extra older header files
+
 #### 1.0.0 (2021-07-25)
 ### Added
 - extra_crcs library
@@ -50,7 +56,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/perriera/extras/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/perriera/extras/compare/v0.1.3...v1.0.0
 [0.1.3]: https://github.com/perriera/extras/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/perriera/extras/compare/v0.1.1...v0.1.2
