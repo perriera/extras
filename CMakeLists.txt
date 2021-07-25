@@ -13,7 +13,7 @@ add_subdirectory(extra_crcs)
 add_subdirectory(extra_files)
 add_subdirectory(extra_keywords)
 add_subdirectory(extra_strings)
-add_subdirectory(docopt)
+add_subdirectory(extra_options)
 
 #
 # Create a target for executing the Catch2 unit tests.

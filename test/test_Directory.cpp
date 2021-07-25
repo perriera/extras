@@ -12,9 +12,9 @@
 
 using namespace std;
 
-static string test_fullpath = "docopt/include/docopt_private.h";
+static string test_fullpath = "extra_options/include/extra/docopt_private.h";
 static string test_filename = "docopt_private.h";
-static string test_pathname = "docopt/include/";
+static string test_pathname = "extra_options/include/extra/";
 
 SCENARIO("Verify Directory.filename()", "[Directory]") {
 
@@ -36,7 +36,7 @@ SCENARIO("Verify Directory.listing() 'path exists'", "[Directory]") {
 
   string a = test_fullpath;
   auto b = Directory(a).listing();
-  REQUIRE(b.size() == 4);
+  REQUIRE(b.size() == 5);
 }
 
 SCENARIO("Verify Directory.listing() 'path does not exists'", "[Directory]") {
@@ -50,7 +50,7 @@ SCENARIO("Verify Directory.listing() 'only path given'", "[Directory]") {
 
   string a = test_pathname;
   auto b = Directory(a).listing();
-  REQUIRE(b.size() == 4);
+  REQUIRE(b.size() == 5);
 }
 
 SCENARIO("Verify Directory.listing() 'no path given'", "[Directory]") {

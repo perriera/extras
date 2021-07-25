@@ -20,6 +20,13 @@ IMPORTANT:
 
 ## [Unreleased]
 
+#### 1.1.1 (2021-07-25)
+### Added
+- extra_options added
+### Changed
+- docopt filename changed
+- some functionality commented out, (for compilation reasons)
+
 #### 1.0.1 (2021-07-25)
 ### Added
 - extra header (more generic) files
@@ -56,7 +63,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/perriera/extras/compare/v1.0.1...v1.1.1
 [1.0.1]: https://github.com/perriera/extras/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/perriera/extras/compare/v0.1.3...v1.0.0
 [0.1.3]: https://github.com/perriera/extras/compare/v0.1.2...v0.1.3
