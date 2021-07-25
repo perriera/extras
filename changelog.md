@@ -20,7 +20,7 @@ IMPORTANT:
 
 ## [Unreleased]
 
-#### 0.1.4 (2021-07-25)
+#### 1.0.0 (2021-07-25)
 ### Added
 - extra_crcs library
 - extra_colors library
