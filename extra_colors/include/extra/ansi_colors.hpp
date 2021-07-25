@@ -1,5 +1,5 @@
-#ifndef _ANSI_COLORS_HPP
-#define _ANSI_COLORS_HPP
+#ifndef _EXTRA_COLORS_HPP
+#define _EXTRA_COLORS_HPP
 
 #include "extra/Definitions.hpp"
 #include <iostream>
@@ -41,4 +41,4 @@ declare_color(cyan, 36);
 declare_color(white, 37);
 declare_color(reset, 0);
 
-#endif // _ANSI_COLORS_HPP
+#endif // _EXTRA_COLORS_HPP

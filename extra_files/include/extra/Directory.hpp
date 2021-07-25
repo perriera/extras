@@ -1,5 +1,5 @@
-#ifndef _DIRECTORY_HPP
-#define _DIRECTORY_HPP
+#ifndef _EXTRA_DIRECTORY_HPP
+#define _EXTRA_DIRECTORY_HPP
 
 #include "extra/Definitions.hpp"
 #include <iostream>
@@ -69,4 +69,4 @@ public:
   }
 };
 
-#endif // _DIRECTORY_HPP
+#endif // _EXTRA_DIRECTORY_HPP

@@ -1,5 +1,6 @@
  
 add_library(extra_files SHARED
+	include/extra/files.hpp
 	include/extra/Directory.hpp
 	src/Directory.cpp
 )

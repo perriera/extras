@@ -1,39 +1,40 @@
-#ifndef _CRC64_SUPPORT_HPP
-#define _CRC64_SUPPORT_HPP
+#ifndef _EXTRA_CRC64_SUPPORT_HPP
+#define _EXTRA_CRC64_SUPPORT_HPP
 
 #include <iostream>
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 
 //
 // simplest crc64 c++ implementation
 // http://pages.pathcom.com/~vadco/crc.html
 //
 
-class crc64
-{
+class crc64 {
 
 public:
-	crc64(const char *randomString = "default seed");
-	uint64_t update(const std::string &str);
+  crc64(const char *randomString = "default seed");
+  uint64_t update(const std::string &str);
 
 private:
-	static void generate_table(uint64_t (&table)[256]);
-	static uint64_t update(uint64_t (&table)[256], uint64_t initial, const uint8_t *buf, size_t len);
-	static uint64_t update(uint64_t (&table)[256], uint64_t initial, const std::string &str);
+  static void generate_table(uint64_t (&table)[256]);
+  static uint64_t update(uint64_t (&table)[256], uint64_t initial,
+                         const uint8_t *buf, size_t len);
+  static uint64_t update(uint64_t (&table)[256], uint64_t initial,
+                         const std::string &str);
 
-	static uint64_t table[256];
-	static uint64_t initial;
+  static uint64_t table[256];
+  static uint64_t initial;
 };
 
-class Crc64CollisionException : public std::exception
-{
+class Crc64CollisionException : public std::exception {
 public:
-	Crc64CollisionException()
-	{
-		std::cout << "Beating the odds of 1 in just over 1.84+e19" << std::endl;
-	}
-	virtual char const *what() const noexcept { return "Crc64CollisionException"; }
+  Crc64CollisionException() {
+    std::cout << "Beating the odds of 1 in just over 1.84+e19" << std::endl;
+  }
+  virtual char const *what() const noexcept {
+    return "Crc64CollisionException";
+  }
 };
 
 //
@@ -49,15 +50,18 @@ public:
 // #include <iostream>
 // #include <stdio.h>
 
-// // poly is: x^64 + x^62 + x^57 + x^55 + x^54 + x^53 + x^52 + x^47 + x^46 + x^45 + x^40 + x^39 +
-// //          x^38 + x^37 + x^35 + x^33 + x^32 + x^31 + x^29 + x^27 + x^24 + x^23 + x^22 + x^21 +
+// // poly is: x^64 + x^62 + x^57 + x^55 + x^54 + x^53 + x^52 + x^47 + x^46 +
+// x^45 + x^40 + x^39 +
+// //          x^38 + x^37 + x^35 + x^33 + x^32 + x^31 + x^29 + x^27 + x^24 +
+// x^23 + x^22 + x^21 +
 // //          x^19 + x^17 + x^13 + x^12 + x^10 + x^9  + x^7  + x^4  + x^1  + 1
 // //
 // // represented here with lsb = highest degree term
 // //
 // // 1100100101101100010101111001010111010111100001110000111101000010_
 // // ||  |  | || ||   | | ||||  | | ||| | ||||    |||    |||| |    | |
-// // ||  |  | || ||   | | ||||  | | ||| | ||||    |||    |||| |    | +- x^64 (implied)
+// // ||  |  | || ||   | | ||||  | | ||| | ||||    |||    |||| |    | +- x^64
+// (implied)
 // // ||  |  | || ||   | | ||||  | | ||| | ||||    |||    |||| |    |
 // // ||  |  | || ||   | | ||||  | | ||| | ||||    |||    |||| |    +--- x^62
 // // ||  |  | || ||   | | ||||  | | ||| | ||||    |||    |||| +-------- x^57
@@ -67,15 +71,20 @@ public:
 // // +----------------------------------------------------------------- x^0 (1)
 // uint64_t poly = 0xC96C5795D7870F42;
 
-// // input is dividend: as 0000000000000000000000000000000000000000000000000000000000000000<8-bit byte>
-// // where the lsb of the 8-bit byte is the coefficient of the highest degree term (x^71) of the dividend
+// // input is dividend: as
+// 0000000000000000000000000000000000000000000000000000000000000000<8-bit byte>
+// // where the lsb of the 8-bit byte is the coefficient of the highest degree
+// term (x^71) of the dividend
 // // so division is really for input byte * x^64
 
-// // you may wonder how 72 bits will fit in 64-bit data type... well as the shift-right occurs, 0's are supplied
-// // on the left (most significant) side ... when the 8 shifts are done, the right side (where the input
+// // you may wonder how 72 bits will fit in 64-bit data type... well as the
+// shift-right occurs, 0's are supplied
+// // on the left (most significant) side ... when the 8 shifts are done, the
+// right side (where the input
 // // byte was placed) is discarded
 
-// // when done, table[XX] (where XX is a byte) is equal to the CRC of 00 00 00 00 00 00 00 00 XX
+// // when done, table[XX] (where XX is a byte) is equal to the CRC of 00 00 00
+// 00 00 00 00 00 XX
 // //
 // uint64_t table[256];
 
@@ -90,8 +99,8 @@ public:
 //             // is current coefficient set?
 //             if (crc & 1)
 //             {
-//                 // yes, then assume it gets zero'd (by implied x^64 coefficient of dividend)
-//                 crc >>= 1;
+//                 // yes, then assume it gets zero'd (by implied x^64
+//                 coefficient of dividend) crc >>= 1;
 
 //                 // and add rest of the divisor
 //                 crc ^= poly;
@@ -145,7 +154,8 @@ public:
 // //
 // //    00 00 00 00 00 00 00 00 AD DE
 // //
-// // 2) index crc table for byte DE (really for dividend 00 00 00 00 00 00 00 00 DE)
+// // 2) index crc table for byte DE (really for dividend 00 00 00 00 00 00 00
+// 00 DE)
 // //
 // //    we get A8B4AFBDC5A6ACA4
 // //
@@ -156,7 +166,8 @@ public:
 // //    -----------------------------
 // //    00 A8 B4 AF BD C5 A6 AC 09
 // //
-// // 4) index crc table for byte 09 (really for dividend 00 00 00 00 00 00 00 00 09)
+// // 4) index crc table for byte 09 (really for dividend 00 00 00 00 00 00 00
+// 00 09)
 // //
 // //    we get 448FCBB7FCB9E309
 // //
@@ -167,4 +178,4 @@ public:
 // //    --------------------------
 // //    44 27 7F 18 41 7C 45 A5
 
-#endif // _CRC64_SUPPORT_HPP
+#endif // _EXTRA_CRC64_SUPPORT_HPP

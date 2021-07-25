@@ -1,5 +1,6 @@
  
 add_library(extra_strings SHARED
+    include/extra/strings.hpp
 	include/extra/string_support.hpp
 	src/string_support.cpp
 )

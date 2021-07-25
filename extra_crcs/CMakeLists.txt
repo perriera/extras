@@ -1,6 +1,7 @@
  
 add_library(
     extra_crcs SHARED
+	include/extra/crcs.hpp
 	include/extra/crc16_support.hpp
 	include/extra/crc32_support.hpp
 	include/extra/crc64_support.hpp

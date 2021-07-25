@@ -1,6 +1,7 @@
  
 add_library(
     extra SHARED
+	include/extra/support.hpp
 	include/extra/Definitions.hpp
 	src/Definitions.cpp
 )

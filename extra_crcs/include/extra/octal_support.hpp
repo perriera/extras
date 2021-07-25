@@ -1,5 +1,5 @@
-#ifndef _OCTAL_SUPPORT_HPP
-#define _OCTAL_SUPPORT_HPP
+#ifndef _EXTRA_OCTAL_SUPPORT_HPP
+#define _EXTRA_OCTAL_SUPPORT_HPP
 
 #include "extra/Definitions.hpp"
 #include <iostream>
@@ -21,4 +21,4 @@ interface OctalInterface {
   // crc = crc32::update(table, crc, data_piece2, len2);
   // output(crc);
 
-#endif // _OCTAL_SUPPORT_HPP
+#endif // _EXTRA_OCTAL_SUPPORT_HPP

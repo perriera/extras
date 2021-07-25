@@ -1,5 +1,5 @@
-#ifndef _CRC16_SUPPORT_HPP
-#define _CRC16_SUPPORT_HPP
+#ifndef _EXTRA_CRC16_SUPPORT_HPP
+#define _EXTRA_CRC16_SUPPORT_HPP
 
 #include <iostream>
 #include <stddef.h>
@@ -70,4 +70,4 @@ class Crc16CollisionException : std::exception {};
 // void loop() {
 // }
 
-#endif // _CRC16_SUPPORT_HPP
+#endif // _EXTRA_CRC16_SUPPORT_HPP

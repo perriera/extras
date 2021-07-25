@@ -1,6 +1,6 @@
-#ifndef _DEFINITIONS_HPP
-#define _DEFINITIONS_HPP
+#ifndef _EXTRA_DEFINITIONS_HPP
+#define _EXTRA_DEFINITIONS_HPP
 
 #include "extra/keywords.hpp"
 
-#endif // _DEFINITIONS_HPP
+#endif // _EXTRA_DEFINITIONS_HPP

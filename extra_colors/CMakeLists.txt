@@ -1,5 +1,6 @@
  
 add_library(extra_colors SHARED
+	include/extra/colors.hpp
 	include/extra/ansi_colors.hpp
 	include/extra/ansi_input.hpp
 	src/ansi_colors.cpp

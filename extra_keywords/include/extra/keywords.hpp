@@ -1,5 +1,5 @@
-#ifndef _KEYWORDS_HPP
-#define _KEYWORDS_HPP
+#ifndef _EXTRA_KEYWORDS_HPP
+#define _EXTRA_KEYWORDS_HPP
 
 #define abstract
 #define interface struct
@@ -9,4 +9,4 @@
 #define pure = 0
 #define with , public
 
-#endif // _KEYWORDS_HPP
+#endif // _EXTRA_KEYWORDS_HPP

@@ -1,35 +1,37 @@
-#ifndef _CRC32_SUPPORT_HPP
-#define _CRC32_SUPPORT_HPP
+#ifndef _EXTRA_CRC32_SUPPORT_HPP
+#define _EXTRA_CRC32_SUPPORT_HPP
 
 #include <iostream>
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 
 //
 // simplest crc32 c++ implementation
 // https://gist.github.com/timepp
 //
 
-class crc32
-{
+class crc32 {
 
 public:
-	crc32(const char *randomString = "default seed");
-	uint32_t update(const std::string &str);
+  crc32(const char *randomString = "default seed");
+  uint32_t update(const std::string &str);
 
 private:
-	static void generate_table(uint32_t (&table)[256]);
-	static uint32_t update(uint32_t (&table)[256], uint32_t initial, const void *buf, size_t len);
-	static uint32_t update(uint32_t (&table)[256], uint32_t initial, const std::string &str);
+  static void generate_table(uint32_t (&table)[256]);
+  static uint32_t update(uint32_t (&table)[256], uint32_t initial,
+                         const void *buf, size_t len);
+  static uint32_t update(uint32_t (&table)[256], uint32_t initial,
+                         const std::string &str);
 
-	static uint32_t table[256];
-	static uint32_t initial;
+  static uint32_t table[256];
+  static uint32_t initial;
 };
 
-class Crc32CollisionException : public std::exception
-{
+class Crc32CollisionException : public std::exception {
 public:
-	virtual char const *what() const noexcept { return "Crc32CollisionException"; }
+  virtual char const *what() const noexcept {
+    return "Crc32CollisionException";
+  }
 };
 
 // usage: the following code generates crc for 2 pieces of data
@@ -44,11 +46,13 @@ public:
 //
 // crc32 _crc;
 //
-//     cout << _crc.update("r1bq1rk1/2p1bppp/p2p1n2/np2p3/4P3/1BPP1N2/PP3PPP/RNBQR1K") << endl;
-//     cout << _crc.update("2r2k2/p2bpp2/3p2p1/1pr4p/4PN1P/1P3P2/P1PR2P1/1K2R") << endl;
+//     cout <<
+//     _crc.update("r1bq1rk1/2p1bppp/p2p1n2/np2p3/4P3/1BPP1N2/PP3PPP/RNBQR1K")
+//     << endl; cout <<
+//     _crc.update("2r2k2/p2bpp2/3p2p1/1pr4p/4PN1P/1P3P2/P1PR2P1/1K2R") << endl;
 //
 //  With only perhaps a 100,000 to 200,000 entries (if that), we managed to beat
 //  1 chance in 4.2 billion with the above two strings.
 //
 
-#endif // _CRC32_SUPPORT_HPP
+#endif // _EXTRA_CRC32_SUPPORT_HPP
