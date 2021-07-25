@@ -8,6 +8,10 @@ IMPORTANT: Manually keep the changelog version in sync with CMakeLists.txt
 
 ## [Unreleased]
 
+#### 0.1.2 (2021-07-25)
+### Added
+- Added tag reference
+
 #### 0.1.1 (2021-07-25)
 ### Added
 - Adopted new changelog format.
@@ -16,3 +20,8 @@ IMPORTANT: Manually keep the changelog version in sync with CMakeLists.txt
 - version number
 ### Removed
 - nothing
+
+[Unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.0.0...HEAD
+[0.0.3]: https://github.com/olivierlacan/keep-a-changelog/compare/v0.0.2...v0.0.3
+[0.0.2]: https://github.com/olivierlacan/keep-a-changelog/compare/v0.0.1...v0.0.2
+[0.0.1]: https://github.com/perriera/extras/releases/tag/v0.1.1
