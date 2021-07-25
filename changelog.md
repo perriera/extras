@@ -11,8 +11,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 IMPORTANT: 
 - Manually keep the changelog version number in sync with CMakeLists.txt project version.<br>
-- Keep the changelog.md up to date, neat and tidy, (as it is a convenient tool for code maintenance).
-
+- Keep the changelog.md up to date, neat and tidy, (as it is a convenient tool for code maintenance).<br>
+- Use [Semantic Versioning](https://semver.org/spec/v2.0.0.html) such that<br>
+- Given a version number MAJOR.MINOR.PATCH, increment the:<br>
+- MAJOR version when you make incompatible API changes,<br>
+- MINOR version when you add functionality in a backwards compatible manner, and<br>
+- PATCH version when you make backwards compatible bug fixes. <br>
+- But there is no need to change the version number for correcting spelling errors, (etc).<br>
 ## [Unreleased]
 
 #### 0.1.3 (2021-07-25)
