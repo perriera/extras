@@ -21,7 +21,6 @@ IMPORTANT: Manually keep the changelog version in sync with CMakeLists.txt
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.0.0...HEAD
-[0.0.3]: https://github.com/olivierlacan/keep-a-changelog/compare/v0.0.2...v0.0.3
-[0.0.2]: https://github.com/olivierlacan/keep-a-changelog/compare/v0.0.1...v0.0.2
+[Unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/v0.1.2...HEAD
+[0.0.2]: https://github.com/perriera/extras/compare/v0.1.1...v0.1.2
 [0.0.1]: https://github.com/perriera/extras/releases/tag/v0.1.1
