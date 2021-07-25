@@ -17,14 +17,12 @@ add_executable(run-unittests
 	test/main.cpp
 	test/test_Directory.cpp
 	test/test_FakeIt.cpp
-#	test/test_HelloWorld.cpp
 )
 target_include_directories(run-unittests
 	PUBLIC
 		test/
 )
 target_link_libraries(run-unittests
- #  helloworld::library 
    extra
 )
 # -Werror
