@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(extras LANGUAGES CXX)
-project(extras VERSION 0.1.0)
+project(extras VERSION 0.1.1)
 
 set(CMAKE_BUILD_TYPE Debug)
 
@@ -89,11 +89,11 @@ target_compile_options(run-unittests
 # install (TARGETS helloworld_lib
 #     LIBRARY DESTINATION lib)
 
-# Header files
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ 
-    DESTINATION include)
+# # Header files
+# install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ 
+#     DESTINATION include)
 
-# Config
-install (FILES cmake-examples.conf
-    DESTINATION etc)
+# # Config
+# install (FILES cmake-examples.conf
+#     DESTINATION etc)
 
