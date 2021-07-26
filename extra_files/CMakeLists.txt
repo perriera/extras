@@ -16,7 +16,10 @@ install(DIRECTORY
     DESTINATION include
 )
 target_include_directories(extra_files 
- 	PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include"
+ 	PUBLIC 
+	 "${CMAKE_CURRENT_SOURCE_DIR}/include"
+	 "${CMAKE_CURRENT_SOURCE_DIR}/../extra_keywords/include"
+	 "${CMAKE_CURRENT_SOURCE_DIR}/../extra_strings/include"
 )
 target_compile_definitions(extra_files 
  	INTERFACE EXTRA_FILES_VERSION=1

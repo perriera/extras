@@ -24,9 +24,9 @@ add_subdirectory(extra_keywords)
 add_subdirectory(extra)
 add_subdirectory(extra_colors)
 add_subdirectory(extra_crcs)
-add_subdirectory(extra_files)
 add_subdirectory(extra_strings)
 add_subdirectory(extra_options)
+add_subdirectory(extra_files)
 
 #
 # Create a target for executing the Catch2 unit tests.
