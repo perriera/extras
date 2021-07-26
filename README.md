@@ -57,9 +57,10 @@ The 1.2.2 version of the extra_ libraries installs the debug version by default.
  > add **extra_colors** to your CMakeLists.txt
  Use of this library will give you the ability to add color to your C++ console based applications for your typical Xterm based window. 
 
-    #include  "libdmg/helloworld.hpp"
-    #include  "extra/ansi_colors.hpp"
     #include  <iostream>
+    #include  "libdmg/helloworld.hpp"
+    #include  "extra/colors.hpp"
+
     using  namespace  std;
     void  Hello::hello() const
     {
@@ -73,6 +74,9 @@ The 1.2.2 version of the extra_ libraries installs the debug version by default.
  > add **extra_crcs** to your CMakeLists.txt
 Use of this library will give your application quick access to either crc16, crc32, or crc64 bit calculations.
 
+    #include <iostream>
+    #include "extra/crcs.hpp"
+
     SCENARIO("Verify crc32 default", "[crc32]") {
     {
        string  data_piece4 = "data_piece2;";
@@ -85,6 +89,9 @@ Use of this library will give your application quick access to either crc16, crc
  > add **extra_files** to your CMakeLists.txt
 Use of this library will give you easier access to files in the underlying operating system, (only tested on Linux as of 1.2.1).
 
+    #include <iostream>
+    #include "extra/files.hpp"
+
     SCENARIO("Verify Directory.filename()", "[Directory]") {
        string  a = "extra_options/include/extra/docopt_private.h";
        auto  b = Directory(a).filename();
@@ -95,6 +102,9 @@ Use of this library will give you easier access to files in the underlying opera
 ## extra_keywords
  > add **extra_keywords** to your CMakeLists.txt
 Use of this library will add extra keywords to your C++ syntax, (especially useful to programmers that like to program using interfaces, (aka. Design by Interface)
+
+    #include <iostream>
+    #include "extra/keywords.hpp"
 
     //
     // CrossTableInterface
@@ -110,6 +120,9 @@ Use of this library will add extra keywords to your C++ syntax, (especially usef
 ## extra_options
  > add **extra_options** to your CMakeLists.txt
 Use of this library will give you better main(argc,argv) capabilities as it parses command line arguments in an intelligent manner, (source code is Copyright (c) 2013 Jared Grubb, MIT license). 
+
+    #include <iostream>
+    #include "extra/options.hpp"
 
     int  main(int  argc, const  char  *argv[])
     {
@@ -127,6 +140,9 @@ Use of this library will give you better main(argc,argv) capabilities as it pars
 ## extra_strings
  > add **extra_strings** to your CMakeLists.txt
 How many times how you wanted to do something really simple with strings but found yourself re-inventing the wheel all the time. Well, this library is merely a collection of popular std::string manipulation techniques, (based on the C++ STL library). Expect additional features to be added as time goes on:
+
+    #include <iostream>
+    #include "extra/strings.hpp"
 
     static  inline  void  ltrim(std::string  &s);
     static  inline  void  rtrim(std::string  &s) ;
