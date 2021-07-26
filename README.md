@@ -1,4 +1,5 @@
 
+
 # (perriera) extras
 ###   Description
 > This is a collection of C++ based tools to simplify the software development process.</br> 
@@ -30,7 +31,7 @@
      ./run-unittests
      sudo make install
 
-**Note**: run-unittests needs to be run from inside the build directory. 
+**Note**: **run-unittests** needs to be run from inside the build directory. 
 
  After installation the extra_ libraries should be found in your **/usr/local/include** and your **/usr/local/lib** directories. Also, set LD_LIBRARY_PATH, (if you haven't already done so). 
 
@@ -220,29 +221,26 @@ How many times how you wanted to do something really simple with strings but fou
     inline  bool  contains(std::string  const  &s1, std::string  const  &s2);
     inline  std::string  to_lower(const  std::string  &data) ;
     
-
-## Todo List:
-The following are a series of features to be added to the extra_ libraries in the near future
-
 ## C++ namespace support
-Expect one of the following to be the namespace paradyms to be used starting with release 2.0.0
-
-    using namespace perrier::extras;
-    using namespace perrier::extras::crcs;
-    using namespace perrier::extras::files;
-    using namespace perrier::extras::keywords;
-    using namespace perrier::extras::options;
-    using namespace perrier::extras::strings;
-
-A simpler version of the above would be:
+As of version 2.0.0 the (perriera) **extras** package now requires the use of the namespace **extras**.
 
     using namespace extras;
-    using namespace extras::crcs;
-    using namespace extras::files;
-    using namespace extras::keywords;
-    using namespace extras::options;
-    using namespace extras::strings;
 
+With one exception, use of the **extra_options** package requires use of the namespace **docopt**.
+   
+    using namespace docopt;
+
+If you wish to use the none-namespace version of **extras** simply use versions earlier than 2.0.0, (or modify your local implementation of the **extras** package). 
+Change
+
+	namespace extras {
+To
+
+	namespace {
+
+In each of the header files of the **extras** package.
+## Todo List:
+The following are a series of features to be added to the extra_ libraries in the near future.
 Let us known which style you'd prefer at: perry.anderson@gmail.com, (or perry@exparx.com)
 
 ## Android support

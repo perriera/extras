@@ -20,7 +20,14 @@ IMPORTANT:
 
 ## [Unreleased]
 - Update Doxygen content
-- namespace support
+
+#### 2.0.0 (2021-07-26)
+### Added
+- namespace extras support
+### Changed
+- README.md content for namespaces
+### Fixed
+- Name collision in the docopt package
 
 #### 1.2.4 (2021-07-25)
 ### Added
@@ -91,7 +98,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v1.2.4...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v2.0.0...HEAD
+[1.2.4]: https://github.com/perriera/extras/compare/v1.2.4...v2.0.0
 [1.2.4]: https://github.com/perriera/extras/compare/v1.2.3...v1.2.4
 [1.2.3]: https://github.com/perriera/extras/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/perriera/extras/compare/v1.2.1...v1.2.2
