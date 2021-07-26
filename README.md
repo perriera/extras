@@ -70,7 +70,7 @@ As of 1.2.3 the extra_ libraries are not using namespace designationas, (as of y
  Use of this library will give you the ability to add color to your C++ console based applications for your typical Xterm based window. 
 
     #include  <iostream>
-    #include  "libdmg/helloworld.hpp"
+    #include  "chessmind/helloworld.hpp"
     #include  "extra/colors.hpp"
 
     using  namespace  std;
