@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 > To add a tag to the git repository do:
 > > git tag -a v0.1.2 -m "my version 0.1.2"</br>
 > > git push origin v0.1.2
-> 
+> >
 
 IMPORTANT: 
 - Manually keep the changelog version number in sync with CMakeLists.txt project version.<br>
