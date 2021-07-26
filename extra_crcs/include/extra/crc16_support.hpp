@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+namespace extras {
+
 //
 // simplest crc16 c++ implementation
 // https://github.com/jpralves/crc16
@@ -69,5 +71,7 @@ class Crc16CollisionException : std::exception {};
 
 // void loop() {
 // }
+
+} // namespace extras
 
 #endif // _EXTRA_CRC16_SUPPORT_HPP

@@ -52,11 +52,17 @@ With the checkinstall package installed your installation process now becomes:
      make
      sudo checkinstall
 
-**Note**: During the checkinstall process be sure to change the name of the package from the default: **built** to **extras**. It'll be item #2 on the checkinstall parameter listings, (you can safely use the defaults for the rest of the items on the checkinstall).
+**Note**: During the checkinstall process be sure to change the name of the package from the default: **build** to **extras**. It'll be item #2 on the checkinstall parameter listings, (you can safely use the defaults for the rest of the items on the checkinstall).
 
 Then when you need to uninstall this package:
 
     sudo dpkg -r extras
+
+Should you run into a strange situation to where you issued the above command but the **extras** package appears to still be installed, run the following:
+
+    sudo dpkg -r build
+
+As you may have installed it earlier without changing the name of the package from **build** to **extras**.
 
 While it may seem odd to have to uninstall the extra_ libraries package, future upgrades to the extras package will prefer if there is a clean install for you to work with.
 ## CMakeLists.txt
@@ -92,6 +98,11 @@ Or, as of 1.2.3 you can define PRODUCTION on the command line of the cmake comma
     cmake -DPRODUCTION=true ..
     make
     sudo make install
+
+## Unit Test Cases
+After you have installed to the operating system you can run the following:
+
+    ./run-unittests
 
 ## namespace
 As of 1.2.3 the extra_ libraries are not using namespace designationas, (as of yet). 

@@ -5,6 +5,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
+namespace extras {
+
 //
 // simplest crc32 c++ implementation
 // https://gist.github.com/timepp
@@ -54,5 +56,6 @@ public:
 //  With only perhaps a 100,000 to 200,000 entries (if that), we managed to beat
 //  1 chance in 4.2 billion with the above two strings.
 //
+} // namespace extras
 
 #endif // _EXTRA_CRC32_SUPPORT_HPP

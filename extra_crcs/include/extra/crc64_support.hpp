@@ -5,6 +5,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
+namespace extras {
+
 //
 // simplest crc64 c++ implementation
 // http://pages.pathcom.com/~vadco/crc.html
@@ -177,5 +179,6 @@ public:
 // //    44 8F CB B7 FC B9 E3 09
 // //    --------------------------
 // //    44 27 7F 18 41 7C 45 A5
+} // namespace extras
 
 #endif // _EXTRA_CRC64_SUPPORT_HPP

@@ -35,6 +35,8 @@ add_executable(run-unittests
 	test/main.cpp
 	test/test_Directory.cpp
 	test/test_FakeIt.cpp
+	test/test_crc32.cpp
+	test/test_crc64.cpp
 )
 target_include_directories(run-unittests
 	PUBLIC

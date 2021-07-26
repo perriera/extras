@@ -50,13 +50,11 @@ using namespace std;
 
 #define POLY 0x1021
 
-crc16::crc16()
-{
-  crc = 0;
-}
+namespace extras {
 
-uint16_t crc16::processByte(uint8_t data)
-{
+crc16::crc16() { crc = 0; }
+
+uint16_t crc16::processByte(uint8_t data) {
   uint8_t i;
 
   crc = crc ^ ((uint16_t)data << 8);
@@ -69,14 +67,13 @@ uint16_t crc16::processByte(uint8_t data)
   return crc;
 }
 
-uint16_t crc16::processBuffer(const char *data_p, uint16_t length)
-{
+uint16_t crc16::processBuffer(const char *data_p, uint16_t length) {
   while (length--)
     processByte(*data_p++);
   return crc;
 }
 
-uint16_t crc16::update(const std::string &str)
-{
+uint16_t crc16::update(const std::string &str) {
   return processBuffer(str.c_str(), str.size());
 }
+} // namespace extras
