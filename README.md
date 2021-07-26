@@ -1,3 +1,4 @@
+
 # (perriera) extras
 > This is a collection of C++ based tools to simplify the software development process..</br>
 > It is composed, (at present) of the following sub-libraries:</br>
@@ -10,14 +11,48 @@
  - extra_strings
  
  # Installation
- git clone https://github.com/perriera/extras.git </br>
- cd extras</br>
- mkdir build</br>
- cd build</br>
- cmake ...</br>
- make</br>
- sudo make install</br>
+ Assuming you are using a gcc/g++ environment on a Linux platform:
  
+     git clone https://github.com/perriera/extras.git 
+     cd extras
+     mkdir build
+     cd build
+     cmake ...
+     make
+     sudo make install
+
+ After installation the extra_ libraries should be found in your **/usr/local/include** and your **/usr/local/lib** directories. Also, set LD_LIBRARY_PATH, (if you haven't already done so). 
+
+     export LD_LIBRARY_PATH=/usr/local/lib
+     
+If you happen to be adding features to the extras library and wish to debug it, be sure to put your build directory ahead of the install location, (otherwise the linking process will only use the installed version of the extra_ libraries).
+
+    export LD_LIBRARY_PATH=build:/usr/local/lib
+    
+## CMakeLists.txt
+Typically you would just include the extra_ library of your choice. However, some extra_ libraries are interdependent. So, the following is a complete listing of the libraries, (where you strip down the ones you don't need). Typically, they are required in both the 'include' and 'link' portions of your CMakeLists.txt targets:
+
+     extra_colors
+     extra_crcs
+     extra_files
+     extra_keywords
+     extra_options
+     extra_strings
+For example:
+
+    target_link_libraries(run-unittests
+       chessmind::library
+       extra_crcs
+       extra_colors
+       extra_keywords
+       extra_files
+       extra_options
+       extra_strings
+    )
+The 1.2.2 version of the extra_ libraries installs the debug version by default. If you wish to use a production version of the library comment out this line in the main CMakeLists.txt file and recompile:
+
+    set(CMAKE_BUILD_TYPE Debug)
+
  ## extra_colors
  > add **extra_colors** to your CMakeLists.txt
  Use of this library will give you the ability to add color to your C++ console based applications for your typical Xterm based window. 
@@ -108,5 +143,7 @@ How many times how you wanted to do something really simple with strings but fou
     inline  bool  contains(std::string  const  &s1, std::string  const  &s2);
     inline  std::string  to_lower(const  std::string  &data) ;
     
+
+
 
 

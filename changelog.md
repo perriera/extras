@@ -19,7 +19,8 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
-- Updated Doxygen content
+- Update Doxygen content
+- namespace support
 
 #### 1.2.2 (2021-07-25)
 ### Added
