@@ -58,7 +58,7 @@ Then when you need to uninstall this package:
 
     sudo dpkg -r extras
 
-While it may seem odd to have to uninstall the extra_ libraries package, future upgrades to the extras package will prefer if there is a clean install for it to work with.
+While it may seem odd to have to uninstall the extra_ libraries package, future upgrades to the extras package will prefer if there is a clean install for you to work with.
 ## CMakeLists.txt
 Typically you would just include the extra_ library of your choice. However, some extra_ libraries are interdependent. So, the following is a complete listing of the libraries, (where you strip down the ones you don't need). Typically, they are required in **link** portions of your CMakeLists.txt targets, (as the system standard **/usr/local/include** path is assumed by the compiler). However, if you are directly working on the extra_ libraries then you might need to add them to the target_include_libraries as well.
 
