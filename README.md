@@ -27,6 +27,7 @@
      cd build
      cmake ..
      make
+     ./run-unittests
      sudo make install
 
  After installation the extra_ libraries should be found in your **/usr/local/include** and your **/usr/local/lib** directories. Also, set LD_LIBRARY_PATH, (if you haven't already done so). 
@@ -50,6 +51,7 @@ With the checkinstall package installed your installation process now becomes:
      cd build
      cmake ..
      make
+     ./run-unittests
      sudo checkinstall
 
 **Note**: During the checkinstall process be sure to change the name of the package from the default: **build** to **extras**. It'll be item #2 on the checkinstall parameter listings, (you can safely use the defaults for the rest of the items on the checkinstall).
@@ -97,12 +99,8 @@ Or, as of 1.2.3 you can define PRODUCTION on the command line of the cmake comma
     cd build
     cmake -DPRODUCTION=true ..
     make
-    sudo make install
-
-## Unit Test Cases
-After you have installed to the operating system you can run the following:
-
     ./run-unittests
+    sudo make install
 
 ## namespace
 As of 1.2.3 the extra_ libraries are not using namespace designationas, (as of yet). 
