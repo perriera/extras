@@ -8,12 +8,12 @@
  >
 > It is presently composed of the following sub-libraries:</br>
 > 
- - extra_colors
- - extra_crcs
- - extra_files
- - extra_keywords
- - extra_options
- - extra_strings
+> - extra_colors
+> - extra_crcs
+> - extra_files
+> - extra_keywords
+> - extra_options
+> - extra_strings
 
  # Installation
  Assuming you are using a gcc/g++ environment on a Linux platform:
