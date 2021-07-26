@@ -129,6 +129,13 @@ Use of this library will add extra keywords to your C++ syntax, (especially usef
        virtual  void  verbose(bool  on_or_off) pure;
     };
 
+    concrete class CrossTableMap implements CrossTableMapInterface {
+       virtual  void  train(const  StatLines &statLines);
+       virtual  void  predict(const  FENLine &line);
+       virtual  void  size() const;
+       virtual  void  verbose(bool  on_or_off);
+    };
+
 ## extra_options
  > add **extra_options** to your CMakeLists.txt
 Use of this library will give you better main(argc,argv) capabilities as it parses command line arguments in an intelligent manner, (source code is Copyright (c) 2013 Jared Grubb, MIT license). 
