@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 
+namespace extras {
 //
 // simplest crc16 c++ implementation
 // https://github.com/jpralves/crc16
@@ -68,5 +69,6 @@ public:
         throw PathNotFoundException(pathname);
   }
 };
+} // namespace extras
 
 #endif // _EXTRA_DIRECTORY_HPP

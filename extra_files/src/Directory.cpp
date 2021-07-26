@@ -5,13 +5,14 @@
 
 using namespace std;
 
+namespace extras {
+
 //
 // simplest crc64 c++ implementation
 // https://gist.github.com/timepp
 //
 
-Directory::Directory(const Path &path) : _path(path)
-{
+Directory::Directory(const Path &path) : _path(path) {
   auto _filename = filename();
   auto _pathname = pathname();
   string listing_file = "/tmp/listing.txt";
@@ -33,8 +34,7 @@ Directory::Directory(const Path &path) : _path(path)
     this->_listing = Listing();
 };
 
-std::string Directory::filename() const
-{
+std::string Directory::filename() const {
   if (ends_with(_path, "/"))
     return "";
   auto parts = split(_path, '/');
@@ -44,8 +44,7 @@ std::string Directory::filename() const
     return _path;
 }
 
-std::string Directory::pathname() const
-{
+std::string Directory::pathname() const {
   if (ends_with(_path, "/"))
     return _path;
   auto parts = split(_path, '/');
@@ -57,8 +56,7 @@ std::string Directory::pathname() const
     return "./";
 }
 
-bool Directory::fileExists() const
-{
+bool Directory::fileExists() const {
   for (auto entry : this->_listing) {
     if (entry == _path)
       return true;
@@ -68,8 +66,7 @@ bool Directory::fileExists() const
   return false;
 }
 
-void Directory::copyTo(const Directory &to) const
-{
+void Directory::copyTo(const Directory &to) const {
   FileNotFoundException::assertion(path());
   ifstream src;
   ofstream dst;
@@ -80,8 +77,9 @@ void Directory::copyTo(const Directory &to) const
   dst.close();
 }
 
-void Directory::remove() const
-{
+void Directory::remove() const {
   string cmd = "rm -rf " + path();
   system(cmd.c_str());
 }
+
+} // namespace extras

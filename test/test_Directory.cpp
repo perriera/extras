@@ -11,6 +11,7 @@
 #include "extra/string_support.hpp"
 
 using namespace std;
+using namespace extras;
 
 static string test_fullpath = "extra_options/include/extra/docopt_private.h";
 static string test_filename = "docopt_private.h";
