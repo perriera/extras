@@ -30,6 +30,8 @@
      ./run-unittests
      sudo make install
 
+**Note**: run-unittests needs to be run from inside the build directory. 
+
  After installation the extra_ libraries should be found in your **/usr/local/include** and your **/usr/local/lib** directories. Also, set LD_LIBRARY_PATH, (if you haven't already done so). 
 
      export LD_LIBRARY_PATH=/usr/local/lib

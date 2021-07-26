@@ -1,6 +1,8 @@
 #ifndef _EXTRA_KEYWORDS_HPP
 #define _EXTRA_KEYWORDS_HPP
 
+namespace extras {
+
 /**
  * @file keywords.hpp
  * @author Perry Anderson (perryanderson.com)
@@ -121,5 +123,6 @@
  *
  */
 #define with , public
+} // namespace extras
 
 #endif // _EXTRA_KEYWORDS_HPP

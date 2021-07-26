@@ -13,9 +13,9 @@
 using namespace std;
 using namespace extras;
 
-static string test_fullpath = "extra_options/include/extra/docopt_private.h";
+static string test_fullpath = "../extra_options/include/extra/docopt_private.h";
 static string test_filename = "docopt_private.h";
-static string test_pathname = "extra_options/include/extra/";
+static string test_pathname = "../extra_options/include/extra/";
 
 SCENARIO("Verify Directory.filename()", "[Directory]") {
 
