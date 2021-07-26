@@ -185,6 +185,7 @@ Expect the following to be the namespace paradym to be used starting with releas
     using namespace perrier::extras::options;
     using namespace perrier::extras::strings;
 
+
     using namespace extras;
     using namespace extras::crcs;
     using namespace extras::files;
