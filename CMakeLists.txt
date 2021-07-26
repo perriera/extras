@@ -20,11 +20,11 @@ endif()
 # Add local project module path so CMake includes custom CMake modules.
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
+add_subdirectory(extra_keywords)
 add_subdirectory(extra)
 add_subdirectory(extra_colors)
 add_subdirectory(extra_crcs)
 add_subdirectory(extra_files)
-add_subdirectory(extra_keywords)
 add_subdirectory(extra_strings)
 add_subdirectory(extra_options)
 
