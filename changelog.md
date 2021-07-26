@@ -25,6 +25,7 @@ IMPORTANT:
 #### 1.2.4 (2021-07-25)
 ### Added
 - README.md content
+- sudo checkinstall process
 ### Changed
 - ansi_colors.hpp
 

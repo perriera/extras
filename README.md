@@ -1,3 +1,4 @@
+
 # (perriera) extras
 ###   Description
 > This is a collection of C++ based tools to simplify the software development process.</br> 
@@ -35,7 +36,29 @@
 If you happen to be adding features to the extras library and wish to debug it, be sure to put your build directory ahead of the install location, (otherwise the linking process will only use the installed version of the extra_ libraries).
 
     export LD_LIBRARY_PATH=build:/usr/local/lib
+
+## sudo checkinstall
+While the above will work for most applications, should you wish to uninstall you will need to install **extras** using a slightly different approach. To be able to uninstall you will need to install the Ubuntu **checkinstall** package: [here](https://help.ubuntu.com/community/CheckInstall). 
+
+`sudo apt-get update && sudo apt-get install checkinstall`
+
+With the checkinstall package installed your installation process now becomes:
     
+     git clone https://github.com/perriera/extras.git 
+     cd extras
+     mkdir build
+     cd build
+     cmake ..
+     make
+     sudo checkinstall
+
+**Note**: During the checkinstall process be sure to change the name of the package from the default: **built** to **extras**. It'll be item #2 on the checkinstall parameter listings, (you can safely use the defaults for the rest of the items on the checkinstall).
+
+Then when you need to uninstall this package:
+
+    sudo dpkg -r extras
+
+While it may seem odd to have uninstall the extra_ libraries package, future upgrades to the extras package will prefer if there is a clean install for it to work with.
 ## CMakeLists.txt
 Typically you would just include the extra_ library of your choice. However, some extra_ libraries are interdependent. So, the following is a complete listing of the libraries, (where you strip down the ones you don't need). Typically, they are required in **link** portions of your CMakeLists.txt targets, (as the system standard **/usr/local/include** path is assumed by the compiler). However, if you are directly working on the extra_ libraries then you might need to add them to the target_include_libraries as well.
 
