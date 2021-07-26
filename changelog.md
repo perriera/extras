@@ -20,6 +20,11 @@ IMPORTANT:
 
 ## [Unreleased]
 
+#### 1.2.1 (2021-07-25)
+### Changed
+- Added documentation to keywords.hpp
+- Fixed some header files
+
 #### 1.1.1 (2021-07-25)
 ### Added
 - extra_options added
@@ -63,7 +68,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v1.2.1...HEAD
+[1.1.1]: https://github.com/perriera/extras/compare/v1.1.1...v1.2.1
 [1.1.1]: https://github.com/perriera/extras/compare/v1.0.1...v1.1.1
 [1.0.1]: https://github.com/perriera/extras/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/perriera/extras/compare/v0.1.3...v1.0.0

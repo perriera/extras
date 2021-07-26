@@ -1,5 +1,5 @@
-#ifndef _STRING_SUPPORT_HPP
-#define _STRING_SUPPORT_HPP
+#ifndef _EXTRA_STRING_SUPPORT_HPP
+#define _EXTRA_STRING_SUPPORT_HPP
 
 #include <algorithm>
 #include <cctype>
@@ -86,4 +86,4 @@ template <typename T> std::string plusone(T const &t) {
   return oss.str();
 }
 
-#endif // _STRING_SUPPORT_HPP
+#endif // _EXTRA_STRING_SUPPORT_HPP

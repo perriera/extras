@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(extras LANGUAGES CXX)
-project(extras VERSION 1.1.1)
+project(extras VERSION 1.2.1)
 
 set(CMAKE_BUILD_TYPE Debug)
 

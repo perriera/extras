@@ -1,5 +1,5 @@
-#ifndef _ANSI_INPUT_HPP
-#define _ANSI_INPUT_HPP
+#ifndef _EXTRA_ANSI_INPUT_HPP
+#define _EXTRA_ANSI_INPUT_HPP
 
 #include "extra/keywords.hpp"
 #include <iostream>
@@ -22,4 +22,4 @@ interface ansi_input {
   // }
   //     system("stty sane");
 
-#endif // _ANSI_INPUT_HPP
+#endif // _EXTRA_ANSI_INPUT_HPP
