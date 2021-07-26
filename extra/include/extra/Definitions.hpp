@@ -12,8 +12,8 @@
  * All Rights Reserved, MIT License.
  *
  * This file is included here for legacy reasons.
- * Where possible either "extra/keywords.hpp" or
- * "extra/support.hpp" instead.
+ * Where possible use either "extra/keywords.hpp"
+ * or "extra/support.hpp" instead.
  *
  */
 #include "extra/keywords.hpp"
