@@ -176,7 +176,7 @@ How many times how you wanted to do something really simple with strings but fou
 The following are a series of features to be added to the extra_ libraries in the near future
 
 ## namespace
-Expect the following to be the namespace paradym to be used starting with release 2.0.0
+Expect one of the following to be the namespace paradyms to be used starting with release 2.0.0
 
     using namespace perrier::extras;
     using namespace perrier::extras::crcs;
@@ -185,6 +185,7 @@ Expect the following to be the namespace paradym to be used starting with releas
     using namespace perrier::extras::options;
     using namespace perrier::extras::strings;
 
+A simpler version of the above would be:
 
     using namespace extras;
     using namespace extras::crcs;
