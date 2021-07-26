@@ -1,7 +1,6 @@
 #ifndef _EXTRA_COLORS_HPP
 #define _EXTRA_COLORS_HPP
 
-#include "extra/keywords.hpp"
 #include <iostream>
 
 //
@@ -9,7 +8,7 @@
 // https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
 //
 
-interface colors {
+struct colors {
 
   const char *black();
   const char *red();

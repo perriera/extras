@@ -22,6 +22,12 @@ IMPORTANT:
 - Update Doxygen content
 - namespace support
 
+#### 1.2.4 (2021-07-25)
+### Added
+- README.md content
+### Changed
+- ansi_colors.hpp
+
 #### 1.2.3 (2021-07-25)
 ### Added
 - README.md content
@@ -84,7 +90,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v1.2.3...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v1.2.4...HEAD
+[1.2.4]: https://github.com/perriera/extras/compare/v1.2.3...v1.2.4
 [1.2.3]: https://github.com/perriera/extras/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/perriera/extras/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/perriera/extras/compare/v1.1.1...v1.2.1
