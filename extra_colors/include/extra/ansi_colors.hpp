@@ -7,7 +7,7 @@
 // simplest ansi color c++ implementation
 // https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
 //
-
+namespace extras {
 struct colors {
 
   const char *black();
@@ -39,5 +39,7 @@ declare_color(magenta, 35);
 declare_color(cyan, 36);
 declare_color(white, 37);
 declare_color(reset, 0);
+
+} // namespace extras
 
 #endif // _EXTRA_COLORS_HPP
