@@ -1,6 +1,6 @@
 
 # (perriera) extras
-> This is a collection of C++ based tools to simplify the software development process..</br>
+> This is a collection of C++ based tools to simplify the software development process.</br>
 > It is composed, (at present) of the following sub-libraries:</br>
 > 
  - extra_colors
