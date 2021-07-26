@@ -22,7 +22,7 @@
         "command": "bash",
         "args": [
           "-c",
-          "install -d build; cd build; cmake -DPRODUCTION=true ..; make",
+          "install -d build; cd build; cmake ..; make",
         ]
       }
     ]

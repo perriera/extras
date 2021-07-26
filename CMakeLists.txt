@@ -6,8 +6,13 @@ project(extras VERSION 1.2.3)
 set(ignoreMe "${PRODUCTION}")
 if(NOT DEFINED PRODUCTION)
 	set(CMAKE_BUILD_TYPE Debug)
+	message(STATUS "DEBUG BUILD")
+	message(STATUS "edit your ~/.bashrc and set")
+	message(STATUS "export LD_LIBRARY_PATH=build:/usr/local/lib")
 else()
 	message(STATUS "PRODUCTION BUILD")
+	message(STATUS "edit your ~/.bashrc and set")
+	message(STATUS "export LD_LIBRARY_PATH=/usr/local/lib")
 endif()
 
 # Add local project module path so CMake includes custom CMake modules.
