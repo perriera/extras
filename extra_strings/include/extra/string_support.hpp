@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 
+namespace extras {
 // trim from start (in place)
 static inline void ltrim(std::string &s) {
   s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
@@ -85,5 +86,6 @@ template <typename T> std::string plusone(T const &t) {
   oss << (t + 1);
   return oss.str();
 }
+} // namespace extras
 
 #endif // _EXTRA_STRING_SUPPORT_HPP
