@@ -15,7 +15,7 @@
 > - extra_options
 > - extra_strings
 >
-> Presently supporting Linux platforms but can be ported to iOS and Windows environments.
+> Presently supporting Linux platforms but can be ported to Android, iPhone, iOS, Windows environments.
 >
  # Installation
  Assuming you are using a gcc/g++ environment on a Linux platform:
@@ -210,8 +210,12 @@ A simpler version of the above would be:
 
 Let us known which style you'd prefer at: perry.anderson@gmail.com, (or perry@exparx.com)
 
+## Android support
+Expect support for the Android platform in the near future
 ## iOS support
 Expect support for the iOS platform in the near future
+## iPhone support
+Expect support for the iPhone platform in the near future
 
 ## Windows support
 Expect support for the Windows platform in the near future
