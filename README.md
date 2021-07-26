@@ -1,7 +1,12 @@
-
 # (perriera) extras
-> This is a collection of C++ based tools to simplify the software development process.</br>
-> It is composed, (at present) of the following sub-libraries:</br>
+###   Description
+> This is a collection of C++ based tools to simplify the software development process.</br> 
+> 
+ >*Why would someone want to use this?*
+ >
+ >In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make a lot easier to the C++ programmer. At present there are 'extra' libraries for ANSI colours, crc calculations, directory and file I/O, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
+ >
+> It is presently composed of the following sub-libraries:</br>
 > 
  - extra_colors
  - extra_crcs
@@ -9,7 +14,7 @@
  - extra_keywords
  - extra_options
  - extra_strings
- 
+
  # Installation
  Assuming you are using a gcc/g++ environment on a Linux platform:
  
@@ -179,10 +184,10 @@ How many times how you wanted to do something really simple with strings but fou
     inline  std::string  to_lower(const  std::string  &data) ;
     
 
-# TODO:
+## Todo List:
 The following are a series of features to be added to the extra_ libraries in the near future
 
-## namespace
+## C++ namespace support
 Expect one of the following to be the namespace paradyms to be used starting with release 2.0.0
 
     using namespace perrier::extras;
