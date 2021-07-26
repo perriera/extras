@@ -1,8 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
 project(extras LANGUAGES CXX)
-project(extras VERSION 1.2.2)
+project(extras VERSION 1.2.3)
 
-set(CMAKE_BUILD_TYPE Debug)
+# first check
+set(ignoreMe "${PRODUCTION}")
+if(NOT DEFINED PRODUCTION)
+	set(CMAKE_BUILD_TYPE Debug)
+else()
+	message(STATUS "PRODUCTION BUILD")
+endif()
 
 # Add local project module path so CMake includes custom CMake modules.
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")

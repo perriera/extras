@@ -22,6 +22,14 @@ IMPORTANT:
 - Update Doxygen content
 - namespace support
 
+#### 1.2.3 (2021-07-25)
+### Added
+- README.md content
+- PRODUCTION mode
+### Changed
+- Updated Doxygen documentation
+
+
 #### 1.2.2 (2021-07-25)
 ### Added
 - README.md content
@@ -76,7 +84,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v1.2.2...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v1.2.3...HEAD
+[1.2.3]: https://github.com/perriera/extras/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/perriera/extras/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/perriera/extras/compare/v1.1.1...v1.2.1
 [1.1.1]: https://github.com/perriera/extras/compare/v1.0.1...v1.1.1

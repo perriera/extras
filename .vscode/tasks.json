@@ -6,21 +6,24 @@
   // Special thanks to Dave Dumke, (david.dumke@nautel.com) of Nautel for piecing 
   // together this lovely script as it saves so much time and energy.
   //
-{
-  "version": "2.0.0",
-  "tasks": [
+  // "install -d build; cd build; cmake ..; make",
+  // "install -d build; cd build; cmake -DPRODUCTION=true ..; make",
+  //
+  {
+    "version": "2.0.0",
+    "tasks": [
       {
-          "label": "Build C++ project",
-          "type": "shell",
-          "group": {
-              "kind": "build",
-              "isDefault": true
-          },
-          "command": "bash",
-          "args": [
-              "-c",
-              "install -d build; cd build; cmake ..; make",
-          ]
+        "label": "Build C++ project",
+        "type": "shell",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "command": "bash",
+        "args": [
+          "-c",
+          "install -d build; cd build; cmake -DPRODUCTION=true ..; make",
+        ]
       }
-  ]
-}
+    ]
+  }

@@ -17,7 +17,7 @@
      cd extras
      mkdir build
      cd build
-     cmake ...
+     cmake ..
      make
      sudo make install
 
@@ -49,9 +49,18 @@ For example:
        extra_options
        extra_strings
     )
-The 1.2.2 version of the extra_ libraries installs the debug version by default. If you wish to use a production version of the library comment out this line in the main CMakeLists.txt file and recompile:
+The 1.2.2 version of the extra_ libraries installs the debug version by default. If you wish to use a production version of the library you can either comment out this line in the main CMakeLists.txt file and recompile:
 
     set(CMAKE_BUILD_TYPE Debug)
+
+Or, as of 1.2.3 you can define PRODUCTION on the command line of the cmake command and it will cause a production version of the library to be generated instead, (just be sure to delete the build directory before hand):
+
+    cd ..
+    rm -rf build
+    cd build
+    cmake -DPRODUCTION=true ..
+    make
+    sudo make install
 
  ## extra_colors
  > add **extra_colors** to your CMakeLists.txt
