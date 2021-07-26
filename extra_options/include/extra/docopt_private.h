@@ -30,6 +30,7 @@ using boost::regex_constants::match_not_null;
 #include <regex>
 #endif
 
+#include "docopt_util.h"
 #include "docopt_value.h"
 
 namespace docopt {
@@ -430,15 +431,7 @@ inline void BranchPattern::fix_repeating_arguments() {
       if (ensureList) {
         std::vector<std::string> newValue;
         if (leaf->getValue().isString()) {
-          // DUE TO SOME HEADER FILE COLLISION QUICK
-          // THE FOLLOWING LINE WAS COMMENTED OUT
-          // BECAUSE TRACKING IT DOWN WAS NOT
-          // IN THE PROGRAMMERS BEST INTEREST
-          // AT THIS POINT IN TIME
-          // SO UNCOMMENT THIS LINE
-          // AND FIND THE MISSING LINK
-          // IF YOU ACTUALLY USE THIS FILE
-          //  newValue = split(leaf->getValue().asString());
+          newValue = docopt::split(leaf->getValue().asString());
         }
         if (!leaf->getValue().isStringList()) {
           leaf->setValue(value{newValue});
