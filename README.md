@@ -117,6 +117,8 @@ As of 1.2.3 the extra_ libraries are not using namespace designationas, (as of y
     #include  "extra/colors.hpp"
 
     using  namespace  std;
+    using  namespace  extras;
+
     void  Hello::hello() const
     {
        cout << red << "Hello" << endl;
@@ -132,6 +134,9 @@ Use of this library will give your application quick access to either crc16, crc
     #include <iostream>
     #include "extra/crcs.hpp"
 
+    using  namespace  std;
+    using  namespace  extras;
+
     SCENARIO("Verify crc32 default", "[crc32]") {
     {
        string  data_piece4 = "data_piece2;";
@@ -146,6 +151,9 @@ Use of this library will give you easier access to files in the underlying opera
 
     #include <iostream>
     #include "extra/files.hpp"
+
+    using  namespace  std;
+    using  namespace  extras;
 
     SCENARIO("Verify Directory.filename()", "[Directory]") {
        string  a = "extra_options/include/extra/docopt_private.h";
@@ -186,6 +194,9 @@ Use of this library will give you better main(argc,argv) capabilities as it pars
     #include <iostream>
     #include "extra/options.hpp"
 
+    using  namespace  std;
+    using  namespace  docopt;
+    
     int  main(int  argc, const  char  *argv[])
     {
        std::map<std::string, docopt::value> args = docopt::docopt(
@@ -205,6 +216,9 @@ How many times how you wanted to do something really simple with strings but fou
 
     #include <iostream>
     #include "extra/strings.hpp"
+
+    using  namespace  std;
+    using  namespace  extras;
 
     static  inline  void  ltrim(std::string  &s);
     static  inline  void  rtrim(std::string  &s) ;
