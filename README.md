@@ -172,6 +172,25 @@ How many times how you wanted to do something really simple with strings but fou
     inline  std::string  to_lower(const  std::string  &data) ;
     
 
+# TODO:
+The following are a series of features to be added to the extra_ libraries in the near future
 
+## namespace
+Expect the following to be the namespace paradym to be used starting with release 2.0.0
 
+    using namespace perrier::extras;
+    using namespace perrier::extras::crcs;
+    using namespace perrier::extras::files;
+    using namespace perrier::extras::keywords;
+    using namespace perrier::extras::options;
+    using namespace perrier::extras::strings;
+
+    using namespace extras;
+    using namespace extras::crcs;
+    using namespace extras::files;
+    using namespace extras::keywords;
+    using namespace extras::options;
+    using namespace extras::strings;
+
+Let us known which style you'd prefer at: perry.anderson@gmail.com, (or perry@exparx.com)
 
