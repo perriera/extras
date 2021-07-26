@@ -30,7 +30,7 @@ If you happen to be adding features to the extras library and wish to debug it, 
     export LD_LIBRARY_PATH=build:/usr/local/lib
     
 ## CMakeLists.txt
-Typically you would just include the extra_ library of your choice. However, some extra_ libraries are interdependent. So, the following is a complete listing of the libraries, (where you strip down the ones you don't need). Typically, they are required in both the 'include' and 'link' portions of your CMakeLists.txt targets:
+Typically you would just include the extra_ library of your choice. However, some extra_ libraries are interdependent. So, the following is a complete listing of the libraries, (where you strip down the ones you don't need). Typically, they are required in **link** portions of your CMakeLists.txt targets, (as the system standard **/usr/local/include** path is assumed by the compiler):
 
      extra_colors
      extra_crcs
