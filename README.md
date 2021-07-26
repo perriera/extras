@@ -245,6 +245,7 @@ With one exception, use of the **extra_options** package requires use of the nam
     using namespace docopt;
 
 If you wish to use the none-namespace version of **extras** simply use versions earlier than 2.0.0, (or modify your local implementation of the **extras** package). 
+
 Change
 
 	namespace extras {
@@ -255,7 +256,7 @@ To
 In each of the header files of the **extras** package.
 ## Todo List:
 The following are a series of features to be added to the extra_ libraries in the near future.
-Let us known which style you'd prefer at: perry.anderson@gmail.com, (or perry@exparx.com)
+If there is anything you'd like to see added to the extras package please email us at perry.anderson@gmail.com, (or perry@exparx.com)
 
 ## Android support
 Expect support for the Android platform in the near future
