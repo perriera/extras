@@ -10,13 +10,13 @@
  - extra_strings
  
  # Installation
- git clone https://github.com/perriera/extras.git
- cd extras
- mkdir build
- cd build
- cmake ...
- make
- sudo make install
+ git clone https://github.com/perriera/extras.git </br>
+ cd extras</br>
+ mkdir build</br>
+ cd build</br>
+ cmake ...</br>
+ make</br>
+ sudo make install</br>
  
  ## extra_colors
  > add **extra_colors** to your CMakeLists.txt
