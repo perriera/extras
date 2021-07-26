@@ -62,6 +62,9 @@ Or, as of 1.2.3 you can define PRODUCTION on the command line of the cmake comma
     make
     sudo make install
 
+## namespace
+As of 1.2.3 the extra_ libraries are not using namespace designationas, (as of yet). 
+
  ## extra_colors
  > add **extra_colors** to your CMakeLists.txt
  Use of this library will give you the ability to add color to your C++ console based applications for your typical Xterm based window. 
