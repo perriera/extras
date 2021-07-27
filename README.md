@@ -1,5 +1,6 @@
 
 
+
 # (perriera) extras
 ###   Description
 > This is a collection of C++ based tools to simplify the software development process.</br> 
@@ -13,7 +14,7 @@
 > - extra_colors
 > - extra_crcs
 > - extra_files
-> - extra_keywords
+> - extra_interfaces
 > - extra_options
 > - extra_strings
 >
@@ -70,13 +71,14 @@ Should you run into a strange situation to where you issued the above command bu
 As you may have installed it earlier without changing the name of the package from **build** to **extras**.
 
 While it may seem odd to have to uninstall the extra_ libraries package, future upgrades to the extras package will prefer if there is a clean install for you to work with.
+
 ## CMakeLists.txt
 Typically you would just include the extra_ library of your choice. However, some extra_ libraries are interdependent. So, the following is a complete listing of the libraries, (where you strip down the ones you don't need). Typically, they are required in **link** portions of your CMakeLists.txt targets, (as the system standard **/usr/local/include** path is assumed by the compiler). However, if you are directly working on the extra_ libraries then you might need to add them to the target_include_libraries as well.
 
      extra_colors
      extra_crcs
      extra_files
-     extra_keywords
+     extra_interfaces
      extra_options
      extra_strings
 
@@ -86,7 +88,7 @@ For example:
        chessmind::library
        extra_crcs
        extra_colors
-       extra_keywords
+       extra_interfaces
        extra_files
        extra_options
        extra_strings
@@ -125,7 +127,8 @@ To
 
 In each of the header files of the **extras** package. A full recompilation would be necessary along with a complete reinstall of the library. 
  ## extra_colors
- > add **extra_colors** to your CMakeLists.txt
+ > add **extra/colors.hpp** to your C++ source</br>
+ > add **extra_colors** to your CMakeLists.txt</br>
  Use of this library will give you the ability to add color to your C++ console based applications for your typical Xterm based window. 
 
     #include  <iostream>
@@ -144,7 +147,8 @@ In each of the header files of the **extras** package. A full recompilation woul
     };
 
 ## extra_crcs
- > add **extra_crcs** to your CMakeLists.txt
+ > add **extra/crcs.hpp** to your C++ source</br>
+ > add **extra_crcs** to your CMakeLists.txt</br>
 Use of this library will give your application quick access to either crc16, crc32, or crc64 bit calculations.
 
     #include <iostream>
@@ -162,7 +166,8 @@ Use of this library will give your application quick access to either crc16, crc
     }
 
 ## extra_files
- > add **extra_files** to your CMakeLists.txt
+ > add **extra/files.hpp** to your C++ source</br>
+ > add **extra_files** to your CMakeLists.txt</br>
 Use of this library will give you easier access to files in the underlying operating system, (only tested on Linux as of 1.2.1).
 
     #include <iostream>
@@ -178,9 +183,9 @@ Use of this library will give you easier access to files in the underlying opera
        REQUIRE(b  ==  "docopt_private.h");
     }
 
-## extra_keywords
- > add **extra_keywords** to your CMakeLists.txt
-Use of this library will add extra keywords to your C++ syntax, (especially useful to programmers that like to program using interfaces, (aka. Design by Interface))
+## extra_interfaces
+ > add **extra/interfaces.hpp** to your C++ source</br>
+Especially useful to programmers that like to program using interfaces, (aka. GoF: Abstract factory pattern))
 
     #include <iostream>
     #include <extra/interfaces.hpp>
@@ -203,8 +208,13 @@ Use of this library will add extra keywords to your C++ syntax, (especially usef
        virtual  void  verbose(bool  on_or_off);
     };
 
+## extra_keywords
+ > add **extra/extra_keywords.hpp** to your C++ source</br>
+This header file includes **extra_interfaces** but any keywords that are not interface related would be included here, (at present only keywords related to interfaces are in use at this time).
+
 ## extra_options
- > add **extra_options** to your CMakeLists.txt
+ > add **extra/options.hpp** to your C++ source</br>
+ > add **extra_options** to your CMakeLists.txt</br>
 Use of this library will give you better main(argc,argv) capabilities as it parses command line arguments in an intelligent manner, (source code is Copyright (c) 2013 Jared Grubb, MIT license). 
 
     #include <iostream>
@@ -227,7 +237,8 @@ Use of this library will give you better main(argc,argv) capabilities as it pars
     }
 
 ## extra_strings
- > add **extra_strings** to your CMakeLists.txt
+ > add **extra/strings.hpp** to your C++ source</br>
+ > add **extra_strings** to your CMakeLists.txt</br>
 How many times how you wanted to do something really simple with strings but found yourself re-inventing the wheel all the time. Well, this library is merely a collection of popular std::string manipulation techniques, (based on the C++ STL library). Expect additional features to be added as time goes on:
 
     #include <iostream>
@@ -251,6 +262,26 @@ How many times how you wanted to do something really simple with strings but fou
     inline  bool  contains(std::string  const  &s1, std::string  const  &s2);
     inline  std::string  to_lower(const  std::string  &data) ;
     
+     ## extra_support
+ > add **extra/support.hpp** to your C++ source</br>
+ Use of this general purpose header file will simplify extras support in your source code as it includes ALL other header files. But to link to the extra_ library that you are using you still need to add a link to that particular library.
+
+    #include  <iostream>
+    #include  <extra/support.hpp>
+    #include  "chessmind/helloworld.hpp"
+
+    using  namespace  std;
+    using  namespace  extras;
+
+    void  Hello::hello() const
+    {
+       cout << red << "Hello" << endl;
+       cout << green << "Hello" << endl;
+       cout << blue << "Hello" << endl;
+       cout << reset << "Hello" << endl;
+    };
+
+
 ## Todo List:
 The following are a series of features to be added to the extra_ libraries in the near future.
 If there is anything you'd like to see added to the extras package please email us at perry.anderson@gmail.com, (or perry@exparx.com)
