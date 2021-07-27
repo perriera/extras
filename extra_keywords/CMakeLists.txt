@@ -1,6 +1,7 @@
  
 add_library(extra_keywords SHARED
 	include/extra/keywords.hpp
+	include/extra/interfaces.hpp
 	src/keywords.cpp
 )
 
