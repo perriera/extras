@@ -105,9 +105,25 @@ Or, as of 1.2.3 you can define PRODUCTION on the command line of the cmake comma
     ./run-unittests
     sudo make install
 
-## namespace
-As of 1.2.3 the extra_ libraries are not using namespace designationas, (as of yet). 
+## C++ namespace support
+As of version 2.0.0 the (perriera) **extras** package now requires the use of the namespace **extras**.
 
+    using namespace extras;
+
+With one exception, use of the **extra_options** package requires use of the namespace **docopt**.
+   
+    using namespace docopt;
+
+If you wish to use the none-namespace version of **extras** simply use versions earlier than 2.0.0, (or modify your local implementation of the **extras** package). 
+
+Change
+
+	namespace extras {
+To
+
+	namespace {
+
+In each of the header files of the **extras** package.
  ## extra_colors
  > add **extra_colors** to your CMakeLists.txt
  Use of this library will give you the ability to add color to your C++ console based applications for your typical Xterm based window. 
@@ -235,25 +251,6 @@ How many times how you wanted to do something really simple with strings but fou
     inline  bool  contains(std::string  const  &s1, std::string  const  &s2);
     inline  std::string  to_lower(const  std::string  &data) ;
     
-## C++ namespace support
-As of version 2.0.0 the (perriera) **extras** package now requires the use of the namespace **extras**.
-
-    using namespace extras;
-
-With one exception, use of the **extra_options** package requires use of the namespace **docopt**.
-   
-    using namespace docopt;
-
-If you wish to use the none-namespace version of **extras** simply use versions earlier than 2.0.0, (or modify your local implementation of the **extras** package). 
-
-Change
-
-	namespace extras {
-To
-
-	namespace {
-
-In each of the header files of the **extras** package.
 ## Todo List:
 The following are a series of features to be added to the extra_ libraries in the near future.
 If there is anything you'd like to see added to the extras package please email us at perry.anderson@gmail.com, (or perry@exparx.com)
