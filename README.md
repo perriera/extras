@@ -123,7 +123,7 @@ To
 
 	namespace {
 
-In each of the header files of the **extras** package.
+In each of the header files of the **extras** package. A full recompilation would be necessary along with a complete reinstall of the library. 
  ## extra_colors
  > add **extra_colors** to your CMakeLists.txt
  Use of this library will give you the ability to add color to your C++ console based applications for your typical Xterm based window. 
