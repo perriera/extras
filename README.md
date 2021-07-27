@@ -129,8 +129,8 @@ In each of the header files of the **extras** package. A full recompilation woul
  Use of this library will give you the ability to add color to your C++ console based applications for your typical Xterm based window. 
 
     #include  <iostream>
+    #include  <extra/colors.hpp>
     #include  "chessmind/helloworld.hpp"
-    #include  "extra/colors.hpp"
 
     using  namespace  std;
     using  namespace  extras;
@@ -148,7 +148,7 @@ In each of the header files of the **extras** package. A full recompilation woul
 Use of this library will give your application quick access to either crc16, crc32, or crc64 bit calculations.
 
     #include <iostream>
-    #include "extra/crcs.hpp"
+    #include <extra/crcs.hpp>
 
     using  namespace  std;
     using  namespace  extras;
@@ -166,7 +166,7 @@ Use of this library will give your application quick access to either crc16, crc
 Use of this library will give you easier access to files in the underlying operating system, (only tested on Linux as of 1.2.1).
 
     #include <iostream>
-    #include "extra/files.hpp"
+    #include <extra/files.hpp>
 
     using  namespace  std;
     using  namespace  extras;
@@ -183,7 +183,7 @@ Use of this library will give you easier access to files in the underlying opera
 Use of this library will add extra keywords to your C++ syntax, (especially useful to programmers that like to program using interfaces, (aka. Design by Interface))
 
     #include <iostream>
-    #include "extra/keywords.hpp"
+    #include <extra/keywords.hpp>
 
     //
     // CrossTableInterface
@@ -208,7 +208,7 @@ Use of this library will add extra keywords to your C++ syntax, (especially usef
 Use of this library will give you better main(argc,argv) capabilities as it parses command line arguments in an intelligent manner, (source code is Copyright (c) 2013 Jared Grubb, MIT license). 
 
     #include <iostream>
-    #include "extra/options.hpp"
+    #include <extra/options.hpp>
 
     using  namespace  std;
     using  namespace  docopt;
@@ -231,7 +231,7 @@ Use of this library will give you better main(argc,argv) capabilities as it pars
 How many times how you wanted to do something really simple with strings but found yourself re-inventing the wheel all the time. Well, this library is merely a collection of popular std::string manipulation techniques, (based on the C++ STL library). Expect additional features to be added as time goes on:
 
     #include <iostream>
-    #include "extra/strings.hpp"
+    #include <extra/strings.hpp>
 
     using  namespace  std;
     using  namespace  extras;
