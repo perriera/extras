@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(extras LANGUAGES CXX)
-project(extras VERSION 2.1.0)
+project(extras VERSION 2.2.0)
 
 # add_subdirectory(colors)
 
@@ -21,6 +21,7 @@ endif()
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
 add_subdirectory(extra_keywords)
+add_subdirectory(extra_interfaces)
 add_subdirectory(extra)
 add_subdirectory(extra_colors)
 add_subdirectory(extra_crcs)

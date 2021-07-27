@@ -21,6 +21,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 2.2.0 (2021-07-26)
+### Added
+- extras_interfaces
+
 #### 2.1.0 (2021-07-26)
 ### Added
 - #include <extra/interfaces.hpp>
@@ -102,7 +106,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/perriera/extras/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/perriera/extras/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/perriera/extras/compare/v1.2.4...v2.0.0
 [1.2.4]: https://github.com/perriera/extras/compare/v1.2.3...v1.2.4
