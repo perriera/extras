@@ -183,7 +183,7 @@ Use of this library will give you easier access to files in the underlying opera
 Use of this library will add extra keywords to your C++ syntax, (especially useful to programmers that like to program using interfaces, (aka. Design by Interface))
 
     #include <iostream>
-    #include <extra/keywords.hpp>
+    #include <extra/interfaces.hpp>
 
     //
     // CrossTableInterface
