@@ -128,7 +128,7 @@ To
 In each of the header files of the **extras** package. A full recompilation would be necessary along with a complete reinstall of the library. 
  ## extra_colors
  > add **extra/colors.hpp** to your C++ source</br>
- > add **extra_colors** to your CMakeLists.txt target</br>
+ > add **extra_colors** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
  Use of this library will give you the ability to add color to your C++ console based applications for your typical Xterm based window. 
 
@@ -149,7 +149,7 @@ In each of the header files of the **extras** package. A full recompilation woul
 
 ## extra_crcs
  > add **extra/crcs.hpp** to your C++ source</br>
- > add **extra_crcs** to your CMakeLists.txt target</br>
+ > add **extra_crcs** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 Use of this library will give your application quick access to either crc16, crc32, or crc64 bit calculations.
 
@@ -169,7 +169,7 @@ Use of this library will give your application quick access to either crc16, crc
 
 ## extra_files
  > add **extra/files.hpp** to your C++ source</br>
- > add **extra_files** to your CMakeLists.txt target</br>
+ > add **extra_files** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 Use of this library will give you easier access to files in the underlying operating system, (only tested on Linux as of 1.2.1).
 
@@ -221,7 +221,7 @@ This header file includes **extra_interfaces** but any keywords that are not int
 
 ## extra_options
  > add **extra/options.hpp** to your C++ source</br>
- > add **extra_options** to your CMakeLists.txt target</br>
+ > add **extra_options** library to your CMakeLists.txt target</br>
  > **using namespace docopt;**</br>
 Use of this library will give you better main(argc,argv) capabilities as it parses command line arguments in an intelligent manner, (source code is Copyright (c) 2013 Jared Grubb, MIT license). 
 
@@ -246,7 +246,7 @@ Use of this library will give you better main(argc,argv) capabilities as it pars
 
 ## extra_strings
  > add **extra/strings.hpp** to your C++ source</br>
- > add **extra_strings** to your CMakeLists.txt target</br>
+ > add **extra_strings** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 How many times how you wanted to do something really simple with strings but found yourself re-inventing the wheel all the time. Well, this library is merely a collection of popular std::string manipulation techniques, (based on the C++ STL library). Expect additional features to be added as time goes on:
 
