@@ -16,7 +16,7 @@ Directory::Directory(const Path &path) : _path(path) {
   auto _filename = filename();
   auto _pathname = pathname();
   string listing_file = "/tmp/listing.txt";
-  string cmd = "ls " + _pathname + ">" + listing_file;
+  string cmd = "ls -a " + _pathname + ">" + listing_file;
   // system("ls docopt/include -la >/tmp/listing.txt");
   system(cmd.c_str());
   ifstream listing_stream(listing_file);

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(extras LANGUAGES CXX)
-project(extras VERSION 2.2.1)
+project(extras VERSION 2.2.2)
 
 # add_subdirectory(colors)
 

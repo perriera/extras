@@ -21,6 +21,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 2.2.2 (2021-07-26)
+### Fixed
+- Directory (Linux) needed an -a option to see hidden files.
+
 #### 2.2.1 (2021-07-26)
 ### Changes
 - Updated README.md
@@ -110,7 +114,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v2.2.1...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v2.2.2...HEAD
+[2.2.2]: https://github.com/perriera/extras/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/perriera/extras/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/perriera/extras/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/perriera/extras/compare/v2.0.0...v2.1.0
