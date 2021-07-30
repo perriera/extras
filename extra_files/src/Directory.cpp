@@ -25,8 +25,10 @@ Directory::Directory(const Path &path) : _path(path) {
     string listing_line;
     listing_stream >> listing_line;
     if (listing_line.size() > 0) {
-      listing_line = _pathname + listing_line;
-      listing.push_back(listing_line);
+      if (listing_line != "." && listing_line != "..") {
+        listing_line = _pathname + listing_line;
+        listing.push_back(listing_line);
+      }
     }
   }
   this->_listing = listing;
