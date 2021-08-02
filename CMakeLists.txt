@@ -1,10 +1,28 @@
-cmake_minimum_required(VERSION 3.5)
+#
+# determine required cmake here
+# (use 'pip install cmake')
+#
+cmake_minimum_required(VERSION 3.21)
+
+#
+# determine PROJECT parameters here
+# manually keep version numbers in sync 
+# with the changelog.md and github
+#
 project(extras LANGUAGES CXX)
 project(extras VERSION 2.3.3)
 
-# add_subdirectory(colors)
+#
+# Set C/C++ parameters for all targets in this CMakeLists.txt
+#
 set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra --std=c++17 -fPIC" )
 set( CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wall -Wextra -fPIC" )
+
+#
+# determine DEBUG/PRODUCTION installation here
+# install -d build; cd build; cmake ..; make
+# install -d build; cd build; cmake -DPRODUCTION=true ..; make
+#
 
 # first check
 set(ignoreMe "${PRODUCTION}")
