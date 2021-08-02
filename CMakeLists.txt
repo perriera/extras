@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.21)
 # with the changelog.md and github
 #
 project(extras LANGUAGES CXX)
-project(extras VERSION 2.3.3)
+project(extras VERSION 2.3.4)
 
 #
 # Set C/C++ parameters for all targets in this CMakeLists.txt
@@ -44,23 +44,81 @@ message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 # Add local project module path so CMake includes custom CMake modules.
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
-add_subdirectory(extra)
+add_library(
+    extras SHARED
+	include/extra/support.hpp
+	include/extra/Definitions.hpp
+	include/extra/colors.hpp
+	include/extra/ansi_colors.hpp
+	include/extra/ansi_input.hpp
+	src/Definitions.cpp
+	src/ansi_colors.cpp
+	include/extra/crcs.hpp
+	include/extra/crc16_support.hpp
+	include/extra/crc32_support.hpp
+	include/extra/crc64_support.hpp
+	include/extra/octal_support.hpp
+	src/crc16.cpp
+	src/crc32.cpp
+	src/crc64.cpp
+	include/extra/files.hpp
+	include/extra/Directory.hpp
+	src/Directory.cpp
+	include/extra/interfaces.hpp
+	src/interfaces.cpp
+	include/extra/keywords.hpp
+	src/keywords.cpp
+	include/extra/options.hpp    
+	include/extra/docopt_private.h    
+    include/extra/docopt_util.h         
+    include/extra/docopt_value.h           
+    include/extra/docopt.h  
+    src/docopt.cpp  
+    include/extra/strings.hpp
+	include/extra/string_support.hpp
+	src/string_support.cpp
+)
 
 #
 # Create a target for executing the Catch2 unit tests.
 #
-add_executable(run-unittests
+add_executable(run-unittests-extras
 	test/main.cpp
 	test/test_Directory.cpp
 	test/test_FakeIt.cpp
 	test/test_crc32.cpp
 	test/test_crc64.cpp
 )
-target_include_directories(run-unittests
+target_include_directories(run-unittests-extras
 	PUBLIC
 		test/
 )
-target_link_libraries(run-unittests
-   extra
-   stdc++fs 
+target_link_libraries(run-unittests-extras
+	extras
+   	stdc++fs 
 )
+
+# Library
+# Note: may not work on windows
+install(TARGETS extras
+    LIBRARY DESTINATION lib
+)
+# Header files
+install(DIRECTORY 
+	${PROJECT_SOURCE_DIR}/include/extra
+    DESTINATION include
+)
+target_include_directories(extras 
+ 	PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include"
+)
+target_compile_definitions(extras 
+ 	INTERFACE EXTRA_CRCS_VERSION=1
+)
+# Set version for shared libraries.
+set_target_properties(extras
+	PROPERTIES
+	VERSION ${${PROJECT_NAME}_VERSION}
+	SOVERSION ${${PROJECT_NAME}_VERSION_MAJOR}
+)
+# install(TARGETS extra)
+

@@ -15,9 +15,9 @@ namespace fs = std::filesystem;
 using namespace std;
 using namespace extras;
 
-static string test_fullpath = "extra/include/extra/docopt_private.h";
+static string test_fullpath = "include/extra/docopt_private.h";
 static string test_filename = "docopt_private.h";
-static string test_pathname = "extra/include/extra/";
+static string test_pathname = "include/extra/";
 
 static string whereAmI()
 {

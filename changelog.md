@@ -21,6 +21,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 2.3.4 (2021-07-26)
+### Changed
+- Put all headers under include directory
+
 #### 2.3.3 (2021-07-26)
 ### Changed
 - Put all headers into the same subdirectory
