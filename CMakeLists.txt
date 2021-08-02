@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.21)
 # with the changelog.md and github
 #
 project(extras LANGUAGES CXX)
-project(extras VERSION 2.3.5)
+project(extras VERSION 2.3.6)
 
 #
 # Set C/C++ parameters for all targets in this CMakeLists.txt
@@ -106,11 +106,19 @@ target_link_libraries(run-unittests-extras
 install(TARGETS extras
     LIBRARY DESTINATION lib
 )
-# Header files
-install(DIRECTORY 
-	${PROJECT_SOURCE_DIR}/include/
-    DESTINATION include
-)
+
+# # Header files
+# install(DIRECTORY 
+# 	${PROJECT_SOURCE_DIR}/include/
+#     DESTINATION include
+#)
+
+# install headers
+install(
+	DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/extra"
+    DESTINATION include 
+    FILES_MATCHING PATTERN "*.hpp")
+
 # Set version for shared libraries.
 set_target_properties(extras
 	PROPERTIES

@@ -21,6 +21,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 2.3.6 (2021-07-26)
+### Changed
+- Troubleshooting Install parameters
+
 #### 2.3.5 (2021-07-26)
 ### Changed
 - Install parameters
@@ -130,7 +134,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v2.3.4...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v2.3.6...HEAD
+[2.3.6]: https://github.com/perriera/extras/compare/v2.3.5...v2.3.6
+[2.3.5]: https://github.com/perriera/extras/compare/v2.3.4...v2.3.5
 [2.3.4]: https://github.com/perriera/extras/compare/v2.3.3...v2.3.4
 [2.3.3]: https://github.com/perriera/extras/compare/v2.2.3...v2.3.3
 [2.2.3]: https://github.com/perriera/extras/compare/v2.2.2...v2.2.3

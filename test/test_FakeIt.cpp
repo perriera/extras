@@ -3,7 +3,6 @@
 #include <sstream>  // std::stringstream
 #include <string>   // std::string
 
-#include "../include/HelloWorld/HelloWorld.hpp"
 #include "catch.hpp"
 #include "extra/Directory.hpp"
 #include "extra/ansi_colors.hpp"
@@ -12,7 +11,8 @@
 #include "extra/string_support.hpp"
 #include "fakeit.hpp"
 
-struct SomeInterface {
+struct SomeInterface
+{
   virtual int foo(int) = 0;
   virtual int bar(int, int) = 0;
 };
@@ -24,7 +24,8 @@ struct SomeInterface {
 using namespace std;
 using namespace fakeit;
 
-SCENARIO("Verify FakeIt: Stubbing", "[FakeIt]") {
+SCENARIO("Verify FakeIt: Stubbing", "[FakeIt]")
+{
 
   Mock<SomeInterface> mock;
   // Stub a method to return a value once
@@ -46,7 +47,8 @@ SCENARIO("Verify FakeIt: Stubbing", "[FakeIt]") {
   Method(mock, foo) = 1;
 }
 
-SCENARIO("Verify FakeIt: more specific", "[FakeIt]") {
+SCENARIO("Verify FakeIt: more specific", "[FakeIt]")
+{
 
   Mock<SomeInterface> mock;
   // Stub foo(1) to return the value '100' once (The next two lines do the same)
@@ -64,7 +66,8 @@ SCENARIO("Verify FakeIt: more specific", "[FakeIt]") {
   Method(mock, foo).Using(1) = 0;
 }
 
-SCENARIO("Verify FakeIt: exceptions", "[FakeIt]") {
+SCENARIO("Verify FakeIt: exceptions", "[FakeIt]")
+{
 
   Mock<SomeInterface> mock;
   // Stub foo(1) to return the value '100' once (The next two lines do the same)
