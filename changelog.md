@@ -126,7 +126,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v2.2.3...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v2.3.4...HEAD
+[2.3.4]: https://github.com/perriera/extras/compare/v2.3.3...v2.3.4
+[2.3.3]: https://github.com/perriera/extras/compare/v2.2.3...v2.3.3
 [2.2.3]: https://github.com/perriera/extras/compare/v2.2.2...v2.2.3
 [2.2.2]: https://github.com/perriera/extras/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/perriera/extras/compare/v2.2.0...v2.2.1
