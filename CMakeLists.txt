@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.21)
 # with the changelog.md and github
 #
 project(extras LANGUAGES CXX)
-project(extras VERSION 2.3.7)
+project(extras VERSION 2.3.8)
 
 #
 # Set C/C++ parameters for all targets in this CMakeLists.txt
@@ -101,6 +101,9 @@ target_link_libraries(run-unittests-extras
    	stdc++fs 
 )
 
+include(CMakeDependentOption)
+include(GNUInstallDirs)
+
 # Library
 # Note: may not work on windows
 install(TARGETS extras
@@ -112,6 +115,10 @@ install(DIRECTORY
 	${PROJECT_SOURCE_DIR}/include/
     DESTINATION include
 )
+
+# install(EXPORT ${targets_export_name}
+# NAMESPACE ${cmake_package_name}::
+# DESTINATION ${cmake_files_install_dir})
 
 export(
 	TARGETS extras

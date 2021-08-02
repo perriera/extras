@@ -21,6 +21,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 2.3.8 (2021-07-26)
+### Changed
+- Added another shot in the wind 
+
 #### 2.3.7 (2021-07-26)
 ### Changed
 - Added export() statement
