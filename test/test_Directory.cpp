@@ -21,7 +21,7 @@ static string test_pathname = "include/extra/";
 
 static string whereAmI()
 {
-  if (fs::exists("run-unittests"))
+  if (fs::exists("run-unittests-extras"))
     return "../";
   return "";
 }
