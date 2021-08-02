@@ -21,6 +21,11 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 2.3.3 (2021-07-26)
+### Changed
+- Put all headers into the same subdirectory
+- Put all sub libraries back into one library
+
 #### 2.2.3 (2021-07-26)
 ### Fixed
 - Directory test case.

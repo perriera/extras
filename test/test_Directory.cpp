@@ -2,6 +2,8 @@
 #include <iostream> // std::cout
 #include <sstream>  // std::stringstream
 #include <string>   // std::string
+#include <filesystem>
+namespace fs = std::filesystem;
 
 #include "catch.hpp"
 #include "extra/Directory.hpp"
@@ -13,57 +15,81 @@
 using namespace std;
 using namespace extras;
 
-static string test_fullpath = "../extra_options/include/extra/docopt_private.h";
+static string test_fullpath = "extra/include/extra/docopt_private.h";
 static string test_filename = "docopt_private.h";
-static string test_pathname = "../extra_options/include/extra/";
+static string test_pathname = "extra/include/extra/";
 
-SCENARIO("Verify Directory.filename()", "[Directory]") {
+static string whereAmI()
+{
+  if (fs::exists("run-unittests"))
+    return "../";
+  return "";
+}
 
-  string a = test_fullpath;
+static string getFullPath()
+{
+  return whereAmI() + test_fullpath;
+}
+
+static string getPathname()
+{
+  return whereAmI() + test_pathname;
+}
+
+SCENARIO("Verify Directory.filename()", "[Directory]")
+{
+
+  string a = getFullPath();
   auto b = Directory(a).filename();
   REQUIRE(a != b);
   REQUIRE(b == test_filename);
 }
 
-SCENARIO("Verify Directory.pathname()", "[Directory]") {
+SCENARIO("Verify Directory.pathname()", "[Directory]")
+{
 
-  string a = test_fullpath;
+  string a = getFullPath();
   auto b = Directory(a).pathname();
   REQUIRE(a != b);
-  REQUIRE(b == test_pathname);
+  REQUIRE(b == getPathname());
 }
 
-SCENARIO("Verify Directory.listing() 'path exists'", "[Directory]") {
+SCENARIO("Verify Directory.listing() 'path exists'", "[Directory]")
+{
 
-  string a = test_fullpath;
+  string a = getFullPath();
   auto b = Directory(a).listing();
-  REQUIRE(b.size() == 5);
+  REQUIRE(b.size() == 21);
 }
 
-SCENARIO("Verify Directory.listing() 'path does not exists'", "[Directory]") {
+SCENARIO("Verify Directory.listing() 'path does not exists'", "[Directory]")
+{
 
   string a = "garabage";
   auto b = Directory(a).listing();
   REQUIRE(b.size() == 0);
 }
 
-SCENARIO("Verify Directory.listing() 'only path given'", "[Directory]") {
+SCENARIO("Verify Directory.listing() 'only path given'", "[Directory]")
+{
 
-  string a = test_pathname;
+  string a = getPathname();
   auto b = Directory(a).listing();
-  REQUIRE(b.size() == 5);
+  REQUIRE(b.size() == 21);
 }
 
-SCENARIO("Verify Directory.listing() 'no path given'", "[Directory]") {
+SCENARIO("Verify Directory.listing() 'no path given'", "[Directory]")
+{
 
   string a = "";
   auto b = Directory(a).listing();
   REQUIRE(b.size() > 0);
 }
 
-SCENARIO("Verify Directory ", "[Directory]") {
+SCENARIO("Verify Directory ", "[Directory]")
+{
 
-  string filename = test_fullpath;
+  string filename = getFullPath();
   auto fileExists = Directory(filename).fileExists();
   REQUIRE(fileExists);
 }
