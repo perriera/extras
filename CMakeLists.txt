@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.21)
 # with the changelog.md and github
 #
 project(extras LANGUAGES CXX)
-project(extras VERSION 2.3.4)
+project(extras VERSION 2.3.5)
 
 #
 # Set C/C++ parameters for all targets in this CMakeLists.txt
@@ -44,8 +44,8 @@ message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 # Add local project module path so CMake includes custom CMake modules.
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
-add_library(
-    extras SHARED
+add_library(extras 
+SHARED
 	include/extra/support.hpp
 	include/extra/Definitions.hpp
 	include/extra/colors.hpp
@@ -78,6 +78,9 @@ add_library(
 	include/extra/string_support.hpp
 	src/string_support.cpp
 )
+target_include_directories(extras 
+ 	PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include"
+)
 
 #
 # Create a target for executing the Catch2 unit tests.
@@ -105,14 +108,8 @@ install(TARGETS extras
 )
 # Header files
 install(DIRECTORY 
-	${PROJECT_SOURCE_DIR}/include/extra
+	${PROJECT_SOURCE_DIR}/include/
     DESTINATION include
-)
-target_include_directories(extras 
- 	PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include"
-)
-target_compile_definitions(extras 
- 	INTERFACE EXTRA_CRCS_VERSION=1
 )
 # Set version for shared libraries.
 set_target_properties(extras
