@@ -24,6 +24,7 @@ IMPORTANT:
 #### 2.3.4 (2021-07-26)
 ### Changed
 - Put all headers under include directory
+- Changed library name from 'extra' to 'extras'
 
 #### 2.3.3 (2021-07-26)
 ### Changed
