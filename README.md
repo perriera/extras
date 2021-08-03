@@ -1,24 +1,12 @@
-
-
-
 # (perriera) extras
 ###   Description
 > This is a collection of C++ based tools to simplify the software development process.</br> 
 > 
  >*Why would someone want to use this?*
  >
- >In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there are **'extra_ libraries'** for ANSI colours, crc calculations, directory and file I/O, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
+ >In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present the are **'extras' library** adds support for ANSI colours, crc calculations, directory and file I/O, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
  >
-> It is presently composed of the following sub-libraries:</br>
-> 
-> - extra_colors
-> - extra_crcs
-> - extra_files
-> - extra_interfaces
-> - extra_options
-> - extra_strings
->
-> Presently supporting Linux platforms but can be ported to Android, iPhone, iOS, Windows environments.
+> Presently supporting Linux platforms but portable to Android, iPhone, iOS, Windows environments.
 >
  # Installation
  Assuming you are using a gcc/g++ environment on a Linux platform:
@@ -73,27 +61,16 @@ As you may have installed it earlier without changing the name of the package fr
 While it may seem odd to have to uninstall the extra_ libraries package, future upgrades to the extras package will prefer if there is a clean install for you to work with.
 
 ## CMakeLists.txt
-Typically you would just include the extra_ library of your choice. However, some extra_ libraries are interdependent. So, the following is a complete listing of the libraries, (where you strip down the ones you don't need). Typically, they are required in **link** portions of your CMakeLists.txt targets, (as the system standard **/usr/local/include** path is assumed by the compiler). However, if you are directly working on the extra_ libraries then you might need to add them to the target_include_libraries as well.
-
-     extra_colors
-     extra_crcs
-     extra_files
-     extra_interfaces
-     extra_options
-     extra_strings
+You just include the **extras** library to any targets in your CMakeLists.txt target_include_libraries specs
 
 For example:
 
     target_link_libraries(run-unittests
        chessmind::library
-       extra_crcs
-       extra_colors
-       extra_interfaces
-       extra_files
-       extra_options
-       extra_strings
+       extras
     )
-The 1.2.2 version of the extra_ libraries installs the debug version by default. If you wish to use a production version of the library you can either comment out this line in the main CMakeLists.txt file and recompile:
+    
+The 2.3.8 version of the extras libraries installs the debug version by default. If you wish to use a production version of the library you can either comment out this line in the main CMakeLists.txt file and recompile:
 
     set(CMAKE_BUILD_TYPE Debug)
 
@@ -128,7 +105,7 @@ To
 In each of the header files of the **extras** package. A full recompilation would be necessary along with a complete reinstall of the library. 
  ## extra_colors
  > add **extra/colors.hpp** to your C++ source</br>
- > add **extra_colors** library to your CMakeLists.txt target</br>
+ > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
  Use of this library will give you the ability to add color to your C++ console based applications for your typical Xterm based window. 
 
@@ -149,7 +126,7 @@ In each of the header files of the **extras** package. A full recompilation woul
 
 ## extra_crcs
  > add **extra/crcs.hpp** to your C++ source</br>
- > add **extra_crcs** library to your CMakeLists.txt target</br>
+ > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 Use of this library will give your application quick access to either crc16, crc32, or crc64 bit calculations.
 
@@ -169,7 +146,7 @@ Use of this library will give your application quick access to either crc16, crc
 
 ## extra_files
  > add **extra/files.hpp** to your C++ source</br>
- > add **extra_files** library to your CMakeLists.txt target</br>
+ > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 Use of this library will give you easier access to files in the underlying operating system, (only tested on Linux as of 1.2.1).
 
@@ -221,7 +198,7 @@ This header file includes **extra_interfaces** but any keywords that are not int
 
 ## extra_options
  > add **extra/options.hpp** to your C++ source</br>
- > add **extra_options** library to your CMakeLists.txt target</br>
+ > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace docopt;**</br>
 Use of this library will give you better main(argc,argv) capabilities as it parses command line arguments in an intelligent manner, (source code is Copyright (c) 2013 Jared Grubb, MIT license). 
 
@@ -246,7 +223,7 @@ Use of this library will give you better main(argc,argv) capabilities as it pars
 
 ## extra_strings
  > add **extra/strings.hpp** to your C++ source</br>
- > add **extra_strings** library to your CMakeLists.txt target</br>
+ > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 How many times how you wanted to do something really simple with strings but found yourself re-inventing the wheel all the time. Well, this library is merely a collection of popular std::string manipulation techniques, (based on the C++ STL library). Expect additional features to be added as time goes on:
 

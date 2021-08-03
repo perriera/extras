@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.21)
 # with the changelog.md and github
 #
 project(extras LANGUAGES CXX)
-project(extras VERSION 2.3.8)
+project(extras VERSION 2.3.9)
 
 #
 # Set C/C++ parameters for all targets in this CMakeLists.txt
@@ -42,6 +42,7 @@ message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 
 # Add local project module path so CMake includes custom CMake modules.
+# https://gitlab.kitware.com/cmake/cmake/-/tree/a9affa07cdeea6b66c920e4826abfe59854f7ffa/
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
 add_library(extras 
