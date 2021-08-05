@@ -21,6 +21,19 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 3.1.0 (2021-08-05)
+### Added
+- Added nlohmann json header only library.
+- There is a conflicting variable name in extras and in json
+  called "pure". Changed the name of the variable on line 1441 to purex
+
+#### 3.0.0 (2021-08-05)
+### Removed
+- Removed docopts 3rd party library
+
+### Changed
+- Added another shot in the wind 
+
 #### 2.3.8 (2021-07-26)
 ### Changed
 - Added another shot in the wind 
@@ -143,6 +156,8 @@ IMPORTANT:
 - nothing
 
 [Unreleased]: https://github.com/perriera/extras/compare/v2.3.7...HEAD
+
+[3.0.0]: https://github.com/mattcoding4days/extras/compare/main...mattcoding4days:main
 [2.3.7]: https://github.com/perriera/extras/compare/v2.3.6...v2.3.7
 [2.3.6]: https://github.com/perriera/extras/compare/v2.3.5...v2.3.6
 [2.3.5]: https://github.com/perriera/extras/compare/v2.3.4...v2.3.5
