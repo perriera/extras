@@ -68,12 +68,6 @@ SHARED
 	src/interfaces.cpp
 	include/extra/keywords.hpp
 	src/keywords.cpp
-	include/extra/options.hpp    
-	include/extra/docopt_private.h    
-    include/extra/docopt_util.h         
-    include/extra/docopt_value.h           
-    include/extra/docopt.h  
-    src/docopt.cpp  
     include/extra/strings.hpp
 	include/extra/string_support.hpp
 	src/string_support.cpp
