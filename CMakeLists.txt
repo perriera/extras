@@ -42,6 +42,7 @@ message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 
 # Add local project module path so CMake includes custom CMake modules.
+# https://gitlab.kitware.com/cmake/cmake/-/tree/a9affa07cdeea6b66c920e4826abfe59854f7ffa/
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
 add_library(extras 
@@ -58,6 +59,7 @@ SHARED
 	include/extra/crc32_support.hpp
 	include/extra/crc64_support.hpp
 	include/extra/octal_support.hpp
+	src/crc.cpp
 	src/crc16.cpp
 	src/crc32.cpp
 	src/crc64.cpp
@@ -85,6 +87,7 @@ add_executable(run-unittests-extras
 	test/test_FakeIt.cpp
 	test/test_crc32.cpp
 	test/test_crc64.cpp
+	test/test_crcs.cpp
 )
 target_include_directories(run-unittests-extras
 	PUBLIC

@@ -155,9 +155,19 @@ IMPORTANT:
 ### Removed
 - nothing
 
+<<<<<<< HEAD
 [Unreleased]: https://github.com/perriera/extras/compare/v2.3.7...HEAD
 
 [3.0.0]: https://github.com/mattcoding4days/extras/compare/main...mattcoding4days:main
+=======
+[Unreleased]: https://github.com/perriera/extras/compare/v2.5.0...HEAD
+[2.5.0]: https://github.com/perriera/extras/compare/v2.4.2...v2.5.0
+[2.4.2]: https://github.com/perriera/extras/compare/v2.4.1...v2.4.2
+[2.4.1]: https://github.com/perriera/extras/compare/v2.4.0...v2.4.1
+[2.4.0]: https://github.com/perriera/extras/compare/v2.3.9...v2.4.0
+[2.3.9]: https://github.com/perriera/extras/compare/v2.3.8...v2.3.9
+[2.3.8]: https://github.com/perriera/extras/compare/v2.3.7...v2.3.8
+>>>>>>> e7389bea24a35dd5c3064bb5eea1d02f1b83c721
 [2.3.7]: https://github.com/perriera/extras/compare/v2.3.6...v2.3.7
 [2.3.6]: https://github.com/perriera/extras/compare/v2.3.5...v2.3.6
 [2.3.5]: https://github.com/perriera/extras/compare/v2.3.4...v2.3.5
