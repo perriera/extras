@@ -27,7 +27,6 @@ namespace extras
      * Basic interface for CRC calculations
      * 
      */
-    using bytes = unsigned char;
     interface CRCInterface
     {
 
@@ -36,7 +35,7 @@ namespace extras
          * Size of calculation to be determined by implementation/
          */
 
-        virtual const CRCInterface &calculate(const bytes &buffer, int len) pure;
+        virtual const CRCInterface &calculate(const byte &buffer, int len) pure;
         virtual const CRCInterface &calculate(const std::string &str) pure;
         virtual operator uint16_t() const pure;
         virtual operator uint32_t() const pure;
@@ -53,21 +52,32 @@ namespace extras
     concrete class CRCCalculator implements CRCInterface
     {
         std::string _str;
-        const bytes *_buffer = nullptr;
+        const byte *_buffer = nullptr;
         int _len = 0;
 
     public:
-        virtual const CRCInterface &calculate(const bytes &buffer, int len)
+        /**
+         * The C++11 way of doing singletons ...
+         */
+        static CRCInterface &instance()
+        {
+            static CRCCalculator calculator;
+            return calculator;
+        }
+
+        virtual const CRCInterface &calculate(const byte &buffer, int len)
         {
             this->_buffer = &buffer;
             this->_len = len;
             return *this;
         }
+
         virtual const CRCInterface &calculate(const std::string &str)
         {
             this->_str = str;
             return *this;
         };
+
         operator uint16_t() const;
         operator uint32_t() const;
         operator uint64_t() const;

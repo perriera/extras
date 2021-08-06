@@ -21,6 +21,14 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 2.5.0 (2021-07-26)
+### Added
+- byte definition
+- bytes definition
+- C++11 style Singldton to CRCCalculator
+### Changed
+- CRCInterface, (to work with new byte definition)
+
 #### 2.4.2 (2021-07-26)
 ### Improved
 - CRCInterface
@@ -163,7 +171,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v2.4.1...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v2.5.0...HEAD
+[2.5.0]: https://github.com/perriera/extras/compare/v2.4.2...v2.5.0
+[2.4.2]: https://github.com/perriera/extras/compare/v2.4.1...v2.4.2
 [2.4.1]: https://github.com/perriera/extras/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/perriera/extras/compare/v2.3.9...v2.4.0
 [2.3.9]: https://github.com/perriera/extras/compare/v2.3.8...v2.3.9
