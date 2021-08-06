@@ -36,8 +36,8 @@ namespace extras
          * Size of calculation to be determined by implementation/
          */
 
-        virtual const CRCInterface *calculate(const bytes &buffer, int len) pure;
-        virtual const CRCInterface *calculate(const std::string &str) pure;
+        virtual const CRCInterface &calculate(const bytes &buffer, int len) pure;
+        virtual const CRCInterface &calculate(const std::string &str) pure;
         virtual operator uint16_t() const pure;
         virtual operator uint32_t() const pure;
         virtual operator uint64_t() const pure;
@@ -57,16 +57,16 @@ namespace extras
         int _len = 0;
 
     public:
-        virtual const CRCInterface *calculate(const bytes &buffer, int len)
+        virtual const CRCInterface &calculate(const bytes &buffer, int len)
         {
             this->_buffer = &buffer;
             this->_len = len;
-            return this;
+            return *this;
         }
-        virtual const CRCInterface *calculate(const std::string &str)
+        virtual const CRCInterface &calculate(const std::string &str)
         {
             this->_str = str;
-            return this;
+            return *this;
         };
         operator uint16_t() const;
         operator uint32_t() const;

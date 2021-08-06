@@ -21,6 +21,12 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 2.4.2 (2021-07-26)
+### Improved
+- CRCInterface
+### Changed
+- Updaed README.md
+
 #### 2.4.1 (2021-07-26)
 ### Changed
 - Updaed README.md
