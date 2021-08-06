@@ -5,28 +5,32 @@
 #include <stddef.h>
 #include <stdint.h>
 
-namespace extras {
+namespace extras
+{
 
-//
-// simplest crc16 c++ implementation
-// https://github.com/jpralves/crc16
-//
+  //
+  // simplest crc16 c++ implementation
+  // https://github.com/jpralves/crc16
+  //
 
-class crc16 {
-public:
-  crc16();
-  uint16_t update(const std::string &str);
+  class crc16
+  {
+  public:
+    crc16();
+    uint16_t update(const std::string &str);
+    uint16_t processBuffer(const char *data_p, uint16_t length);
 
-private:
-  uint16_t processByte(uint8_t data);
-  uint16_t processBuffer(const char *data_p, uint16_t length);
-  uint16_t getCrc() { return crc; };
-  uint16_t crc;
-};
+  private:
+    uint16_t processByte(uint8_t data);
+    uint16_t getCrc() { return crc; };
+    uint16_t crc;
+  };
 
-class Crc16CollisionException : std::exception {};
+  class Crc16CollisionException : std::exception
+  {
+  };
 
-/*
+  /*
  * Library Name: CRC16
  *
  * Filename: CRC16.h
@@ -56,21 +60,21 @@ class Crc16CollisionException : std::exception {};
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// #include "crc16.h"
+  // #include "crc16.h"
 
-// char *buffer = "The quick brown fox jumps over the lazy dog";
-// CRC16 crc;
+  // char *buffer = "The quick brown fox jumps over the lazy dog";
+  // CRC16 crc;
 
-// void setup() {
-//   Serial.begin(9600);
-//   Serial.println("CRC16 test!");
-//   crc.processBuffer(buffer, strlen(buffer));
-//   Serial.print("The resulting CRC16 is : 0x");
-//   Serial.println(crc.getCrc(),HEX);
-// }
+  // void setup() {
+  //   Serial.begin(9600);
+  //   Serial.println("CRC16 test!");
+  //   crc.processBuffer(buffer, strlen(buffer));
+  //   Serial.print("The resulting CRC16 is : 0x");
+  //   Serial.println(crc.getCrc(),HEX);
+  // }
 
-// void loop() {
-// }
+  // void loop() {
+  // }
 
 } // namespace extras
 
