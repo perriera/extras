@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.21)
 # with the changelog.md and github
 #
 project(extras LANGUAGES CXX)
-project(extras VERSION 2.6.0)
+project(extras VERSION 2.7.0)
 
 #
 # Set C/C++ parameters for all targets in this CMakeLists.txt

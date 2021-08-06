@@ -21,6 +21,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 2.7.0 (2021-07-26)
+### Added
+- dev branch on github repository
+
 #### 2.6.0 (2021-07-26)
 ### Added
 - CPM.cnake
