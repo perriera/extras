@@ -6,7 +6,7 @@ using namespace std;
 namespace extras
 {
 
-    CRCCalculator::operator uint16_t() const
+    CRC::operator uint16_t() const
     {
         crc16 crc16;
         if (_len == 0)
@@ -15,7 +15,7 @@ namespace extras
             return crc16.processBuffer((const char *)this->_buffer, (uint16_t)this->_len);
     }
 
-    CRCCalculator::operator uint32_t() const
+    CRC::operator uint32_t() const
     {
         crc32 crc32;
         if (_len == 0)
@@ -24,7 +24,7 @@ namespace extras
             return crc32.update(this->_buffer, (size_t)this->_len);
     }
 
-    CRCCalculator::operator uint64_t() const
+    CRC::operator uint64_t() const
     {
         crc64 crc64;
         if (_len == 0)

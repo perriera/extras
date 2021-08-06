@@ -21,11 +21,20 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 2.6.0 (2021-07-26)
+### Added
+- CPM.cnake
+- Documentation on CRCInterface
+- Documentation on THREE GoF: Design Patterns
+### Changed
+- static auto instance() -> CRCInterface &
+- Updated README.md
+
 #### 2.5.0 (2021-07-26)
 ### Added
 - byte definition
 - bytes definition
-- C++11 style Singldton to CRCCalculator
+- C++11 style Singldton to CRC
 ### Changed
 - CRCInterface, (to work with new byte definition)
 
@@ -42,7 +51,7 @@ IMPORTANT:
 #### 2.4.0 (2021-07-26)
 ### Added 
 - CRCInterface
-- CRCCalculator
+- CRC
 ### Changed
 - crc16, crc32, crc64
 
