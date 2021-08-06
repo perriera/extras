@@ -10,28 +10,8 @@
 using namespace std;
 using namespace extras;
 
-// SCENARIO("Verify crc32", "[crc32]")
-// {
-
-//     // usage: the following code generates crc for 2 pieces of data
-//     uint32_t table[256];
-//     crc32::generate_table(table);
-//     char *data_piece1 = "1234567890";
-//     char *data_piece2 = "abchsdhfjkshfkjhsfjkhdkhxyz";
-//     string data_piece3 = data_piece2;
-//     uint32_t crc1 = crc32::update(table, 0, data_piece1,
-//     strlen(data_piece1)); REQUIRE(crc1 == 639479525); uint32_t crc2 =
-//     crc32::update(table, crc1, data_piece2, strlen(data_piece2));
-//     REQUIRE(crc2 == 3354336411);
-//     uint32_t crc3 = crc32::update(table, crc2, data_piece3);
-//     REQUIRE(crc3 == 3788298426);
-//     REQUIRE(crc2 != crc3);
-//     uint32_t crc4 = crc32::update(table, crc1, data_piece3);
-//     REQUIRE(crc4 == 3354336411);
-//     REQUIRE(crc2 == crc4);
-// }
-
-SCENARIO("Verify crc32 default", "[crc32]") {
+SCENARIO("Verify crc32 default", "[crc32]")
+{
   {
     string data_piece4 = "data_piece2;";
     crc32 crc;
@@ -64,7 +44,8 @@ SCENARIO("Verify crc32 default", "[crc32]") {
   }
 }
 
-SCENARIO("Verify crc32 bit collision", "[crc32X]") {
+SCENARIO("Verify crc32 bit collision", "[crc32X]")
+{
   {
     string data_piece4 =
         "r1bq1rk1/2p1bppp/p2p1n2/np2p3/4P3/1BPP1N2/PP3PPP/RNBQR1K";

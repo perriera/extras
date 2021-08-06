@@ -21,6 +21,13 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 2.4.0 (2021-07-26)
+### Added 
+- CRCInterface
+- CRCCalculator
+### Changed
+- crc16, crc32, crc64
+
 #### 2.3.9 (2021-07-26)
 ### Changed
 - Updated README.md 
@@ -146,7 +153,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v2.3.9...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v2.4.1...HEAD
+[2.4.1]: https://github.com/perriera/extras/compare/v2.4.0...v2.4.1
+[2.4.0]: https://github.com/perriera/extras/compare/v2.3.9...v2.4.0
 [2.3.9]: https://github.com/perriera/extras/compare/v2.3.8...v2.3.9
 [2.3.8]: https://github.com/perriera/extras/compare/v2.3.7...v2.3.8
 [2.3.7]: https://github.com/perriera/extras/compare/v2.3.6...v2.3.7

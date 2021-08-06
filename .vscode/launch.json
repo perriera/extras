@@ -13,8 +13,10 @@
             "name": "run-unittests",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/run-unittests",
-            "args": [],
+            "program": "${workspaceFolder}/build/run-unittests-extras",
+            "args": [
+                "[crc32]"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

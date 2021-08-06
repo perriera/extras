@@ -130,21 +130,28 @@ In each of the header files of the **extras** package. A full recompilation woul
  > **using namespace extras;**</br>
 Use of this library will give your application quick access to either crc16, crc32, or crc64 bit calculations.
 
-    #include <iostream>
-    #include <extra/crcs.hpp>
+    #include  <iostream>
+    #include  <extra/crcs.hpp>
+    #include "catch.hpp"
 
-    using  namespace  std;
-    using  namespace  extras;
+    using namespace std;
+    using namespace extras;
 
-    SCENARIO("Verify crc32 default", "[crc32]") {
+    SCENARIO("Verify CRC", "[crc32]")
     {
-       string  data_piece4 = "data_piece2;";
-       crc32  crc;
-       uint32_t  crc4 = crc.update(data_piece4);
-       REQUIRE(crc4 == 2874410684);
+        string data_piece4 = "data_piece2;";
+        CRCCalculator crc;
+        crc.calculate(data_piece4);
+        uint16_t result16 = crc;
+        REQUIRE(result16 == 1164);
+        uint32_t result32 = crc;
+        REQUIRE(result32 == 2874410684);
+        uint64_t result64 = crc;
+        REQUIRE(result64 == 16391187711498339670);
     }
 
-## extra_files
+
+## extra_files (depercated)
  > add **extra/files.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
@@ -196,7 +203,7 @@ Especially useful to programmers that like to program using interfaces, (aka. Go
  > **using namespace extras;**</br>
 This header file includes **extra_interfaces** but any keywords that are not interface related would be included here, (at present only keywords related to interfaces are in use at this time).
 
-## extra_options
+## extra_options (depercated)
  > add **extra/options.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace docopt;**</br>
