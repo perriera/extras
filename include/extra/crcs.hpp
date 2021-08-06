@@ -4,7 +4,7 @@
 /**
  * @file crcs.hpp
  * @author Perry Anderson (perryanderson.com)
- * @brief Defacto standard interface for CRCInterface. 
+ * @brief CRCInterface declaration. 
  * @version 1.2.1
  * @date 2021-07-25
  *
@@ -24,16 +24,17 @@ namespace extras
     /**
      * @brief class CRCInterface
      * 
-     * Basic implementation for CRC calculations that demonstrates 
-     * two key concepts as described in GoF: Design Patterns, (1994)
+     * Basic implementation for CRC calculations that show
+     * three key concepts as described in GoF: Design Patterns, 
+     * Gammes, Halm, Johnson & Vlissides (1994).
      * 
      * 1: https://en.wikipedia.org/wiki/Abstract_factory_pattern
      * 2: https://en.wikipedia.org/wiki/Singleton_pattern
      * 3: https://en.wikipedia.org/wiki/Strategy_pattern
      * 
-     * Where Polymorphism on both C++ method calls and return types
-     * are clearly demonstrated with the CRCInterface as well
-     * the CRC class implementation of the CRCInterface.
+     * Also an example of how to use Polymorphism on both C++ 
+     * method calls and return types are demonstrated on the 
+     * CRC class implementation.
      * 
      */
     interface CRCInterface
