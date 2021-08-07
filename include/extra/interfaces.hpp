@@ -123,6 +123,6 @@ namespace extras {
  *
  */
 #define with , public
-} // namespace extras
+}  // namespace extras
 
-#endif // _EXTRA_INTERFACES_HPP
+#endif  // _EXTRA_INTERFACES_HPP

@@ -1,7 +1,7 @@
-#include "extra/crc32_support.hpp"
-#include <iostream>
+#include <cstdint>
+#include <string>
 
-using namespace std;
+#include "extra/crc32_support.hpp"
 
 namespace extras {
 
@@ -10,11 +10,11 @@ namespace extras {
 // https://gist.github.com/timepp
 //
 
-void crc32::generate_table(uint32_t (&table)[256]) {
-  uint32_t polynomial = 0xEDB88320;
-  for (uint32_t i = 0; i < 256; i++) {
-    uint32_t c = i;
-    for (size_t j = 0; j < 8; j++) {
+void crc32::generate_table(std::uint32_t (&table)[256]) {
+  std::uint32_t polynomial = 0xEDB88320;
+  for (std::uint32_t i = 0; i < 256; i++) {
+    std::uint32_t c = i;
+    for (std::size_t j = 0; j < 8; j++) {
       if (c & 1) {
         c = polynomial ^ (c >> 1);
       } else {
@@ -25,17 +25,17 @@ void crc32::generate_table(uint32_t (&table)[256]) {
   }
 }
 
-uint32_t crc32::update(uint32_t (&table)[256], uint32_t initial,
-                       const void *buf, size_t len) {
-  uint32_t c = initial ^ 0xFFFFFFFF;
-  const uint8_t *u = static_cast<const uint8_t *>(buf);
-  for (size_t i = 0; i < len; ++i) {
+std::uint32_t crc32::update(std::uint32_t (&table)[256], std::uint32_t initial,
+                       const void *buf, std::size_t len) {
+  std::uint32_t c = initial ^ 0xFFFFFFFF;
+  const std::uint8_t *u = static_cast<const std::uint8_t *>(buf);
+  for (std::size_t i = 0; i < len; ++i) {
     c = table[(c ^ u[i]) & 0xFF] ^ (c >> 8);
   }
   return c ^ 0xFFFFFFFF;
 }
 
-uint32_t crc32::update(uint32_t (&table)[256], uint32_t initial,
+std::uint32_t crc32::update(std::uint32_t (&table)[256], std::uint32_t initial,
                        const std::string &str) {
   return update(table, initial, str.c_str(), str.length());
 }
@@ -44,8 +44,8 @@ uint32_t crc32::update(const std::string &str) {
   return update(table, crc32::initial, str.c_str(), str.length());
 }
 
-uint32_t crc32::table[256];
-uint32_t crc32::initial;
+std::uint32_t crc32::table[256];
+std::uint32_t crc32::initial;
 crc32 default_crc32;
 
 crc32::crc32(const char *randomString) {
@@ -53,4 +53,4 @@ crc32::crc32(const char *randomString) {
   crc32::initial = crc32::update(table, 0, randomString);
 }
 
-} // namespace extras
+}  // namespace extras
