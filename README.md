@@ -1,19 +1,9 @@
 <div align="center">
   <h1>A collection of useful libraries and extras for the modern C++ programmer</h1>
-  <img width="800" height="300" src="assets/extras.png">
-  <h5>
-    
-  </h5>
+  <img width="642" height="420" src="assets/extras.png">
   <br>
 </div>
 
-
-
-# A collection of usefull extras for modern C++ projects (forked from perriera)
-
-<p align="center">
-  <img src="https://repository-images.githubusercontent.com/254842585/4dfa7580-7ffb-11ea-99d0-46b8fe2f4170" height="175" width="auto" />
-</p>
 
 ###   Description
 > This is a collection of C++ based tools to simplify the software development process.</br> 
