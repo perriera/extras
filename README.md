@@ -1,6 +1,6 @@
 <div align="center">
   <h1>A collection of useful libraries and extras for the modern C++ programmer</h1>
-  <img width="642" height="420" src="assets/extras.png">
+  <img width="442" height="220" src="assets/extras.png">
   <br>
 </div>
 
