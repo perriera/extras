@@ -1,13 +1,26 @@
+<div align="center">
+  <h1>A collection of useful libraries and extras for the modern C++ programmer</h1>
+  <img width="800" height="300" src="assets/extras.png">
+  <h5>
+    
+  </h5>
+  <br>
+</div>
 
 
 
-# (perriera) extras
+# A collection of usefull extras for modern C++ projects (forked from perriera)
+
+<p align="center">
+  <img src="https://repository-images.githubusercontent.com/254842585/4dfa7580-7ffb-11ea-99d0-46b8fe2f4170" height="175" width="auto" />
+</p>
+
 ###   Description
 > This is a collection of C++ based tools to simplify the software development process.</br> 
 > 
- >*Why would someone want to use this?*
- >
- >In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there are **'extra_ libraries'** for ANSI colours, crc calculations, directory and file I/O, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
+>*Why would someone want to use this?*
+>
+>In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there are **'extra_ libraries'** for ANSI colours, crc calculations, directory and file I/O, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
  >
 > It is presently composed of the following sub-libraries:</br>
 > 
