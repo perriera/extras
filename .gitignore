@@ -2,6 +2,7 @@
 *.d
 
 build/
+.cache/
 
 # editors
 .idea/
