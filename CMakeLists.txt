@@ -1,14 +1,27 @@
-# determine required cmake here (use 'pip install cmake')
+# determine required cmake here (use 'pip install cmake') to get the latest and greates versin,
+# regardless of platform
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 
-# determine PROJECT parameters here manually keep version numbers in sync with the changelog.md and
-# github
+# include CPM.cmake https://github.com/cpm-cmake/CPM.cmake
+include(cmake/CPM.cmake)
+include(cmake/utils.cmake)
+include(CMakeDependentOption)
+
+# generate compile_commands.json, this is for text editors (emacs, vim) that don't want to rely on
+# Micro$ofts lang server
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+extras_get_version()
 
 project(
   extras
-  VERSION 3.2.0
+  VERSION ${EXTRAS_VERSION}
   LANGUAGES CXX
 )
+
+# needs to come after project so Cmake knows what platform its compiling on
+include(GNUInstallDirs)
+
+message(STATUS "Building extras ${EXTRAS_VERSION}")
 
 # Prevent in source builds
 if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
@@ -18,12 +31,9 @@ if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
   )
 endif()
 
-# include CPM.cmake https://github.com/cpm-cmake/CPM.cmake
-include(cmake/CPM.cmake)
-
 # Set C/C++ parameters for all targets in this CMakeLists.txt
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra --std=c++17 -fPIC")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic --std=c++17 -fPIC")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -pedantic -fPIC")
 
 # determine DEBUG/PRODUCTION installation here install -d build; cd build; cmake ..; make install -d
 # build; cd build; cmake -DPRODUCTION=true ..; make
@@ -45,63 +55,47 @@ endif()
 message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 
+# add additional project options
+option(EXTRAS_BUILD_TESTS "Build tests" ON)
+
 # Add local project module path so CMake includes custom CMake modules.
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
-add_library(
-  extras SHARED
-  include/extra/support.hpp
-  include/extra/Definitions.hpp
-  include/extra/colors.hpp
-  include/extra/ansi_colors.hpp
-  include/extra/ansi_input.hpp
-  src/Definitions.cpp
-  src/ansi_colors.cpp
-  include/extra/crcs.hpp
-  include/extra/crc16_support.hpp
-  include/extra/crc32_support.hpp
-  include/extra/crc64_support.hpp
-  include/extra/octal_support.hpp
-  src/crc16.cpp
-  src/crc32.cpp
-  src/crc64.cpp
-  include/extra/interfaces.hpp
-  src/interfaces.cpp
-  include/extra/keywords.hpp
-  src/keywords.cpp
-  include/extra/strings.hpp
-  include/extra/string_support.hpp
-  src/string_support.cpp
-)
-target_include_directories(extras PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+# HACK: It is technically bad practice to glob files, as the build tree might not update if a new
+# file is added or removed, for this reason it is recommended to rm -rf the build folder and rebuild
+# from scratch if files are added or removed
 
-#
+# glob extras header files
+file(GLOB_RECURSE EXTRAS_HEADERS CONFIGURE_DEPENDS
+     "${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/*.hpp"
+)
+
+# glob extras src files
+file(GLOB_RECURSE EXTRAS_SOURCE CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+
+add_library(${PROJECT_NAME} SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
+
+target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
 # Create a target for executing the Catch2 unit tests.
-#
-add_executable(
-  run-unittests-extras test/main.cpp test/test_Directory.cpp test/test_FakeIt.cpp
-                       test/test_crc32.cpp test/test_crc64.cpp
-)
-target_include_directories(run-unittests-extras PUBLIC test/)
-target_link_libraries(run-unittests-extras extras stdc++fs)
-
-include(CMakeDependentOption)
-include(GNUInstallDirs)
+if(EXTRAS_BUILD_TESTS)
+  message(STATUS "Building tests")
+  file(GLOB_RECURSE TESTS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
+  add_executable(run-unittests-extras ${TESTS})
+  target_include_directories(run-unittests-extras PUBLIC test/)
+  target_link_libraries(run-unittests-extras ${PROJECT_NAME} stdc++fs)
+endif()
 
 # Library Note: may not work on windows
-install(TARGETS extras LIBRARY DESTINATION lib)
+install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib)
 
 # Header files
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
 
-# install(EXPORT ${targets_export_name} NAMESPACE ${cmake_package_name}:: DESTINATION
-# ${cmake_files_install_dir})
-
-export(TARGETS extras FILE extrasConfig.cmake)
+export(TARGETS ${PROJECT_NAME} FILE extrasConfig.cmake)
 
 # Set version for shared libraries.
 set_target_properties(
-  extras PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} SOVERSION ${${PROJECT_NAME}_VERSION_MAJOR}
+  ${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} SOVERSION
+                                                                ${${PROJECT_NAME}_VERSION_MAJOR}
 )
-
-# install(TARGETS extra)
