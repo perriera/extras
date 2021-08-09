@@ -12,7 +12,7 @@
 >*Why would someone want to use this?*
 >
 >In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there are **'extra_ libraries'** for ANSI colours, crc calculations, directory and file I/O, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
- >
+>
 > It is presently composed of the following sub-libraries:</br>
 > 
 > - extra_colors
