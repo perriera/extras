@@ -1,14 +1,11 @@
 #include <cstdint>
+#include <extras/crc32_support.hpp>
 #include <string>
-
-#include "extra/crc32_support.hpp"
 
 namespace extras {
 
-//
 // simplest crc32 c++ implementation
 // https://gist.github.com/timepp
-//
 
 void crc32::generate_table(std::uint32_t (&table)[256]) {
   std::uint32_t polynomial = 0xEDB88320;
@@ -26,7 +23,7 @@ void crc32::generate_table(std::uint32_t (&table)[256]) {
 }
 
 std::uint32_t crc32::update(std::uint32_t (&table)[256], std::uint32_t initial,
-                       const void *buf, std::size_t len) {
+                            const void *buf, std::size_t len) {
   std::uint32_t c = initial ^ 0xFFFFFFFF;
   const std::uint8_t *u = static_cast<const std::uint8_t *>(buf);
   for (std::size_t i = 0; i < len; ++i) {
@@ -36,7 +33,7 @@ std::uint32_t crc32::update(std::uint32_t (&table)[256], std::uint32_t initial,
 }
 
 std::uint32_t crc32::update(std::uint32_t (&table)[256], std::uint32_t initial,
-                       const std::string &str) {
+                            const std::string &str) {
   return update(table, initial, str.c_str(), str.length());
 }
 
