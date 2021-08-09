@@ -1,3 +1,5 @@
+[![CMake](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml/badge.svg?branch=dev)](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml)
+
 <div align="center">
   <img width="442" height="320" src="assets/extras.png">
   <br>
