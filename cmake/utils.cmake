@@ -35,5 +35,4 @@ function(extras_get_version)
       "${ver_major}.${ver_minor}.${ver_patch}"
       PARENT_SCOPE
   )
-
 endfunction()
