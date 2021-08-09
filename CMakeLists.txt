@@ -6,6 +6,7 @@ cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 include(cmake/CPM.cmake)
 include(cmake/utils.cmake)
 include(CMakeDependentOption)
+include(CheckIPOSupported)
 
 # generate compile_commands.json, this is for text editors (emacs, vim) that don't want to rely on
 # Micro$ofts lang server
@@ -17,11 +18,11 @@ project(
   VERSION ${EXTRAS_VERSION}
   LANGUAGES CXX
 )
+message(STATUS "Building extras-${EXTRAS_VERSION}")
 
-# needs to come after project so Cmake knows what platform its compiling on
+# These includes will only work after LANGUAGES is defined
 include(GNUInstallDirs)
-
-message(STATUS "Building extras ${EXTRAS_VERSION}")
+include(CheckIPOSupported)
 
 # Prevent in source builds
 if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
@@ -35,31 +36,39 @@ endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic --std=c++17 -fPIC")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -pedantic -fPIC")
 
-# determine DEBUG/PRODUCTION installation here install -d build; cd build; cmake ..; make install -d
-# build; cd build; cmake -DPRODUCTION=true ..; make
+# add additional project options
+option(BUILD_TESTS "Build tests" ON)
+option(DEBUG "Debug Build" ON)
 
-# first check
-set(ignoreMe "${PRODUCTION}")
-if(NOT DEFINED PRODUCTION)
+# Build will default to debug
+if(DEBUG)
   set(CMAKE_BUILD_TYPE Debug)
-  message(STATUS "DEBUG BUILD")
   message(STATUS "edit your ~/.bashrc and set")
   message(STATUS "export LD_LIBRARY_PATH=build:/usr/local/lib")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
 else()
-  message(STATUS "PRODUCTION BUILD")
+  set(CMAKE_BUILD_TYPE Release)
   message(STATUS "edit your ~/.bashrc and set")
   message(STATUS "export LD_LIBRARY_PATH=/usr/local/lib")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3")
 endif()
+
 message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 
-# add additional project options
-option(EXTRAS_BUILD_TESTS "Build tests" ON)
-
 # Add local project module path so CMake includes custom CMake modules.
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
+
+# Add spdlog which includes fmt library as well (two for one) This should install on the system when
+# extras in included in another project
+CPMAddPackage(
+  GITHUB_REPOSITORY gabime/spdlog
+  VERSION 1.9.1
+  OPTIONS "SPDLOG_BUILD_SHARED ON" "SPDLOG_BUILD_EXAMPLE OFF" "SPDLOG_BUILD_TESTS OFF"
+          "SPDLOG_BUILD_EXAMPLE OFF" "SPDLOG_ENABLE_PCH ON" "SPDLOG_INSTALL ON"
+)
 
 # HACK: It is technically bad practice to glob files, as the build tree might not update if a new
 # file is added or removed, for this reason it is recommended to rm -rf the build folder and rebuild
@@ -78,7 +87,7 @@ add_library(${PROJECT_NAME} SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 # Create a target for executing the Catch2 unit tests.
-if(EXTRAS_BUILD_TESTS)
+if(BUILD_TESTS)
   message(STATUS "Building tests")
   file(GLOB_RECURSE TESTS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
   add_executable(run-unittests-extras ${TESTS})
@@ -93,6 +102,14 @@ install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib)
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
 
 export(TARGETS ${PROJECT_NAME} FILE extrasConfig.cmake)
+
+# if the compiler supports iter-procedural optimization, turn it on
+check_ipo_supported(RESULT result OUTPUT output)
+if(result)
+  set_target_properties(${PROJECT_NAME} PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
+else()
+  message(STATUS "IPO is not supported: ${output}")
+endif()
 
 # Set version for shared libraries.
 set_target_properties(
