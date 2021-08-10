@@ -20,40 +20,6 @@ void crc32::generate_table(std::uint32_t (&table)[256]) {
       table[i] = c;
     }
   }
-<<<<<<< HEAD
-
-  uint32_t crc32::update(uint32_t(&table)[256], uint32_t initial,
-                         const void *buf, size_t len) {
-    uint32_t c = initial ^ 0xFFFFFFFF;
-    const uint8_t *u = static_cast<const uint8_t *>(buf);
-    for (size_t i = 0; i < len; ++i) {
-      c = table[(c ^ u[i]) & 0xFF] ^ (c >> 8);
-    }
-    return c ^ 0xFFFFFFFF;
-  }
-
-  uint32_t crc32::update(const unsigned char *buf, size_t len) {
-    return update(table, crc32::initial, buf, len);
-  }
-
-  uint32_t crc32::update(uint32_t(&table)[256], uint32_t initial,
-                         const std::string &str) {
-    return update(table, initial, str.c_str(), str.length());
-  }
-
-  uint32_t crc32::update(const std::string &str) {
-    return update(table, crc32::initial, str.c_str(), str.length());
-  }
-
-  uint32_t crc32::table[256];
-  uint32_t crc32::initial;
-  crc32 default_crc32;
-
-  crc32::crc32(const char *randomString) {
-    crc32::generate_table(crc32::table);
-    crc32::initial = crc32::update(table, 0, randomString);
-  }
-=======
 }
 
 std::uint32_t crc32::update(std::uint32_t (&table)[256], std::uint32_t initial,
@@ -83,6 +49,5 @@ crc32::crc32(const char *randomString) {
   crc32::generate_table(crc32::table);
   crc32::initial = crc32::update(table, 0, randomString);
 }
->>>>>>> mattcoding4days-main
 
 }  // namespace extras
