@@ -260,15 +260,15 @@ https://github.com/gabime/spdlog/blob/v1.x/LICENSE</br>
 Copyright (c) 2016 Gabi Melman.
 
 
-		# Add spdlog which includes fmt library as well (two for one) 
-		# This should install on the system when extras in included in 
-		# another project
-		CPMAddPackage(
-			GITHUB_REPOSITORY gabime/spdlog
-			VERSION 1.9.1
-			OPTIONS "SPDLOG_BUILD_SHARED ON"  "SPDLOG_BUILD_EXAMPLE OFF"  "SPDLOG_BUILD_TESTS OFF"
-			"SPDLOG_BUILD_EXAMPLE OFF"  "SPDLOG_ENABLE_PCH ON"  "SPDLOG_INSTALL ON"
-		)
+    # Add spdlog which includes fmt library as well (two for one) 
+    # This should install on the system when extras in included in 
+    # another project
+    CPMAddPackage(
+        GITHUB_REPOSITORY gabime/spdlog
+        VERSION 1.9.1
+        OPTIONS "SPDLOG_BUILD_SHARED ON"  "SPDLOG_BUILD_EXAMPLE OFF"  "SPDLOG_BUILD_TESTS OFF"
+        "SPDLOG_BUILD_EXAMPLE OFF"  "SPDLOG_ENABLE_PCH ON"  "SPDLOG_INSTALL ON"
+    )
 
 ## extras/strings
  > add **extras/strings.hpp** to your C++ source</br>
