@@ -1,62 +1,47 @@
-#include "extra/crc32_support.hpp"
-#include <iostream>
+#include <cstdint>
+#include <extras/crc32_support.hpp>
+#include <string>
 
-using namespace std;
+namespace extras {
 
-namespace extras
-{
+// simplest crc32 c++ implementation
+// https://gist.github.com/timepp
 
-  //
-  // simplest crc32 c++ implementation
-  // https://gist.github.com/timepp
-  //
-
-  void crc32::generate_table(uint32_t (&table)[256])
-  {
-    uint32_t polynomial = 0xEDB88320;
-    for (uint32_t i = 0; i < 256; i++)
-    {
-      uint32_t c = i;
-      for (size_t j = 0; j < 8; j++)
-      {
-        if (c & 1)
-        {
-          c = polynomial ^ (c >> 1);
-        }
-        else
-        {
-          c >>= 1;
-        }
+void crc32::generate_table(std::uint32_t (&table)[256]) {
+  std::uint32_t polynomial = 0xEDB88320;
+  for (std::uint32_t i = 0; i < 256; i++) {
+    std::uint32_t c = i;
+    for (std::size_t j = 0; j < 8; j++) {
+      if (c & 1) {
+        c = polynomial ^ (c >> 1);
+      } else {
+        c >>= 1;
       }
       table[i] = c;
     }
   }
+<<<<<<< HEAD
 
-  uint32_t crc32::update(uint32_t (&table)[256], uint32_t initial,
-                         const void *buf, size_t len)
-  {
+  uint32_t crc32::update(uint32_t(&table)[256], uint32_t initial,
+                         const void *buf, size_t len) {
     uint32_t c = initial ^ 0xFFFFFFFF;
     const uint8_t *u = static_cast<const uint8_t *>(buf);
-    for (size_t i = 0; i < len; ++i)
-    {
+    for (size_t i = 0; i < len; ++i) {
       c = table[(c ^ u[i]) & 0xFF] ^ (c >> 8);
     }
     return c ^ 0xFFFFFFFF;
   }
 
-  uint32_t crc32::update(const unsigned char *buf, size_t len)
-  {
+  uint32_t crc32::update(const unsigned char *buf, size_t len) {
     return update(table, crc32::initial, buf, len);
   }
 
-  uint32_t crc32::update(uint32_t (&table)[256], uint32_t initial,
-                         const std::string &str)
-  {
+  uint32_t crc32::update(uint32_t(&table)[256], uint32_t initial,
+                         const std::string &str) {
     return update(table, initial, str.c_str(), str.length());
   }
 
-  uint32_t crc32::update(const std::string &str)
-  {
+  uint32_t crc32::update(const std::string &str) {
     return update(table, crc32::initial, str.c_str(), str.length());
   }
 
@@ -64,10 +49,40 @@ namespace extras
   uint32_t crc32::initial;
   crc32 default_crc32;
 
-  crc32::crc32(const char *randomString)
-  {
+  crc32::crc32(const char *randomString) {
     crc32::generate_table(crc32::table);
     crc32::initial = crc32::update(table, 0, randomString);
   }
+=======
+}
 
-} // namespace extras
+std::uint32_t crc32::update(std::uint32_t (&table)[256], std::uint32_t initial,
+                            const void *buf, std::size_t len) {
+  std::uint32_t c = initial ^ 0xFFFFFFFF;
+  const std::uint8_t *u = static_cast<const std::uint8_t *>(buf);
+  for (std::size_t i = 0; i < len; ++i) {
+    c = table[(c ^ u[i]) & 0xFF] ^ (c >> 8);
+  }
+  return c ^ 0xFFFFFFFF;
+}
+
+std::uint32_t crc32::update(std::uint32_t (&table)[256], std::uint32_t initial,
+                            const std::string &str) {
+  return update(table, initial, str.c_str(), str.length());
+}
+
+uint32_t crc32::update(const std::string &str) {
+  return update(table, crc32::initial, str.c_str(), str.length());
+}
+
+std::uint32_t crc32::table[256];
+std::uint32_t crc32::initial;
+crc32 default_crc32;
+
+crc32::crc32(const char *randomString) {
+  crc32::generate_table(crc32::table);
+  crc32::initial = crc32::update(table, 0, randomString);
+}
+>>>>>>> mattcoding4days-main
+
+}  // namespace extras

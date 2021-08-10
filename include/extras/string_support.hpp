@@ -59,8 +59,7 @@ std::string replace_all(std::string str, const std::string &from,
                         const std::string &to);
 
 inline bool ends_with(std::string const &value, std::string const &ending) {
-  if (ending.size() > value.size())
-    return false;
+  if (ending.size() > value.size()) return false;
   return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
 }
 
@@ -81,11 +80,12 @@ inline std::string to_lower(const std::string &data) {
 }
 
 // cout << plusone(42);
-template <typename T> std::string plusone(T const &t) {
+template <typename T>
+std::string plusone(T const &t) {
   std::ostringstream oss;
   oss << (t + 1);
   return oss.str();
 }
-} // namespace extras
+}  // namespace extras
 
-#endif // _EXTRA_STRING_SUPPORT_HPP
+#endif  // _EXTRA_STRING_SUPPORT_HPP

@@ -1,12 +1,28 @@
-# (perriera) extras
+[![CMake](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml/badge.svg?branch=dev)](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml)
+
+<div align="center">
+  <img width="442" height="320" src="assets/extras.png">
+  <br>
+</div>
+
+
 ###   Description
 > This is a collection of C++ based tools to simplify the software development process.</br> 
 > 
- >*Why would someone want to use this?*
- >
- >In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present the are **'extras' library** adds support for ANSI colours, crc calculations, directory and file I/O, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
- >
-> Presently supporting Linux platforms but portable to Android, iPhone, iOS, Windows environments.
+>*Why would someone want to use this?*
+>
+>In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there are **'extra_ libraries'** for ANSI colours, crc calculations, directory and file I/O, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
+>
+> It is presently composed of the following sub-libraries:</br>
+> 
+> - extra_colors
+> - extra_crcs
+> - extra_files
+> - extra_interfaces
+> - extra_options
+> - extra_strings
+>
+> Presently supporting Linux platforms but can be ported to Android, iPhone, iOS, Windows environments.
 >
  # Installation
  Assuming you are using a gcc/g++ environment on a Linux platform:

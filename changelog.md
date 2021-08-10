@@ -1,4 +1,3 @@
-
 # Changelog
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
@@ -20,6 +19,31 @@ IMPORTANT:
 
 ## [Unreleased]
 - Update Doxygen content
+
+#### 3.2.0 (2021-08-09)
+### Added
+- Added Popular header only libraries are bundled in the library under the extras/vendor
+  * [cxxpots v2.2.0 for command line parsing](https://github.com/jarro2783/cxxopts)
+  * [nlohmann/json v3.9.1 for first class json support](https://github.com/nlohmann/json)
+- Addded Popular logging and fmt libraries as that are installed on the system but not bundled
+  * [spdlog v1.9.1 for logging, also comes bundled with fmtlib](https://github.com/gabime/spdlog)
+  * [fmtlib 8.0.1 faster than iostream and printf](https://github.com/fmtlib/fmt)
+- Added CPM, cmakes missing package manager
+  * [CPM a thin wrapper around Fetch_Content](https://github.com/cpm-cmake/CPM.cmake)
+- Added clang-format and cmake-format files, using Googles style guidelines
+- Added Interprocedural optimization support to cmake file.
+- Added new project options that can be called from command line, or in cmake file
+  * -DBUILD_TESTS=<OFF, ON> defaults to ON,
+  * -DDEBUG=<OFF, ON> defaults to ON
+- Added new version.hpp file, and cmake/utils.cmake file to update the version,
+  now the version will only need to be updated in the version.hpp file, and in this
+  changelog
+  
+### Removed
+- Removed ansi color support as fmt lib supplies that functionality
+- Removed Directory, File support as c++17 has filesystem build in
+- Removed redundant wrapper header files, and redundant cpp files
+- Removed uneeded std namespace includes
 
 #### 3.1.0 (2021-08-05)
 ### Added
@@ -157,7 +181,9 @@ IMPORTANT:
 
 [Unreleased]: https://github.com/perriera/extras/compare/v2.3.7...HEAD
 
-[3.0.0]: https://github.com/mattcoding4days/extras/compare/main...mattcoding4days:main
+[3.2.0]: https://github.com/mattcoding4days/extras/compare/v3.1.0...v3.2.0
+[3.1.0]: https://github.com/mattcoding4days/extras/compare/v3.0.0...v3.1.0
+[3.0.0]: https://github.com/mattcoding4days/extras/compare/v2.3.9...v3.0.0
 [2.3.7]: https://github.com/perriera/extras/compare/v2.3.6...v2.3.7
 [2.3.6]: https://github.com/perriera/extras/compare/v2.3.5...v2.3.6
 [2.3.5]: https://github.com/perriera/extras/compare/v2.3.4...v2.3.5
