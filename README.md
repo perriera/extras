@@ -34,10 +34,10 @@
      cd build
      cmake ..
      make
-     ./run-unittests
+     ./run-unittests-extras
      sudo make install
 
-**Note**: **run-unittests** needs to be run from inside the build directory. 
+**Note**: **run-unittests-extras** needs to be run from inside the build directory. 
 
  After installation the **'extras support'**  should be found in your **/usr/local/include** and your **/usr/local/lib** directories. Also, set LD_LIBRARY_PATH, (if you haven't already done so). 
 
@@ -60,7 +60,7 @@ With the checkinstall package installed your installation process now becomes:
      cd build
      cmake ..
      make
-     ./run-unittests
+     ./run-unittests-extras
      sudo checkinstall
 
 **Note**: During the checkinstall process be sure to change the name of the package from the default: **build** to **extras**. It'll be item #2 on the checkinstall parameter listings, (you can safely use the defaults for the rest of the items on the checkinstall).
@@ -82,7 +82,7 @@ You just include the **extras** library to any targets in your CMakeLists.txt ta
 
 For example:
 
-    target_link_libraries(run-unittests
+    target_link_libraries(run-unittests-extras
        chessmind::library
        extras
     )
@@ -100,7 +100,7 @@ Or, as of 3.2.1 you must set DEBUG to false, (& BUILD_TESTS=false) on the comman
     cd build
     cmake -DDEBUG=false -DBUILD_TESTS=false ..
     make
-    ./run-unittests
+    ./run-unittests-extras
     sudo make install
 
 ## C++ namespace support
