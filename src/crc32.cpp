@@ -41,6 +41,10 @@ uint32_t crc32::update(const std::string &str) {
   return update(table, crc32::initial, str.c_str(), str.length());
 }
 
+uint32_t crc32::update(const byte *buffer, int len) {
+  return update(table, crc32::initial, buffer, len);
+}
+
 std::uint32_t crc32::table[256];
 std::uint32_t crc32::initial;
 crc32 default_crc32;

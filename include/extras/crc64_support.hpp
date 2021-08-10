@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#include <extras/keywords.hpp>
 #include <iostream>
 
 namespace extras {
@@ -17,6 +18,7 @@ class crc64 {
  public:
   crc64(const char *randomString = "default seed");
   uint64_t update(const std::string &str);
+  uint32_t update(const byte *buffer, int len);
 
  private:
   static void generate_table(uint64_t (&table)[256]);

@@ -17,10 +17,10 @@ class crc16 {
  public:
   crc16();
   uint16_t update(const std::string &str);
+  uint16_t processBuffer(const char *data_p, uint16_t length);
 
  private:
   uint16_t processByte(uint8_t data);
-  uint16_t processBuffer(const char *data_p, uint16_t length);
   uint16_t getCrc() { return crc; };
   uint16_t crc;
 };

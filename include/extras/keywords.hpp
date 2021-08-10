@@ -13,27 +13,24 @@
  *
  */
 
-namespace extras
-{
+namespace extras {
 
-    /**
-     * @brief bytes
-     * 
-     * " Of the same size as char, but guaranteed to be unsigned. 
-     *   Contains at least the [0, 255] range.[5] ""
-     *    -- https://en.wikipedia.org/wiki/C_data_types
-     *    -- Wikipedia, August 6, 2021
-     * 
-     * [5]  ISO/IEC 9899:1999 specification, TC3 (PDF). p. 37, 
-     * § 6.2.6.1 Representations of types – General. 
-     * 
-     */
+/**
+ * @brief bytes
+ *
+ * " Of the same size as char, but guaranteed to be unsigned.
+ *   Contains at least the [0, 255] range.[5] ""
+ *    -- https://en.wikipedia.org/wiki/C_data_types
+ *    -- Wikipedia, August 6, 2021
+ *
+ * [5]  ISO/IEC 9899:1999 specification, TC3 (PDF). p. 37,
+ * § 6.2.6.1 Representations of types – General.
+ *
+ */
 
-    using byte = unsigned char;
-    using bytes = byte *;
+using byte = unsigned char;
+using bytes = byte *;
 
-}
+}  // namespace extras
 
-#include "extra/interfaces.hpp"
-
-#endif // _EXTRA_KEYWORDS_HPP
+#endif  // _EXTRA_KEYWORDS_HPP

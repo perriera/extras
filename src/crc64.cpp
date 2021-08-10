@@ -60,6 +60,10 @@ std::uint64_t crc64::update(const std::string &str) {
                 str.length());
 }
 
+std::uint32_t crc64::update(const byte *buffer, int len) {
+  return update(table, crc64::initial, buffer, len);
+}
+
 // uint64_t poly = 0xC96C5795D7870F42;
 // uint64_t table[256];
 
