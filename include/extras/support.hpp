@@ -12,11 +12,10 @@
  * All Rights Reserved, MIT License.
  *
  */
-#include "extra/colors.hpp"
-#include "extra/crcs.hpp"
-#include "extra/files.hpp"
-#include "extra/keywords.hpp"
-#include "extra/options.hpp"
-#include "extra/strings.hpp"
+#include <extras/crcs.hpp>
+#include <extras/interfaces.hpp>
+#include <extras/strings.hpp>
+#include <extras/vendor/cxxopts.hpp>
+#include <extras/vendor/json.hpp>
 
-#endif // _EXTRA_SUPPORT_HPP
+#endif  // _EXTRA_SUPPORT_HPP

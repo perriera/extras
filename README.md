@@ -1,14 +1,31 @@
-# (perriera) extras
+
+[![CMake](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml/badge.svg?branch=dev)](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml)
+
+<div align="center">
+  <img width="442" height="320" src="assets/extras.png">
+  <br>
+</div>
+
 ###   Description
 > This is a collection of C++ based tools to simplify the software development process.</br> 
 > 
- >*Why would someone want to use this?*
- >
- >In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present the are **'extras' library** adds support for ANSI colours, crc calculations, directory and file I/O, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
- >
-> Presently supporting Linux platforms but portable to Android, iPhone, iOS, Windows environments.
+>*Why would someone want to use this?*
 >
- # Installation
+>In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there is **'extras support'** for  CRC calculations, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
+>
+
+	#include <extras/crcs.hpp>
+	#include <extras/vendor/cxxopts.hpp>
+	#include <extras/interfaces.hpp>
+	#include <extras/vendor/json.hpp>
+	#include <extras/keywords.hpp>
+	#include <extras/strings.hpp>
+	#include <extras/support.hpp>
+	
+>
+> Presently supporting Linux platforms is portable to Android, iPhone, iOS, Windows environments.
+>
+# Installation
  Assuming you are using a gcc/g++ environment on a Linux platform:
  
      git clone https://github.com/perriera/extras.git 
@@ -22,11 +39,11 @@
 
 **Note**: **run-unittests** needs to be run from inside the build directory. 
 
- After installation the extra_ libraries should be found in your **/usr/local/include** and your **/usr/local/lib** directories. Also, set LD_LIBRARY_PATH, (if you haven't already done so). 
+ After installation the **'extras support'**  should be found in your **/usr/local/include** and your **/usr/local/lib** directories. Also, set LD_LIBRARY_PATH, (if you haven't already done so). 
 
      export LD_LIBRARY_PATH=/usr/local/lib
      
-If you happen to be adding features to the extras library and wish to debug it, be sure to put your build directory ahead of the install location, (otherwise the linking process will only use the installed version of the extra_ libraries).
+If you happen to be adding features to the extras library and wish to debug it, be sure to put your build directory ahead of the install location, (otherwise the linking process will only use the installed version of the **'extras support'** ).
 
     export LD_LIBRARY_PATH=build:/usr/local/lib
 
@@ -58,7 +75,7 @@ Should you run into a strange situation to where you issued the above command bu
 
 As you may have installed it earlier without changing the name of the package from **build** to **extras**.
 
-While it may seem odd to have to uninstall the extra_ libraries package, future upgrades to the extras package will prefer if there is a clean install for you to work with.
+While it may seem odd to have to uninstall the **'extras support'**  package, future upgrades to the extras package will prefer if there is a clean install for you to work with.
 
 ## CMakeLists.txt
 You just include the **extras** library to any targets in your CMakeLists.txt target_include_libraries specs
@@ -89,93 +106,62 @@ As of version 2.0.0 the (perriera) **extras** package now requires the use of th
 
     using namespace extras;
 
-With one exception, use of the **extra_options** package requires use of the namespace **docopt**.
-   
-    using namespace docopt;
-
-If you wish to use the none-namespace version of **extras** simply use versions earlier than 2.0.0, (or modify your local implementation of the **extras** package). 
-
-Change
-
-	namespace extras {
-To
-
-	namespace {
-
-In each of the header files of the **extras** package. A full recompilation would be necessary along with a complete reinstall of the library. 
- ## extra_colors
- > add **extra/colors.hpp** to your C++ source</br>
- > add **extras** library to your CMakeLists.txt target</br>
- > **using namespace extras;**</br>
- Use of this library will give you the ability to add color to your C++ console based applications for your typical Xterm based window. 
-
-    #include  <iostream>
-    #include  <extra/colors.hpp>
-    #include  "chessmind/helloworld.hpp"
-
-    using  namespace  std;
-    using  namespace  extras;
-
-    void  Hello::hello() const
-    {
-       cout << red << "Hello" << endl;
-       cout << green << "Hello" << endl;
-       cout << blue << "Hello" << endl;
-       cout << reset << "Hello" << endl;
-    };
-
-## extra_crcs
- > add **extra/crcs.hpp** to your C++ source</br>
+## extras/crcs
+ > add **extras/crcs.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 Use of this library will give your application quick access to either crc16, crc32, or crc64 bit calculations.
 
     #include  <iostream>
-    #include  <extra/crcs.hpp>
+    #include  <extras/crcs.hpp>
     #include "catch.hpp"
 
-    using namespace std;
     using namespace extras;
 
-    SCENARIO("Verify CRC instance", "[crc32]")
-    {
-        string data_piece4 = "data_piece2;";
-        uint16_t result16 = CRC::instance().calculate(data_piece4);
-        REQUIRE(result16 == 1164);
-        uint32_t result32 = CRC::instance().calculate(data_piece4);
-        REQUIRE(result32 == 2874410684);
-        uint64_t result64 = CRC::instance().calculate(data_piece4);
-        REQUIRE(result64 == 16391187711498339670);
+    SCENARIO("Verify CRC instance", "[crcs]") {
+        std::string data = "data_piece2;";
+        uint16_t result16 = CRC::instance().calculate(data);
+        REQUIRE(result16 == 0x48C);
+        uint32_t result32 = CRC::instance().calculate(data);
+        REQUIRE(result32 == 0xAB5406BC);
+        uint64_t result64 = CRC::instance().calculate(data);
+        REQUIRE(result64 == 0xE37932611E9B4556);
     }
 
 
-## extra_files (depercated)
- > add **extra/files.hpp** to your C++ source</br>
+## extras/vendor/cxxopts
+ > add **extras/vencor/cxxopts.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
-Use of this library will give you easier access to files in the underlying operating system, (only tested on Linux as of 1.2.1).
+ > 
+This is a lightweight C++ option parser library, supporting the standard GNU style syntax for options.</br>
+https://github.com/jarro2783/cxxopts/blob/master/LICENSE</br>
+Copyright (c) 2014 Jarryd Beck 
 
-    #include <iostream>
-    #include <extra/files.hpp>
+    #include  <iostream>
+    #include  <extras/vendor/cxxopts.hpp>
+    #include "catch.hpp"
 
-    using  namespace  std;
-    using  namespace  extras;
+    using namespace extras;
 
-    SCENARIO("Verify Directory.filename()", "[Directory]") {
-       string  a = "extra_options/include/extra/docopt_private.h";
-       auto  b = Directory(a).filename();
-       REQUIRE(a  !=  b);
-       REQUIRE(b  ==  "docopt_private.h");
+    SCENARIO("Verify CXXOPTS instance", "[cxxopts]")
+    {
+        cxxopts::Options options("MyProgram", "One line description of MyProgram");
+        options.add_options()
+		  ("d,debug", "Enable debugging") // a bool parameter
+		  ("i,integer", "Int param", cxxopts::value<int>())
+		  ("f,file", "File name", cxxopts::value<std::string>())
+		  ("v,verbose", "Verbose output", cxxopts::value<bool>()->default_value("false"));
     }
 
-## extra_interfaces
- > add **extra/interfaces.hpp** to your C++ source</br>
+## extras/interfaces
+ > add **extras/interfaces.hpp** to your C++ source</br>
  > (this library is header only at this point in time)</br>
  > **using namespace extras;**</br>
 Especially useful to programmers that like to program using interfaces, (aka. GoF: Abstract factory pattern))
 
     #include <iostream>
-    #include <extra/interfaces.hpp>
+    #include <extras/interfaces.hpp>
 
     //
     // CrossTableInterface
@@ -195,89 +181,144 @@ Especially useful to programmers that like to program using interfaces, (aka. Go
        virtual  void  verbose(bool  on_or_off);
     };
 
-## extra_keywords
- > add **extra/extra_keywords.hpp** to your C++ source</br>
+## extras/vendor/json
+ > add **extras/vendor/json.hpp** to your C++ source</br>
  > (this library is header only at this point in time)</br>
  > **using namespace extras;**</br>
-This header file includes **extra_interfaces** but any keywords that are not interface related would be included here, (at present only keywords related to interfaces are in use at this time).
+ > 
+This is JSON for C++</br>
+https://github.com/nlohmann/json/blob/develop/LICENSE.MIT</br>
+Copyright (c) 2013-2019 Niels Lohmann <http://nlohmann.me>
 
-## extra_options (depercated)
- > add **extra/options.hpp** to your C++ source</br>
- > add **extras** library to your CMakeLists.txt target</br>
- > **using namespace docopt;**</br>
-Use of this library will give you better main(argc,argv) capabilities as it parses command line arguments in an intelligent manner, (source code is Copyright (c) 2013 Jared Grubb, MIT license). 
+	namespace ns {
+	    // a simple struct to model a person
+	    struct person {
+	        std::string name;
+	        std::string address;
+	        int age;
+	    };
+	}
 
-    #include <iostream>
-    #include <extra/options.hpp>
+	ns::person p = {"Ned Flanders", "744 Evergreen Terrace", 60};
+	// convert to JSON: copy each value into the JSON object
+	json j;
+	j["name"] = p.name;
+	j["address"] = p.address;
+	j["age"] = p.age;
 
-    using  namespace  std;
-    using  namespace  docopt;
-    
-    int  main(int  argc, const  char  *argv[])
-    {
-       std::map<std::string, docopt::value> args = docopt::docopt(
-       USAGE, {argv + 1, argv + argc}, true, "ChessMind 1.0");
-       std::string  name = "";
-       if (args["<name>"] && args["<name>"].isString())
-       {
-          name = args["<name>"].asString();
-          cout  <<  name  <<  endl;
-       }
-       return  0;
-    }
+	{
+	  "pi": 3.141,
+	  "happy": true,
+	  "name": "Niels",
+	  "nothing": null,
+	  "answer": {
+	    "everything": 42
+	  },
+	  "list": [1, 0, 2],
+	  "object": {
+	    "currency": "USD",
+	    "value": 42.99
+	  }
+	}
 
-## extra_strings
- > add **extra/strings.hpp** to your C++ source</br>
+## extras/keywords
+ > add **extras/keywords.hpp** to your C++ source</br>
+ > (this library is header only at this point in time)</br>
+ > **using namespace extras;**</br>
+This header file defines constructs like the byte keyword:
+
+	namespace extras
+	{
+
+	    /**
+	     * @brief bytes
+	     * 
+	     * " Of the same size as char, but guaranteed to be unsigned. 
+	     *   Contains at least the [0, 255] range.[5] ""
+	     *    -- https://en.wikipedia.org/wiki/C_data_types
+	     *    -- Wikipedia, August 6, 2021
+	     * 
+	     * [5]  ISO/IEC 9899:1999 specification, TC3 (PDF). p. 37, 
+	     * § 6.2.6.1 Representations of types – General. 
+	     * 
+	     */
+
+	    using byte = unsigned char;
+	    using bytes = byte *;
+
+	}
+
+## extras/spdlog, (as a shared library)
+ > when you git clone this repository to your directory structure and build it using the install 
+ > procedure, (defined above), the ever popular spdlog library will now be available to you as a shared 
+ > library, (aka. libspdlogd.so). The need for this came about when the header-only version of spdlog
+ > kept showing up as a static library, so we found a way to make it into a shared library for projects
+ > that run into the same situaiton. 
+ > 
+Very fast, header-only/compiled, C++ logging library. </br>
+https://github.com/gabime/spdlog/blob/v1.x/LICENSE</br>
+Copyright (c) 2016 Gabi Melman.
+
+
+    # Add spdlog which includes fmt library as well (two for one) 
+    # This should install on the system when extras in included in 
+    # another project
+    CPMAddPackage(
+        GITHUB_REPOSITORY gabime/spdlog
+        VERSION 1.9.1
+        OPTIONS "SPDLOG_BUILD_SHARED ON"  "SPDLOG_BUILD_EXAMPLE OFF"  "SPDLOG_BUILD_TESTS OFF"
+        "SPDLOG_BUILD_EXAMPLE OFF"  "SPDLOG_ENABLE_PCH ON"  "SPDLOG_INSTALL ON"
+    )
+
+## extras/strings
+ > add **extras/strings.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 How many times how you wanted to do something really simple with strings but found yourself re-inventing the wheel all the time. Well, this library is merely a collection of popular std::string manipulation techniques, (based on the C++ STL library). Expect additional features to be added as time goes on:
 
     #include <iostream>
-    #include <extra/strings.hpp>
+    #include <extras/strings.hpp>
 
     using  namespace  std;
     using  namespace  extras;
 
     static  inline  void  ltrim(std::string  &s);
-    static  inline  void  rtrim(std::string  &s) ;
+    static  inline  void  rtrim(std::string  &s);
     static  inline  void  trim(std::string  &s);
-    static  inline  std::string  ltrim_copy(const  std::string  &s) ;
-    static  inline  std::string  rtrim_copy(const  std::string  &s) ;
-    static  inline  std::string  trim_copy(const  std::string  &s) ;
+    static  inline  std::string  ltrim_copy(const  std::string  &s);
+    static  inline  std::string  rtrim_copy(const  std::string  &s);
+    static  inline  std::string  trim_copy(const  std::string  &s);
     std::deque<std::string> split(const  std::string  &s, char  delim);
     std::string  replace_all(const  std::string  &s, char  a, char  b);
     std::string  remove_all(const  std::string  &s, char  a);
     std::string  replace_all(std::string  str, const  std::string  &from, const  std::string  &to);
-    inline  bool  ends_with(std::string  const  &value, std::string  const  &ending) ;;
-    inline  bool  starts_with(std::string  const  &value, std::string  const  &beginning) 
+    inline  bool  ends_with(std::string  const  &value, std::string  const  &ending);
+    inline  bool  starts_with(std::string  const  &value, std::string  const  &beginning);
     inline  bool  contains(std::string  const  &s1, std::string  const  &s2);
-    inline  std::string  to_lower(const  std::string  &data) ;
+    inline  std::string  to_lower(const  std::string  &data);
     
-     ## extra_support
- > add **extra/support.hpp** to your C++ source</br>
- > (each individual extras library that use will have to be added to your CMakeLists.txt target)</br>
+    
+## extras/support
+ > add **extras/support.hpp** to your C++ source</br>
+ > This will include all the head files available in the extras/ directory.</br>
  > **using namespace extras;**</br>
- Use of this general purpose header file will simplify extras support in your source code as it includes ALL other header files. But to link to the extra_ library that you are using you still need to add a link to that particular library.
 
-    #include  <iostream>
-    #include  <extra/support.hpp>
-    #include  "chessmind/helloworld.hpp"
+## extras/CPM.cmake
+ > when you git clone this repository to your directory structure you will see that our
+ > CMakeLists.txt makes use of the CPM.cmake construct. When it comes to including other
+ > git repositories inside your own, we have found no other tool as refined as this package 
+ > as it includes a very used 'OPTIONS" parameter where C++ parameters necessary for the
+ > repository you are including will be passed to the make file seemlessly, (see our spdlog
+ > entry above))
+ > 
+Setup-free CMake dependency management</br>
+https://github.com/cpm-cmake/CPM.cmake/blob/master/LICENSE</br>
+Copyright (c) 2019 Lars Melchior
 
-    using  namespace  std;
-    using  namespace  extras;
-
-    void  Hello::hello() const
-    {
-       cout << red << "Hello" << endl;
-       cout << green << "Hello" << endl;
-       cout << blue << "Hello" << endl;
-       cout << reset << "Hello" << endl;
-    };
-
+https://github.com/cpm-cmake/CPM.cmake
 
 ## Todo List:
-The following are a series of features to be added to the extra_ libraries in the near future.
-If there is anything you'd like to see added to the extras package please email us at perry.anderson@gmail.com, (or perry@exparx.com)
+The following are a series of features to be added to (perriera) extras in the near future. If there is anything you'd like to see added to the extras package please email us at perry.anderson@gmail.com, (or perry@exparx.com)
 
 ## Android support
 Expect support for the Android platform in the near future
@@ -285,6 +326,5 @@ Expect support for the Android platform in the near future
 Expect support for the iOS platform in the near future
 ## iPhone support
 Expect support for the iPhone platform in the near future
-
 ## Windows support
 Expect support for the Windows platform in the near future

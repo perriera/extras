@@ -3,6 +3,15 @@
 .vscode/
 
 build/
+.cache/
+
+# editors
+.idea/
+.vim/
+.vscode/
+
+# compilation commands
+compile_commands.json
 
 # Compiled Object files
 *.slo

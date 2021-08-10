@@ -15,7 +15,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/run-unittests-extras",
             "args": [
-                "[crc32]"
+                "[crcs]"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -33,10 +33,10 @@
             "miDebuggerPath": "/usr/bin/gdb"
         },
         {
-            "name": "helloworld",
+            "name": "chessmind",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/helloworld",
+            "program": "${workspaceFolder}/build/chessmind",
             "args": [
                 "data/pgn/kasparov_muratkuliev_1973.PGN"
             ],
