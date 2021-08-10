@@ -113,9 +113,8 @@ If you are including (perriera) extras into your project via CPM.cmake:
     )
 
 ### FYI: ModernCppStarter
-> If you are looking for a pretty decent C++ CMakeLists.txt, (one that will do what you want it to do), take a look at this one.</br>
-> ModernCppStarter </br>
-> Setting up a new C++ project usually requires a significant amount of preparation and boilerplate code, even more so for modern C++ projects with tests, executables and continuous integration. This template is the result of learnings from many previous projects and should help reduce the work required to setup up a modern C++ project.</br>
+> If you are looking for a pretty decent C++ CMakeLists.txt, (one that will do what you want it to do), take a look at ModernCppStarter:</br>
+> "Setting up a new C++ project usually requires a significant amount of preparation and boilerplate code, even more so for modern C++ projects with tests, executables and continuous integration. This template is the result of learnings from many previous projects and should help reduce the work required to setup up a modern C++ project." -- The Lartians</br>
 https://github.com/TheLartians/ModernCppStarter/blob/master/LICENSE</br>
 Copyright (c) 2019 The Lartians
 
