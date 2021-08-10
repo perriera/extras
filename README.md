@@ -103,6 +103,15 @@ Or, as of 3.2.1 you must set DEBUG to false, (& BUILD_TESTS=false) on the comman
     ./run-unittests-extras
     sudo make install
 
+## CPM.cnake support
+If you are including (perriera) extras into your project via CPM.cmake:
+
+    CPMAddPackage(
+        GITHUB_REPOSITORY perriera/extras
+        VERSION 3.2.1
+        OPTIONS "BUILD_TESTS ON" "DEBUG OFF" 
+    )
+
 ## C++ namespace support
 As of version 2.0.0 the (perriera) **extras** package now requires the use of the namespace **extras**.
 
