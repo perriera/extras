@@ -249,7 +249,7 @@ This header file defines constructs like the byte keyword:
 	}
 
 ## extras/spdlog, (as a shared library)
- > when you git clone this repository to your directory structure build and compile using the install 
+ > when you git clone this repository to your directory structure and build it using the install 
  > procedure, (defined above), the ever popular spdlog library will now be available to you as a shared 
  > library, (aka. libspdlogd.so). The need for this came about when the header-only version of spdlog
  > kept showing up as a static library, so we found a way to make it into a shared library for projects
