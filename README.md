@@ -303,7 +303,19 @@ How many times how you wanted to do something really simple with strings but fou
  > This will include all the head files available in the extras/ directory.</br>
  > **using namespace extras;**</br>
 
+## extras/CPM.cmake
+ > when you git clone this repository to your directory structure you will see that our
+ > CMakeLists.txt makes use of the CPM.cmake construct. When it comes to including other
+ > git repositories inside your own, we have found no other tool as refined as this package 
+ > as it includes a very used 'OPTIONS" parameter where C++ parameters necessary for the
+ > repository you are including will be passed to the make file seemlessly, (see our spdlog
+ > entry above))
+ > 
+Setup-free CMake dependency management</br>
+https://github.com/cpm-cmake/CPM.cmake/blob/master/LICENSE</br>
+Copyright (c) 2019 Lars Melchior
 
+https://github.com/cpm-cmake/CPM.cmake
 
 ## Todo List:
 The following are a series of features to be added to (perriera) extras in the near future. If there is anything you'd like to see added to the extras package please email us at perry.anderson@gmail.com, (or perry@exparx.com)
