@@ -11,7 +11,7 @@
 > 
 >*Why would someone want to use this?*
 >
->In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there are **'extra_ libraries'** for  CRC calculations, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
+>In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there is **'extras support'** for  CRC calculations, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
 >
 
 	#include <extras/crcs.hpp>
@@ -39,11 +39,11 @@
 
 **Note**: **run-unittests** needs to be run from inside the build directory. 
 
- After installation the extra_ libraries should be found in your **/usr/local/include** and your **/usr/local/lib** directories. Also, set LD_LIBRARY_PATH, (if you haven't already done so). 
+ After installation the **'extras support'**  should be found in your **/usr/local/include** and your **/usr/local/lib** directories. Also, set LD_LIBRARY_PATH, (if you haven't already done so). 
 
      export LD_LIBRARY_PATH=/usr/local/lib
      
-If you happen to be adding features to the extras library and wish to debug it, be sure to put your build directory ahead of the install location, (otherwise the linking process will only use the installed version of the extra_ libraries).
+If you happen to be adding features to the extras library and wish to debug it, be sure to put your build directory ahead of the install location, (otherwise the linking process will only use the installed version of the **'extras support'** ).
 
     export LD_LIBRARY_PATH=build:/usr/local/lib
 
@@ -75,7 +75,7 @@ Should you run into a strange situation to where you issued the above command bu
 
 As you may have installed it earlier without changing the name of the package from **build** to **extras**.
 
-While it may seem odd to have to uninstall the extra_ libraries package, future upgrades to the extras package will prefer if there is a clean install for you to work with.
+While it may seem odd to have to uninstall the **'extras support'**  package, future upgrades to the extras package will prefer if there is a clean install for you to work with.
 
 ## CMakeLists.txt
 You just include the **extras** library to any targets in your CMakeLists.txt target_include_libraries specs
