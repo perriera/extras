@@ -136,7 +136,7 @@ Use of this library will give your application quick access to either crc16, crc
  > **using namespace extras;**</br>
  > 
 This is a lightweight C++ option parser library, supporting the standard GNU style syntax for options.</br>
-https://github.com/jarro2783/cxxopts/blob/master/LICENSE
+https://github.com/jarro2783/cxxopts/blob/master/LICENSE</br>
 Copyright (c) 2014 Jarryd Beck 
 
     #include  <iostream>
@@ -189,8 +189,8 @@ Especially useful to programmers that like to program using interfaces, (aka. Go
  > **using namespace extras;**</br>
  > 
 This is JSON for C++</br>
-https://github.com/nlohmann/json/blob/develop/LICENSE.MIT
-Copyright (c) 2013-2019 Niels Lohmann <http://nlohmann.me>.
+https://github.com/nlohmann/json/blob/develop/LICENSE.MIT</br>
+Copyright (c) 2013-2019 Niels Lohmann <http://nlohmann.me>
 
 	namespace ns {
 	    // a simple struct to model a person
@@ -255,8 +255,8 @@ This header file defines constructs like the byte keyword:
  > build and compile using the standard cmake, make and sudo checkinstall</br>
  > the ever popular spdlog will now be available to you as a shared library, (aka. libspdlogd.so)
  > 
-Very fast, header-only/compiled, C++ logging library. 
-https://github.com/gabime/spdlog/blob/v1.x/LICENSE
+Very fast, header-only/compiled, C++ logging library. </br>
+https://github.com/gabime/spdlog/blob/v1.x/LICENSE</br>
 Copyright (c) 2016 Gabi Melman.
 
 
