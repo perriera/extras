@@ -116,7 +116,6 @@ Use of this library will give your application quick access to either crc16, crc
     #include  <extra/crcs.hpp>
     #include "catch.hpp"
 
-    using namespace std;
     using namespace extras;
 
     SCENARIO("Verify CRC instance", "[crc32]")
@@ -143,7 +142,6 @@ Copyright (c) 2014 Jarryd Beck
     #include  <extra/vendor/cxxopts.hpp>
     #include "catch.hpp"
 
-    using namespace std;
     using namespace extras;
 
     SCENARIO("Verify CXXOPTS instance", "[cxxopts]")
