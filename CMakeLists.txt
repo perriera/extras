@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.21)
 # with the changelog.md and github
 #
 project(extras LANGUAGES CXX)
-project(extras VERSION 2.7.0)
+project(extras VERSION 3.1.0)
 
 #
 # Set C/C++ parameters for all targets in this CMakeLists.txt
@@ -70,12 +70,6 @@ SHARED
 	src/interfaces.cpp
 	include/extra/keywords.hpp
 	src/keywords.cpp
-	include/extra/options.hpp    
-	include/extra/docopt_private.h    
-    include/extra/docopt_util.h         
-    include/extra/docopt_value.h           
-    include/extra/docopt.h  
-    src/docopt.cpp  
     include/extra/strings.hpp
 	include/extra/string_support.hpp
 	src/string_support.cpp

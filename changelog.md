@@ -21,47 +21,18 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
-#### 2.7.0 (2021-07-26)
+#### 3.1.0 (2021-08-05)
 ### Added
-- dev branch on github repository
+- Added nlohmann json header only library.
+- There is a conflicting variable name in extras and in json
+  called "pure". Changed the name of the variable on line 1441 to purex
 
-#### 2.6.0 (2021-07-26)
-### Added
-- CPM.cnake
-- Documentation on CRCInterface
-- Documentation on THREE GoF: Design Patterns
-### Changed
-- static auto instance() -> CRCInterface &
-- Updated README.md
+#### 3.0.0 (2021-08-05)
+### Removed
+- Removed docopts 3rd party library
 
-#### 2.5.0 (2021-07-26)
-### Added
-- byte definition
-- bytes definition
-- C++11 style Singldton to CRC
 ### Changed
-- CRCInterface, (to work with new byte definition)
-
-#### 2.4.2 (2021-07-26)
-### Improved
-- CRCInterface
-### Changed
-- Updaed README.md
-
-#### 2.4.1 (2021-07-26)
-### Changed
-- Updaed README.md
-
-#### 2.4.0 (2021-07-26)
-### Added 
-- CRCInterface
-- CRC
-### Changed
-- crc16, crc32, crc64
-
-#### 2.3.9 (2021-07-26)
-### Changed
-- Updated README.md 
+- Added another shot in the wind 
 
 #### 2.3.8 (2021-07-26)
 ### Changed
@@ -184,13 +155,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v2.5.0...HEAD
-[2.5.0]: https://github.com/perriera/extras/compare/v2.4.2...v2.5.0
-[2.4.2]: https://github.com/perriera/extras/compare/v2.4.1...v2.4.2
-[2.4.1]: https://github.com/perriera/extras/compare/v2.4.0...v2.4.1
-[2.4.0]: https://github.com/perriera/extras/compare/v2.3.9...v2.4.0
-[2.3.9]: https://github.com/perriera/extras/compare/v2.3.8...v2.3.9
-[2.3.8]: https://github.com/perriera/extras/compare/v2.3.7...v2.3.8
+[Unreleased]: https://github.com/perriera/extras/compare/v2.3.7...HEAD
+
+[3.0.0]: https://github.com/mattcoding4days/extras/compare/main...mattcoding4days:main
 [2.3.7]: https://github.com/perriera/extras/compare/v2.3.6...v2.3.7
 [2.3.6]: https://github.com/perriera/extras/compare/v2.3.5...v2.3.6
 [2.3.5]: https://github.com/perriera/extras/compare/v2.3.4...v2.3.5
