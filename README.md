@@ -113,7 +113,7 @@ As of version 2.0.0 the (perriera) **extras** package now requires the use of th
 Use of this library will give your application quick access to either crc16, crc32, or crc64 bit calculations.
 
     #include  <iostream>
-    #include  <extra/crcs.hpp>
+    #include  <extras/crcs.hpp>
     #include "catch.hpp"
 
     using namespace extras;
@@ -139,7 +139,7 @@ https://github.com/jarro2783/cxxopts/blob/master/LICENSE</br>
 Copyright (c) 2014 Jarryd Beck 
 
     #include  <iostream>
-    #include  <extra/vendor/cxxopts.hpp>
+    #include  <extras/vendor/cxxopts.hpp>
     #include "catch.hpp"
 
     using namespace extras;
@@ -161,7 +161,7 @@ Copyright (c) 2014 Jarryd Beck
 Especially useful to programmers that like to program using interfaces, (aka. GoF: Abstract factory pattern))
 
     #include <iostream>
-    #include <extra/interfaces.hpp>
+    #include <extras/interfaces.hpp>
 
     //
     // CrossTableInterface
@@ -275,7 +275,7 @@ Copyright (c) 2016 Gabi Melman.
 How many times how you wanted to do something really simple with strings but found yourself re-inventing the wheel all the time. Well, this library is merely a collection of popular std::string manipulation techniques, (based on the C++ STL library). Expect additional features to be added as time goes on:
 
     #include <iostream>
-    #include <extra/strings.hpp>
+    #include <extras/strings.hpp>
 
     using  namespace  std;
     using  namespace  extras;
@@ -297,7 +297,7 @@ How many times how you wanted to do something really simple with strings but fou
     
     
 ## extras/support
- > add **extra/support.hpp** to your C++ source</br>
+ > add **extras/support.hpp** to your C++ source</br>
  > This will include all the head files available in the extras/ directory.</br>
  > **using namespace extras;**</br>
 
