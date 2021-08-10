@@ -283,19 +283,19 @@ How many times how you wanted to do something really simple with strings but fou
     using  namespace  extras;
 
     static  inline  void  ltrim(std::string  &s);
-    static  inline  void  rtrim(std::string  &s) ;
+    static  inline  void  rtrim(std::string  &s);
     static  inline  void  trim(std::string  &s);
-    static  inline  std::string  ltrim_copy(const  std::string  &s) ;
-    static  inline  std::string  rtrim_copy(const  std::string  &s) ;
-    static  inline  std::string  trim_copy(const  std::string  &s) ;
+    static  inline  std::string  ltrim_copy(const  std::string  &s);
+    static  inline  std::string  rtrim_copy(const  std::string  &s);
+    static  inline  std::string  trim_copy(const  std::string  &s);
     std::deque<std::string> split(const  std::string  &s, char  delim);
     std::string  replace_all(const  std::string  &s, char  a, char  b);
     std::string  remove_all(const  std::string  &s, char  a);
     std::string  replace_all(std::string  str, const  std::string  &from, const  std::string  &to);
-    inline  bool  ends_with(std::string  const  &value, std::string  const  &ending) ;;
-    inline  bool  starts_with(std::string  const  &value, std::string  const  &beginning) 
+    inline  bool  ends_with(std::string  const  &value, std::string  const  &ending);
+    inline  bool  starts_with(std::string  const  &value, std::string  const  &beginning);
     inline  bool  contains(std::string  const  &s1, std::string  const  &s2);
-    inline  std::string  to_lower(const  std::string  &data) ;
+    inline  std::string  to_lower(const  std::string  &data);
     
     
 ## extras/support
