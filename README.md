@@ -148,8 +148,8 @@ Copyright (c) 2014 Jarryd Beck
 
     SCENARIO("Verify CXXOPTS instance", "[cxxopts]")
     {
-		cxxopts::Options options("MyProgram", "One line description of MyProgram");
-	    options.add_options()
+        cxxopts::Options options("MyProgram", "One line description of MyProgram");
+        options.add_options()
 		  ("d,debug", "Enable debugging") // a bool parameter
 		  ("i,integer", "Int param", cxxopts::value<int>())
 		  ("f,file", "File name", cxxopts::value<std::string>())
