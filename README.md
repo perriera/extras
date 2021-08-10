@@ -103,7 +103,7 @@ Or, as of 3.2.1 you must set DEBUG to false, (& BUILD_TESTS=false) on the comman
     ./run-unittests-extras
     sudo make install
 
-## CPM.cnake support
+## CPM.cmake support
 If you are including (perriera) extras into your project via CPM.cmake:
 
     CPMAddPackage(
