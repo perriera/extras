@@ -104,7 +104,7 @@ Or, as of 3.2.1 you must set DEBUG to false, (& BUILD_TESTS=false) on the comman
     sudo make install
 
 ## CPM.cmake support
-If you are including (perriera) extras into your project via CPM.cmake:
+If you are including **(perriera) extras** into your project via CPM.cmake:
 
     CPMAddPackage(
         GITHUB_REPOSITORY perriera/extras
