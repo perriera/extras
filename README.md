@@ -118,16 +118,16 @@ Use of this library will give your application quick access to either crc16, crc
 
     using namespace extras;
 
-    SCENARIO("Verify CRC instance", "[crc32]")
-    {
-        string data_piece4 = "data_piece2;";
-        uint16_t result16 = CRC::instance().calculate(data_piece4);
-        REQUIRE(result16 == 1164);
-        uint32_t result32 = CRC::instance().calculate(data_piece4);
-        REQUIRE(result32 == 2874410684);
-        uint64_t result64 = CRC::instance().calculate(data_piece4);
-        REQUIRE(result64 == 16391187711498339670);
+    SCENARIO("Verify CRC instance", "[crcs]") {
+        string data = "data_piece2;";
+        uint16_t result16 = CRC::instance().calculate(data);
+        REQUIRE(result16 == 0x48C);
+        uint32_t result32 = CRC::instance().calculate(data);
+        REQUIRE(result32 == 0xAB5406BC);
+        uint64_t result64 = CRC::instance().calculate(data);
+        REQUIRE(result64 == 0xE37932611E9B4556);
     }
+
 
 ## extras/vendor/cxxopts
  > add **extras/vencor/cxxopts.hpp** to your C++ source</br>

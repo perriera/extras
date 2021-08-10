@@ -13,9 +13,9 @@
             "name": "run-unittests",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/run-unittests",
+            "program": "${workspaceFolder}/build/run-unittests-extras",
             "args": [
-                "[helloworld]"
+                "[crcs]"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
