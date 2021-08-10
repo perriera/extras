@@ -11,7 +11,7 @@
 > 
 >*Why would someone want to use this?*
 >
->In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there is **'extras support'** for  CRC calculations, pseudo C++ keywords, command line options and standard string manipulation, (utilities).
+>In the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there is **'extras support'** for  CRC calculations, pseudo C++ keywords, command line options, standard string manipulation and interface drive programming, (GoF Abstract Factory Pattern).
 >
 
 	#include <extras/crcs.hpp>
@@ -120,11 +120,12 @@ Use of this library will give your application quick access to either crc16, crc
 
     SCENARIO("Verify CRC instance", "[crcs]") {
         std::string data = "data_piece2;";
-        uint16_t result16 = CRC::instance().calculate(data);
+        auto& crc = CRC::instance().calculate(data);
+        uint16_t result16 = crc;
         REQUIRE(result16 == 0x48C);
-        uint32_t result32 = CRC::instance().calculate(data);
+        uint32_t result32 = crc;
         REQUIRE(result32 == 0xAB5406BC);
-        uint64_t result64 = CRC::instance().calculate(data);
+        uint64_t result64 = crc;
         REQUIRE(result64 == 0xE37932611E9B4556);
     }
 
