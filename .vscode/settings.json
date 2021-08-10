@@ -59,12 +59,7 @@
         "streambuf": "cpp",
         "thread": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp",
-        "codecvt": "cpp",
-        "compare": "cpp",
-        "concepts": "cpp",
-        "ranges": "cpp",
-        "stop_token": "cpp"
+        "variant": "cpp"
     },
     "editor.formatOnSave": true
 }

@@ -89,14 +89,16 @@ For example:
     
 The 2.3.8 version of the extras libraries installs the debug version by default. If you wish to use a production version of the library you can either comment out this line in the main CMakeLists.txt file and recompile:
 
-    set(CMAKE_BUILD_TYPE Debug)
+    # add additional project options
+    option(BUILD_TESTS "Build tests" ON)
+    option(DEBUG "Debug Build" ON)
 
-Or, as of 1.2.3 you can define PRODUCTION on the command line of the cmake command and it will cause a production version of the library to be generated instead, (just be sure to delete the build directory before hand):
+Or, as of 3.2.1 you must set DEBUG to false, (& BUILD_TESTS=false) on the command line of the cmake command and it will cause a production version of the library to be generated instead, (just be sure to delete the build directory before hand):
 
     cd ..
     rm -rf build
     cd build
-    cmake -DPRODUCTION=true ..
+    cmake -DDEBUG=false -DBUILD_TESTS=false ..
     make
     ./run-unittests
     sudo make install
