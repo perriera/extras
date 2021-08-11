@@ -62,14 +62,14 @@ message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 # https://gitlab.kitware.com/cmake/cmake/-/tree/a9affa07cdeea6b66c920e4826abfe59854f7ffa/
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
-# Add spdlog which includes fmt library as well (two for one) This should install on the system when
-# extras in included in another project
-CPMAddPackage(
-  GITHUB_REPOSITORY gabime/spdlog
-  VERSION 1.9.1
-  OPTIONS "SPDLOG_BUILD_SHARED ON" "SPDLOG_BUILD_EXAMPLE OFF" "SPDLOG_BUILD_TESTS OFF"
-          "SPDLOG_BUILD_EXAMPLE OFF" "SPDLOG_ENABLE_PCH ON" "SPDLOG_INSTALL ON"
-)
+# # Add spdlog which includes fmt library as well (two for one) This should install on the system when
+# # extras in included in another project
+# CPMAddPackage(
+#   GITHUB_REPOSITORY gabime/spdlog
+#   VERSION 1.9.1
+#   OPTIONS "SPDLOG_BUILD_SHARED ON" "SPDLOG_BUILD_EXAMPLE OFF" "SPDLOG_BUILD_TESTS OFF"
+#           "SPDLOG_BUILD_EXAMPLE OFF" "SPDLOG_ENABLE_PCH ON" "SPDLOG_INSTALL ON"
+# )
 
 # HACK: It is technically bad practice to glob files, as the build tree might not update if a new
 # file is added or removed, for this reason it is recommended to rm -rf the build folder and rebuild
