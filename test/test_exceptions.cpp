@@ -119,6 +119,7 @@ SCENARIO(
     int a = 3;
     int b = 7;
     SpecificCustomException::assertion(a, b, __INFO__);
+    FAIL("SpecificCustomException not thrown");
   } catch (SpecificCustomException& ex) {
     SUCCEED("SpecificCustomException thrown");
   } catch (GroupCustomException& ex) {

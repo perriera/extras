@@ -200,6 +200,7 @@ https://github.com/perriera/extras/blob/main/include/extras/exceptions.hpp</br>
             int a = 3;
             int b = 7;
             SpecificCustomException::assertion(a, b, __INFO__);
+            FAIL("SpecificCustomException not thrown");
         } catch (SpecificCustomException& ex) {
             SUCCEED("SpecificCustomException thrown");
         } catch (GroupCustomException& ex) {
