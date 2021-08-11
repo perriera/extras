@@ -358,5 +358,18 @@ Expect support for the iPhone platform in the near future
 Expect support for the Windows platform in the near future
 
 ## Aknowledgements
-> **(perriera) extras** has been brought to you by these find vendors:
-- [clang-format configurator](https://zed0.co.uk/clang-format-configurator/)
+> **(perriera) extras** has been brought to you by these fine vendors:
+- [clang-format configurator](https://zed0.co.uk/clang-format-configurator/)</br>
+After you:
+
+    sudo apt update
+    sudo apt install clangd
+    sudo apt install cppcheck
+    sudo apt install clang-tidy
+    sudo apt install python3-pip
+    pip install clang-format
+    pip install cmake-format
+
+Be sure to use [clang-format configurator](https://zed0.co.uk/clang-format-configurator/) for all for custom clang-format needs :)
+
+
