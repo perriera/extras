@@ -20,7 +20,11 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
-#### 3.3.0 (2021-08-09)
+#### 3.3.1 (2021-08-10)
+### Corrected
+- Compare links for 3.3.0
+
+#### 3.3.0 (2021-08-10)
 ### Added
 - OctalInterface, (needed by chessmind)
   * [chessmind is now undergoing a refit on new CMakeLists.txt format](https://github.com/perriera/chessmind)
@@ -193,7 +197,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.2.1...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.3.1...HEAD
+[3.3.1]: https://github.com/perriera/extras/compare/v3.3.0...v3.3.1
+[3.3.0]: https://github.com/perriera/extras/compare/v2.2.1...v3.3.0
 [3.2.1]: https://github.com/perriera/extras/compare/v2.3.7...v3.2.1
 [3.2.0]: https://github.com/mattcoding4days/extras/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/mattcoding4days/extras/compare/v3.0.0...v3.1.0
