@@ -12,6 +12,12 @@ namespace extras {
  * Used by the ChessMind project, it introduces an interface
  * to safely convert a number to and from octal format.
  *
+ * Part of my Post Graduate program from Purdue University
+ * in Data Science, (Machine Learning and AI) was to train
+ * models in how to predict the future. Several of these
+ * models prefer to work only in numbers. So, converting the
+ * chess position from 'a1' to '00' becomes useful.
+ *
  */
 
 interface OctalInterface {
