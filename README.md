@@ -151,7 +151,7 @@ Use of this library will give your application quick access to either crc16, crc
 
 
 ## extras/vendor/cxxopts
- > add **extras/vencor/cxxopts.hpp** to your C++ source</br>
+ > add **extras/vendor/cxxopts.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
  > 
@@ -174,6 +174,43 @@ Copyright (c) 2014 Jarryd Beck
 		  ("f,file", "File name", cxxopts::value<std::string>())
 		  ("v,verbose", "Verbose output", cxxopts::value<bool>()->default_value("false"));
     }
+
+## extras/exceptions
+ > add **extras/exceptions.hpp** to your C++ source</br>
+ > add **extras** library to your CMakeLists.txt target</br>
+ > **using namespace extras;**</br>
+ > 
+Custom exceptions are now possible in your applications with the use of **CustomExceptionInterface**</br>
+https://github.com/perriera/extras/blob/main/include/extras/exceptions.hpp</br>
+(See test/mock_exceptions.cpp & test/test_exceptions.cpp for more on this)
+
+
+    #include  <iostream>
+    #include  <extras/vendor/cxxopts.hpp>
+    #include "catch.hpp"
+
+    using namespace extras;
+
+    SCENARIO(
+        "Test SpecificCustomException: demonstration (with assertion() methods)",
+        "[exceptions_testcases]") {
+        try {
+            std::string port = "8080";
+            SpecificCustomException::assertion(port, __INFO__);
+            int a = 3;
+            int b = 7;
+            SpecificCustomException::assertion(a, b, __INFO__);
+        } catch (SpecificCustomException& ex) {
+            SUCCEED("SpecificCustomException thrown");
+        } catch (GroupCustomException& ex) {
+            FAIL("GroupCustomException thrown");
+        } catch (std::exception& ex) {
+            FAIL("std::exception thrown");
+        } catch (...) {
+            FAIL("exc");
+        }
+    }
+
 
 ## extras/interfaces
  > add **extras/interfaces.hpp** to your C++ source</br>
