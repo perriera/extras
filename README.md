@@ -357,7 +357,7 @@ Expect support for the iPhone platform in the near future
 ## Windows support
 Expect support for the Windows platform in the near future
 
-## Aknowledgements
+## Acknowledgements
 > **(perriera) extras** has been brought to you by these fine vendors:
 - [clang-format configurator](https://zed0.co.uk/clang-format-configurator/)</br>
 
@@ -378,4 +378,7 @@ Where you .clang-format can be as small as:
         BasedOnStyle: Google
         IncludeBlocks: Regroup
 
-
+- [Matt Williams, Victoria, BC](https://www.linkedin.com/in/matt-williams-1291a8151/)</br>
+  * Matt's attention to detail and knowledge of modern C++ coding techniques and standards have been an incredible [**Boost**](https://www.boost.org) to this library.
+  * Thank you Matt, :)
+  
