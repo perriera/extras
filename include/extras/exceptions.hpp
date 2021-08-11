@@ -30,14 +30,15 @@ namespace extras {
     std::string _file;
     std::string _func;
     int _line;
-    WhereAmI(const std::string &file, const std::string &func, int line);
+    WhereAmI(const std::string &file, const std::string &func, int line)
+        : _file(file), _func(func), _line(line) {}
   };
+  // namespace extras
 
 #define __DATAONERROR__ \
   __FILE__, static_cast<const char *>(__PRETTY_FUNCTION__), __LINE__
-#define __INFO__                                                             \
-  libdmg::WhereAmI(__FILE__, static_cast<const char *>(__PRETTY_FUNCTION__), \
-                   __LINE__)
+#define __INFO__ \
+  WhereAmI(__FILE__, static_cast<const char *>(__PRETTY_FUNCTION__), __LINE__)
 
   /**
    * @brief interface LibdmgExceptionInterface
@@ -68,12 +69,8 @@ namespace extras {
 
    public:
     AbstractException(const char *msg, const char *file, const char *func,
-                      int line);
-    AbstractException(std::string &msg, const char *file, const char *func,
-                      int line);
-
-    explicit AbstractException(const char *msg);
-    explicit AbstractException(std::string &msg);
+                      int line)
+        : _msg(msg), _file(file), _func(func), _line(line) {}
 
     [[nodiscard]] const char *what() const noexcept override {
       return _msg.c_str();
@@ -87,20 +84,28 @@ namespace extras {
     [[nodiscard]] virtual int getline() const noexcept { return _line; };
   };
 
-  /** @info: LibdmgException is the root of all the custom exceptions. This is a
-   * good design, because if there is an area where the programmer is not sure
-   * which exception will be thrown, catching LibdmgException will automatically
-   * catch all the exceptions that inherit from it.
+  /** @info: LibdmgException is the root of all the custom exceptions. This is
+   * a good design, because if there is an area where the programmer is not
+   * sure which exception will be thrown, catching LibdmgException will
+   * automatically catch all the exceptions that inherit from it.
    * */
-  class Exception : public AbstractException {
+  class CustomException : public AbstractException {
    public:
-    Exception(const char *_msg, const char *_file, const char *_func,
-              int _line);
-    Exception(std::string &_msg, const char *_file, const char *_func,
-              int _line);
+    CustomException(const char *msg, const WhereAmI &whereAmI)
+        : AbstractException(msg, whereAmI._file.c_str(), whereAmI._func.c_str(),
+                            whereAmI._line) {}
+  };
 
-    explicit Exception(const char *_msg);
-    explicit Exception(std::string &_msg);
+  /**
+   * @brief class DotenvFileNotFound
+   *
+   * */
+
+  class SampleCustomException : public CustomException {
+   public:
+    SampleCustomException(const char *msg, const WhereAmI &whereAmI)
+        : CustomException(msg, whereAmI) {}
+    static void assertion(const std::string &filename, const WhereAmI &ref);
   };
 
 }  // namespace extras
