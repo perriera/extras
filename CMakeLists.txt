@@ -20,7 +20,7 @@ project(
 )
 message(STATUS "Building extras-${EXTRAS_VERSION}")
 
-# These includes will only work after LANGUAGES is defined
+# These includes will only work after LANGUAGES is defined.
 include(GNUInstallDirs)
 include(CheckIPOSupported)
 
