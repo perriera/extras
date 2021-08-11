@@ -204,9 +204,10 @@ Especially useful to programmers that like to program using interfaces, (aka. Go
 
 ### FakeIt Mock Framework support
  > View **extras/octal_suppoer.hpp** to see a simple interface</br>
- > (see mock_octal.cpp in the test/ directory)</br>
+ > (see **mock_octal.cpp** in the **test/** directory)</br>
  > **using namespace extras;**</br>
-To anyone wishing to know how to use mocks to write interfaces see the OctalInterface and the test cases written in the test/ directory.
+
+To anyone wishing to know how to use mocks to write interfaces see the **OctalInterface** and the test cases written in the test/ directory.
 
 ## extras/vendor/json
  > add **extras/vendor/json.hpp** to your C++ source</br>
@@ -356,3 +357,6 @@ Expect support for the iPhone platform in the near future
 ## Windows support
 Expect support for the Windows platform in the near future
 
+## Aknowledgements
+> **(perriera) extras** has been brought to you by these find vendors:
+- [clang-format configurator](https://zed0.co.uk/clang-format-configurator/)
