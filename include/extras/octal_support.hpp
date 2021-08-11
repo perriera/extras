@@ -19,6 +19,7 @@ interface OctalInterface {
    * @brief toOctal
    * Convert two chars 'a1' thru to 'h8' to anywhere between 00 to 77.
    * @return int (00 to 77)
+   * @exception an out of range exception should be expected
    */
   virtual int toOctal() const pure;
 
@@ -26,6 +27,7 @@ interface OctalInterface {
    * @brief fromOctal
    * Convert two digets anywhere between 00 to 77 to 'a1' thru to 'h8'.
    * @param octal (0 to 7)
+   * @exception an out of range exception should be expected
    */
   virtual void fromOctal(int octal) pure;
 };
