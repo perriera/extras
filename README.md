@@ -360,6 +360,7 @@ Expect support for the Windows platform in the near future
 ## Aknowledgements
 > **(perriera) extras** has been brought to you by these fine vendors:
 - [clang-format configurator](https://zed0.co.uk/clang-format-configurator/)</br>
+
 After you:
 
         sudo apt update
