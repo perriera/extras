@@ -36,10 +36,9 @@ namespace extras {
  *
  */
 interface CRCInterface {
-
   /**
    * Polymorphism on right side of methods in C++ is quite well known.
-   * 
+   *
    * CRC's are generally designed to work on binary arrays,
    * so two parameters are expected, (at least).
    */
@@ -54,7 +53,7 @@ interface CRCInterface {
 
   /**
    * Polymorphism on left side of methods in C++ is not so well known.
-   * 
+   *
    * Polymorphism is available in C++ by way of overloading the
    * expected return types. In this manner the same calculae method
    * for setting up the CRC instance will all operate on the same
@@ -70,7 +69,7 @@ interface CRCInterface {
    *
    * While the defacto operator method most programmers are familair with
    * with it comes to operator overloading, it really wouldn't make sense
-   * here as it really wouldn't what to return, (a string of 16, 32 or 64?).
+   * here as it really wouldn't know what to return, (a str of 16, 32 or 64?).
    *
    */
 };
