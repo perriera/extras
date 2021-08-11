@@ -204,11 +204,11 @@ https://github.com/perriera/extras/blob/main/include/extras/exceptions.hpp</br>
         } catch (SpecificCustomException& ex) {
             SUCCEED("SpecificCustomException thrown");
         } catch (GroupCustomException& ex) {
-            FAIL("GroupCustomException thrown");
+            FAIL("GroupCustomException thrown, (instead)");
         } catch (std::exception& ex) {
-            FAIL("std::exception thrown");
+            FAIL("std::exception thrown, (instead)");
         } catch (...) {
-            FAIL("exc");
+            FAIL("... thrown, (instead)");
         }
     }
 
