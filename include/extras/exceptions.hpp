@@ -227,7 +227,7 @@ namespace extras {
    */
 
   concrete class SpecificCustomException extends GroupCustomException {
-    std::string msg_with_parameter(const char *param) {
+    std::string msg_with_parameter(const std::string &param) {
       std::string msg_with_param;
       msg_with_param = "Port: ";
       msg_with_param += param;
@@ -252,7 +252,7 @@ namespace extras {
      * @param param
      * @param whereAmI
      */
-    SpecificCustomException(const char *param, const WhereAmI &whereAmI)
+    SpecificCustomException(const std::string &param, const WhereAmI &whereAmI)
         : GroupCustomException(msg_with_parameter(param).c_str(), whereAmI) {}
 
     /**

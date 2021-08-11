@@ -73,9 +73,20 @@ SCENARIO("Test SpecificCustomException: assertion", "[exceptions_testcases]") {
   REQUIRE_NOTHROW(SpecificCustomException::assertion(3, 2, __INFO__));
 }
 
-SCENARIO("Test SpecificCustomException: demonstration (before assertion())",
-         "[exceptions_testcases]") {
+/**
+ * @brief This is example we show testing for exceptions and how the
+ * use of if() statements, (for the purposes of exception testing)
+ * adds complexity to the source code.
+ *
+ */
+SCENARIO(
+    "Test SpecificCustomException: demonstration (without assertion() methods)",
+    "[exceptions_testcases]") {
   try {
+    std::string port = "8080";
+    if (port != "8080") {
+      throw SpecificCustomException(port, __INFO__);
+    }
     int a = 3;
     int b = 7;
     if (a < b) {
@@ -92,9 +103,19 @@ SCENARIO("Test SpecificCustomException: demonstration (before assertion())",
   }
 }
 
-SCENARIO("Test SpecificCustomException: demonstration (after assertion())",
-         "[exceptions_testcases]") {
+/**
+ * @brief This is example we show testing for exceptions and how the
+ * use of if() statements, (for the purposes of exception testing)
+ * greatly removes complexity from the source code.
+ *
+ */
+
+SCENARIO(
+    "Test SpecificCustomException: demonstration (with assertion() methods)",
+    "[exceptions_testcases]") {
   try {
+    std::string port = "8080";
+    SpecificCustomException::assertion(port, __INFO__);
     int a = 3;
     int b = 7;
     SpecificCustomException::assertion(a, b, __INFO__);
