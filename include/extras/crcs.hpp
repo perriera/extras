@@ -36,7 +36,10 @@ namespace extras {
  *
  */
 interface CRCInterface {
+
   /**
+   * Polymorphism on right side of methods in C++ is quite well known.
+   * 
    * CRC's are generally designed to work on binary arrays,
    * so two parameters are expected, (at least).
    */
@@ -50,6 +53,8 @@ interface CRCInterface {
   virtual const CRCInterface &calculate(const std::string &str) pure;
 
   /**
+   * Polymorphism on left side of methods in C++ is not so well known.
+   * 
    * Polymorphism is available in C++ by way of overloading the
    * expected return types. In this manner the same calculae method
    * for setting up the CRC instance will all operate on the same
