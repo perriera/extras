@@ -81,7 +81,14 @@ SCENARIO("Test SpecificCustomException: demonstration (before assertion())",
     if (a < b) {
       throw SpecificCustomException("a>b", __INFO__);
     }
+  } catch (SpecificCustomException& ex) {
+    SUCCEED("SpecificCustomException thrown");
+  } catch (GroupCustomException& ex) {
+    FAIL("GroupCustomException thrown");
+  } catch (std::exception& ex) {
+    FAIL("std::exception thrown");
   } catch (...) {
+    FAIL("exc");
   }
 }
 
@@ -91,6 +98,13 @@ SCENARIO("Test SpecificCustomException: demonstration (after assertion())",
     int a = 3;
     int b = 7;
     SpecificCustomException::assertion(a, b, __INFO__);
+  } catch (SpecificCustomException& ex) {
+    SUCCEED("SpecificCustomException thrown");
+  } catch (GroupCustomException& ex) {
+    FAIL("GroupCustomException thrown");
+  } catch (std::exception& ex) {
+    FAIL("std::exception thrown");
   } catch (...) {
+    FAIL("exc");
   }
 }
