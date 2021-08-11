@@ -182,7 +182,7 @@ Copyright (c) 2014 Jarryd Beck
  > 
 Custom exceptions are now possible in your applications with the use of **CustomExceptionInterface**</br>
 https://github.com/perriera/extras/blob/main/include/extras/exceptions.hpp</br>
-(See [test/mock_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/mock_exceptions.cpp) & [test/test_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/test_exceptions.cpp) for more on this)
+(See [test/mock_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/mock_exceptions.cpp), [test/test_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/test_exceptions.cpp) & [OctalException](https://github.com/perriera/extras/blob/main/include/extras/octal_support.hpp)for more on this)
 
 
     #include  <iostream>
