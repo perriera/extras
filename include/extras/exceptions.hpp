@@ -15,6 +15,8 @@
  * this being said an ADT isZnatural as it forces the CDT to give an
  * exact implementation.
  *
+ * @see test/mock_exceptions.cpp & test/test_exceptions.cpp
+ *
  * @version 1.0.0
  * @date 2021-08-11
  *

@@ -72,3 +72,25 @@ SCENARIO("Test SpecificCustomException: assertion", "[exceptions_testcases]") {
   REQUIRE_NOTHROW(SpecificCustomException::assertion("8080", __INFO__));
   REQUIRE_NOTHROW(SpecificCustomException::assertion(3, 2, __INFO__));
 }
+
+SCENARIO("Test SpecificCustomException: demonstration (before assertion())",
+         "[exceptions_testcases]") {
+  try {
+    int a = 3;
+    int b = 7;
+    if (a < b) {
+      throw SpecificCustomException("a>b", __INFO__);
+    }
+  } catch (...) {
+  }
+}
+
+SCENARIO("Test SpecificCustomException: demonstration (after assertion())",
+         "[exceptions_testcases]") {
+  try {
+    int a = 3;
+    int b = 7;
+    SpecificCustomException::assertion(a, b, __INFO__);
+  } catch (...) {
+  }
+}

@@ -19,6 +19,12 @@ using namespace fakeit;
  * as well as to streamline the custom exception process
  * for supported applications.
  *
+ * When it comes to testing, (or mocking) interfaces all
+ * that is required are that the methods identified in the
+ * interface are returning the information they were
+ * designed to return, (or make changes to the system
+ * in a way that is meaningful to the end user).
+ *
  */
 
 SCENARIO("Mock CustomExceptionInterface: what", "[exceptions_mock]") {
