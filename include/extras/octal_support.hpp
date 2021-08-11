@@ -1,7 +1,7 @@
 #ifndef _EXTRA_OCTAL_SUPPORT_HPP
 #define _EXTRA_OCTAL_SUPPORT_HPP
 
-#include <extra/interfaces.hpp>
+#include <extras/interfaces.hpp>
 #include <iostream>
 
 namespace extras {
@@ -18,6 +18,8 @@ interface OctalInterface {
   virtual int toOctal() const = 0;
   virtual void fromOctal(int octal) = 0;
 };
+
+}
 
 
 #endif // _EXTRA_OCTAL_SUPPORT_HPP

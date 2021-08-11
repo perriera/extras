@@ -20,6 +20,16 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 3.3.0 (2021-08-09)
+### Added
+- OctalInterface, (needed by chessmind)
+  * [chessmind is now undergoing a refit on new CMakeLists.txt format](https://github.com/perriera/chessmind)
+- mock_octal.cpp, (needed by developers)
+  * [how to use mocks effectively](https://github.com/eranpeer/FakeIt)
+### Changed
+- .clang-format started acting up and The Cure was found here:
+   * [clang-format configuratot](https://zed0.co.uk/clang-format-configurator/)
+
 #### 3.2.1 (2021-08-09)
 ### Updated
 - README.md
