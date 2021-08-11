@@ -8,18 +8,17 @@ namespace extras {
 
 /**
  * @brief OctalInterface
- * 
+ *
  * Used by the ChessMind project, it introduces an interface
  * to safely convert a number to and from octal format.
- * 
+ *
  */
 
 interface OctalInterface {
-  virtual int toOctal() const = 0;
-  virtual void fromOctal(int octal) = 0;
+  virtual int toOctal() const pure;
+  virtual void fromOctal(int octal) pure;
 };
 
-}
+}  // namespace extras
 
-
-#endif // _EXTRA_OCTAL_SUPPORT_HPP
+#endif  // _EXTRA_OCTAL_SUPPORT_HPP

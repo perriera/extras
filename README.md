@@ -202,6 +202,12 @@ Especially useful to programmers that like to program using interfaces, (aka. Go
        virtual  void  verbose(bool  on_or_off);
     };
 
+### FakeIt Mock Framework support
+ > View **extras/octal_suppoer.hpp** to see a simple interface</br>
+ > (see mock_octal.cpp in the test/ directory)</br>
+ > **using namespace extras;**</br>
+To anyone wishing to know how to use mocks to write interfaces see the OctalInterface and the test cases written in the test/ directory.
+
 ## extras/vendor/json
  > add **extras/vendor/json.hpp** to your C++ source</br>
  > (this library is header only at this point in time)</br>
