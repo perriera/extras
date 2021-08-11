@@ -26,7 +26,7 @@ interface OctalInterface {
   /**
    * @brief fromOctal
    * Convert two digets anywhere between 00 to 77 to 'a1' thru to 'h8'.
-   * @param octal (0 to 7)
+   * @param octal (00 to 77)
    * @exception an out of range exception should be expected
    */
   virtual void fromOctal(int octal) pure;
