@@ -252,7 +252,31 @@ namespace extras {
      */
     SpecificCustomException(const char *param, const WhereAmI &whereAmI)
         : GroupCustomException(msg_with_parameter(param).c_str(), whereAmI) {}
-    static void assertion(const std::string &filename, const WhereAmI &ref);
+
+    /**
+     * @brief static void assertion(...)
+     *
+     * To make life simpler for yourself, call a static assertion(...) on
+     * the custom exception, (as oppose to repeating tests for conditions
+     * the normally throw a particular custom exception all over your code).
+     *
+     * In this way you generally hit two birds wth one stone. However, if
+     * there are more than one situation, (or set of conditions) that throw
+     * the custom exception, then you need addtional assertion() methods.
+     *
+     * @param param
+     * @param ref
+     */
+    static void assertion(const std::string &param, const WhereAmI &ref) {
+      if (std::stoi(param) < 1024)
+        throw SpecificCustomException(param.c_str(), ref);
+    }
+    static void assertion(int a, int b, const WhereAmI &ref) {
+      if (a < b) {
+        std::string params = "a<b";
+        throw SpecificCustomException(params.c_str(), ref);
+      }
+    }
   };
 
 }  // namespace extras

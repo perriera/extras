@@ -63,3 +63,12 @@ SCENARIO("Test ExceptionInterface: SpecificCustomException (args)",
   REQUIRE(contains(_exception.getfunc(), "____C_A_T_C_H____T_E_S_T____6"));
   REQUIRE(_exception.getline() == 60);
 }
+
+SCENARIO("Test SpecificCustomException: assertion", "[exceptions_testcases]") {
+  REQUIRE_THROWS_AS(SpecificCustomException::assertion("63", __INFO__),
+                    SpecificCustomException);
+  REQUIRE_THROWS_AS(SpecificCustomException::assertion(2, 3, __INFO__),
+                    SpecificCustomException);
+  REQUIRE_NOTHROW(SpecificCustomException::assertion("8080", __INFO__));
+  REQUIRE_NOTHROW(SpecificCustomException::assertion(3, 2, __INFO__));
+}
