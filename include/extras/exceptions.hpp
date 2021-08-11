@@ -139,6 +139,10 @@ namespace extras {
   /**
    * @brief class AbstractCustomException
    *
+   * While not an abstract class in this implementation, it is an
+   * abstract such that it recommends supported classes implement
+   * at least one static assertion(...) method.
+   *
    * */
 
   abstract class AbstractCustomException extends std::exception with
@@ -151,14 +155,6 @@ namespace extras {
     std::string _file;
     std::string _func;
     int _line = 0;
-
-    std::string msg_with_parameter(const char *param) {
-      std::string msg_with_param;
-      msg_with_param = "Port: ";
-      msg_with_param += param;
-      msg_with_param += " wasn't found";
-      return msg_with_param;
-    }
 
    public:
     AbstractCustomException(const char *msg, const char *file, const char *func,
@@ -175,6 +171,20 @@ namespace extras {
       return _func.c_str();
     };
     [[nodiscard]] virtual int getline() const noexcept { return _line; };
+
+    /**
+     * @brief static void assertion(const std::string &filename, const WhereAmI
+     * &ref);
+     *
+     * This is where we have to deal with the 'static' nature of 'static'
+     * methods and the 'interface' nature of Test Driven Development, (TDD). TDD
+     * does not like testing static methods. However, the 'assertion()'
+     * **should** be implemented for all custom exceptions. It does not make
+     * sense to setup a static assertion method for the AbstractCustomException
+     * however, it does make sense to setup a static assertion(...) method for
+     * the GroupCustomException that you would want for the optional grouping of
+     * exceptions in your app.
+     */
   };
 
   /**
@@ -182,6 +192,12 @@ namespace extras {
    * This is a good design, because if there is an area where the programmer
    * is not sure which exception will be thrown, catching LibdmgException will
    * automatically catch all the exceptions that inherit from it.
+   *
+   * In your application you would define your own groups of exception classes.
+   * In a small framework this might be counterproductive. In a large project,
+   * (or one expected to grow), mitigating groups of exceptions with their own
+   * 'family' named exception parent can help when catching exceptions.
+   *
    */
   concrete class GroupCustomException extends AbstractCustomException {
    public:
@@ -197,13 +213,43 @@ namespace extras {
    * should have  it's 'msg' already defined, but you can specify
    * additional information that would be helpful to the overall
    * description of the custom exception.
+   *
+   * Whether you derive your specific custom exceptions from a group
+   * (or 'family' name) or directly from the AbstractCustomException
+   * depends on the size, (and nature) of your application. Either way,
+   * you can now make life easier for yourself by having your program
+   * throw specific exceptions for specific conditions. Having a well
+   * named custom exception being generated with relavant information
+   * can be a great time saver.
+   *
    */
 
   concrete class SpecificCustomException extends GroupCustomException {
+    std::string msg_with_parameter(const char *param) {
+      std::string msg_with_param;
+      msg_with_param = "Port: ";
+      msg_with_param += param;
+      msg_with_param += " wasn't found";
+      return msg_with_param;
+    }
+
    public:
+    /**
+     * @brief Construct a new Specific Custom Exception object
+     *
+     * @param whereAmI
+     */
     SpecificCustomException(const WhereAmI &whereAmI)
         : GroupCustomException("Specific custom exception description",
                                whereAmI) {}
+
+    /**
+     * @brief Construct a new Specific Custom Exception object with addition
+     * information, (that can be helpful)
+     *
+     * @param param
+     * @param whereAmI
+     */
     SpecificCustomException(const char *param, const WhereAmI &whereAmI)
         : GroupCustomException(msg_with_parameter(param).c_str(), whereAmI) {}
     static void assertion(const std::string &filename, const WhereAmI &ref);
