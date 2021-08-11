@@ -15,7 +15,18 @@ namespace extras {
  */
 
 interface OctalInterface {
+  /**
+   * @brief toOctal
+   * Convert two chars 'a1' thru to 'h8' to anywhere between 00 to 77.
+   * @return int (00 to 77)
+   */
   virtual int toOctal() const pure;
+
+  /**
+   * @brief fromOctal
+   * Convert two digets anywhere between 00 to 77 to 'a1' thru to 'h8'.
+   * @param octal (0 to 7)
+   */
   virtual void fromOctal(int octal) pure;
 };
 
