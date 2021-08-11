@@ -20,6 +20,20 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 3.4.0 (2021-08-11)
+### Added 
+- CustomExceptionInterface
+  * [Exception handling syntax](https://en.wikipedia.org/wiki/Exception_handling_syntax)
+- AbstractCustomException
+  * [Abstract factory pattern](https://en.wikipedia.org/wiki/Abstract_factory_pattern)
+- SpecificCustomException
+  * An example of how to implemnts a specific custom exception
+- GroupCustomException
+  * An example of how to group custom exceptions, (into types of exceptions)
+- OctalException 
+  * An example of how custom exceptions are used and how to use assertion() methods
+  * [Octal format](https://en.wikipedia.org/wiki/Octal)
+
 #### 3.3.1 (2021-08-10)
 ### Corrected
 - Compare links for 3.3.0
@@ -197,7 +211,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.3.1...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.4.0...HEAD
+[3.4.0]: https://github.com/perriera/extras/compare/v3.3.1...v3.4.0
 [3.3.1]: https://github.com/perriera/extras/compare/v3.3.0...v3.3.1
 [3.3.0]: https://github.com/perriera/extras/compare/v2.2.1...v3.3.0
 [3.2.1]: https://github.com/perriera/extras/compare/v2.3.7...v3.2.1
