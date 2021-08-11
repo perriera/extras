@@ -67,9 +67,9 @@ interface CRCInterface {
   /**
    * @brief operator std::string() const pure
    *
-   * While the defacto operator method most programmers are familair with
-   * with it comes to operator overloading, it really wouldn't make sense
-   * here as it really wouldn't know what to return, (a str of 16, 32 or 64?).
+   * While the defacto operator method most programmers are familiar with
+   * when it comes to operator overloading, it really wouldn't make sense
+   * here as it really wouldn't know what to return, (aka 16, 32 or 64?).
    *
    */
 };
