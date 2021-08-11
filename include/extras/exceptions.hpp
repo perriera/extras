@@ -29,6 +29,14 @@
 
 namespace extras {
 
+  /**
+   * @brief struct extras::WhereAmI
+   *
+   * Used to capture all information related to the exception
+   * in the source code and relay that inforation thry the custom
+   * exception object hierarchy.
+   *
+   */
   struct WhereAmI {
     std::string _file;
     std::string _func;
@@ -38,8 +46,18 @@ namespace extras {
   };
   // namespace extras
 
-#define __DATAONERROR__ \
-  __FILE__, static_cast<const char *>(__PRETTY_FUNCTION__), __LINE__
+/**
+ * @brief __INFO__
+ *
+ * The actual macro that does all the dancing when it comes to capturing
+ * compiler generated information as to the file, function and line of
+ * source where the exception happened. Must be compiled at runtime where
+ * the exception is actually used so that the MACRO can be resolved properly.
+ *
+ * Given the general nature of the name chosen '__INFO__' alternative names
+ * can be used, (send us an email as indicated in the README.md)
+ *
+ */
 #define __INFO__ \
   WhereAmI(__FILE__, static_cast<const char *>(__PRETTY_FUNCTION__), __LINE__)
 
@@ -49,10 +67,73 @@ namespace extras {
    * */
 
   interface CustomExceptionInterface {
+    /**
+     * @brief Return what() happened
+     *
+     * This method has to wire straight into the C++11 std::exception
+     * method of the same name. It cannot throw an exception but it
+     * must be descriptive to the end user.
+     *
+     * @return const char*
+     */
     virtual const char *what() const noexcept pure;
+
+    /**
+     * @brief Return __FILE__ information.
+     *
+     * All to often an exception is thrown and the relevant name of
+     * the source file where it was generated is not mentioned. Using
+     * the C/C++ macro __FILE__ we can pass this information on to
+     * the end users.
+     *
+     * @return const char*
+     */
     virtual const char *getfile() const noexcept pure;
+
+    /**
+     * @brief Return __func__ information.
+     *
+     * All to often an exception is thrown and the relevant name of
+     * the source function/method where it was generated is not mentioned.
+     * Using the C/C++ macro __FILE__ we can pass this information on to
+     * the end users.
+     *
+     * @return const char*
+     */
     virtual const char *getfunc() const noexcept pure;
+
+    /**
+     * @brief Return __LINE__ information.
+     *
+     * All to often an exception is thrown and the relevant name of
+     * the source line where it was generated is not mentioned. Using
+     * the C/C++ macro __LINE__ we can pass this information on to
+     * the end users.
+     *
+     * @return const char*
+     */
     virtual int getline() const noexcept pure;
+
+    /**
+     * @brief static void assertion(... const WhereAmI &ref);
+     *
+     * Each custom exception the implements this interface should
+     * implement, (at the static level) a dedicated method that will
+     * generate the custom exception, (given a set of parameters).
+     *
+     * The reason why you want to do this is to both localized the
+     * necessary conditions that would generate the custom exception
+     * as well as simplify the client code where the exception is in
+     * use. In the event of a different set of conditions required
+     * to generate the custom exception, a seperate assertion() method
+     * should be supplied. To effectively test this method in a test
+     * case enviroment should employ (yet) another virtual method that
+     * the static version would utilize, (which is up to your formal
+     * test driven development policy descretion).
+     *
+     * @param ...
+     * @param ref
+     */
   };
 
   /**
@@ -70,6 +151,14 @@ namespace extras {
     std::string _file;
     std::string _func;
     int _line = 0;
+
+    std::string msg_with_parameter(const char *param) {
+      std::string msg_with_param;
+      msg_with_param = "Port: ";
+      msg_with_param += param;
+      msg_with_param += " wasn't found";
+      return msg_with_param;
+    }
 
    public:
     AbstractCustomException(const char *msg, const char *file, const char *func,
@@ -89,16 +178,17 @@ namespace extras {
   };
 
   /**
-   * @brief GeneralCustomException is the root of all the custom exceptions.
+   * @brief GroupCustomException is the root of all the custom exceptions.
    * This is a good design, because if there is an area where the programmer
    * is not sure which exception will be thrown, catching LibdmgException will
    * automatically catch all the exceptions that inherit from it.
    */
-  class GeneralCustomException : public AbstractCustomException {
+  concrete class GroupCustomException extends AbstractCustomException {
    public:
-    GeneralCustomException(const char *msg, const WhereAmI &whereAmI)
+    GroupCustomException(const char *msg, const WhereAmI &whereAmI)
         : AbstractCustomException(msg, whereAmI._file.c_str(),
                                   whereAmI._func.c_str(), whereAmI._line) {}
+    static void assertion(const std::string &filename, const WhereAmI &ref);
   };
 
   /**
@@ -109,19 +199,13 @@ namespace extras {
    * description of the custom exception.
    */
 
-  class SpecificCustomException : public GeneralCustomException {
+  concrete class SpecificCustomException extends GroupCustomException {
    public:
     SpecificCustomException(const WhereAmI &whereAmI)
-        : GeneralCustomException("Specific custom exception description",
-                                 whereAmI) {}
+        : GroupCustomException("Specific custom exception description",
+                               whereAmI) {}
     SpecificCustomException(const char *param, const WhereAmI &whereAmI)
-        : GeneralCustomException(param, whereAmI) {
-      std::string msg_with_param;
-      msg_with_param = "Port: ";
-      msg_with_param += param;
-      msg_with_param += " wasn't found";
-      this->_msg = msg_with_param;
-    }
+        : GroupCustomException(msg_with_parameter(param).c_str(), whereAmI) {}
     static void assertion(const std::string &filename, const WhereAmI &ref);
   };
 
