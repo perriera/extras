@@ -380,5 +380,5 @@ Where you .clang-format can be as small as:
 
 - [Matt Williams, Victoria, BC](https://www.linkedin.com/in/matt-williams-1291a8151/)</br>
   * Matt's attention to detail and knowledge of modern C++ coding techniques and standards have been an incredible [**Boost**](https://www.boost.org) to this library.
-  * Thank you Matt, :)
-  
+  * Thank you [Matt](https://github.com/mattcoding4days), :)
+
