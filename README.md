@@ -372,4 +372,9 @@ After you:
 
 Be sure to use [clang-format configurator](https://zed0.co.uk/clang-format-configurator/) for all for custom clang-format needs :)
 
+Where you .clang-format can be as small as:
+
+        BasedOnStyle: Google
+        IncludeBlocks: Regroup
+
 
