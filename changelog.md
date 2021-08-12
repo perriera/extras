@@ -215,7 +215,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.4.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.5.0...HEAD
+[3.5.0]: https://github.com/perriera/extras/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/perriera/extras/compare/v3.3.1...v3.4.0
 [3.3.1]: https://github.com/perriera/extras/compare/v3.3.0...v3.3.1
 [3.3.0]: https://github.com/perriera/extras/compare/v2.2.1...v3.3.0
