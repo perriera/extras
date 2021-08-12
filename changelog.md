@@ -20,6 +20,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 3.5.0 (2021-08-11)
+### Removed
+- spdlog from CMakeLists.txt
+
 #### 3.4.0 (2021-08-11)
 ### Added 
 - CustomExceptionInterface
