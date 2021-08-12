@@ -20,6 +20,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 3.5.1 (2021-08-11)
+### Added
+- extras:: in front of __INFO__ macro
+
 #### 3.5.0 (2021-08-11)
 ### Removed
 - spdlog from CMakeLists.txt
@@ -215,7 +219,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.5.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.5.1...HEAD
+[3.5.1]: https://github.com/perriera/extras/compare/v3.5.0...v3.5.1
 [3.5.0]: https://github.com/perriera/extras/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/perriera/extras/compare/v3.3.1...v3.4.0
 [3.3.1]: https://github.com/perriera/extras/compare/v3.3.0...v3.3.1

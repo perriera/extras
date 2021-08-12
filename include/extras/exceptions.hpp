@@ -60,8 +60,9 @@ namespace extras {
  * can be used, (send us an email as indicated in the README.md)
  *
  */
-#define __INFO__ \
-  WhereAmI(__FILE__, static_cast<const char *>(__PRETTY_FUNCTION__), __LINE__)
+#define __INFO__                                                             \
+  extras::WhereAmI(__FILE__, static_cast<const char *>(__PRETTY_FUNCTION__), \
+                   __LINE__)
 
   /**
    * @brief interface CustomExceptionInterface
