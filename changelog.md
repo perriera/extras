@@ -30,6 +30,8 @@ IMPORTANT:
 - DotENV, (dotenv.cpp)
 - DotENVInterface mocks, (mock_dotenv.cpp)
 - DotENV unit tests, (test_dotenv.cpp)
+### Changed
+- Updated README.md
 
 #### 3.5.1 (2021-08-11)
 ### Added
