@@ -15,6 +15,7 @@
 >
 
 	#include <extras/crcs.hpp>
+	#include <extras/dotenv.hpp>
 	#include <extras/vendor/cxxopts.hpp>
 	#include <extras/interfaces.hpp>
 	#include <extras/vendor/json.hpp>
@@ -147,6 +148,34 @@ Use of this library will give your application quick access to either crc16, crc
         REQUIRE(result32 == 0xAB5406BC);
         uint64_t result64 = crc;
         REQUIRE(result64 == 0xE37932611E9B4556);
+    }
+
+## extras/dotenv
+ > add **extras/dotenv.hpp** to your C++ source</br>
+ > add **extras** library to your CMakeLists.txt target</br>
+ > **using namespace extras;**</br>
+Use of this class will give you a simpler means of managing environment variables
+
+    #include  <iostream>
+    #include  <extras/dotenv.hpp>
+    #include "catch.hpp"
+
+    using namespace extras;
+
+    SCENARIO("Test DotENV", "[test_dotenv]") {
+        /**
+        * @brief No where near as exciting, (or interestig
+        * as mock tests, the unit test gives us a chance
+        * to prove that the expected behavior has found
+        * its way into the implementation)
+        *
+        */
+        DotENV dotENV;
+        EnvironmentVariableKey key;
+        EnvironmentVariableValue value;
+        dotENV.put(key, value);
+        REQUIRE(dotENV.contains(key));
+        REQUIRE(dotENV.value(key) == value);
     }
 
 

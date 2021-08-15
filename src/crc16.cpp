@@ -52,27 +52,27 @@ constexpr auto POLY = 0x1021;
 
 namespace extras {
 
-crc16::crc16() { crc = 0; }
+  crc16::crc16() { crc = 0; }
 
-std::uint16_t crc16::processByte(std::uint8_t data) {
-  std::uint8_t i;
+  std::uint16_t crc16::processByte(std::uint8_t data) {
+    std::uint8_t i;
 
-  crc = crc ^ ((std::uint16_t)data << 8);
-  for (i = 0; i < 8; i++) {
-    if (crc & 0x8000)
-      crc = (crc << 1) ^ POLY;
-    else
-      crc <<= 1;
+    crc = crc ^ ((std::uint16_t)data << 8);
+    for (i = 0; i < 8; i++) {
+      if (crc & 0x8000)
+        crc = (crc << 1) ^ POLY;
+      else
+        crc <<= 1;
+    }
+    return crc;
   }
-  return crc;
-}
 
-std::uint16_t crc16::processBuffer(const char *data_p, std::uint16_t length) {
-  while (length--) processByte(*data_p++);
-  return crc;
-}
+  std::uint16_t crc16::processBuffer(const char *data_p, std::uint16_t length) {
+    while (length--) processByte(*data_p++);
+    return crc;
+  }
 
-std::uint16_t crc16::update(const std::string &str) {
-  return processBuffer(str.c_str(), str.size());
-}
+  std::uint16_t crc16::update(const std::string &str) {
+    return processBuffer(str.c_str(), str.size());
+  }
 }  // namespace extras

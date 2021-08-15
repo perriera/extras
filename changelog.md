@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 > > git tag -a v0.1.2 -m "my version 0.1.2"</br>
 > > git push origin v0.1.2
 > >
+>
+> > POPULAR LINKS:
+> https://zed0.co.uk/clang-format-configurator/
+>
 
 IMPORTANT: 
 - Manually keep the changelog version number in sync with CMakeLists.txt project version.<br>
@@ -19,6 +23,15 @@ IMPORTANT:
 
 ## [Unreleased]
 - Update Doxygen content
+
+#### 3.6.0 (2021-08-11)
+### Added
+- DotENVInterface, (dotenv.hpp)
+- DotENV, (dotenv.cpp)
+- DotENVInterface mocks, (mock_dotenv.cpp)
+- DotENV unit tests, (test_dotenv.cpp)
+### Changed
+- Updated README.md
 
 #### 3.5.1 (2021-08-11)
 ### Added
@@ -219,7 +232,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.5.1...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.6.0...HEAD
+[3.6.0]: https://github.com/perriera/extras/compare/v3.5.1...v3.6.0
 [3.5.1]: https://github.com/perriera/extras/compare/v3.5.0...v3.5.1
 [3.5.0]: https://github.com/perriera/extras/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/perriera/extras/compare/v3.3.1...v3.4.0
