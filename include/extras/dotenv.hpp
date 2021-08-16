@@ -21,6 +21,7 @@
 #include <extras/interfaces.hpp>
 #include <iostream>
 #include <map>
+#include <sstream>
 #include <string>
 
 namespace extras {
@@ -34,6 +35,49 @@ namespace extras {
   using EnvironmentVariableValue = std::string;
   using EnvironmentVariableMap =
       std::map<EnvironmentVariableKey, EnvironmentVariableValue>;
+
+  /**
+   * @brief interface DotENVLineInterface
+   *
+   */
+
+  interface DotENVLineInterface {
+    virtual const EnvironmentVariableKey &key() const pure;
+    virtual const EnvironmentVariableValue &value() const pure;
+    virtual EnvironmentVariableKey validate_key(const std::string &key)
+        const pure;
+    virtual EnvironmentVariableValue validate_value(const std::string &value)
+        const pure;
+  };
+
+  /**
+   * @brief interface DotENVLineInterface
+   *
+   */
+
+  class DotENVLine implements DotENVLineInterface {
+    friend std::ostream &operator<<(std::ostream &out, const DotENVLine &obj);
+    friend std::istream &operator>>(std::istream &in, DotENVLine &obj);
+
+    EnvironmentVariableKey _key;
+    EnvironmentVariableValue _value;
+
+   public:
+    DotENVLine(){};
+    DotENVLine(const EnvironmentVariableKey &key,
+               const EnvironmentVariableValue &value)
+        : _key(key), _value(value){};
+    const EnvironmentVariableKey &key() const override { return _key; }
+    const EnvironmentVariableValue &value() const override { return _value; }
+    EnvironmentVariableKey validate_key(const std::string &key) const override;
+    EnvironmentVariableValue validate_value(
+        const std::string &value) const override;
+    operator std::string() const {
+      std::stringstream ss;
+      ss << *this;
+      return ss.str();
+    }
+  };
 
   /**
    * @brief interface DotENVInterface
@@ -53,13 +97,12 @@ namespace extras {
     /**
      * @brief put()
      *
-     * Put a key/value pair into the EnvironmentVariableMap
+     * Put a key/value pair using the DotENVLineInterface
      *
      * @param key
      * @param value
      */
-    virtual void put(const EnvironmentVariableKey &key,
-                     const EnvironmentVariableValue &value) pure;
+    virtual void put(const DotENVLineInterface &entry) pure;
 
     /**
      * @brief contains()
@@ -100,9 +143,8 @@ namespace extras {
       return dotENV;
     }
     const EnvironmentVariableMap &map() const override { return _map; };
-    void put(const EnvironmentVariableKey &key,
-             const EnvironmentVariableValue &value) override {
-      _map[key] = value;
+    void put(const DotENVLineInterface &entry) override {
+      _map[entry.key()] = entry.value();
     };
     bool contains(const EnvironmentVariableKey &key) const override {
       return _map.find(key) != _map.end();
