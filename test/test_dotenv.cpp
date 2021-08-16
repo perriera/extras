@@ -76,7 +76,7 @@ SCENARIO("Test DotENVLine", "[test_dotenv]") {
   {
     extras::DotENVLine dotENVLine;
     std::stringstream ss;
-    ss << "# LIBDMG_ENV accepted " << std::endl;
+    ss << "# YOURAPPTOKEN accepted " << std::endl;
     REQUIRE_THROWS_AS(operator>>(ss, dotENVLine), DotENVLineKeyException);
   }
   {
@@ -123,23 +123,18 @@ SCENARIO("Test DotENVLine", "[test_dotenv]") {
 
 SCENARIO("Test DotENV load token file", "[test_dotenv]") {
   /**
-   * @brief In the case of a singleton being required
-   * we make use of the interface instead of the class;
-   * (Mind you, this really clutters the test case as
-   * only one static instance can be tested, so we limit
-   * the singleton test to one single test case).
+   * @brief The DotENVInterface handles a lot of the
+   * common issues with formatting Unix/Linux style
+   * parameters.
    */
 
   extras::DotENV dotENV;
   std::stringstream ss;
-  ss << "# FULL_SYNC accepted values [ on : off ]" << std::endl;
-  ss << "FULL_SYNC=on" << std::endl;
-  ss << "BEARER_TOKEN=skdfkusdgfiusdggsdkfjgsksfjsdgf" << std::endl;
-  ss << "# LIBDMG_ENV accepted " << std::endl;
-  ss << "LIBDMG_ENV=dev" << std::endl;
-  ss << "NEW_TOKEN_ENDPOINT=https://dev-xyz-com//token" << std::endl;
-  ss << "CLIENT_ID=sdkfhsdkhekuwhrfksdhgfkjsdgfjsdgf" << std::endl;
-  ss << "CLIENT_SECRET=sfkjdhkusdghfkhgsjhdhgsdfsdfs" << std::endl;
+  ss << "# ASYNC accepted values [ on : off ]" << std::endl;
+  ss << "ASYNC=on" << std::endl;
+  ss << "YOURAPPTOKEN=dev" << std::endl;
+  ss << "CLIENT_ID=dsfs-fsdf-sdf-sfdsdf-sdfsdf" << std::endl;
+  ss << "CLIENT_SECRET=34343-dfdfd-3343-fsfdf-334-sd" << std::endl;
   ss << "AUDIENCE=https://jackpot_pc_salmon" << std::endl;
   ss << "COOKIE=dskjfhksjdhdhfkjsdf-sdhfkjdsf-Q; ";
   ss << "did_compatible=sdfssdf-sdf sddf-sd f-sdce-" << std::endl;
@@ -152,47 +147,3 @@ SCENARIO("Test DotENV load token file", "[test_dotenv]") {
   REQUIRE(dotENV == dotENV_compare);
   std::cout << dotENV_compare;
 }
-
-// std::string DotEnvManager::tokenize(const std::string &line,
-//   const std::string &var) const
-// {
-//   std::string dup = line;
-//   std::size_t pos = 0;
-//   std::string delimiter{ "=" };
-//   while ((pos = dup.find(delimiter)) != std::string::npos) {
-//     std::string token = dup.substr(0, pos);
-//     if (token == var) {
-//       dup.erase(0, pos + delimiter.length());
-//       break;
-//     }
-//     dup.clear();
-//   }
-//   return dup;
-// }
-
-// // std::string DotEnvManager::tokenize(const std::string &line) const
-// // {
-// //   errors::BadEnvironmentVariable::assertion(line, __INFO__);
-// //   std::deque<std::string> parts = extras::split(line, '=');
-// //   return parts[1];
-// // }
-
-// std::string
-//   DotEnvManager::loadEnvVar(const std::string &_var) const noexcept
-// {
-//   std::string activePath = utils::getdotenv();
-//   std::ifstream envfile(activePath);
-//   std::string line{};
-//   while (std::getline(envfile, line)) {
-//     if (line[0] == '#' || line[0] == ' ' || line[0] == '\n') {
-//       continue;
-//     }
-//     std::string token = tokenize(line, _var);
-//     if (!token.empty()) {
-//       // this empty check is important
-//       envfile.close();
-//       return token;
-//     }
-//   }
-//   return "";
-// }
