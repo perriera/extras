@@ -44,6 +44,46 @@ SCENARIO("Test DotENV instance()", "[test_dotenv]") {
   REQUIRE(instance.value(key) == value);
 }
 
+SCENARIO("Test DotENVLine", "[test_dotenv]") {
+  /**
+   * @brief In the case of a singleton being required
+   * we make use of the interface instead of the class;
+   * (Mind you, this really clutters the test case as
+   * only one static instance can be tested, so we limit
+   * the singleton test to one single test case).
+   */
+
+  {
+    extras::DotENVLine dotENVLine;
+    std::stringstream ss;
+    ss << "# FULL_SYNC accepted values [ on : off ]" << std::endl;
+    REQUIRE_THROWS_AS(operator>>(ss, dotENVLine), DotENVLineKeyException);
+  }
+  {
+    extras::DotENVLine dotENVLine;
+    std::stringstream ss;
+    ss << "FULL_SYNC=on" << std::endl;
+    ss >> dotENVLine;
+    REQUIRE(dotENVLine.key() == "FULL_SYNC");
+    REQUIRE(dotENVLine.value() == "on");
+  }
+  // ss << "BEARER_TOKEN=skdfkusdgfiusdggsdkfjgsksfjsdgf" << std::endl;
+  // ss << "# LIBDMG_ENV accepted " << std::endl;
+  // ss << "LIBDMG_ENV=dev" << std::endl;
+  // ss << "NEW_TOKEN_ENDPOINT=https://dev-xyz-com//token" << std::endl;
+  // ss << "CLIENT_ID=sdkfhsdkhekuwhrfksdhgfkjsdgfjsdgf" << std::endl;
+  // ss << "CLIENT_SECRET=sfkjdhkusdghfkhgsjhdhgsdfsdfs" << std::endl;
+  // ss << "AUDIENCE=https://jackpot_pc_salmon" << std::endl;
+  // ss << "COOKIE=dskjfhksjdhdhfkjsdf-sdhfkjdsf-Q; " << std::endl;
+  // ss << "did_compatible=sdfssdf-sdfsddf-sdf-sdce-" << std::endl;
+  // std::cout << "it worked" << std::endl;
+  // try {
+  //   ss >> dotENVLine;
+  // } catch (DotENVLineKeyException &ex) {
+  //   SUCCEED("exception thrown");
+  // }
+}
+
 SCENARIO("Test DotENV load token file", "[test_dotenv]") {
   /**
    * @brief In the case of a singleton being required

@@ -17,6 +17,8 @@ namespace extras {
     while (in.good() && c != '=') {
       in >> c;
       if (c == ' ') continue;
+      if (c == '#') break;
+      if (c == '\n') break;
       if (isalnum(c) || c == '_') key << c;
     }
     while (in.good()) {
@@ -24,19 +26,10 @@ namespace extras {
       if (!in.good()) break;
       value << c;
     }
-    obj._key = obj.validate_key(key.str());
-    obj._value = obj.validate_value(value.str());
+    DotENVLineKeyException::assertion(key.str(), __INFO__);
+    obj._key = key.str();
+    obj._value = value.str();
     return in;
-  }
-
-  EnvironmentVariableKey DotENVLine::validate_key(
-      const std::string &key) const {
-    return key;
-  }
-
-  EnvironmentVariableValue DotENVLine::validate_value(
-      const std::string &value) const {
-    return value;
   }
 
   std::ostream &operator<<(std::ostream &out, const DotENV &obj) {

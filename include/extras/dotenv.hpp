@@ -18,6 +18,7 @@
  *
  */
 
+#include <extras/exceptions.hpp>
 #include <extras/interfaces.hpp>
 #include <iostream>
 #include <map>
@@ -44,10 +45,29 @@ namespace extras {
   interface DotENVLineInterface {
     virtual const EnvironmentVariableKey &key() const pure;
     virtual const EnvironmentVariableValue &value() const pure;
-    virtual EnvironmentVariableKey validate_key(const std::string &key)
-        const pure;
-    virtual EnvironmentVariableValue validate_value(const std::string &value)
-        const pure;
+  };
+
+  /**
+   * @brief OctalException
+   *
+   * To be thrown if either string or value supplied is out of range.
+   *
+   */
+  concrete class DotENVLineKeyException extends AbstractCustomException {
+   public:
+    DotENVLineKeyException(const char *msg, const WhereAmI &whereAmI)
+        : AbstractCustomException(msg, whereAmI._file.c_str(),
+                                  whereAmI._func.c_str(), whereAmI._line) {}
+    static void assertion(const std::string &key, const WhereAmI &ref) {
+      if (key.length() == 0) {
+        throw DotENVLineKeyException("No key specified", ref);
+      }
+      if (!isalpha(key[0])) {
+        std::string msg = "Bad format for key: ";
+        msg += key;
+        throw DotENVLineKeyException(msg.c_str(), ref);
+      }
+    }
   };
 
   /**
@@ -69,9 +89,6 @@ namespace extras {
         : _key(key), _value(value){};
     const EnvironmentVariableKey &key() const override { return _key; }
     const EnvironmentVariableValue &value() const override { return _value; }
-    EnvironmentVariableKey validate_key(const std::string &key) const override;
-    EnvironmentVariableValue validate_value(
-        const std::string &value) const override;
     operator std::string() const {
       std::stringstream ss;
       ss << *this;
