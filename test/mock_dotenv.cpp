@@ -1,4 +1,3 @@
-
 #include <extras/dotenv.hpp>
 #include <iostream>
 
@@ -11,6 +10,34 @@
 
 using namespace extras;
 using namespace fakeit;
+
+/**
+ * @brief Mock DotENVLineInterface
+ *
+ */
+SCENARIO("Mock DotENVLineInterface: key", "[mock_dotenv]") {
+  auto correct_answer = EnvironmentVariableKey();
+  Mock<DotENVLineInterface> mock;
+  When(Method(mock, key)).Return(correct_answer);
+
+  DotENVLineInterface &i = mock.get();
+  REQUIRE(i.key() == correct_answer);
+  Verify(Method(mock, key));
+}
+
+/**
+ * @brief Mock DotENVLineInterface
+ *
+ */
+SCENARIO("Mock DotENVLineInterface: value", "[mock_dotenv]") {
+  auto correct_answer = EnvironmentVariableValue();
+  Mock<DotENVLineInterface> mock;
+  When(Method(mock, value)).Return(correct_answer);
+
+  DotENVLineInterface &i = mock.get();
+  REQUIRE(i.value() == correct_answer);
+  Verify(Method(mock, value));
+}
 
 /**
  * @brief Mock DotENVInterface
@@ -33,7 +60,8 @@ SCENARIO("Mock DotENVInterface: put", "[mock_dotenv]") {
   DotENVInterface &i = mock.get();
   EnvironmentVariableKey key;
   EnvironmentVariableValue value;
-  i.put(key, value);
+  DotENVLine line(key, value);
+  i.put(line);
   Verify(Method(mock, put));
 }
 
@@ -47,9 +75,10 @@ SCENARIO("Mock DotENVInterface: contains", "[mock_dotenv]") {
    */
   EnvironmentVariableMap correct_answer = EnvironmentVariableMap();
   Mock<DotENVInterface> mock;
-  When(Method(mock, put)).AlwaysDo([&correct_answer](auto key, auto value) {
-    correct_answer[key] = value;
-  });
+  When(Method(mock, put))
+      .AlwaysDo([&correct_answer](const DotENVLineInterface &entry) {
+        correct_answer[entry.key()] = entry.value();
+      });
   When(Method(mock, map)).Return(correct_answer);
   When(Method(mock, contains)).AlwaysDo([&correct_answer](auto key) {
     return correct_answer.find(key) != correct_answer.end();
@@ -72,7 +101,8 @@ SCENARIO("Mock DotENVInterface: contains", "[mock_dotenv]") {
    */
   EnvironmentVariableKey key;
   EnvironmentVariableValue value;
-  i.put(key, value);
+  DotENVLine line(key, value);
+  i.put(line);
   Verify(Method(mock, put));
 
   /**

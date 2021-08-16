@@ -162,20 +162,33 @@ Use of this class will give you a simpler means of managing environment variable
 
     using namespace extras;
 
-    SCENARIO("Test DotENV", "[test_dotenv]") {
+    SCENARIO("Test DotENV load token file", "[test_dotenv]") {
+
         /**
-        * @brief No where near as exciting, (or interestig
-        * as mock tests, the unit test gives us a chance
-        * to prove that the expected behavior has found
-        * its way into the implementation)
-        *
+        * @brief The DotENVInterface handles a lot of the
+        * common issues with formatting Unix/Linux style
+        * parameters.
         */
-        DotENV dotENV;
-        EnvironmentVariableKey key;
-        EnvironmentVariableValue value;
-        dotENV.put(key, value);
-        REQUIRE(dotENV.contains(key));
-        REQUIRE(dotENV.value(key) == value);
+
+        extras::DotENV dotENV;
+        std::stringstream ss;
+        ss << "# ASYNC accepted values [ on : off ]" << std::endl;
+        ss << "ASYNC=on" << std::endl;
+        ss << "YOURAPPTOKEN=dev" << std::endl;
+        ss << "CLIENT_ID=dsfs-fsdf-sdf-sfdsdf-sdfsdf" << std::endl;
+        ss << "CLIENT_SECRET=34343-dfdfd-3343-fsfdf-334-sd" << std::endl;
+        ss << "AUDIENCE=https://jackpot_pc_salmon" << std::endl;
+        ss << "COOKIE=dskjfhksjdhdhfkjsdf-sdhfkjdsf-Q; ";
+        ss << "did_compatible=sdfssdf-sdf sddf-sd f-sdce-" << std::endl;
+        ss >> dotENV;
+        std::stringstream test;
+        std::stringstream ss2;
+        ss2 << dotENV;
+        extras::DotENV dotENV_compare;
+        ss2 >> dotENV_compare;
+        REQUIRE(dotENV == dotENV_compare);
+        std::cout << dotENV_compare;
+
     }
 
 

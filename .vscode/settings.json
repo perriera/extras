@@ -61,7 +61,11 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "forward_list": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "ranges": "cpp",
+        "stop_token": "cpp"
     },
     "editor.formatOnSave": true
 }

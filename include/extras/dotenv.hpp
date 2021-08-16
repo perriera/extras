@@ -18,9 +18,11 @@
  *
  */
 
+#include <extras/exceptions.hpp>
 #include <extras/interfaces.hpp>
 #include <iostream>
 #include <map>
+#include <sstream>
 #include <string>
 
 namespace extras {
@@ -34,6 +36,70 @@ namespace extras {
   using EnvironmentVariableValue = std::string;
   using EnvironmentVariableMap =
       std::map<EnvironmentVariableKey, EnvironmentVariableValue>;
+
+  /**
+   * @brief interface DotENVLineInterface
+   *
+   */
+
+  interface DotENVLineInterface {
+    virtual const EnvironmentVariableKey &key() const pure;
+    virtual const EnvironmentVariableValue &value() const pure;
+  };
+
+  /**
+   * @brief OctalException
+   *
+   * To be thrown if either string or value supplied is out of range.
+   *
+   */
+  concrete class DotENVLineKeyException extends AbstractCustomException {
+   public:
+    DotENVLineKeyException(const char *msg, const WhereAmI &whereAmI)
+        : AbstractCustomException(msg, whereAmI._file.c_str(),
+                                  whereAmI._func.c_str(), whereAmI._line) {}
+    static void assertion(const std::string &key, const WhereAmI &ref) {
+      if (key.length() == 0) {
+        throw DotENVLineKeyException("No key specified", ref);
+      }
+      if (!isalpha(key[0])) {
+        std::string msg = "Bad format for key: ";
+        msg += key;
+        throw DotENVLineKeyException(msg.c_str(), ref);
+      }
+    }
+  };
+
+  /**
+   * @brief interface DotENVLineInterface
+   *
+   */
+
+  class DotENVLine implements DotENVLineInterface {
+    friend std::ostream &operator<<(std::ostream &out, const DotENVLine &obj);
+    friend std::istream &operator>>(std::istream &in, DotENVLine &obj);
+    friend inline bool operator==(const DotENVLine &a, const DotENVLine &b) {
+      return a.key() == b.key() && a.value() == b.value();
+    }
+    friend inline bool operator!=(const DotENVLine &a, const DotENVLine &b) {
+      return !(a == b);
+    }
+    EnvironmentVariableKey _key;
+    EnvironmentVariableValue _value;
+
+   public:
+    DotENVLine(){};
+    DotENVLine(const EnvironmentVariableKey &key,
+               const EnvironmentVariableValue &value)
+        : _key(key), _value(value){};
+    const EnvironmentVariableKey &key() const override { return _key; }
+    const EnvironmentVariableValue &value() const override { return _value; }
+    operator std::string() const {
+      std::stringstream ss;
+      ss << *this;
+      return ss.str();
+    }
+  };
 
   /**
    * @brief interface DotENVInterface
@@ -53,13 +119,12 @@ namespace extras {
     /**
      * @brief put()
      *
-     * Put a key/value pair into the EnvironmentVariableMap
+     * Put a key/value pair using the DotENVLineInterface
      *
      * @param key
      * @param value
      */
-    virtual void put(const EnvironmentVariableKey &key,
-                     const EnvironmentVariableValue &value) pure;
+    virtual void put(const DotENVLineInterface &entry) pure;
 
     /**
      * @brief contains()
@@ -91,6 +156,12 @@ namespace extras {
   concrete class DotENV implements DotENVInterface {
     friend std::ostream &operator<<(std::ostream &out, const DotENV &obj);
     friend std::istream &operator>>(std::istream &in, DotENV &obj);
+    friend inline bool operator==(const DotENV &a, const DotENV &b) {
+      return a._map == b._map;
+    }
+    friend inline bool operator!=(const DotENV &a, const DotENV &b) {
+      return !(a == b);
+    }
 
     EnvironmentVariableMap _map;
 
@@ -100,9 +171,8 @@ namespace extras {
       return dotENV;
     }
     const EnvironmentVariableMap &map() const override { return _map; };
-    void put(const EnvironmentVariableKey &key,
-             const EnvironmentVariableValue &value) override {
-      _map[key] = value;
+    void put(const DotENVLineInterface &entry) override {
+      _map[entry.key()] = entry.value();
     };
     bool contains(const EnvironmentVariableKey &key) const override {
       return _map.find(key) != _map.end();

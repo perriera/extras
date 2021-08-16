@@ -24,6 +24,15 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 3.7.0 (2021-08-11)
+### Added
+- DotENVLineInterface, (dotenv.hpp)
+- DotENVLine, (dotenv.cpp)
+- DotENVLineInterface mocks, (mock_dotenv.cpp)
+- DotENVLine unit tests, (test_dotenv.cpp)
+### Changed
+- Updated README.md
+
 #### 3.6.0 (2021-08-11)
 ### Added
 - DotENVInterface, (dotenv.hpp)
