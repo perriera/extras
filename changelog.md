@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v0.1.2 -m "my version 0.1.2"</br>
-> > git push origin v0.1.2
+> > git tag -a v3.7.0 -m "DotENVLineInterface"</br>
+> > git push origin v3.7.0
 > >
 >
 > > POPULAR LINKS:
@@ -241,7 +241,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.6.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.7.0...HEAD
+[3.7.0]: https://github.com/perriera/extras/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/perriera/extras/compare/v3.5.1...v3.6.0
 [3.5.1]: https://github.com/perriera/extras/compare/v3.5.0...v3.5.1
 [3.5.0]: https://github.com/perriera/extras/compare/v3.4.0...v3.5.0
