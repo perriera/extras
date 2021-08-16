@@ -78,7 +78,12 @@ namespace extras {
   class DotENVLine implements DotENVLineInterface {
     friend std::ostream &operator<<(std::ostream &out, const DotENVLine &obj);
     friend std::istream &operator>>(std::istream &in, DotENVLine &obj);
-
+    friend inline bool operator==(const DotENVLine &a, const DotENVLine &b) {
+      return a.key() == b.key() && a.value() == b.value();
+    }
+    friend inline bool operator!=(const DotENVLine &a, const DotENVLine &b) {
+      return !(a == b);
+    }
     EnvironmentVariableKey _key;
     EnvironmentVariableValue _value;
 
@@ -151,6 +156,12 @@ namespace extras {
   concrete class DotENV implements DotENVInterface {
     friend std::ostream &operator<<(std::ostream &out, const DotENV &obj);
     friend std::istream &operator>>(std::istream &in, DotENV &obj);
+    friend inline bool operator==(const DotENV &a, const DotENV &b) {
+      return a._map == b._map;
+    }
+    friend inline bool operator!=(const DotENV &a, const DotENV &b) {
+      return !(a == b);
+    }
 
     EnvironmentVariableMap _map;
 

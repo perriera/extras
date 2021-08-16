@@ -46,11 +46,9 @@ SCENARIO("Test DotENV instance()", "[test_dotenv]") {
 
 SCENARIO("Test DotENVLine", "[test_dotenv]") {
   /**
-   * @brief In the case of a singleton being required
-   * we make use of the interface instead of the class;
-   * (Mind you, this really clutters the test case as
-   * only one static instance can be tested, so we limit
-   * the singleton test to one single test case).
+   * @brief In the case various formats in a
+   * given environmental file, perform several
+   * tests.
    */
 
   {
@@ -67,21 +65,60 @@ SCENARIO("Test DotENVLine", "[test_dotenv]") {
     REQUIRE(dotENVLine.key() == "FULL_SYNC");
     REQUIRE(dotENVLine.value() == "on");
   }
-  // ss << "BEARER_TOKEN=skdfkusdgfiusdggsdkfjgsksfjsdgf" << std::endl;
-  // ss << "# LIBDMG_ENV accepted " << std::endl;
-  // ss << "LIBDMG_ENV=dev" << std::endl;
-  // ss << "NEW_TOKEN_ENDPOINT=https://dev-xyz-com//token" << std::endl;
-  // ss << "CLIENT_ID=sdkfhsdkhekuwhrfksdhgfkjsdgfjsdgf" << std::endl;
-  // ss << "CLIENT_SECRET=sfkjdhkusdghfkhgsjhdhgsdfsdfs" << std::endl;
-  // ss << "AUDIENCE=https://jackpot_pc_salmon" << std::endl;
-  // ss << "COOKIE=dskjfhksjdhdhfkjsdf-sdhfkjdsf-Q; " << std::endl;
-  // ss << "did_compatible=sdfssdf-sdfsddf-sdf-sdce-" << std::endl;
-  // std::cout << "it worked" << std::endl;
-  // try {
-  //   ss >> dotENVLine;
-  // } catch (DotENVLineKeyException &ex) {
-  //   SUCCEED("exception thrown");
-  // }
+  {
+    extras::DotENVLine dotENVLine;
+    std::stringstream ss;
+    ss << "BEARER_TOKEN=skdfkusdgfiusdggsdkfjgsksfjsdgf" << std::endl;
+    ss >> dotENVLine;
+    REQUIRE(dotENVLine.key() == "BEARER_TOKEN");
+    REQUIRE(dotENVLine.value() == "skdfkusdgfiusdggsdkfjgsksfjsdgf");
+  }
+  {
+    extras::DotENVLine dotENVLine;
+    std::stringstream ss;
+    ss << "# LIBDMG_ENV accepted " << std::endl;
+    REQUIRE_THROWS_AS(operator>>(ss, dotENVLine), DotENVLineKeyException);
+  }
+  {
+    extras::DotENVLine dotENVLine;
+    std::stringstream ss;
+    ss << "NEW_TOKEN_ENDPOINT=https://dev-xyz-com//token" << std::endl;
+    ss >> dotENVLine;
+    REQUIRE(dotENVLine.key() == "NEW_TOKEN_ENDPOINT");
+    REQUIRE(dotENVLine.value() == "https://dev-xyz-com//token");
+  }
+  {
+    extras::DotENVLine dotENVLine;
+    std::stringstream ss;
+    ss << "CLIENT_ID=sdkfhsdkhekuwhrfksdhgfkjsdgfjsdgf" << std::endl;
+    ss >> dotENVLine;
+    REQUIRE(dotENVLine.key() == "CLIENT_ID");
+    REQUIRE(dotENVLine.value() == "sdkfhsdkhekuwhrfksdhgfkjsdgfjsdgf");
+  }
+  {
+    extras::DotENVLine dotENVLine;
+    std::stringstream ss;
+    ss << "CLIENT_SECRET=sfkjdhkusdghfkhgsjhdhgsdfsdfs" << std::endl;
+    ss >> dotENVLine;
+    REQUIRE(dotENVLine.key() == "CLIENT_SECRET");
+    REQUIRE(dotENVLine.value() == "sfkjdhkusdghfkhgsjhdhgsdfsdfs");
+  }
+  {
+    extras::DotENVLine dotENVLine;
+    std::stringstream ss;
+    ss << "AUDIENCE=https://jackpot_pc_salmon" << std::endl;
+    ss >> dotENVLine;
+    REQUIRE(dotENVLine.key() == "AUDIENCE");
+    REQUIRE(dotENVLine.value() == "https://jackpot_pc_salmon");
+  }
+  {
+    extras::DotENVLine dotENVLine;
+    std::stringstream ss;
+    ss << "COOKIE=did_compatible=sdfs; df-sd fsddce-" << std::endl;
+    ss >> dotENVLine;
+    REQUIRE(dotENVLine.key() == "COOKIE");
+    REQUIRE(dotENVLine.value() == "did_compatible=sdfs; df-sd fsddce-");
+  }
 }
 
 SCENARIO("Test DotENV load token file", "[test_dotenv]") {
@@ -104,9 +141,16 @@ SCENARIO("Test DotENV load token file", "[test_dotenv]") {
   ss << "CLIENT_ID=sdkfhsdkhekuwhrfksdhgfkjsdgfjsdgf" << std::endl;
   ss << "CLIENT_SECRET=sfkjdhkusdghfkhgsjhdhgsdfsdfs" << std::endl;
   ss << "AUDIENCE=https://jackpot_pc_salmon" << std::endl;
-  ss << "COOKIE=dskjfhksjdhdhfkjsdf-sdhfkjdsf-Q; " << std::endl;
-  ss << "did_compatible=sdfssdf-sdfsddf-sdf-sdce-" << std::endl;
+  ss << "COOKIE=dskjfhksjdhdhfkjsdf-sdhfkjdsf-Q; ";
+  ss << "did_compatible=sdfssdf-sdf sddf-sd f-sdce-" << std::endl;
   ss >> dotENV;
+  std::stringstream test;
+  std::stringstream ss2;
+  ss2 << dotENV;
+  extras::DotENV dotENV_compare;
+  ss2 >> dotENV_compare;
+  REQUIRE(dotENV == dotENV_compare);
+  std::cout << dotENV_compare;
 }
 
 // std::string DotEnvManager::tokenize(const std::string &line,

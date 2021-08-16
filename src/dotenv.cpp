@@ -1,6 +1,7 @@
 
 #include <extras/dotenv.hpp>
 #include <extras/strings.hpp>
+#include <iomanip>
 #include <iostream>
 
 namespace extras {
@@ -12,23 +13,18 @@ namespace extras {
 
   std::istream &operator>>(std::istream &in, DotENVLine &obj) {
     std::stringstream key;
-    std::stringstream value;
+    std::string value;
     char c = ' ';
+    in >> std::skipws;
     while (in.good() && c != '=') {
       in >> c;
-      if (c == ' ') continue;
       if (c == '#') break;
-      if (c == '\n') break;
       if (isalnum(c) || c == '_') key << c;
-    }
-    while (in.good()) {
-      in >> c;
-      if (!in.good()) break;
-      value << c;
     }
     DotENVLineKeyException::assertion(key.str(), __INFO__);
     obj._key = key.str();
-    obj._value = value.str();
+    getline(in, value);
+    obj._value = value;
     return in;
   }
 
