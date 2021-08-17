@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v0.1.2 -m "my version 0.1.2"</br>
-> > git push origin v0.1.2
+> > git tag -a v3.8.0 -m "DotENVNoKeyException"</br>
+> > git push origin v3.8.0
 > >
 >
 > > POPULAR LINKS:
@@ -23,6 +23,14 @@ IMPORTANT:
 
 ## [Unreleased]
 - Update Doxygen content
+
+#### 3.8.0 (2021-08-11)
+### Added
+- DotENVNoKeyException, (dotenv.hpp)
+- DotENVBadFormatException, (dotenv.hpp)
+### Changed
+- DotENVLineKeyException, (dotenv.hpp, dotenv.cpp)
+- DotENVLineKeyException::assertion(), (dotenv.cpp)
 
 #### 3.7.0 (2021-08-11)
 ### Added
@@ -241,7 +249,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.6.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.8.0...HEAD
+[3.8.0]: https://github.com/perriera/extras/compare/v3.7.0...v3.8.0
+[3.7.0]: https://github.com/perriera/extras/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/perriera/extras/compare/v3.5.1...v3.6.0
 [3.5.1]: https://github.com/perriera/extras/compare/v3.5.0...v3.5.1
 [3.5.0]: https://github.com/perriera/extras/compare/v3.4.0...v3.5.0
