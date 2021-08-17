@@ -58,16 +58,21 @@ namespace extras {
     DotENVLineKeyException(const char *msg, const WhereAmI &whereAmI)
         : AbstractCustomException(msg, whereAmI._file.c_str(),
                                   whereAmI._func.c_str(), whereAmI._line) {}
-    static void assertion(const std::string &key, const WhereAmI &ref) {
-      if (key.length() == 0) {
-        throw DotENVLineKeyException("No key specified", ref);
-      }
-      if (!isalpha(key[0])) {
-        std::string msg = "Bad format for key: ";
-        msg += key;
-        throw DotENVLineKeyException(msg.c_str(), ref);
-      }
-    }
+    static void assertion(const std::string &key, const WhereAmI &ref);
+  };
+
+  concrete class DotENVNoKeyException extends DotENVLineKeyException {
+   public:
+    DotENVNoKeyException(const char *msg, const WhereAmI &whereAmI)
+        : DotENVLineKeyException(msg, whereAmI) {}
+    static void assertion(const std::string &key, const WhereAmI &ref);
+  };
+
+  concrete class DotENVBadFormatException extends DotENVLineKeyException {
+   public:
+    DotENVBadFormatException(const char *msg, const WhereAmI &whereAmI)
+        : DotENVLineKeyException(msg, whereAmI) {}
+    static void assertion(const std::string &key, const WhereAmI &ref);
   };
 
   /**
@@ -75,7 +80,7 @@ namespace extras {
    *
    */
 
-  class DotENVLine implements DotENVLineInterface {
+  concrete class DotENVLine implements DotENVLineInterface {
     friend std::ostream &operator<<(std::ostream &out, const DotENVLine &obj);
     friend std::istream &operator>>(std::istream &in, DotENVLine &obj);
     friend inline bool operator==(const DotENVLine &a, const DotENVLine &b) {

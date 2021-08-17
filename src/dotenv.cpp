@@ -52,4 +52,26 @@ namespace extras {
     return in;
   }
 
+  void DotENVLineKeyException::assertion(const std::string &key,
+                                         const WhereAmI &ref) {
+    DotENVNoKeyException::assertion(key, ref);
+    DotENVBadFormatException::assertion(key, ref);
+  }
+
+  void DotENVNoKeyException::assertion(const std::string &key,
+                                       const WhereAmI &ref) {
+    if (key.length() == 0) {
+      throw DotENVNoKeyException("No key specified", ref);
+    }
+  }
+
+  void DotENVBadFormatException::assertion(const std::string &key,
+                                           const WhereAmI &ref) {
+    if (!isalpha(key[0])) {
+      std::string msg = "Bad format for key: ";
+      msg += key;
+      throw DotENVBadFormatException(msg.c_str(), ref);
+    }
+  }
+
 }  // namespace extras
