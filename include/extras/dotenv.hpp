@@ -48,7 +48,7 @@ namespace extras {
   };
 
   /**
-   * @brief OctalException
+   * @brief DotENVLineKeyException
    *
    * To be thrown if either string or value supplied is out of range.
    *

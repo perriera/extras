@@ -6,11 +6,25 @@
 
 namespace extras {
 
+  /**
+   * @brief DotENVLine ostream&
+   *
+   * @param out
+   * @param obj
+   * @return std::ostream&
+   */
   std::ostream &operator<<(std::ostream &out, const DotENVLine &obj) {
     out << obj._key << '=' << obj._value;
     return out;
   }
 
+  /**
+   * @brief  DotENVLine istream&
+   *
+   * @param in
+   * @param obj
+   * @return std::istream&
+   */
   std::istream &operator>>(std::istream &in, DotENVLine &obj) {
     std::stringstream key;
     std::string value;
@@ -28,6 +42,13 @@ namespace extras {
     return in;
   }
 
+  /**
+   * @brief DotENV ostream&
+   *
+   * @param out
+   * @param obj
+   * @return std::ostream&
+   */
   std::ostream &operator<<(std::ostream &out, const DotENV &obj) {
     for (auto entry : obj._map) {
       out << entry.first << "=" << entry.second << std::endl;
@@ -35,6 +56,13 @@ namespace extras {
     return out;
   }
 
+  /**
+   * @brief DotENV istream&
+   *
+   * @param out
+   * @param obj
+   * @return std::ostream&
+   */
   std::istream &operator>>(std::istream &in, DotENV &obj) {
     std::string line;
     while (in.good()) {
@@ -52,11 +80,29 @@ namespace extras {
     return in;
   }
 
+  /**
+   * @brief DotENVLineKeyException::assertion()
+   *
+   * @param out
+   * @param obj
+   * @return std::ostream&
+   */
+
   void DotENVLineKeyException::assertion(const std::string &key,
                                          const WhereAmI &ref) {
     DotENVNoKeyException::assertion(key, ref);
     DotENVBadFormatException::assertion(key, ref);
   }
+
+  /**
+   * @brief DotENVNoKeyException::assertion()
+   *
+   * Thrown if no KEY is specified
+   *
+   * @param out
+   * @param obj
+   * @return std::ostream&
+   */
 
   void DotENVNoKeyException::assertion(const std::string &key,
                                        const WhereAmI &ref) {
@@ -65,9 +111,19 @@ namespace extras {
     }
   }
 
+  /**
+   * @brief DotENVBadFormatException::assertion()
+   *
+   * Thrown if the KEY starts with anything but a letter
+   *
+   * @param out
+   * @param obj
+   * @return std::ostream&
+   */
+
   void DotENVBadFormatException::assertion(const std::string &key,
                                            const WhereAmI &ref) {
-    if (!isalpha(key[0])) {
+    if (key.length() > 0 && !isalpha(key[0])) {
       std::string msg = "Bad format for key: ";
       msg += key;
       throw DotENVBadFormatException(msg.c_str(), ref);
