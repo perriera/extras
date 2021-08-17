@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v3.8.0 -m "DotENVNoKeyException"</br>
-> > git push origin v3.8.0
+> > git tag -a v3.8.1 -m "DotENVNoKeyException"</br>
+> > git push origin v3.8.1
 > >
 >
 > > POPULAR LINKS:
@@ -23,6 +23,12 @@ IMPORTANT:
 
 ## [Unreleased]
 - Update Doxygen content
+
+#### 3.8.1 (2021-08-11)
+### Added
+- Push to Github
+### Changed
+- Version number
 
 #### 3.8.0 (2021-08-11)
 ### Added
@@ -249,7 +255,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.8.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.8.1...HEAD
+[3.8.1]: https://github.com/perriera/extras/compare/v3.8.0...v3.8.1
 [3.8.0]: https://github.com/perriera/extras/compare/v3.7.0...v3.8.0
 [3.7.0]: https://github.com/perriera/extras/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/perriera/extras/compare/v3.5.1...v3.6.0
