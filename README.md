@@ -157,7 +157,7 @@ Should you run into a strange situation to where you issued the above command bu
 As you may have installed it earlier without changing the name of the package from **build** to **extras**.
 
 ## Method #2: CPM installation
-Add the following to your CMakeLists.txt for CPM support:
+Add the following to your CMakeLists.txt for CPM support. CPM support allows you to distribute your packages with other git repositories automatically downloaded, (for the users of your software). In the case of setting up distributed Debian packages, this is advantageous. 
 
 	#
 	# NOTE: Include 3rd party libraries, Perry and I maintain an open-source extras C++ library, which
