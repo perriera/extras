@@ -182,9 +182,7 @@ Add the following to your CMakeLists.txt for CPM support. CPM support allows you
 	  print(WARNING "extras was not configured properly")
 	endif()
 
-While it may seem odd to have to uninstall the **'extras support'**  package, future upgrades to the extras package will prefer if there is a clean install for you to work with.
-
-To optimize CPM support on your projects be sure to set the environment variable for shared CPM libraries:
+Just be sure to have the desired **VERSION** of perrier/extras specified in the **VERSION** keyword above. To optimize CPM support on your projects be sure to set the environment variable for shared CPM libraries:
 
 	export CPM_SOURCE_CACHE=$HOME/.cache/CPM
 
