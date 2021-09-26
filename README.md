@@ -214,15 +214,6 @@ Or, as of 3.2.1 you must set DEBUG to false, (& BUILD_TESTS=false) on the comman
     ./run-unittests-extras
     sudo make install
 
-## CPM.cmake support
-If you are including **(perriera) extras** into your project via CPM.cmake:
-
-    CPMAddPackage(
-        GITHUB_REPOSITORY perriera/extras
-        VERSION 3.2.1
-        OPTIONS "BUILD_TESTS ON" "DEBUG OFF" 
-    )
-
 ### FYI: ModernCppStarter
 > If you are looking for  a solid C++ CMakeLists.txt skeleton project, (one that will do what you want it to do), <br/> checkout **ModernCppStarter**:</br>
 > 
