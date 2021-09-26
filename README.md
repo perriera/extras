@@ -43,6 +43,7 @@ Now you need the GCC/Python tools for a C++ development environment:
 `
 sudo apt-get install build-essential libtool autotools-dev automake pkg-config bsdmainutils python3 libssl-dev libevent-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libminiupnpc-dev libzmq3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler git ccache
 `
+
 For people interested in compiling a Bitcoin node: [click here](https://gist.github.com/jonatack/9f57d398656433de5a5e04d5e0e4447e)
 	 
 ## C++ Tools
