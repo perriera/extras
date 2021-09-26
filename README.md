@@ -121,16 +121,15 @@ All tests passed (76 assertions in 30 test cases)
 
 
 # Extras Package Installation
-If you have not already done so install a local copy of extras onto your system, :
+There are TWO ways to include perriera/extras into your application. 
+## Method #1: Local installation
+One is to install it locally onto your system. Just be sure to have your LD_LIBRARY_PATH setup to be able to find the installed extras package.
 
      export LD_LIBRARY_PATH=/usr/local/lib
      
-If you happen to be adding features to the extras library and wish to debug it, be sure to put your build directory ahead of the install location, (otherwise the linking process will only use the installed version of the **'extras support'** ).
 
-    export LD_LIBRARY_PATH=build:/usr/local/lib
-
-## sudo checkinstall
-While the above will work for most applications, should you wish to uninstall you will need to install **extras** using a slightly different approach. To be able to uninstall you will need to install the Ubuntu **checkinstall** package: [here](https://help.ubuntu.com/community/CheckInstall). 
+### sudo checkinstall
+While the `sudo make install` will work for most applications, should you wish to uninstall you will need to install **extras** using a slightly different approach. To be able to uninstall you will need to install the Ubuntu **checkinstall** package: [here](https://help.ubuntu.com/community/CheckInstall). 
 
 `sudo apt-get update && sudo apt-get install checkinstall`
 
@@ -157,7 +156,39 @@ Should you run into a strange situation to where you issued the above command bu
 
 As you may have installed it earlier without changing the name of the package from **build** to **extras**.
 
+## Method #2: CPM installation
+Add the following to your CMakeLists.txt for CPM support:
+
+	#
+	# NOTE: Include 3rd party libraries, Perry and I maintain an open-source extras C++ library, which
+	# is used extensively in our projects, it comes bundled with spdlog, cpr, and nlohmann json. extras has
+	# project options that allow us to control how other libraries it includes are built. for example we
+	# can tell extras to build spdlog as a static library (for faster compile times) by settings
+	# MAKE_SPDLOG_SHARED OFF
+	#
+	CPMAddPackage(
+	  NAME extras
+	  GITHUB_REPOSITORY perriera/extras
+	  VERSION 3.11.0
+	  OPTIONS "MAKE_SPDLOG_SHARED OFF"
+	)
+	if(extras_ADDED)
+	  #
+	  # NOTE:  enable c++11 to avoid compilation errors, and force spdlog into release build
+	  #
+	  print(STATUS "Configuring extras build properties")
+	  set_target_properties(extras PROPERTIES CMAKE_BUILD_TYPE Release)
+	else()
+	  print(WARNING "extras was not configured properly")
+	endif()
+
 While it may seem odd to have to uninstall the **'extras support'**  package, future upgrades to the extras package will prefer if there is a clean install for you to work with.
+
+To optimize CPM support on your projects be sure to set the environment variable for shared CPM libraries:
+
+	export CPM_SOURCE_CACHE=$HOME/.cache/CPM
+
+For more about CPM [see here](https://github.com/cpm-cmake/CPM.cmake)
 
 ## CMakeLists.txt
 You just include the **extras** library to any targets in your CMakeLists.txt target_include_libraries specs
