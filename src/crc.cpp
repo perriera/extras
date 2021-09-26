@@ -31,4 +31,7 @@ namespace extras {
       return crc64.update(this->_buffer, (size_t)this->_len);
   }
 
+  //
+  //
+
 }  // namespace extras

@@ -24,6 +24,11 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 3.10.0 (2021-08-11)
+### Added
+- ANSI colors back
+- .vscode support
+
 #### 3.8.2 (2021-08-11)
 ### Added
 - Push to Github on (PE-7)

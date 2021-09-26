@@ -7,9 +7,6 @@ build/
 # editors
 .idea/
 .vim/
-.vscode/
-.vscode/launch.json
-.vscode/settings.json
 
 # compilation commands
 compile_commands.json

@@ -8,6 +8,7 @@ include(cmake/utils.cmake)
 include(CMakeDependentOption)
 include(CheckIPOSupported)
 
+
 # generate compile_commands.json, this is for text editors (emacs, vim) that don't want to rely on
 # Micro$ofts lang server
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -19,6 +20,8 @@ project(
   LANGUAGES CXX
 )
 message(STATUS "Building extras-${EXTRAS_VERSION}")
+
+find_package (Threads REQUIRED)
 
 # These includes will only work after LANGUAGES is defined.
 include(GNUInstallDirs)
@@ -93,7 +96,7 @@ if(BUILD_TESTS)
   file(GLOB_RECURSE TESTS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
   add_executable(run-unittests-extras ${TESTS})
   target_include_directories(run-unittests-extras PUBLIC test/)
-  target_link_libraries(run-unittests-extras ${PROJECT_NAME} stdc++fs)
+  target_link_libraries(run-unittests-extras ${PROJECT_NAME} stdc++fs  ${CMAKE_THREAD_LIBS_INIT})
 endif()
 
 # Library Note: may not work on windows
