@@ -133,11 +133,11 @@ SCENARIO("Test DotENV load token file", "[test_dotenv]") {
   ss << "# ASYNC accepted values [ on : off ]" << std::endl;
   ss << "ASYNC=on" << std::endl;
   ss << "YOURAPPTOKEN=dev" << std::endl;
-  ss << "CLIENT_ID=dsfs-fsdf-sdf-sfdsdf-sdfsdf" << std::endl;
+  ss << "CLIENT_ID=sample_client_id" << std::endl;
   ss << "CLIENT_SECRET=34343-dfdfd-3343-fsfdf-334-sd" << std::endl;
   ss << "AUDIENCE=https://jackpot_pc_salmon" << std::endl;
-  ss << "COOKIE=dskjfhksjdhdhfkjsdf-sdhfkjdsf-Q; ";
-  ss << "did_compatible=sdfssdf-sdf sddf-sd f-sdce-" << std::endl;
+  ss << "COOKIE=sample_cookie; ";
+  ss << "did_compatible=sample_did_compatible" << std::endl;
   ss >> dotENV;
   std::stringstream test;
   std::stringstream ss2;

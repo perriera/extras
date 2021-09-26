@@ -167,13 +167,15 @@ namespace extras {
     [[nodiscard]] const char *what() const noexcept override {
       return _msg.c_str();
     };
-    [[nodiscard]] virtual const char *getfile() const noexcept {
+    [[nodiscard]] virtual const char *getfile() const noexcept override {
       return _file.c_str();
     };
-    [[nodiscard]] virtual const char *getfunc() const noexcept {
+    [[nodiscard]] virtual const char *getfunc() const noexcept override {
       return _func.c_str();
     };
-    [[nodiscard]] virtual int getline() const noexcept { return _line; };
+    [[nodiscard]] virtual int getline() const noexcept override {
+      return _line;
+    };
 
     /**
      * @brief static void assertion(const std::string &filename, const WhereAmI

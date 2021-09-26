@@ -1,3 +1,4 @@
+
   
 [![CMake](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml/badge.svg?branch=dev)](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml)
 
@@ -26,8 +27,75 @@
 >
 > Presently supporting Linux platforms is portable to Android, iPhone, iOS, Windows environments.
 >
-# Installation
- Assuming you are using a gcc/g++ environment on a Linux platform:
+# Development Tools Installation
+## Recommended Development Environment
+Ideally, an 27" iMac running Desktop Parallels capable of installing 20.04.3 Ubuntu LTS would be a good start. However, assuming you have such a configuration, the following is what you want to do to setup your GCC environment, (on a virgin Ubuntu box). Open a terminal window and type:
+
+	 sudo apt install git
+	 mkdir Projects
+	 cd Projects
+	 git clone https://github.com/perriera/extras.git
+	 sudo snap install --classic code # or code-insiders
+	 code .
+
+Now you need the GCC/Python tools for a C++ development environment:
+
+`
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config bsdmainutils python3 libssl-dev libevent-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libminiupnpc-dev libzmq3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler git ccache
+`
+For people interested in compiling a Bitcoin node: [click here](https://gist.github.com/jonatack/9f57d398656433de5a5e04d5e0e4447e)
+	 
+## C++ Tools
+In addition to the above install you may wish to have C++ language formatting tools:
+```
+sudo apt update
+sudo apt install clangd cppcheck clang-tidy python3-pip
+pip install clang-format
+pip install cmake-format
+pip install cmake
+```
+If you get a message similar to the following:
+```
+WARNING: The scripts cmake, cpack and ctest are installed in '/home/perry/.local/bin' which is not on PATH.
+Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  ```
+ Then add the path specified to your `~/.bashrc` script:
+ 
+	vi ~/.bashrc
+
+Add this to the end of ~/.bashrc 
+
+	PATH=/home/perry/.local/bin:${PATH}
+	
+You should exit and restart the editor once the path has been edited. 
+
+	code .
+	
+If for whatever reason cmake gives you grief, close the editor and enter the following:
+
+	sudo snap install cmake --classic
+
+Then restart your terminal box and then go back into your editor:
+
+	cd Projects
+	cd extras
+	code .
+	
+## Visual Studio Code extensions
+When prompted be sure to add the recommended extensions for C++, CMake and other source code support. 
+
+## .vscode directory
+Inside the `extras/` project directory you'll see 4 files:
+
+ - c_cpp_properties.json
+ - launch.json
+ - settings.json
+ - tasks.json
+
+These govern things like which C++ standard to use, (in this case **C++17**), which test case to launch, file associations and key associations, (such that if you type **shift-control-B** a compile/make will begin). You may have to restart the editor once the path has been edited. 
+
+# Extras Package Compilation
+If you have not already done so install a local copy of extras onto your system, :
  
      git clone https://github.com/perriera/extras.git 
      cd extras
@@ -36,11 +104,24 @@
      cmake ..
      make
      ./run-unittests-extras
-     sudo make install
 
-**Note**: **run-unittests-extras** needs to be run from inside the build directory. 
+If the tests come back similar to the following you have a successful install:
+```
+perry@ubuntu:~/Projects/extras$ build/run-unittests-extras 
 
- After installation the **'extras support'**  should be found in your **/usr/local/include** and your **/usr/local/lib** directories. Also, set LD_LIBRARY_PATH, (if you haven't already done so). 
+ASYNC=on
+AUDIENCE=https://jackpot_pc_salmon
+CLIENT_ID=sample_client_id
+CLIENT_SECRET=34343-dfdfd-3343-fsfdf-334-sd
+COOKIE=sample_cookie; did_compatible=sample_did_compatible
+YOURAPPTOKEN=dev
+===============================================================================
+All tests passed (76 assertions in 30 test cases)
+```
+
+
+# Extras Package Installation
+If you have not already done so install a local copy of extras onto your system, :
 
      export LD_LIBRARY_PATH=/usr/local/lib
      
