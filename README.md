@@ -276,10 +276,10 @@ Especially useful to programmers that like to program using interfaces, (aka. Go
     };
 
     concrete class CrossTableMap implements CrossTableMapInterface {
-       virtual  void  train(const  StatLines &statLines);
-       virtual  void  predict(const  FENLine &line);
-       virtual  void  size() const;
-       virtual  void  verbose(bool  on_or_off);
+         void  train(const  StatLines &statLines) override;
+         void  predict(const  FENLine &line) override;
+         void  size() const  override;
+         void  verbose(bool  on_or_off)  override;
     };
 
 ### FakeIt Mock Framework support, ([OctalInterface](https://github.com/perriera/extras/blob/main/include/extras/octal_support.hpp))
