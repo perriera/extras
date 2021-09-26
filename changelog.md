@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v3.10.0 -m "Added ANSI colors"</br>
-> > git push origin v3.10.0
+> > git tag -a v3.11.0 -m "Added ANSI colors"</br>
+> > git push origin v3.11.0
 > >
 >
 > > POPULAR LINKS:
@@ -24,7 +24,12 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
-#### 3.10.0 (2021-08-11)
+#### 3.11.0 (2021-09-25)
+### Added
+- files.hpp back
+* necessary for chessmind support 
+
+#### 3.10.0 (2021-09-25)
 ### Added
 - ANSI colors back
 - .vscode support
