@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v3.11.0 -m "Added ANSI colors"</br>
-> > git push origin v3.11.0
+> > git tag -a v3.12.0 -m "Updated docs"</br>
+> > git push origin v3.12.0
 > >
 >
 > > POPULAR LINKS:
@@ -23,6 +23,11 @@ IMPORTANT:
 
 ## [Unreleased]
 - Update Doxygen content
+
+#### 3.12.0 (2021-09-25)
+### Added
+- Updated docs 
+* necessary for chessmind support 
 
 #### 3.11.0 (2021-09-25)
 ### Added
@@ -271,7 +276,10 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.8.2...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.12.2...HEAD
+[3.12.0]: https://github.com/perriera/extras/compare/v3.11.0...v3.12.0
+[3.11.0]: https://github.com/perriera/extras/compare/v3.10.0...v3.11.0
+[3.10.0]: https://github.com/perriera/extras/compare/v3.8.2...v3.10.0
 [3.8.2]: https://github.com/perriera/extras/compare/v3.8.1...v3.8.2
 [3.8.1]: https://github.com/perriera/extras/compare/v3.8.0...v3.8.1
 [3.8.0]: https://github.com/perriera/extras/compare/v3.7.0...v3.8.0
