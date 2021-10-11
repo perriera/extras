@@ -27,6 +27,6 @@ namespace extras {
   std::string Paths::actualPath(const std::string &path) const {
     std::string _actualPath = extras::replace_all(path, "~", HomeDirectory);
     return _actualPath;
-  };
+  }
 
 }  // namespace extras

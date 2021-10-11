@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v3.14.0 -m "Added dev branch"</br>
-> > git push origin v3.14.0
+> > git tag -a v3.14.1 -m "American Pie"</br>
+> > git push origin v3.14.1
 > >
 >
 > > POPULAR LINKS:
@@ -24,6 +24,11 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 - dev branch added
+
+#### 3.14.1 (2021-10-11)
+### Added
+- Removed unnecessary semi-colon
+* necessary for best practices  
 
 #### 3.14.0 (2021-10-11)
 ### Added
