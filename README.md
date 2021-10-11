@@ -525,6 +525,7 @@ For sublties such as replacing the '~' character in a path to it's home value we
         std::string value = Paths::instance().actualPath("~/Downloads");
         REQUIRE(value != "~/Downloads");
         REQUIRE(extras::contains(value, "/home/"));
+        REQUIRE(!extras::contains(value, "~"));
     }
 
 
