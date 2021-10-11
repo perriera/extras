@@ -27,6 +27,8 @@ namespace extras {
    */
 
   concrete class Paths implements PathsInterface {
+    std::string _path;
+
    public:
     /**
      * @brief actualPath
@@ -39,6 +41,16 @@ namespace extras {
       static Paths paths;
       return paths;
     }
+
+    Paths(){};
+    Paths(const std::string &path) : _path(path){};
+
+    /**
+     * @brief overloaded ~() operator to remove the ~ from the path
+     * @return the full path, (where the '~' is replaced with home path)
+     */
+    Paths &operator~() noexcept { return *this; }
+    operator std::string() { return actualPath(_path); }
   };
 
   /**

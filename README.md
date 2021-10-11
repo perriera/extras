@@ -528,6 +528,31 @@ For sublties such as replacing the '~' character in a path to it's home value we
         REQUIRE(!extras::contains(value, "~"));
     }
 
+For **badness** the '~()' is overloaded to carry out this function
+
+    /**
+     * @brief overloaded ~() operator to remove the ~ from the path
+     * @return the full path, (where the '~' is replaced with home path)
+     */
+    Paths &operator~() noexcept { return *this; }
+    operator std::string() { return actualPath(_path); }
+
+The test case:
+
+    SCENARIO("Verify PathsInterface operator~()", "[paths_support]") {
+        Paths path("~/Downloads");
+        std::string value = ~path;
+        REQUIRE(value != "~/Downloads");
+        REQUIRE(extras::contains(value, "/home/"));
+        REQUIRE(!extras::contains(value, "~"));
+        std::cout << value << std::endl;
+    }
+
+Output the following:
+
+    /home/perry/Downloads
+
+This is rather ironic and kinda against recommended coding practises, (as we are inserting here subtle changes in the expected behavior of the operator). But given the ironic nature that the same '~' is being used to remove another '~' character causes me to ponder about the meaning of life, (or at least mine).
 
 ## extras/support
  > add **extras/support.hpp** to your C++ source</br>
