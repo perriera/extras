@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v3.13.0 -m "PathsInterface"</br>
-> > git push origin v3.13.0
+> > git tag -a v3.14.0 -m "Added dev branch"</br>
+> > git push origin v3.14.0
 > >
 >
 > > POPULAR LINKS:
@@ -23,6 +23,11 @@ IMPORTANT:
 
 ## [Unreleased]
 - Update Doxygen content
+
+#### 3.14.0 (2021-10-11)
+### Added
+- Added dev branch
+* necessary for best practices  
 
 #### 3.13.0 (2021-10-11)
 ### Added
@@ -281,7 +286,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.13.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.14.0...HEAD
+[3.14.0]: https://github.com/perriera/extras/compare/v3.13.0...v3.14.0
 [3.13.0]: https://github.com/perriera/extras/compare/v3.12.0...v3.13.0
 [3.12.0]: https://github.com/perriera/extras/compare/v3.11.0...v3.12.0
 [3.11.0]: https://github.com/perriera/extras/compare/v3.10.0...v3.11.0
