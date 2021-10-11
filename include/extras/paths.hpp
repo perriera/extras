@@ -27,12 +27,18 @@ namespace extras {
    */
 
   concrete class Paths implements PathsInterface {
+   public:
     /**
      * @brief actualPath
      * @return replace the '~' with the value gained from getenv('home')
      * @exception invalid path supplied
      */
     virtual std::string actualPath(const std::string &path) const override;
+
+    static auto instance() -> PathsInterface & {
+      static Paths paths;
+      return paths;
+    }
   };
 
   /**

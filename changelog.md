@@ -24,6 +24,11 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 
+#### 3.13.0 (2021-10-11)
+### Added
+- PathsInterface  
+* necessary for freeformjs support 
+
 #### 3.12.0 (2021-09-25)
 ### Added
 - Updated docs 
@@ -276,7 +281,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.12.2...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.13.0...HEAD
+[3.13.0]: https://github.com/perriera/extras/compare/v3.12.0...v3.13.0
 [3.12.0]: https://github.com/perriera/extras/compare/v3.11.0...v3.12.0
 [3.11.0]: https://github.com/perriera/extras/compare/v3.10.0...v3.11.0
 [3.10.0]: https://github.com/perriera/extras/compare/v3.8.2...v3.10.0
