@@ -107,6 +107,20 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
 
 export(TARGETS ${PROJECT_NAME} FILE extrasConfig.cmake)
 
+#
+# FreeFormJS client
+#
+add_executable(client instances/client.cpp) 
+target_include_directories(client PUBLIC ${INCLUDES})
+target_link_libraries(client PRIVATE ${PROJECT_NAME} stdc++fs )
+
+#
+# FreeFormJS client
+#
+add_executable(server instances/server.cpp) 
+target_include_directories(server PUBLIC ${INCLUDES})
+target_link_libraries(server PRIVATE ${PROJECT_NAME} stdc++fs )
+
 # if the compiler supports iter-procedural optimization, turn it on
 check_ipo_supported(RESULT result OUTPUT output)
 if(result)
