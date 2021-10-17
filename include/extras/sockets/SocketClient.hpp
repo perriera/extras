@@ -35,7 +35,6 @@ namespace extras {
 
   concrete class SocketClient implements SocketClientInterface {
     const std::string _hostname;
-    int _port;
     int _socket;
     struct sockaddr_in _serv_addr;
 
