@@ -21,7 +21,7 @@ namespace extras {
    *
    */
 
-  interface SocketClientInterface extends SocketInterface {
+  interface SocketClientInterface {
     virtual void connect() pure;
   };
 
