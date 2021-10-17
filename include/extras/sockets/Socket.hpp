@@ -22,9 +22,12 @@ namespace extras {
    */
 
   interface SocketInterface {
-    virtual void connect() pure;
     virtual void send(const std::string &msg) pure;
     virtual void read(int expectedMaxSize) pure;
+  };
+
+  interface SocketClientInterface extends SocketInterface {
+    virtual void connect() pure;
   };
 
   /**
@@ -35,7 +38,7 @@ namespace extras {
    *
    */
 
-  concrete class Socket implements SocketInterface {
+  concrete class Socket implements SocketClientInterface {
     const std::string _hostname;
     int _port;
     int _socket;

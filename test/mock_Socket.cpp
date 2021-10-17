@@ -16,11 +16,11 @@ using namespace fakeit;
  * @brief Mock FakeIt AlwaysDo demonstration
  *
  */
-SCENARIO("Mock SocketInterface: connect", "[SocketInterface]") {
-  Mock<SocketInterface> mock;
+SCENARIO("Mock SocketClientInterface: connect", "[SocketInterface]") {
+  Mock<SocketClientInterface> mock;
   When(Method(mock, connect)).Return();
 
-  SocketInterface &i = mock.get();
+  SocketClientInterface &i = mock.get();
   i.connect();
   Verify(Method(mock, connect));
 }
