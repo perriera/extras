@@ -8,11 +8,11 @@
 using namespace std;
 using namespace extras;
 
-SCENARIO("Verify SocketServerInterface SocketServer()",
-         "[SocketServerInterface]") {
-  int port = 8000;
-  SocketServer socket(port);
-}
+// SCENARIO("Verify SocketServerInterface SocketServer()",
+//          "[SocketServerInterface]") {
+//   int port = 8000;
+//   SocketServer socket(port);
+// }
 
 // SCENARIO("Verify SocketServerInterface accept()", "[SocketServerInterface]")
 // {
