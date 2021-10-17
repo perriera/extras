@@ -1,5 +1,6 @@
 #include <extras/sockets/SocketClient.hpp>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 using namespace extras;
@@ -9,7 +10,9 @@ int main(int, char const*[]) {
   try {
     SocketClient client("localhost", PORT);
     client.connect();
-    client.send("Hello from SocketClient");
+    stringstream ss;
+    ss << "Hello from SocketClient" << endl;
+    client.send(ss.str());
     string msg = client.read();
     cout << msg << endl;
   } catch (SocketException& ex) {

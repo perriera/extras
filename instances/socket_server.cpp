@@ -1,5 +1,6 @@
 #include <extras/sockets/SocketServer.hpp>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 using namespace extras;
@@ -11,7 +12,9 @@ int main(int, char const*[]) {
     server.accept();
     string msg = server.read();
     cout << msg << endl;
-    server.send("Hello from SocketServer");
+    stringstream ss;
+    ss << "Hello from SocketServer" << endl;
+    server.send(ss.str());
   } catch (SocketException& ex) {
     cout << ex.what() << endl;
   }
