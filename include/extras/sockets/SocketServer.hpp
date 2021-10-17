@@ -50,7 +50,7 @@ namespace extras {
         _proxy = nullptr;
       }
     }
-    virtual void accept();
+    virtual void accept() override;
     virtual void send(const std::string &msg) override { _proxy->send(msg); }
     virtual void read(int expectedMaxSize = 1024) override {
       _proxy->read(expectedMaxSize);

@@ -23,7 +23,7 @@ namespace extras {
     // Convert IPv4 and IPv6 addresses from text to binary form
     auto test = inet_pton(AF_INET, _hostname.c_str(), &_serv_addr.sin_addr);
     SocketException::assertLTZ(test, "IPv6 addresses not supported", __INFO__);
-    _proxy = new Socket(port, this->_socket);
+    _proxy = new Socket(this->_socket);
   }
 
   void SocketClient::connect() {

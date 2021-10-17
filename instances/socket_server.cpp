@@ -11,6 +11,6 @@ int main(int, char const*[]) {
   server.accept();
   server.read();
   string msg = server;
-  cout << "HELLO JESUS " << msg << endl;
+  cout << msg << endl;
   server.send("Hello from SocketServer");
 }

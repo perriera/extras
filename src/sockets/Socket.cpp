@@ -28,7 +28,7 @@ namespace extras {
     for (int i = 0; i < this->_readMsgSize; i++) {
       *ptr++ = buffer[i];
     }
-    delete buffer;
+    delete[] buffer;
   }
 
   Socket::operator std::string() {

@@ -44,15 +44,15 @@ using namespace extras;
 //   REQUIRE(msg == "Hello from server");
 // }
 
-SCENARIO("Verify SocketInterface socket_server", "[SocketInterfaceX]") {
-  string hostname = "localhost";
-  int port = 8000;
-  SocketClient socket(hostname, port);
-  system("build/socket_server &");
-  socket.connect();
-  socket.send("hello from SocketClient");
-  socket.read();
-  string msg = socket;
-  cout << msg << endl;
-  REQUIRE(msg == "Hello from SocketServer");
-}
+// SCENARIO("Verify SocketInterface socket_server", "[SocketInterfaceX]") {
+//   string hostname = "localhost";
+//   int port = 8000;
+//   SocketClient socket(hostname, port);
+//   system("build/socket_server &");
+//   socket.connect();
+//   socket.send("hello from SocketClient");
+//   socket.read();
+//   string msg = socket;
+//   cout << msg << endl;
+//   REQUIRE(msg == "Hello from SocketServer");
+// }

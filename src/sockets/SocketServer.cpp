@@ -45,7 +45,7 @@ namespace extras {
       delete _proxy;
       _proxy = nullptr;
     }
-    _proxy = new Socket(_port, this->_new_socket);
+    _proxy = new Socket(this->_new_socket);
     SocketException::assertLTZ(_new_socket, "accept", __INFO__);
   }
 

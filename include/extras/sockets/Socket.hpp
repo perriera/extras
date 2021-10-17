@@ -34,13 +34,12 @@ namespace extras {
    */
 
   concrete class Socket implements SocketInterface {
-    int _port;
     int _socket;
     byte *_readMsg = nullptr;
     int _readMsgSize;
 
    public:
-    Socket(int port, int socket) : _port(port), _socket(socket){};
+    Socket(int socket) : _socket(socket){};
     virtual ~Socket() {
       if (_readMsg != nullptr) {
         delete _readMsg;
