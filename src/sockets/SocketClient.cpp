@@ -23,6 +23,7 @@ namespace extras {
     // Convert IPv4 and IPv6 addresses from text to binary form
     auto test = inet_pton(AF_INET, _hostname.c_str(), &_serv_addr.sin_addr);
     SocketException::assertLTZ(test, "IPv6 addresses not supported", __INFO__);
+    _proxy = new Socket(port, this->_socket);
   }
 
   void SocketClient::connect() {
@@ -31,30 +32,15 @@ namespace extras {
     SocketException::assertLTZ(test, "Connection Failed", __INFO__);
   }
 
-  void SocketClient::send(const std::string &msg) {
-    const char *_msg = msg.c_str();
-    ::send(this->_socket, _msg, strlen(_msg), 0);
-  }
+  void SocketClient::send(const std::string &msg) { _proxy->send(msg); }
 
   void SocketClient::read(int expectedMaxSize) {
-    byte buffer[expectedMaxSize];
-    this->_readMsgSize = ::read(this->_socket, buffer, expectedMaxSize);
-    SocketException::assertLTZ(_socket, "read", __INFO__);
-    if (this->_readMsg != nullptr) delete this->_readMsg;
-    this->_readMsg = new byte[this->_readMsgSize];
-    byte *ptr = this->_readMsg;
-    for (int i = 0; i < this->_readMsgSize; i++) {
-      *ptr++ = buffer[i];
-    }
+    _proxy->read(expectedMaxSize);
   }
 
   SocketClient::operator std::string() {
-    std::stringstream ss;
-    byte *ptr = this->_readMsg;
-    for (int i = 0; i < this->_readMsgSize; i++) {
-      ss << *ptr++;
-    }
-    return ss.str();
+    std::string msg = *((Socket *)_proxy);
+    return msg;
   }
 
 }  // namespace extras

@@ -39,15 +39,15 @@ namespace extras {
     int _port;
     int _socket;
     struct sockaddr_in _serv_addr;
-    byte *_readMsg = nullptr;
-    int _readMsgSize;
+
+    SocketInterface *_proxy = nullptr;
 
    public:
     SocketClient(const std::string &hostname, int port);
     virtual ~SocketClient() {
-      if (_readMsg != nullptr) {
-        delete _readMsg;
-        _readMsg = nullptr;
+      if (_proxy != nullptr) {
+        delete _proxy;
+        _proxy = nullptr;
       }
     }
     virtual void connect();
