@@ -7,6 +7,7 @@
 #include <extras/exceptions.hpp>
 #include <extras/interfaces.hpp>
 #include <extras/sockets/SocketExceptions.hpp>
+#include <extras/sockets/SocketPackets.hpp>
 #include <extras/types.hpp>
 #include <iostream>
 
@@ -25,6 +26,7 @@ namespace extras {
     virtual SocketInterface &read(int expectedMaxSize) pure;
     virtual ~SocketInterface() {}
     virtual operator std::string() const pure;
+    virtual operator SocketPacket() const pure;
   };
 
   /**
@@ -51,6 +53,7 @@ namespace extras {
     virtual void send(const std::string &msg) override;
     virtual SocketInterface &read(int expectedMaxSize = 1024) override;
     operator std::string() const override;
+    operator SocketPacket() const override;
   };
 
 }  // namespace extras

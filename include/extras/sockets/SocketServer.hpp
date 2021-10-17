@@ -59,6 +59,11 @@ namespace extras {
       std::string msg = *((Socket *)_proxy);
       return msg;
     }
+
+    operator SocketPacket() const override {
+      SocketPacket msg = *((Socket *)_proxy);
+      return msg;
+    }
   };
 
 }  // namespace extras

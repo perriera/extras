@@ -44,4 +44,8 @@ namespace extras {
     return ss.str();
   }
 
+  Socket::operator SocketPacket() const {
+    return SocketPacket(this->_readMsg, this->_readMsgSize);
+  }
+
 }  // namespace extras
