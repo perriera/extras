@@ -40,7 +40,7 @@ namespace extras {
     int _readMsgSize;
 
    public:
-    Socket(int socket) : _socket(socket){};
+    Socket(int socket);
     virtual ~Socket() {
       if (_readMsg != nullptr) {
         delete _readMsg;
