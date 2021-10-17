@@ -6,9 +6,8 @@
 
 #include <extras/exceptions.hpp>
 #include <extras/interfaces.hpp>
+#include <extras/sockets/Socket.hpp>
 #include <iostream>
-
-#include "Socket.hpp"
 
 namespace extras {
 

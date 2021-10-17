@@ -15,7 +15,7 @@ namespace extras {
 
   Socket::Socket(int socket) : _socket(socket) {
     SocketException::assertLTZ(_socket, "socket", __INFO__);
-  };
+  }
 
   void Socket::send(const std::string &msg) {
     const char *_msg = msg.c_str();
@@ -42,23 +42,6 @@ namespace extras {
       ss << *ptr++;
     }
     return ss.str();
-  }
-
-  void SocketException::assertLTZ(int socket, const std::string &msg,
-                                  const WhereAmI &ref) {
-    if (socket < 0) throw SocketException(msg.c_str(), ref);
-  }
-  void SocketException::assertLTEQZ(int socket, const std::string &msg,
-                                    const WhereAmI &ref) {
-    if (socket <= 0) throw SocketException(msg.c_str(), ref);
-  }
-  void SocketException::assertZERO(int socket, const std::string &msg,
-                                   const WhereAmI &ref) {
-    if (socket != 0) throw SocketException(msg.c_str(), ref);
-  }
-  void SocketException::assertNEQZ(int socket, const std::string &msg,
-                                   const WhereAmI &ref) {
-    if (socket == 0) throw SocketException(msg.c_str(), ref);
   }
 
 }  // namespace extras
