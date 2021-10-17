@@ -52,11 +52,11 @@ namespace extras {
     }
     virtual void accept() override;
     virtual void send(const std::string &msg) override { _proxy->send(msg); }
-    virtual void read(int expectedMaxSize = 1024) override {
-      _proxy->read(expectedMaxSize);
+    virtual SocketInterface &read(int expectedMaxSize = 1024) override {
+      return _proxy->read(expectedMaxSize);
     }
 
-    operator std::string() {
+    operator std::string() const override {
       std::string msg = *((Socket *)_proxy);
       return msg;
     }

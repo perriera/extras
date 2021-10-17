@@ -18,7 +18,7 @@ namespace extras {
     ::send(this->_socket, _msg, strlen(_msg), 0);
   }
 
-  void Socket::read(int expectedMaxSize) {
+  SocketInterface &Socket::read(int expectedMaxSize) {
     byte *buffer = new byte[expectedMaxSize];
     this->_readMsgSize = ::read(this->_socket, buffer, expectedMaxSize);
     SocketException::assertLTZ(_socket, "read", __INFO__);
@@ -29,9 +29,10 @@ namespace extras {
       *ptr++ = buffer[i];
     }
     delete[] buffer;
+    return *this;
   }
 
-  Socket::operator std::string() {
+  Socket::operator std::string() const {
     std::stringstream ss;
     byte *ptr = this->_readMsg;
     for (int i = 0; i < this->_readMsgSize; i++) {

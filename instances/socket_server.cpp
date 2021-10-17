@@ -10,8 +10,7 @@ int main(int, char const*[]) {
   try {
     SocketServer server(PORT);
     server.accept();
-    server.read();
-    string msg = server;
+    string msg = server.read();
     cout << msg << endl;
     server.send("Hello from SocketServer");
   } catch (SocketException& ex) {
