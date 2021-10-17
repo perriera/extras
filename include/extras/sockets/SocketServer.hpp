@@ -20,10 +20,8 @@ namespace extras {
    *
    */
 
-  interface SocketServerInterface {
+  interface SocketServerInterface extends SocketInterface {
     virtual void accept() pure;
-    virtual void send(const std::string &msg) pure;
-    virtual void read(int expectedMaxSize) pure;
   };
 
   /**
