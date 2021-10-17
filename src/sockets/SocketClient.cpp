@@ -32,15 +32,4 @@ namespace extras {
     SocketException::assertLTZ(test, "Connection Failed", __INFO__);
   }
 
-  void SocketClient::send(const std::string &msg) { _proxy->send(msg); }
-
-  void SocketClient::read(int expectedMaxSize) {
-    _proxy->read(expectedMaxSize);
-  }
-
-  SocketClient::operator std::string() {
-    std::string msg = *((Socket *)_proxy);
-    return msg;
-  }
-
 }  // namespace extras

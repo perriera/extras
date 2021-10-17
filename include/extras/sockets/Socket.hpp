@@ -22,6 +22,7 @@ namespace extras {
   interface SocketInterface {
     virtual void send(const std::string &msg) pure;
     virtual void read(int expectedMaxSize) pure;
+    virtual ~SocketInterface() {}
   };
 
   /**
@@ -46,8 +47,8 @@ namespace extras {
         _readMsg = nullptr;
       }
     }
-    virtual void send(const std::string &msg);
-    virtual void read(int expectedMaxSize = 1024);
+    virtual void send(const std::string &msg) override;
+    virtual void read(int expectedMaxSize = 1024) override;
     operator std::string();
   };
   /**

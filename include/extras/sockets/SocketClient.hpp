@@ -50,10 +50,16 @@ namespace extras {
         _proxy = nullptr;
       }
     }
-    virtual void connect();
-    virtual void send(const std::string &msg);
-    virtual void read(int expectedMaxSize = 1024);
-    operator std::string();
+    virtual void connect() override;
+    virtual void send(const std::string &msg) override { _proxy->send(msg); }
+    virtual void read(int expectedMaxSize = 1024) override {
+      _proxy->read(expectedMaxSize);
+    }
+
+    operator std::string() {
+      std::string msg = *((Socket *)_proxy);
+      return msg;
+    }
   };
 
 }  // namespace extras
