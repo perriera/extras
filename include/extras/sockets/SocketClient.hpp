@@ -33,7 +33,8 @@ namespace extras {
    *
    */
 
-  concrete class SocketClient implements SocketClientInterface {
+  concrete class SocketClient implements SocketClientInterface with
+      SocketInterface {
     const std::string _hostname;
     int _port;
     int _socket;
