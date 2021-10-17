@@ -461,7 +461,7 @@ This header file defines constructs like the byte keyword:
 ## extras/sockets
  > add **extras/sockets/SocketClient.hpp** or **extras/sockets/SocketServer.hpp** to your C++ source</br>
  > **using namespace extras;**</br>
-This header file provides a basic wrapper around `socket(AF_INET, SOCK_STREAM, 0))` based functions for creating a client/server connection with any thing that takes a `"127.0.0.1"`, `"port` relationship:
+This header file provides a basic wrapper around `socket(AF_INET, SOCK_STREAM, 0))` based functions for creating a client/server connection with any thing that takes a `"127.0.0.1"`, `"port"` relationship:
 
     interface SocketInterface { 
         virtual void send(const std::string &msg) pure;
