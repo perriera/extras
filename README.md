@@ -477,7 +477,7 @@ This header file provides a basic wrapper around `socket(AF_INET, SOCK_STREAM, 0
         virtual void accept() pure;
     };
 
-Client code:
+**Client code**:
 
     #include <extras/sockets/SocketClient.hpp>
     #include <iostream>
@@ -498,7 +498,7 @@ Client code:
         }
     }
 
-Server code:
+**Server code**:
 
     #include <extras/sockets/SocketServer.hpp>
     #include <iostream>
