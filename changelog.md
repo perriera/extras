@@ -25,6 +25,12 @@ IMPORTANT:
 - Update Doxygen content
 - dev branch added
 
+#### 3.15.0 (2021-10-16)
+### Added
+- SocketInterface, Socket class
+* SocketClientInterface, SocketClient class
+* SocketServerInterface, SocketServer class
+
 #### 3.14.2 (2021-10-12)
 ### Added
 - The ~() overload on Paths class
