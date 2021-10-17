@@ -431,7 +431,7 @@ Copyright (c) 2013-2019 Niels Lohmann <http://nlohmann.me>
 	  }
 	}
 
-## extras/keywords
+## extras/keywords, (now known as extras/types.hpp)
  > add **extras/keywords.hpp** to your C++ source</br>
  > (this library is header only at this point in time)</br>
  > **using namespace extras;**</br>
@@ -457,6 +457,26 @@ This header file defines constructs like the byte keyword:
 	    using bytes = byte *;
 
 	}
+
+## extras/sockets
+ > add **extras/sockets/SocketClient.hpp** or **extras/sockets/SocketServer.hpp** to your C++ source</br>
+ > **using namespace extras;**</br>
+This header file provides a basic wrapper around `socket(AF_INET, SOCK_STREAM, 0))` based functions for creating a client/server connection with any thing that takes a `localhost:port` relationship:
+
+    interface SocketInterface {
+        virtual void send(const std::string &msg) pure;
+        virtual void read(int expectedMaxSize) pure;
+        virtual ~SocketInterface() {}
+    };
+
+    interface SocketClientInterface extends SocketInterface {
+        virtual void connect() pure;
+    };
+
+    interface SocketServerInterface extends SocketInterface {
+        virtual void accept() pure;
+    };
+
 
 ## extras/spdlog, (as a shared library)
  > when you git clone this repository to your directory structure and build it using the install 
