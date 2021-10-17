@@ -32,11 +32,13 @@ namespace extras {
   concrete class Socket implements SocketInterface {
     const std::string _hostname;
     int _port;
+    int _socket;
 
    public:
-    Socket(const std::string &hostname, int port)
-        : _hostname(hostname), _port(port) {}
-    virtual const InputStreamInterface &getInputStream() const {return };
+    Socket(const std::string &hostname, int port);
+    virtual const InputStreamInterface &getInputStream() const {
+      return InputStream();
+    };
   };
 
   /**
