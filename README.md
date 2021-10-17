@@ -477,6 +477,48 @@ This header file provides a basic wrapper around `socket(AF_INET, SOCK_STREAM, 0
         virtual void accept() pure;
     };
 
+Client code:
+
+    #include <extras/sockets/SocketClient.hpp>
+    #include <iostream>
+
+    using namespace std;
+    using namespace extras;
+
+    #define PORT 8000
+    int main(int, char const*[]) {
+        try {
+            SocketClient client("127.0.0.1", PORT);
+            client.connect();
+            client.send("Hello from SocketClient");
+            string msg = client.read();
+            cout << msg << endl;
+        } catch (SocketException& ex) {
+            cout << ex.what() << endl;
+        }
+    }
+
+Server code:
+
+    #include <extras/sockets/SocketServer.hpp>
+    #include <iostream>
+
+    using namespace std;
+    using namespace extras;
+
+    #define PORT 8000
+    int main(int, char const*[]) {
+        try {
+            SocketServer server(PORT);
+            server.accept();
+            string msg = server.read();
+            cout << msg << endl;
+            server.send("Hello from SocketServer");
+        } catch (SocketException& ex) {
+            cout << ex.what() << endl;
+        }
+    }
+
 
 ## extras/spdlog, (as a shared library)
  > when you git clone this repository to your directory structure and build it using the install 
