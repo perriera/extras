@@ -30,3 +30,15 @@ SCENARIO("Verify SocketInterface send()", "[SocketInterface]") {
   socket.connect();
   socket.send("hello from client");
 }
+
+SCENARIO("Verify SocketInterface read()", "[SocketInterface]") {
+  string hostname = "localhost";
+  int port = 8000;
+  Socket socket(hostname, port);
+  system("build/server &");
+  socket.connect();
+  socket.send("hello from client");
+  socket.read();
+  string msg = socket;
+  cout << msg << endl;
+}

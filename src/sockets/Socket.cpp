@@ -7,6 +7,7 @@
 #include <unistd.h>
 
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -45,6 +46,15 @@ namespace extras {
     for (int i = 0; i < this->_readMsgSize; i++) {
       *ptr++ = buffer[i];
     }
+  }
+
+  Socket::operator std::string() {
+    std::stringstream ss;
+    byte *ptr = this->_readMsg;
+    for (int i = 0; i < this->_readMsgSize; i++) {
+      ss << *ptr++;
+    }
+    return ss.str();
   }
 
   void SocketException::assertLTZ(int socket, const std::string &msg,
