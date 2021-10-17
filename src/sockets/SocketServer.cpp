@@ -50,7 +50,7 @@ namespace extras {
   }
 
   void SocketServer::read(int expectedMaxSize) {
-    byte buffer[expectedMaxSize];
+    byte *buffer = new byte[expectedMaxSize];
     this->_readMsgSize = ::read(this->_new_socket, buffer, expectedMaxSize);
     SocketException::assertLTZ(_new_socket, "read", __INFO__);
     if (this->_readMsg != nullptr) delete this->_readMsg;
@@ -59,6 +59,7 @@ namespace extras {
     for (int i = 0; i < this->_readMsgSize; i++) {
       *ptr++ = buffer[i];
     }
+    delete buffer;
   }
 
   SocketServer::operator std::string() {

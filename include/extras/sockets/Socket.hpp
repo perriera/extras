@@ -48,7 +48,6 @@ namespace extras {
         _readMsg = nullptr;
       }
     }
-    virtual void connect();
     virtual void send(const std::string &msg);
     virtual void read(int expectedMaxSize = 1024);
     operator std::string();
