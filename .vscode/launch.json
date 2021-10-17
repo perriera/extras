@@ -98,6 +98,29 @@
             ],
             "preLaunchTask": "Build C++ project",
             "miDebuggerPath": "/usr/bin/gdb"
-        }
+        },
+        {
+            "name": "socket_client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/socket_client",
+            "args": [
+                "127.0.0.1"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++ project",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
     ]
 }

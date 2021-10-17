@@ -35,24 +35,29 @@ namespace extras {
 
   concrete class SocketClient extends Socket with SocketClientInterface {
     const std::string _hostname;
-    // int _port;
-    // int _socket;
+    int _socket;
     struct sockaddr_in _serv_addr;
-    byte *_readMsg = nullptr;
-    int _readMsgSize;
+
+    SocketInterface *_proxy = nullptr;
 
    public:
     SocketClient(const std::string &hostname, int port);
     virtual ~SocketClient() {
-      if (_readMsg != nullptr) {
-        delete _readMsg;
-        _readMsg = nullptr;
+      if (_proxy != nullptr) {
+        delete _proxy;
+        _proxy = nullptr;
       }
     }
-    virtual void connect();
-    virtual void send(const std::string &msg);
-    virtual void read(int expectedMaxSize = 1024);
-    operator std::string();
+    virtual void connect() override;
+    virtual void send(const std::string &msg) override { _proxy->send(msg); }
+    virtual void read(int expectedMaxSize = 1024) override {
+      _proxy->read(expectedMaxSize);
+    }
+
+    operator std::string() {
+      std::string msg = *((Socket *)_proxy);
+      return msg;
+    }
   };
 
 }  // namespace extras

@@ -22,6 +22,7 @@ namespace extras {
   interface SocketInterface {
     virtual void send(const std::string &msg) pure;
     virtual void read(int expectedMaxSize) pure;
+    virtual ~SocketInterface() {}
   };
 
   /**
@@ -33,7 +34,7 @@ namespace extras {
    */
 
   concrete class Socket implements SocketInterface {
-   private:
+    int _socket;
     byte *_readMsg = nullptr;
     int _readMsgSize;
 
@@ -42,15 +43,15 @@ namespace extras {
     int _socket;
 
    public:
-    Socket(int port) : _port(port){};
+    Socket(int socket) : _socket(socket){};
     virtual ~Socket() {
       if (_readMsg != nullptr) {
         delete _readMsg;
         _readMsg = nullptr;
       }
     }
-    virtual void send(const std::string &msg);
-    virtual void read(int expectedMaxSize = 1024);
+    virtual void send(const std::string &msg) override;
+    virtual void read(int expectedMaxSize = 1024) override;
     operator std::string();
   };
   /**

@@ -126,7 +126,15 @@ target_link_libraries(server PRIVATE ${PROJECT_NAME} stdc++fs )
 #
 add_executable(socket_server instances/socket_server.cpp) 
 target_include_directories(socket_server PUBLIC ${INCLUDES})
-target_link_libraries(socket_server PRIVATE ${PROJECT_NAME} stdc++fs )
+target_link_libraries(socket_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
+#
+# FreeFormJS socket_client
+#
+add_executable(socket_client instances/socket_client.cpp) 
+target_include_directories(socket_client PUBLIC ${INCLUDES})
+target_link_libraries(socket_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
 
 # if the compiler supports iter-procedural optimization, turn it on
 check_ipo_supported(RESULT result OUTPUT output)
