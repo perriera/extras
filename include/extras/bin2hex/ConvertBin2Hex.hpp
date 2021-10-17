@@ -31,6 +31,8 @@ namespace extras {
 
   interface HexInterface {
     virtual HexArray array() const pure;
+    virtual int lines() const pure;
+    virtual int size() const pure;
     virtual ~HexInterface(){};
   };
 
