@@ -38,10 +38,8 @@ namespace extras {
     int _readMsgSize;
 
    protected:
-    const std::string _hostname;
     int _port;
     int _socket;
-    // struct sockaddr_in _serv_addr;
 
    public:
     Socket(int port) : _port(port){};
