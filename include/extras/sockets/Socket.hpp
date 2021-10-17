@@ -1,6 +1,9 @@
 #ifndef _EXTRA_SOCKET_HPP
 #define _EXTRA_SOCKET_HPP
 
+#include <netinet/in.h>
+#include <sys/socket.h>
+
 #include <extras/exceptions.hpp>
 #include <extras/interfaces.hpp>
 #include <iostream>
@@ -19,6 +22,7 @@ namespace extras {
 
   interface SocketInterface {
     virtual const InputStreamInterface &getInputStream() const pure;
+    virtual void connect() pure;
   };
 
   /**
@@ -33,9 +37,11 @@ namespace extras {
     const std::string _hostname;
     int _port;
     int _socket;
+    struct sockaddr_in _serv_addr;
 
    public:
     Socket(const std::string &hostname, int port);
+    virtual void connect();
     virtual const InputStreamInterface &getInputStream() const {
       return InputStream();
     };
@@ -52,8 +58,9 @@ namespace extras {
     SocketException(const char *msg, const WhereAmI &whereAmI)
         : AbstractCustomException(msg, whereAmI._file.c_str(),
                                   whereAmI._func.c_str(), whereAmI._line) {}
-    static void assertion(const std::string &hostname, int port,
-                          const WhereAmI &ref);
+    static void assertion(int socket, const WhereAmI &ref);
+    static void assertion1(int errnumber, const WhereAmI &ref);
+    static void assertion2(int errnumber, const WhereAmI &ref);
   };
 
 }  // namespace extras
