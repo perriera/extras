@@ -15,7 +15,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/run-unittests-extras",
             "args": [
-                "[paths_support]"
+                "[SocketInterface]"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -54,7 +54,7 @@
             ],
             "preLaunchTask": "Build C++ project",
             "miDebuggerPath": "/usr/bin/gdb"
-        }
+        },
         {
             "name": "client",
             "type": "cppdbg",
