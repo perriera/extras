@@ -41,4 +41,5 @@ SCENARIO("Verify SocketInterface read()", "[SocketInterface]") {
   socket.read();
   string msg = socket;
   cout << msg << endl;
+  REQUIRE(msg == "Hello from server");
 }
