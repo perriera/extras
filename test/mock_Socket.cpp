@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "catch.hpp"
-#include "extras/sockets/Socket.hpp"
+#include "extras/sockets/SocketClient.hpp"
 #include "fakeit.hpp"
 
 //
