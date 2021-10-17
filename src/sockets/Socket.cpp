@@ -30,6 +30,11 @@ namespace extras {
     SocketException::assertLTZ(_socket, "Connection Failed", __INFO__);
   }
 
+  void Socket::send(const std::string &msg) {
+    const char *_msg = msg.c_str();
+    ::send(this->_socket, _msg, strlen(_msg), 0);
+  }
+
   void SocketException::assertLTZ(int socket, const std::string &msg,
                                   const WhereAmI &ref) {
     if (socket < 0) throw SocketException(msg.c_str(), ref);

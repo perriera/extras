@@ -21,3 +21,12 @@ SCENARIO("Verify SocketInterface connect()", "[SocketInterface]") {
   system("build/server &");
   socket.connect();
 }
+
+SCENARIO("Verify SocketInterface send()", "[SocketInterface]") {
+  string hostname = "localhost";
+  int port = 8000;
+  Socket socket(hostname, port);
+  system("build/server &");
+  socket.connect();
+  socket.send("hello from client");
+}

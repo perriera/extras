@@ -23,6 +23,7 @@ namespace extras {
   interface SocketInterface {
     virtual const InputStreamInterface &getInputStream() const pure;
     virtual void connect() pure;
+    virtual void send(const std::string &msg) pure;
   };
 
   /**
@@ -42,6 +43,7 @@ namespace extras {
    public:
     Socket(const std::string &hostname, int port);
     virtual void connect();
+    virtual void send(const std::string &msg);
     virtual const InputStreamInterface &getInputStream() const {
       return InputStream();
     };
