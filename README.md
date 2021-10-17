@@ -463,12 +463,13 @@ This header file defines constructs like the byte keyword:
  > **using namespace extras;**</br>
 This header file provides a basic wrapper around `socket(AF_INET, SOCK_STREAM, 0))` based functions for creating a client/server connection with any thing that takes a `"127.0.0.1"`, `"port"` relationship:
 
-    interface SocketInterface { 
+    interface SocketInterface {
         virtual void send(const std::string &msg) pure;
-        virtual void read(int expectedMaxSize) pure;
+        virtual SocketInterface &read(int expectedMaxSize) pure;
         virtual ~SocketInterface() {}
+        virtual operator std::string() const pure;
     };
-
+    
     interface SocketClientInterface extends SocketInterface {
         virtual void connect() pure;
     };
