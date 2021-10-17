@@ -39,15 +39,27 @@ namespace extras {
     struct sockaddr_in _address;
     int _addrlen;
     int _new_socket;
-    byte *_readMsg = nullptr;
-    int _readMsgSize;
+
+    SocketInterface *_proxy = nullptr;
 
    public:
     SocketServer(int port);
+    virtual ~SocketServer() {
+      if (_proxy != nullptr) {
+        delete _proxy;
+        _proxy = nullptr;
+      }
+    }
     virtual void accept();
-    virtual void send(const std::string &msg);
-    virtual void read(int expectedMaxSize = 1024);
-    operator std::string();
+    virtual void send(const std::string &msg) override { _proxy->send(msg); }
+    virtual void read(int expectedMaxSize = 1024) override {
+      _proxy->read(expectedMaxSize);
+    }
+
+    operator std::string() {
+      std::string msg = *((Socket *)_proxy);
+      return msg;
+    }
   };
 
 }  // namespace extras

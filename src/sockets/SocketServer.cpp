@@ -41,33 +41,12 @@ namespace extras {
   void SocketServer::accept() {
     _new_socket = ::accept(_server_fd, (struct sockaddr *)&_address,
                            (socklen_t *)&_addrlen);
+    if (_proxy != nullptr) {
+      delete _proxy;
+      _proxy = nullptr;
+    }
+    _proxy = new Socket(_port, this->_new_socket);
     SocketException::assertLTZ(_new_socket, "accept", __INFO__);
-  }
-
-  void SocketServer::send(const std::string &msg) {
-    const char *_msg = msg.c_str();
-    ::send(this->_new_socket, _msg, strlen(_msg), 0);
-  }
-
-  void SocketServer::read(int expectedMaxSize) {
-    byte buffer[expectedMaxSize];
-    this->_readMsgSize = ::read(this->_new_socket, buffer, expectedMaxSize);
-    SocketException::assertLTZ(_new_socket, "read", __INFO__);
-    if (this->_readMsg != nullptr) delete this->_readMsg;
-    this->_readMsg = new byte[this->_readMsgSize];
-    byte *ptr = this->_readMsg;
-    for (int i = 0; i < this->_readMsgSize; i++) {
-      *ptr++ = buffer[i];
-    }
-  }
-
-  SocketServer::operator std::string() {
-    std::stringstream ss;
-    byte *ptr = this->_readMsg;
-    for (int i = 0; i < this->_readMsgSize; i++) {
-      ss << *ptr++;
-    }
-    return ss.str();
   }
 
 }  // namespace extras
