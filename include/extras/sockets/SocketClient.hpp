@@ -39,6 +39,7 @@ namespace extras {
     struct sockaddr_in _serv_addr;
 
     SocketInterface *_proxy = nullptr;
+    std::string ip_address(const std::string &domainname);
 
    public:
     SocketClient(const std::string &hostname, int port);
