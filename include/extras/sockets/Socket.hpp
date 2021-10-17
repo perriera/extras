@@ -48,7 +48,7 @@ namespace extras {
   };
 
   /**
-   * @brief OctalException
+   * @brief SocketException
    *
    * To be thrown if either string or value supplied is out of range.
    *
@@ -58,9 +58,14 @@ namespace extras {
     SocketException(const char *msg, const WhereAmI &whereAmI)
         : AbstractCustomException(msg, whereAmI._file.c_str(),
                                   whereAmI._func.c_str(), whereAmI._line) {}
-    static void assertion(int socket, const WhereAmI &ref);
-    static void assertion1(int errnumber, const WhereAmI &ref);
-    static void assertion2(int errnumber, const WhereAmI &ref);
+    static void assertLTZ(int socket, const std::string &msg,
+                          const WhereAmI &ref);
+    static void assertLTEQZ(int socket, const std::string &msg,
+                            const WhereAmI &ref);
+    static void assertZERO(int socket, const std::string &msg,
+                           const WhereAmI &ref);
+    static void assertNEQZ(int socket, const std::string &msg,
+                           const WhereAmI &ref);
   };
 
 }  // namespace extras
