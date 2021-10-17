@@ -14,7 +14,7 @@ using namespace std;
 namespace extras {
 
   SocketClient::SocketClient(const std::string &hostname, int port)
-      : _hostname(hostname), _port(port) {
+      : Socket(port), _hostname(hostname) {
     this->_socket = socket(AF_INET, SOCK_STREAM, 0);
     SocketException::assertLTZ(_socket, "SocketClient creation error",
                                __INFO__);

@@ -33,6 +33,7 @@ namespace extras {
    */
 
   concrete class Socket implements SocketInterface {
+   protected:
     const std::string _hostname;
     int _port;
     int _socket;
