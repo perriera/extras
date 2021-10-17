@@ -37,7 +37,7 @@ namespace extras {
     const std::string _hostname;
     // int _port;
     // int _socket;
-    // struct sockaddr_in _serv_addr;
+    struct sockaddr_in _serv_addr;
     byte *_readMsg = nullptr;
     int _readMsgSize;
 

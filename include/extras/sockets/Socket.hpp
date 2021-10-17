@@ -33,13 +33,15 @@ namespace extras {
    */
 
   concrete class Socket implements SocketInterface {
+   private:
+    byte *_readMsg = nullptr;
+    int _readMsgSize;
+
    protected:
     const std::string _hostname;
     int _port;
     int _socket;
-    struct sockaddr_in _serv_addr;
-    byte *_readMsg = nullptr;
-    int _readMsgSize;
+    // struct sockaddr_in _serv_addr;
 
    public:
     Socket(int port) : _port(port){};
