@@ -21,7 +21,6 @@ namespace extras {
    */
 
   interface SocketServerInterface {
-    virtual const InputStreamInterface &getInputStream() const pure;
     virtual void accept() pure;
   };
 
@@ -43,9 +42,6 @@ namespace extras {
    public:
     SocketServer(int port);
     virtual void accept();
-    virtual const InputStreamInterface &getInputStream() const {
-      return InputStream();
-    };
   };
 
 }  // namespace extras

@@ -6,6 +6,7 @@
 
 #include <extras/exceptions.hpp>
 #include <extras/interfaces.hpp>
+#include <extras/types.hpp>
 #include <iostream>
 
 #include "InputStream.hpp"
@@ -21,9 +22,9 @@ namespace extras {
    */
 
   interface SocketInterface {
-    virtual const InputStreamInterface &getInputStream() const pure;
     virtual void connect() pure;
     virtual void send(const std::string &msg) pure;
+    virtual void read(int expectedMaxSize) pure;
   };
 
   /**
@@ -39,14 +40,21 @@ namespace extras {
     int _port;
     int _socket;
     struct sockaddr_in _serv_addr;
+    byte *_readMsg = nullptr;
+    int _readMsgSize;
 
    public:
     Socket(const std::string &hostname, int port);
+    virtual ~Socket() {
+      if (_readMsg != nullptr) {
+        delete _readMsg;
+        _readMsg = nullptr;
+      }
+    }
     virtual void connect();
     virtual void send(const std::string &msg);
-    virtual const InputStreamInterface &getInputStream() const {
-      return InputStream();
-    };
+    virtual void read(int expectedMaxSize = 1024);
+    operator std::string();
   };
 
   /**

@@ -16,12 +16,11 @@ using namespace fakeit;
  * @brief Mock FakeIt AlwaysDo demonstration
  *
  */
-SCENARIO("Mock SocketInterface: InputStream", "[SocketInterface]") {
-  auto correct_answer = InputStream();
+SCENARIO("Mock SocketInterface: connect", "[SocketInterface]") {
   Mock<SocketInterface> mock;
-  When(Method(mock, getInputStream)).Return(correct_answer);
+  When(Method(mock, connect)).Return();
 
   SocketInterface &i = mock.get();
-  REQUIRE(i.getInputStream() == correct_answer);
-  Verify(Method(mock, getInputStream));
+  i.connect();
+  Verify(Method(mock, connect));
 }
