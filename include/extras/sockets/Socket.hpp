@@ -36,6 +36,7 @@ namespace extras {
    public:
     Socket(const std::string &hostname, int port)
         : _hostname(hostname), _port(port) {}
+    virtual const InputStreamInterface &getInputStream() const {return };
   };
 
   /**
