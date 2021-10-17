@@ -25,6 +25,35 @@ namespace extras {
   };
 
   /**
+   * @brief SocketInterface
+   *
+   * Used by the ChessMind project, it introduces an interface
+   * to safely convert a number to and from octal format.
+   *
+   */
+
+  concrete class Socket implements SocketInterface {
+    const std::string _hostname;
+    int _port;
+    int _socket;
+    struct sockaddr_in _serv_addr;
+    byte *_readMsg = nullptr;
+    int _readMsgSize;
+
+   public:
+    Socket(int port) : _port(port){};
+    virtual ~Socket() {
+      if (_readMsg != nullptr) {
+        delete _readMsg;
+        _readMsg = nullptr;
+      }
+    }
+    virtual void connect();
+    virtual void send(const std::string &msg);
+    virtual void read(int expectedMaxSize = 1024);
+    operator std::string();
+  };
+  /**
    * @brief SocketException
    *
    * To be thrown if either string or value supplied is out of range.
