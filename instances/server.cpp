@@ -4,6 +4,8 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
+
+#include <iostream>
 #define PORT 8000
 int main(int, char const*[]) {
   int server_fd, new_socket, valread;
@@ -38,11 +40,13 @@ int main(int, char const*[]) {
     perror("listen");
     exit(EXIT_FAILURE);
   }
+  std::cout << "server started" << std::endl;
   if ((new_socket = accept(server_fd, (struct sockaddr*)&address,
                            (socklen_t*)&addrlen)) < 0) {
     perror("accept");
     exit(EXIT_FAILURE);
   }
+  std::cout << "server accepted" << std::endl;
   valread = read(new_socket, buffer, 1024);
   if (valread < 0) {
     perror("listen");

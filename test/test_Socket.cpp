@@ -8,12 +8,16 @@
 using namespace std;
 using namespace extras;
 
-SCENARIO("Verify SocketInterface default", "[SocketInterface]") {
+SCENARIO("Verify SocketInterface socket()", "[SocketInterface]") {
   string hostname = "localhost";
   int port = 8000;
   Socket socket(hostname, port);
-  //   std::string value = Paths::instance().actualPath("~/Downloads");
-  //   REQUIRE(value != "~/Downloads");
-  //   REQUIRE(extras::contains(value, "/home/"));
-  //   REQUIRE(!extras::contains(value, "~"));
+}
+
+SCENARIO("Verify SocketInterface connect()", "[SocketInterface]") {
+  string hostname = "localhost";
+  int port = 8000;
+  Socket socket(hostname, port);
+  system("build/server &");
+  socket.connect();
 }
