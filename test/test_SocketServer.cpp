@@ -14,7 +14,14 @@ SCENARIO("Verify SocketServerInterface SocketServer()",
   SocketServer socket(port);
 }
 
-SCENARIO("Verify SocketServerInterface accept()", "[SocketServerInterface]") {
-  int port = 8000;
-  SocketServer socket(port);
-}
+// SCENARIO("Verify SocketServerInterface accept()", "[SocketServerInterface]")
+// {
+//   int port = 8000;
+//   SocketServer socket(port);
+//   socket.accept();
+// }
+
+// SCENARIO("Verify SocketServerInterface socket_server",
+//          "[SocketServerInterface]") {
+//     system("build/socket_server &");
+// }

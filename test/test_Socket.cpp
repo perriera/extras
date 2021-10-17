@@ -43,3 +43,16 @@ SCENARIO("Verify SocketInterface read()", "[SocketInterface]") {
   cout << msg << endl;
   REQUIRE(msg == "Hello from server");
 }
+
+SCENARIO("Verify SocketInterface socket_server", "[SocketInterfaceX]") {
+  string hostname = "localhost";
+  int port = 8000;
+  Socket socket(hostname, port);
+  system("build/socket_server &");
+  socket.connect();
+  socket.send("hello from Socket");
+  socket.read();
+  string msg = socket;
+  cout << msg << endl;
+  REQUIRE(msg == "Hello from SocketServer");
+}

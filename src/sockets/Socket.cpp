@@ -21,14 +21,13 @@ namespace extras {
     this->_serv_addr.sin_port = htons(_port);
     // Convert IPv4 and IPv6 addresses from text to binary form
     auto test = inet_pton(AF_INET, _hostname.c_str(), &_serv_addr.sin_addr);
-    SocketException::assertLTZ(_socket, "IPv6 addresses not supported",
-                               __INFO__);
+    SocketException::assertLTZ(test, "IPv6 addresses not supported", __INFO__);
   }
 
   void Socket::connect() {
     auto test = ::connect(this->_socket, (struct sockaddr *)&_serv_addr,
                           sizeof(_serv_addr));
-    SocketException::assertLTZ(_socket, "Connection Failed", __INFO__);
+    SocketException::assertLTZ(test, "Connection Failed", __INFO__);
   }
 
   void Socket::send(const std::string &msg) {
