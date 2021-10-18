@@ -20,11 +20,14 @@ namespace extras {
    */
 
   concrete class BinFile implements BinInterface {
-    byte *_array = nullptr;
+    friend std::ostream& operator<<(std::ostream& out, const BinFile& obj);
+    friend std::istream& operator>>(std::istream& in, BinFile& obj);
+
+    byte* _array = nullptr;
     int _size;
 
    public:
-    virtual const byte *array() const override { return _array; }
+    virtual const byte* array() const override { return _array; }
     virtual int size() const override { return _size; }
   };
 
