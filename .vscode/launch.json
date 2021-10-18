@@ -15,7 +15,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/run-unittests-extras",
             "args": [
-                "[BinInterface]"
+                "[HexFileTransfer]"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

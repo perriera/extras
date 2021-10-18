@@ -23,7 +23,7 @@ namespace extras {
         string hex_string;
         ss2 >> hex_string;
         int value = stoi(hex_string, 0, 16);
-        byte byte_value = value;
+        byte byte_value = (byte)value;
         binArray.push_back(byte_value);
       }
     }
