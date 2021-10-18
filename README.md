@@ -221,6 +221,12 @@ Or, as of 3.2.1 you must set DEBUG to false, (& BUILD_TESTS=false) on the comman
 
 *"Setting up a new C++ project usually requires a significant amount of preparation and boilerplate code, even more so for modern C++ projects with tests, executables and continuous integration. This template is the result of learnings from many previous projects and should help reduce the work required to setup up a modern C++ project." -- The Lartians</br>*
 
+### FYI: cpp_starter
+> If you are looking for a solid C++ CMakeLists.txt skeleton project, (based on ModernCppStarter but includes support for **perriera/extras**), then you want to checkout, <br/> checkout **cpp_starter**:</br>
+> 
+[cpp_starter](https://github.com/perriera/cpp_starter)
+This project will get you up and running with the latest CPM support as well as this library, (a real time saver).
+
 https://github.com/TheLartians/ModernCppStarter/blob/master/LICENSE</br>
 Copyright (c) 2019 The Lartians
 
@@ -482,6 +488,7 @@ This header file provides a basic wrapper around `socket(AF_INET, SOCK_STREAM, 0
 
     #include <extras/sockets/SocketClient.hpp>
     #include <iostream>
+    #include <sstream>
 
     using namespace std;
     using namespace extras;
@@ -489,9 +496,11 @@ This header file provides a basic wrapper around `socket(AF_INET, SOCK_STREAM, 0
     #define PORT 8000
     int main(int, char const*[]) {
         try {
-            SocketClient client("127.0.0.1", PORT);
+            SocketClient client("localhost", PORT);
             client.connect();
-            client.send("Hello from SocketClient");
+            stringstream ss;
+            ss << "Hello from SocketClient" << endl;
+            client.send(ss.str());
             string msg = client.read();
             cout << msg << endl;
         } catch (SocketException& ex) {
@@ -503,6 +512,7 @@ This header file provides a basic wrapper around `socket(AF_INET, SOCK_STREAM, 0
 
     #include <extras/sockets/SocketServer.hpp>
     #include <iostream>
+    #include <sstream>
 
     using namespace std;
     using namespace extras;
@@ -514,7 +524,9 @@ This header file provides a basic wrapper around `socket(AF_INET, SOCK_STREAM, 0
             server.accept();
             string msg = server.read();
             cout << msg << endl;
-            server.send("Hello from SocketServer");
+            stringstream ss;
+            ss << "Hello from SocketServer" << endl;
+            server.send(ss.str());
         } catch (SocketException& ex) {
             cout << ex.what() << endl;
         }
