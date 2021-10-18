@@ -4,7 +4,7 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 
-#include <extras/bin2hex/ConvertBin2Hex.hpp>
+#include <extras/bin2hex/HexInterface.hpp>
 #include <extras/exceptions.hpp>
 #include <extras/interfaces.hpp>
 #include <extras/types.hpp>
@@ -25,6 +25,7 @@ namespace extras {
    public:
     HexFile(){};
     HexFile(const HexArray& array) : _array(array) {}
+
     virtual HexArray array() const override { return _array; }
     virtual int lines() const override { return _array.size(); }
     virtual int size() const override {

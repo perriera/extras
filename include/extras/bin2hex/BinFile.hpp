@@ -4,7 +4,7 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 
-#include <extras/bin2hex/ConvertBin2Hex.hpp>
+#include <extras/bin2hex/BinInterface.hpp>
 #include <extras/exceptions.hpp>
 #include <extras/interfaces.hpp>
 #include <extras/types.hpp>
