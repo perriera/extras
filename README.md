@@ -221,14 +221,14 @@ Or, as of 3.2.1 you must set DEBUG to false, (& BUILD_TESTS=false) on the comman
 
 *"Setting up a new C++ project usually requires a significant amount of preparation and boilerplate code, even more so for modern C++ projects with tests, executables and continuous integration. This template is the result of learnings from many previous projects and should help reduce the work required to setup up a modern C++ project." -- The Lartians</br>*
 
+https://github.com/TheLartians/ModernCppStarter/blob/master/LICENSE</br>
+Copyright (c) 2019 The Lartians
+
 ### FYI: cpp_starter
 > If you are looking for a solid C++ CMakeLists.txt skeleton project, (based on ModernCppStarter but includes support for **perriera/extras**), then you want to checkout, <br/> checkout **cpp_starter**:</br>
 > 
-[cpp_starter](https://github.com/perriera/cpp_starter)
+[cpp_starter](https://github.com/perriera/cpp_starter)<br/>
 This project will get you up and running with the latest CPM support as well as this library, (a real time saver).
-
-https://github.com/TheLartians/ModernCppStarter/blob/master/LICENSE</br>
-Copyright (c) 2019 The Lartians
 
 ## C++ namespace support
 As of version 2.0.0 the (perriera) **extras** package now requires the use of the namespace **extras**.
