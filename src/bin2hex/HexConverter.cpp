@@ -15,7 +15,7 @@ namespace extras {
     int i = 0;
     while (i < bin.size()) {
       stringstream ss;
-      for (int x = 0; x < 80; x++, i++) {
+      for (int x = 0; x < 40; x++, i++) {
         byte value = *p++;
         ss << std::hex << std::setfill('0') << std::setw(2);
         ss << static_cast<int>(value);
@@ -26,9 +26,3 @@ namespace extras {
     return hexArray;
   }
 }  // namespace extras
-
-// ss << std::hex << std::setfill('0');
-
-//   for (int i = 0; i < s; i++) {
-//     ss << std::hex << std::setw(2) << static_cast<int>(v[i]);
-//   }

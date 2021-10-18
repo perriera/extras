@@ -34,7 +34,7 @@ SCENARIO("Test HexFile >>", "[BinInterface]") {
   auto t5 = t2 % file_size;
   auto t6 = t2 - t5;
   REQUIRE(t3 == t6);
-  REQUIRE(hexFile.lines() == (binFile.size() / 80) + 1);
+  REQUIRE(hexFile.lines() == (binFile.size() / 40) + 1);
   for (auto line : hexFile.array()) {
     cout << line << endl;
   }
