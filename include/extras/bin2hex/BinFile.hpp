@@ -24,7 +24,7 @@ namespace extras {
     friend std::istream& operator>>(std::istream& in, BinFile& obj);
 
     byte* _array = nullptr;
-    int _size;
+    int _size = 0;
 
    public:
     virtual const byte* array() const override { return _array; }

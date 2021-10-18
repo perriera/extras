@@ -26,7 +26,7 @@ namespace extras {
     virtual HexArray array() const override { return _array; }
     virtual int lines() const override { return _array.size(); }
     virtual int size() const override {
-      int _size;
+      int _size = 0;
       for (auto line : _array) {
         _size += line.length();
       }
