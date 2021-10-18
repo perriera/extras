@@ -53,3 +53,14 @@ SCENARIO("Mock Bin2HexInterface: bin2hex", "[BinInterface]") {
   REQUIRE(i.bin2hex(param1) == correct_answer);
   Verify(Method(mock, bin2hex));
 }
+
+SCENARIO("Mock Hex2BinInterface: hex2bin", "[BinInterface]") {
+  BinFile correct_answer;
+  Mock<Hex2BinInterface> mock;
+  When(Method(mock, hex2bin)).Return(correct_answer);
+
+  HexFile param1;
+  Hex2BinInterface& i = mock.get();
+  REQUIRE(i.hex2bin(param1) == correct_answer);
+  Verify(Method(mock, hex2bin));
+}

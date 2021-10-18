@@ -22,6 +22,14 @@ namespace extras {
     virtual const byte *array() const pure;
     virtual int size() const pure;
     virtual ~BinInterface(){};
+    bool operator==(const BinInterface &rhs) const {
+      if (size() != rhs.size()) return false;
+      auto p1 = this->array();
+      auto p2 = rhs.array();
+      for (auto i = 0; i < size(); i++)
+        if (*p1++ != *p2++) return false;
+      return true;
+    }
   };
 
   /**
