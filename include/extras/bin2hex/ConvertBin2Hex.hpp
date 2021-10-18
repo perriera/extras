@@ -18,6 +18,8 @@ namespace extras {
    * Maintains a binrary array in memory
    */
 
+  using BinArray = std::vector<byte>;
+
   interface BinInterface {
     virtual const byte *array() const pure;
     virtual int size() const pure;
@@ -71,7 +73,7 @@ namespace extras {
    */
 
   interface Hex2BinInterface {
-    virtual const BinInterface &hex2bin(const HexInterface &hex) const pure;
+    virtual BinArray hex2bin(const HexInterface &hex) const pure;
     virtual ~Hex2BinInterface() {}
   };
 

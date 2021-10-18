@@ -4,6 +4,7 @@
 #include <sstream>
 
 #include "catch.hpp"
+#include "extras/bin2hex/BinConverter.hpp"
 #include "extras/bin2hex/BinFile.hpp"
 #include "extras/bin2hex/ConvertBin2Hex.hpp"
 #include "extras/bin2hex/HexConverter.hpp"
@@ -28,16 +29,12 @@ SCENARIO("Test HexFile >>", "[BinInterface]") {
   REQUIRE(binFile.size() == file_size);
   HexConverter hexConverter;
   HexFile hexFile = hexConverter.bin2hex(binFile);
-  auto t2 = hexFile.size();
-  auto t3 = file_size * 2;
-  auto t4 = t2 - t3;
-  auto t5 = t2 % file_size;
-  auto t6 = t2 - t5;
-  REQUIRE(t3 == t6);
-  REQUIRE(hexFile.lines() == (binFile.size() / 40) + 1);
-  for (auto line : hexFile.array()) {
-    cout << line << endl;
-  }
+  REQUIRE(hexFile.size() == file_size * 2);
+  BinConverter binConverter;
+  BinArray binArray = binConverter.hex2bin(hexFile);
+  auto z1 = binArray.size();
+  auto z2 = z1 - file_size;
+  REQUIRE(binArray.size() == file_size);
 }
 
 // SCENARIO("Test HexFile <<", "[BinInterface]") {
