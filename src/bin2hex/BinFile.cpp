@@ -28,4 +28,13 @@ namespace extras {
     return in;
   }
 
+  BinFile::BinFile(const BinArray& binArray) {
+    _size = binArray.size();
+    _array = new byte[_size];
+    auto* p = _array;
+    for (auto value : binArray) {
+      *p++ = value;
+    }
+  }
+
 }  // namespace extras

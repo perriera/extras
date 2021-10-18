@@ -31,10 +31,9 @@ SCENARIO("Test HexFile >>", "[BinInterface]") {
   HexFile hexFile = hexConverter.bin2hex(binFile);
   REQUIRE(hexFile.size() == file_size * 2);
   BinConverter binConverter;
-  BinArray binArray = binConverter.hex2bin(hexFile);
-  auto z1 = binArray.size();
-  auto z2 = z1 - file_size;
-  REQUIRE(binArray.size() == file_size);
+  BinFile binFile2 = binConverter.hex2bin(hexFile);
+  REQUIRE(binFile2.size() == file_size);
+  REQUIRE(binFile2 == binFile);
 }
 
 // SCENARIO("Test HexFile <<", "[BinInterface]") {

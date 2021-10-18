@@ -28,7 +28,7 @@ namespace extras {
 
    public:
     BinFile(){};
-    // BinFile(const BinArray& binArray) : _array(BinArray) {}
+    BinFile(const BinArray& binArray);
 
     virtual const byte* array() const override { return _array; }
     virtual int size() const override { return _size; }
