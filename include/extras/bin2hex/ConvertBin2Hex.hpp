@@ -13,11 +13,9 @@
 namespace extras {
 
   /**
-   * @brief SocketInterface
+   * @brief BinInterface
    *
-   * Used by the ChessMind project, it introduces an interface
-   * to safely convert a number to and from octal format.
-   *
+   * Maintains a binrary array in memory
    */
 
   interface BinInterface {
@@ -25,6 +23,12 @@ namespace extras {
     virtual int size() const pure;
     virtual ~BinInterface(){};
   };
+
+  /**
+   * @brief HexInterface
+   *
+   * Maintains a hdex array in memory
+   */
 
   using HexLine = std::string;
   using HexArray = std::vector<std::string>;
@@ -34,12 +38,29 @@ namespace extras {
     virtual int lines() const pure;
     virtual int size() const pure;
     virtual ~HexInterface(){};
+    bool operator==(const HexInterface &rhs) const {
+      return array() == rhs.array();
+    }
   };
+
+  /**
+   * @brief Bin2HexInterface
+   *
+   * Converts a bin array to a hex array
+   *
+   */
 
   interface Bin2HexInterface {
     virtual const HexInterface &bin2hex(const BinInterface &bin) const pure;
     virtual ~Bin2HexInterface() {}
   };
+
+  /**
+   * @brief Hex2BinInterface
+   *
+   * Converts a hex array to a bin array
+   *
+   */
 
   interface Hex2BinInterface {
     virtual const BinInterface &hex2bin(const HexInterface &hex) const pure;

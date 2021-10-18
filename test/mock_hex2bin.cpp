@@ -2,7 +2,9 @@
 #include <iostream>
 
 #include "catch.hpp"
+#include "extras/bin2hex/BinFile.hpp"
 #include "extras/bin2hex/ConvertBin2Hex.hpp"
+#include "extras/bin2hex/HexFile.hpp"
 #include "fakeit.hpp"
 
 //
@@ -39,4 +41,15 @@ SCENARIO("Mock HexInterface: array", "[BinInterface]") {
   Verify(Method(mock, array));
   Verify(Method(mock, lines));
   Verify(Method(mock, size));
+}
+
+SCENARIO("Mock Bin2HexInterface: bin2hex", "[BinInterface]") {
+  HexFile correct_answer;
+  Mock<Bin2HexInterface> mock;
+  When(Method(mock, bin2hex)).Return(correct_answer);
+
+  BinFile param1;
+  Bin2HexInterface& i = mock.get();
+  REQUIRE(i.bin2hex(param1) == correct_answer);
+  Verify(Method(mock, bin2hex));
 }
