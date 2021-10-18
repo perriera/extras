@@ -21,10 +21,16 @@ using namespace extras;
 using namespace fakeit;
 namespace fs = std::filesystem;
 
+HexArray packets;
+HexLine nextLine;
+
 class MockSocket implements SocketInterface {
-  virtual void send(const std::string& msg){};
-  virtual SocketInterface& read(int expectedMaxSize){};
-  virtual operator std::string() const { return "Hello"; };
+  virtual void send(const std::string& msg) { packets.push_back(msg); };
+  virtual SocketInterface& read(int expectedMaxSize) {
+    nextLine = packets.front();
+    packets.erase(packets.begin());
+  };
+  virtual operator std::string() const { return nextLine; };
   virtual operator SocketPacket() const {};
 };
 
@@ -43,13 +49,24 @@ SCENARIO("Mock HexFileTransferInterface: array/size", "[HexFileTransfer]") {
 
   // setup server
 
-  MockSocket mockSocket;
+  MockSocket mockServer;
   Mock<SocketServerInterface> mock_server;
-  When(Method(mock_server, read)).Return(mockSocket);
+  When(Method(mock_server, read)).Return(mockServer);
   SocketServerInterface& i_server = mock_server.get();
-  std::string text = i_server.read(1024);
-  REQUIRE(text == "Hello");
+  nextLine = "Hello";
+  std::string text1 = i_server.read(1024);
+  REQUIRE(text1 == "Hello");
   Verify(Method(mock_server, read));
+
+  // setup client
+
+  MockSocket mockClient;
+  Mock<SocketServerInterface> mock_client;
+  When(Method(mock_client, read)).Return(mockClient);
+  SocketServerInterface& i_client = mock_client.get();
+  std::string text2 = i_client.read(1024);
+  REQUIRE(text2 == "Hello");
+  Verify(Method(mock_client, read));
 
   // SocketServerInterface
 
