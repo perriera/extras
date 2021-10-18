@@ -520,6 +520,42 @@ This header file provides a basic wrapper around `socket(AF_INET, SOCK_STREAM, 0
         }
     }
 
+## extras/bin2hex
+ > add **extras/bin2hex/BinConverter.hpp** or **extras/bin2hex/HexConverter.hpp** to your C++ source</br>
+ > **using namespace extras;**</br>
+This header file provides a simple means of turning binary files into their hexadecimal represantations which may become really helpful when dealing with file transfers over socket connections:
+
+For Binary to Hex:
+
+    /**
+    * @brief BinInterface
+    *
+    * Maintains a binary array in memory
+    */
+
+    using BinArray = std::vector<byte>;
+
+    interface BinInterface {
+        virtual const byte *array() const pure;
+        virtual int size() const pure;
+    };    
+
+For Hex to Binary:
+
+    /**
+    * @brief HexInterface
+    *
+    * Maintains a hex array in memory
+    */
+
+    using HexLine = std::string;
+    using HexArray = std::vector<std::string>;
+
+    interface HexInterface {
+        virtual HexArray array() const pure;
+        virtual int lines() const pure;
+        virtual int size() const pure;
+    };
 
 ## extras/spdlog, (as a shared library)
  > when you git clone this repository to your directory structure and build it using the install 

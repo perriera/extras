@@ -20,6 +20,8 @@ namespace extras {
    */
 
   concrete class HexFile implements HexInterface {
+    friend std::ostream& operator<<(std::ostream& out, const HexFile& obj);
+    friend std::istream& operator>>(std::istream& in, HexFile& obj);
     HexArray _array;
 
    public:
