@@ -23,8 +23,6 @@ namespace extras {
     virtual int size() const pure;
     virtual ~BinInterface(){};
     bool operator==(const BinInterface &rhs) const {
-      auto s1 = size();
-      auto s2 = rhs.size();
       if (size() != rhs.size()) return false;
       auto p1 = this->array();
       auto p2 = rhs.array();
@@ -61,7 +59,7 @@ namespace extras {
    */
 
   interface Bin2HexInterface {
-    virtual const HexInterface &bin2hex(const BinInterface &bin) const pure;
+    virtual HexArray bin2hex(const BinInterface &bin) const pure;
     virtual ~Bin2HexInterface() {}
   };
 

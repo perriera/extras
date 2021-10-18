@@ -23,6 +23,8 @@ namespace extras {
     HexArray _array;
 
    public:
+    HexFile(){};
+    HexFile(const HexArray& array) : _array(array) {}
     virtual HexArray array() const override { return _array; }
     virtual int lines() const override { return _array.size(); }
     virtual int size() const override {

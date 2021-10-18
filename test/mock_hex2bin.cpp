@@ -44,7 +44,7 @@ SCENARIO("Mock HexInterface: array", "[BinInterface]") {
 }
 
 SCENARIO("Mock Bin2HexInterface: bin2hex", "[BinInterface]") {
-  HexFile correct_answer;
+  HexArray correct_answer;
   Mock<Bin2HexInterface> mock;
   When(Method(mock, bin2hex)).Return(correct_answer);
 
