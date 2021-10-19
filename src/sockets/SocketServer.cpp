@@ -41,12 +41,6 @@ namespace extras {
   void SocketServer::accept() {
     _new_socket = ::accept(_server_fd, (struct sockaddr *)&_address,
                            (socklen_t *)&_addrlen);
-    if (_proxy != nullptr) {
-      delete _proxy;
-      _proxy = nullptr;
-    }
-    _proxy = new Socket(this->_new_socket);
-    SocketException::assertLTZ(_new_socket, "accept", __INFO__);
   }
 
 }  // namespace extras

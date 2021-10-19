@@ -42,6 +42,10 @@ namespace extras {
     byte *_readMsg = nullptr;
     int _readMsgSize;
 
+   protected:
+    int _port;
+    int _socket;
+
    public:
     Socket(int socket);
     virtual ~Socket() {

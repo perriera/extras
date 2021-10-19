@@ -20,7 +20,7 @@ namespace extras {
    *
    */
 
-  interface SocketClientInterface extends SocketInterface {
+  interface SocketClientInterface {
     virtual void connect() pure;
   };
 
@@ -32,7 +32,7 @@ namespace extras {
    *
    */
 
-  concrete class SocketClient implements SocketClientInterface {
+  concrete class SocketClient extends Socket with SocketClientInterface {
     const std::string _hostname;
     int _socket;
     struct sockaddr_in _serv_addr;
