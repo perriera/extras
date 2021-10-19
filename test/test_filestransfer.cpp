@@ -64,6 +64,7 @@ SCENARIO("Mock HexFileTransferInterface: read many", "[HexFileTransfer]") {
   for (auto packet : hexFile.array()) {
     mockServer.send(packet);
     std::string line = mockClient.read();
+    std::cout << "\r" << line << std::flush;
     REQUIRE(line == packet);
   }
 
