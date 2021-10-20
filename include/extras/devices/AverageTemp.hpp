@@ -93,32 +93,34 @@ namespace extras {
    */
 
   concrete class AverageTempLast10Optimized implements AverageTempInterface {
-    float _lastReading = 0;
-    int _numberOfReadings = 0;
+    std::vector<float> _lastTenReadings;
     float _runningLastTenTotal = 0;
     float _runningLastTenAverage = 0;
-    float _runningTotal = 0;
-    float _runningAverage = 0;
+    float _lastCalculatedTemperature = 0;
+    int _totalReadings = 0;
 
    public:
     virtual void addTemperature(float value) {
+      _lastTenReadings.push_back(value);
       _runningLastTenTotal += value;
-      _runningTotal += value;
-      if (_numberOfReadings++ > 10)
-        _runningLastTenTotal -= _lastReading;
-      else
-        _runningLastTenTotal -= _lastReading;
+      _totalReadings++;
+      if (_lastTenReadings.size() > 10) {
+        float valueToSubtract = *_lastTenReadings.begin();
+        _lastTenReadings.erase(_lastTenReadings.begin());
+        _runningLastTenTotal -= valueToSubtract;
+      }
     }
 
     virtual float calculateTemperature() {
-      if (_numberOfReadings > 10)
-        return _runningLastTenTotal / 10;
+      if (_totalReadings > 10)
+        _lastCalculatedTemperature = _runningLastTenTotal / 10;
       else
-        return _runningLastTenTotal / _numberOfReadings;
+        _lastCalculatedTemperature = _runningLastTenTotal / _totalReadings;
+      return _lastCalculatedTemperature;
     }
 
     virtual float lastCalculatedTemperature() const {
-      return _runningTotal / _numberOfReadings;
+      return _lastCalculatedTemperature;
     }
   };
 
