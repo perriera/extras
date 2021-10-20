@@ -36,9 +36,10 @@ namespace extras {
 
   concrete class SocketPacket implements SocketPacketInterface {
     byte *_array = nullptr;
-    int _size;
+    int _size = 0;
 
    public:
+    SocketPacket(){};
     SocketPacket(byte *array, int size) : _size(size) {
       this->_array = new byte[size];
       for (int i = 0; i < _size; i++) this->_array[i] = array[i];
