@@ -85,6 +85,45 @@ namespace extras {
     }
   };
 
+  /**
+   * In order to keep track of one million readings (last ten)
+   * all readings have to pass through an instance of this class,
+   * (without the use of any memory storage).
+   *
+   */
+
+  concrete class AverageTempLast10Optimized implements AverageTempInterface {
+    std::vector<float> _lastTenReadings;
+    float _runningLastTenTotal = 0;
+    float _runningLastTenAverage = 0;
+    float _lastCalculatedTemperature = 0;
+    int _totalReadings = 0;
+
+   public:
+    virtual void addTemperature(float value) {
+      _lastTenReadings.push_back(value);
+      _runningLastTenTotal += value;
+      _totalReadings++;
+      if (_lastTenReadings.size() > 10) {
+        float valueToSubtract = *_lastTenReadings.begin();
+        _lastTenReadings.erase(_lastTenReadings.begin());
+        _runningLastTenTotal -= valueToSubtract;
+      }
+    }
+
+    virtual float calculateTemperature() {
+      if (_totalReadings > 10)
+        _lastCalculatedTemperature = _runningLastTenTotal / 10;
+      else
+        _lastCalculatedTemperature = _runningLastTenTotal / _totalReadings;
+      return _lastCalculatedTemperature;
+    }
+
+    virtual float lastCalculatedTemperature() const {
+      return _lastCalculatedTemperature;
+    }
+  };
+
 }  // namespace extras
 
 #endif  // _AVERAGETEMP_HPP
