@@ -1,3 +1,4 @@
+
 #include <extras/bin2hex/BinFile.hpp>
 #include <extras/bin2hex/HexConverter.hpp>
 #include <extras/bin2hex/HexFile.hpp>
@@ -10,31 +11,31 @@
 #include <sstream>
 
 #include "catch.hpp"
-#include "fakeit.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
 //
 
 using namespace extras;
-using namespace fakeit;
 namespace fs = std::filesystem;
 
-struct MockHexFileTransfer implements HexFileTransferInterface {
-  const HexInterface& _hexFile;
-  MockHexFileTransfer(const HexInterface& hexInterface)
-      : _hexFile(hexInterface) {}
-  virtual void transfer(const HexInterface&) override{};
-  virtual const HexArray& lines() const override { return _hexFile.array(); };
+struct MockSocket implements SocketInterface {
+  HexArray& _packets;
+  HexLine _nextLine;
 
-  virtual int size() const override { return _hexFile.size(); };
+  MockSocket(HexArray& packets) : _packets(packets) {}
+
+  virtual void send(const std::string& msg) { _packets.push_back(msg); };
+  virtual SocketInterface& read(int expectedMaxSize = 1024) {
+    _nextLine = _packets.front();
+    _packets.erase(_packets.begin());
+    return *this;
+  };
+  virtual operator std::string() const { return _nextLine; };
+  virtual operator SocketPacket() const { return SocketPacket(); };
 };
 
-/**
- * @brief Mock FakeIt AlwaysDo demonstration
- *
- */
-SCENARIO("Mock HexFileTransferInterface: transfer", "[HexFileTransfer]") {
+SCENARIO("MockSocketServer/MockSocketClient", "[HexFileTransfer2]") {
   std::string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
   std::ifstream myfile(filename);
   REQUIRE(myfile.good());
@@ -47,13 +48,15 @@ SCENARIO("Mock HexFileTransferInterface: transfer", "[HexFileTransfer]") {
   HexFile hexFile = hexConverter.bin2hex(binFile);
   REQUIRE(hexFile.size() == file_size * 2);
 
-  MockHexFileTransfer mockHexFileTransfer(hexFile);
+  HexArray packets;
+  MockSocket mockServer(packets);
+  MockSocket mockClient(packets);
+  for (auto packet : hexFile.array()) {
+    mockServer.send(packet);
+    std::string line = mockClient.read();
+    std::cout << "\r" << line << std::flush;
+    REQUIRE(line == packet);
+  }
 
-  Mock<HexFileTransferInterface> mock;
-  When(Method(mock, transfer))
-      .AlwaysDo([&mockHexFileTransfer](const HexInterface&) {});
-
-  HexFileTransferInterface& i = mock.get();
-  i.transfer(hexFile);
-  Verify(Method(mock, transfer));
+  // setup client
 }
