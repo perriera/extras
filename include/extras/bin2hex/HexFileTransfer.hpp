@@ -21,7 +21,7 @@ namespace extras {
    */
 
   interface HexFileTransferInterface {
-    virtual void transfer(const HexFile&) pure;
+    virtual void transfer(const HexInterface&) pure;
     virtual const HexArray& lines() const pure;
     virtual int size() const pure;
   };
