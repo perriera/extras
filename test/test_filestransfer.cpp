@@ -35,38 +35,34 @@ struct MockSocket implements SocketInterface {
   virtual operator SocketPacket() const { return SocketPacket(); };
 };
 
-SCENARIO("Mock HexFileTransferInterface: read one", "[HexFileTransfer]") {
-  HexArray packets;
+// SCENARIO("Mock HexFileTransferInterface: read one", "[HexFileTransfer]") {
+//   HexArray packets;
 
-  MockSocket mockServer(packets);
-  MockSocket mockClient(packets);
-  mockServer.send("hello");
-  std::string text = mockClient.read();
-  REQUIRE(text == "hello");
-}
+//   MockSocket mockServer(packets);
+//   MockSocket mockClient(packets);
+// //   mockServer.send("hello");
+// //   std::string text = mockClient.read();
+// //   REQUIRE(text == "hello");
+// // }
 
-SCENARIO("Mock HexFileTransferInterface: read many", "[HexFileTransfer]") {
-  std::string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
-  std::ifstream myfile(filename);
-  REQUIRE(myfile.good());
-  BinFile binFile;
-  myfile >> binFile;
-  auto file_size = fs::file_size(filename);
-  REQUIRE(binFile.array() != nullptr);
-  REQUIRE(binFile.size() == file_size);
-  HexConverter hexConverter;
-  HexFile hexFile = hexConverter.bin2hex(binFile);
-  REQUIRE(hexFile.size() == file_size * 2);
+// SCENARIO("Mock HexFileTransferInterface: read many", "[HexFileTransfer]") {
+//   std::string filename =
+//   "data/Downloads/cplusplusorg.freeformjs.imploded.zip"; std::ifstream
+//   myfile(filename); REQUIRE(myfile.good()); BinFile binFile; myfile >>
+//   binFile; auto file_size = fs::file_size(filename); REQUIRE(binFile.array()
+//   != nullptr); REQUIRE(binFile.size() == file_size); HexConverter
+//   hexConverter; HexFile hexFile = hexConverter.bin2hex(binFile);
+//   REQUIRE(hexFile.size() == file_size * 2);
 
-  HexArray packets;
-  MockSocket mockServer(packets);
-  MockSocket mockClient(packets);
-  for (auto packet : hexFile.array()) {
-    mockServer.send(packet);
-    std::string line = mockClient.read();
-    std::cout << "\r" << line << std::flush;
-    REQUIRE(line == packet);
-  }
+//   HexArray packets;
+//   MockSocket mockServer(packets);
+//   MockSocket mockClient(packets);
+//   for (auto packet : hexFile.array()) {
+//     mockServer.send(packet);
+//     std::string line = mockClient.read();
+//     std::cout << "\r" << line << std::flush;
+//     REQUIRE(line == packet);
+//   }
 
-  // setup client
-}
+//   // setup client
+// }

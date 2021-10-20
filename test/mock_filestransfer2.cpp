@@ -22,17 +22,35 @@ namespace fs = std::filesystem;
 struct MockSocket implements SocketInterface {
   HexArray& _packets;
   HexLine _nextLine;
+  HexArray _sent;
+  HexArray _recieved;
 
   MockSocket(HexArray& packets) : _packets(packets) {}
 
-  virtual void send(const std::string& msg) { _packets.push_back(msg); };
+  virtual void send(const std::string& msg) {
+    _packets.push_back(msg);
+    _sent.push_back(msg);
+  };
   virtual SocketInterface& read(int expectedMaxSize = 1024) {
     _nextLine = _packets.front();
     _packets.erase(_packets.begin());
+    _recieved.push_back(_nextLine);
     return *this;
   };
   virtual operator std::string() const { return _nextLine; };
   virtual operator SocketPacket() const { return SocketPacket(); };
+};
+
+struct MockServer extends MockSocket {
+  HexArray _processed;
+  MockServer(HexArray& packets) : MockSocket(packets){};
+  void processData() { _processed = _recieved; }
+};
+
+struct MockClient extends MockSocket {
+  HexArray _processed;
+  MockClient(HexArray& packets) : MockSocket(packets){};
+  void processData() { _processed = _recieved; }
 };
 
 SCENARIO("MockSocketServer/MockSocketClient", "[HexFileTransfer2]") {
@@ -49,14 +67,28 @@ SCENARIO("MockSocketServer/MockSocketClient", "[HexFileTransfer2]") {
   REQUIRE(hexFile.size() == file_size * 2);
 
   HexArray packets;
-  MockSocket mockServer(packets);
-  MockSocket mockClient(packets);
+  MockServer mockServer(packets);
+  MockClient mockClient(packets);
   for (auto packet : hexFile.array()) {
-    mockServer.send(packet);
-    std::string line = mockClient.read();
+    mockClient.send(packet);
+    std::string line = mockServer.read();
     std::cout << "\r" << line << std::flush;
     REQUIRE(line == packet);
   }
+  std::cout << std::endl;
+
+  mockServer.processData();
+
+  for (auto processedLine : mockServer._processed) {
+    mockServer.send(processedLine);
+    std::string packetBack = mockClient.read();
+    std::cout << "\r" << packetBack << std::flush;
+    REQUIRE(packetBack == processedLine);
+  }
+  std::cout << std::endl;
+
+  REQUIRE(mockServer._sent == mockClient._recieved);
+  REQUIRE(mockServer._recieved == mockClient._sent);
 
   // setup client
 }
