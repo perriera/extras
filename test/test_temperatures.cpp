@@ -27,3 +27,12 @@ SCENARIO("Test AverageTempLast10: methods", "[AverageTempInterface]") {
   REQUIRE(averageTempLast10.calculateTemperature() == correct_answer);
   REQUIRE(averageTempLast10.lastCalculatedTemperature() == correct_answer);
 }
+
+SCENARIO("Test AverageTempLast10Optimized: methods", "[AverageTempInterface]") {
+  const float correct_answer = 50;
+  AverageTempLast10Optimized averageTempOptimized;
+  averageTempOptimized.addTemperature(correct_answer);
+
+  REQUIRE(averageTempOptimized.calculateTemperature() == correct_answer);
+  REQUIRE(averageTempOptimized.lastCalculatedTemperature() == correct_answer);
+}
