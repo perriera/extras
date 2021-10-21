@@ -21,13 +21,27 @@ using namespace fakeit;
 namespace fs = std::filesystem;
 
 struct MockHexFileTransfer implements HexFileTransferInterface {
-  const HexInterface& _hexFile;
-  MockHexFileTransfer(const HexInterface& hexInterface)
-      : _hexFile(hexInterface) {}
-  virtual void transfer(const HexInterface&) override{};
-  virtual const HexArray& lines() const override { return _hexFile.array(); };
+  SocketInterface& _socket;
+  virtual SocketInterface& socket();
+  virtual void transfer(const HexInterface&) {}
+};
 
-  virtual int size() const override { return _hexFile.size(); };
+struct MockSocket implements SocketInterface {
+  HexLine _nextLine;
+  HexArray _sent;
+  HexArray _recieved;
+  int _next = 0;
+
+  virtual void send(const std::string& msg) override {
+    _nextLine = msg;
+    _sent.push_back(msg);
+  };
+  virtual SocketInterface& read(int expectedMaxSize = 1024) override {
+    _recieved.push_back(_nextLine);
+    return *this;
+  };
+  virtual operator std::string() const { return _nextLine; };
+  virtual operator SocketPacket() const { return SocketPacket(); };
 };
 
 /**
@@ -47,11 +61,19 @@ SCENARIO("Mock HexFileTransferInterface: transfer", "[HexFileTransfer]") {
   HexFile hexFile = hexConverter.bin2hex(binFile);
   REQUIRE(hexFile.size() == file_size * 2);
 
-  MockHexFileTransfer mockHexFileTransfer(hexFile);
+  MockSocket socket;
+  MockSocket client;
 
   Mock<HexFileTransferInterface> mock;
   When(Method(mock, transfer))
-      .AlwaysDo([&mockHexFileTransfer](const HexInterface&) {});
+      .AlwaysDo([&client](const HexInterface& hexInterface) {
+        HexLine line = hexInterface.array()[client._next++];
+        std::stringstream ss;
+        ss << line << std::endl;
+        client.send(line);
+        std::string nextLine = client.read();
+        REQUIRE(line == nextLine);
+      });
 
   HexFileTransferInterface& i = mock.get();
   i.transfer(hexFile);

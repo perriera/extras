@@ -10,6 +10,7 @@
 #include <iostream>
 #include <sstream>
 
+#include "MockSocket.hpp"
 #include "catch.hpp"
 
 //
@@ -18,40 +19,6 @@
 
 using namespace extras;
 namespace fs = std::filesystem;
-
-struct MockSocket implements SocketInterface {
-  HexArray& _packets;
-  HexLine _nextLine;
-  HexArray _sent;
-  HexArray _recieved;
-
-  MockSocket(HexArray& packets) : _packets(packets) {}
-
-  virtual void send(const std::string& msg) {
-    _packets.push_back(msg);
-    _sent.push_back(msg);
-  };
-  virtual SocketInterface& read(int expectedMaxSize = 1024) {
-    _nextLine = _packets.front();
-    _packets.erase(_packets.begin());
-    _recieved.push_back(_nextLine);
-    return *this;
-  };
-  virtual operator std::string() const { return _nextLine; };
-  virtual operator SocketPacket() const { return SocketPacket(); };
-};
-
-struct MockServer extends MockSocket {
-  HexArray _processed;
-  MockServer(HexArray& packets) : MockSocket(packets){};
-  void processData() { _processed = _recieved; }
-};
-
-struct MockClient extends MockSocket {
-  HexArray _processed;
-  MockClient(HexArray& packets) : MockSocket(packets){};
-  void processData() { _processed = _recieved; }
-};
 
 SCENARIO("MockSocketServer/MockSocketClient", "[HexFileTransfer2]") {
   std::string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
