@@ -35,7 +35,7 @@ struct MockSocket implements SocketInterface {
     _packets.push_back(msg);
     _sent.push_back(msg);
   };
-  virtual SocketInterface& read(int expectedMaxSize = 1024) {
+  virtual SocketInterface& read(int) {
     _nextLine = _packets.front();
     _packets.erase(_packets.begin());
     _recieved.push_back(_nextLine);

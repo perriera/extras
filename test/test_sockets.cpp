@@ -38,7 +38,7 @@ SCENARIO("MockSocketServer/MockSocketClient", "[HexFileTransfer2]") {
   MockClient mockClient(packets);
   for (auto packet : hexFile.array()) {
     mockClient.send(packet);
-    std::string line = mockServer.read();
+    std::string line = mockServer.read(1024);
     std::cout << "\r" << line << std::flush;
     REQUIRE(line == packet);
   }
@@ -48,7 +48,7 @@ SCENARIO("MockSocketServer/MockSocketClient", "[HexFileTransfer2]") {
 
   for (auto processedLine : mockServer._processed) {
     mockServer.send(processedLine);
-    std::string packetBack = mockClient.read();
+    std::string packetBack = mockClient.read(1024);
     std::cout << "\r" << packetBack << std::flush;
     REQUIRE(packetBack == processedLine);
   }

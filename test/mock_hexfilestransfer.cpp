@@ -22,11 +22,12 @@ namespace fs = std::filesystem;
 
 struct MockHexFileTransfer implements HexFileTransferInterface {
   SocketInterface& _socket;
+  MockHexFileTransfer(SocketInterface& socket) : _socket(socket) {}
   virtual SocketInterface& socket();
   virtual void transfer(const HexInterface&) {}
 };
 
-struct MockSocket implements SocketInterface {
+struct MockSocket2 implements SocketInterface {
   HexLine _nextLine;
   HexArray _sent;
   HexArray _recieved;
@@ -36,12 +37,12 @@ struct MockSocket implements SocketInterface {
     _nextLine = msg;
     _sent.push_back(msg);
   };
-  virtual SocketInterface& read(int expectedMaxSize = 1024) override {
+  virtual SocketInterface& read(int) override {
     _recieved.push_back(_nextLine);
     return *this;
   };
-  virtual operator std::string() const { return _nextLine; };
-  virtual operator SocketPacket() const { return SocketPacket(); };
+  virtual operator std::string() const override { return _nextLine; };
+  virtual operator SocketPacket() const override { return SocketPacket(); };
 };
 
 /**
@@ -61,8 +62,8 @@ SCENARIO("Mock HexFileTransferInterface: transfer", "[HexFileTransfer]") {
   HexFile hexFile = hexConverter.bin2hex(binFile);
   REQUIRE(hexFile.size() == file_size * 2);
 
-  MockSocket socket;
-  MockSocket client;
+  MockSocket2 socket;
+  MockSocket2 client;
 
   Mock<HexFileTransferInterface> mock;
   When(Method(mock, transfer))
@@ -71,7 +72,7 @@ SCENARIO("Mock HexFileTransferInterface: transfer", "[HexFileTransfer]") {
         std::stringstream ss;
         ss << line << std::endl;
         client.send(line);
-        std::string nextLine = client.read();
+        std::string nextLine = client.read(1024);
         REQUIRE(line == nextLine);
       });
 

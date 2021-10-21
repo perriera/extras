@@ -20,10 +20,29 @@ namespace extras {
    *
    * Maintains a hex array in memory
    */
-
   interface HexFileTransferInterface {
     virtual SocketInterface& socket() pure;
     virtual void transfer(const HexInterface&) pure;
+  };
+
+  /**
+   * @brief HexFileTransferInterface
+   *
+   * Maintains a hex array in memory
+   */
+  interface UploaderInterface {
+    virtual SocketInterface& socket() pure;
+    virtual void upload(const HexLine&) pure;
+  };
+
+  /**
+   * @brief HexFileTransferInterface
+   *
+   * Maintains a hex array in memory
+   */
+  interface DownloaderInterface {
+    virtual SocketInterface& socket() pure;
+    virtual HexLine download() pure;
   };
 
 }  // namespace extras

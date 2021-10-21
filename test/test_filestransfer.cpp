@@ -26,7 +26,7 @@ struct MockSocket implements SocketInterface {
   MockSocket(HexArray& packets) : _packets(packets) {}
 
   virtual void send(const std::string& msg) { _packets.push_back(msg); };
-  virtual SocketInterface& read(int expectedMaxSize = 1024) {
+  virtual SocketInterface& read(int) {
     _nextLine = _packets.front();
     _packets.erase(_packets.begin());
     return *this;

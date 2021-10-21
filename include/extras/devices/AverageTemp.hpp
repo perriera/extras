@@ -52,7 +52,7 @@ namespace extras {
       _lastCalculatedReading = sum / _temperatureArray.size();
       return _lastCalculatedReading;
     };
-    virtual float lastCalculatedTemperature() const {
+    virtual float lastCalculatedTemperature() const override {
       return _lastCalculatedReading;
     }
   };
@@ -68,19 +68,19 @@ namespace extras {
     float _lastCalculatedReading = 0;
 
    public:
-    virtual void addTemperature(float value) {
+    virtual void addTemperature(float value) override {
       if (totalLastTen.size() > 10) totalLastTen.erase(totalLastTen.begin());
       totalLastTen.push_back(value);
     }
 
-    virtual float calculateTemperature() {
+    virtual float calculateTemperature() override {
       float sum = 0;
       for (auto value : totalLastTen) sum += value;
       _lastCalculatedReading = sum / totalLastTen.size();
       return sum / totalLastTen.size();
     }
 
-    virtual float lastCalculatedTemperature() const {
+    virtual float lastCalculatedTemperature() const override {
       return _lastCalculatedReading;
     }
   };
@@ -95,12 +95,11 @@ namespace extras {
   concrete class AverageTempLast10Optimized implements AverageTempInterface {
     std::vector<float> _lastTenReadings;
     float _runningLastTenTotal = 0;
-    float _runningLastTenAverage = 0;
     float _lastCalculatedTemperature = 0;
     int _totalReadings = 0;
 
    public:
-    virtual void addTemperature(float value) {
+    virtual void addTemperature(float value) override {
       _lastTenReadings.push_back(value);
       _runningLastTenTotal += value;
       _totalReadings++;
@@ -111,7 +110,7 @@ namespace extras {
       }
     }
 
-    virtual float calculateTemperature() {
+    virtual float calculateTemperature() override {
       if (_totalReadings > 10)
         _lastCalculatedTemperature = _runningLastTenTotal / 10;
       else
@@ -119,7 +118,7 @@ namespace extras {
       return _lastCalculatedTemperature;
     }
 
-    virtual float lastCalculatedTemperature() const {
+    virtual float lastCalculatedTemperature() const override {
       return _lastCalculatedTemperature;
     }
   };
