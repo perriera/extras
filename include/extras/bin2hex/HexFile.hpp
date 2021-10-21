@@ -28,7 +28,7 @@ namespace extras {
     HexFile(){};
     HexFile(const HexArray& array) : _array(array) {}
 
-    virtual HexArray array() const override { return _array; }
+    virtual const HexArray& array() const override { return _array; }
     virtual int lines() const override { return _array.size(); }
     virtual int size() const override {
       int _size = 0;

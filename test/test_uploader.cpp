@@ -66,8 +66,9 @@ SCENARIO("Mock UploaderInterface: upload", "[HexFileTransfer]") {
   MockClient mockClient(packets);
   Uploader uploader(mockClient);
   Downloader downloader(mockServer);
-  HexLine line1 = hexFile.array()[0];
-  uploader.upload(line1);
-  HexLine line2 = downloader.download();
-  REQUIRE(line1 == line2);
+  for (HexLine line1 : hexFile.array()) {
+    uploader.upload(line1);
+    HexLine line2 = downloader.download();
+    REQUIRE(line1 == line2);
+  }
 }
