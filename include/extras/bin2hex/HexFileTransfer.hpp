@@ -6,6 +6,7 @@
 
 #include <extras/bin2hex/HexFile.hpp>
 #include <extras/bin2hex/HexInterface.hpp>
+#include <extras/bin2hex/HexPacket.hpp>
 #include <extras/exceptions.hpp>
 #include <extras/interfaces.hpp>
 #include <extras/sockets/Socket.hpp>
@@ -32,7 +33,7 @@ namespace extras {
    */
   interface UploaderInterface {
     virtual SocketInterface& socket() pure;
-    virtual void upload(const HexLine&) pure;
+    virtual void upload(const HexPacket&) pure;
   };
 
   /**
@@ -42,7 +43,7 @@ namespace extras {
    */
   interface DownloaderInterface {
     virtual SocketInterface& socket() pure;
-    virtual HexLine download() pure;
+    virtual HexPacket download() pure;
   };
 
 }  // namespace extras

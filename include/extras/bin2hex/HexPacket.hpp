@@ -27,6 +27,11 @@ namespace extras {
     virtual int count() const pure;
     virtual int rle() const pure;
     virtual const HexLine& line() const pure;
+    bool operator==(HexPacketInterface const& other) const {
+      return index() == other.index() && count() == other.count() &&
+             rle() == other.rle() && line() == other.line();
+    }
+    bool operator<(HexPacketInterface const& other) const;
   };
 
   /**
@@ -46,12 +51,12 @@ namespace extras {
    public:
     HexPacket(){};
     HexPacket(const HexLine& line, int index, int count)
-        : _line(line), _index() {}
+        : _line(line), _index(index), _count(count) {}
 
-    virtual int index() const { return _index; };
-    virtual int count() const { return _count; };
-    virtual int rle() const { return _line.size(); };
-    virtual const HexLine& line() const;
+    virtual int index() const override { return _index; };
+    virtual int count() const override { return _count; };
+    virtual int rle() const override { return _line.size(); };
+    virtual const HexLine& line() const override { return _line; }
   };
 
 }  // namespace extras

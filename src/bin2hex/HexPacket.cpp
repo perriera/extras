@@ -7,18 +7,21 @@ using namespace std;
 namespace extras {
 
   std::ostream& operator<<(std::ostream& out, const HexPacket& obj) {
-    // for (auto line : obj.array()) out << line << endl;
+    out << obj.index() + 1 << ' ';
+    out << obj.count() << ' ';
+    out << obj.rle() << ' ';
+    out << obj.line();
     return out;
   }
 
   std::istream& operator>>(std::istream& in, HexPacket& obj) {
-    // HexArray hexArray;
-    // while (in.good()) {
-    //   string line;
-    //   getline(in, line);
-    //   if (in.good()) hexArray.push_back(line);
-    // }
-    // obj._array = hexArray;
+    in >> skipws;
+    in >> obj._index;
+    obj._index--;
+    in >> obj._count;
+    string rle;
+    in >> rle;
+    in >> obj._line;
     return in;
   }
 
