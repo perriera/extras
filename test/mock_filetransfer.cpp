@@ -19,16 +19,23 @@ namespace fs = std::filesystem;
 HexFile createHexFile();
 
 SCENARIO("Mock FileTransferInterface", "[FileTransferInterface]") {
-  const byte correct_answer[] = {0x01, 0x02, 0x03};
-  Mock<BinInterface> mock;
-  When(Method(mock, array)).Return(correct_answer);
-  When(Method(mock, size)).Return(sizeof(correct_answer) / sizeof(byte));
-
   HexFile hexFile = createHexFile();
+  const HexFile& correct_answer = hexFile;
+  Mock<HexInterface> mock;
+  When(Method(mock, array)).Return(correct_answer.array());
+  When(Method(mock, lines)).Return(correct_answer.lines());
+  When(Method(mock, size)).Return(correct_answer.size());
 
-  BinInterface& i = mock.get();
-  REQUIRE(i.array() == correct_answer);
-  REQUIRE(i.size() == 3);
+  const HexArray& array = hexFile.array();
+  std::cout << array.size() << std::endl;
+  std::cout << hexFile.size() << std::endl;
+  std::cout << hexFile.lines() << std::endl;
+
+  HexInterface& i = mock.get();
+  REQUIRE(i.array() == array);
+  REQUIRE(i.lines() == 7778);
+  REQUIRE(i.size() == 622178);
   Verify(Method(mock, array));
+  Verify(Method(mock, lines));
   Verify(Method(mock, size));
 }
