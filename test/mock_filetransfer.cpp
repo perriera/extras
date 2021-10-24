@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 
+#include "MockSocket.hpp"
 #include "catch.hpp"
 #include "extras/bin2hex/BinConverter.hpp"
 #include "extras/bin2hex/BinFile.hpp"
@@ -56,5 +57,48 @@ SCENARIO("Mock FileTransferInterface", "[FileTransferInterface]") {
 
   FileTransferInterface& i = mock.get();
   i.transfer(hexFile, i_client);
+  Verify(Method(mock, transfer));
+}
+
+SCENARIO("Mock FileTransferInterface 2", "[FileTransferInterface]") {
+  HexFile hexFile = createHexFile();
+  const HexArray& array = hexFile.array();
+
+  HexArray packets;
+  HexArray echo;
+  HexArray echo2;
+  MockServer mockServer(packets);
+  MockClient mockClient(packets);
+
+  SocketInterface& i_client = mockClient;
+  Mock<FileTransferInterface> mock;
+  When(Method(mock, transfer))
+      .AlwaysDo([&echo](const HexInterface& hexFile, SocketInterface& socket) {
+        int i = 0;
+        int count = hexFile.array().size();
+        for (auto line : hexFile.array()) {
+          // send
+          HexPacket request(line, i++, count);
+          {
+            std::stringstream ss;
+            ss << request << std::endl;
+            socket.send(ss.str());
+          }
+          // recieve
+          std::string rawData = socket.read(1024);
+          HexPacket response;
+          {
+            std::stringstream ss;
+            ss << rawData << std::flush;
+            ss >> response;
+          }
+          if (response != request) throw "Somethign wrong";
+          echo.push_back(response.line());
+        }
+      });
+
+  FileTransferInterface& i = mock.get();
+  i.transfer(hexFile, i_client);
+  REQUIRE(array == echo);
   Verify(Method(mock, transfer));
 }

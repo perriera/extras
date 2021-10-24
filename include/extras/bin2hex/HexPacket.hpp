@@ -31,6 +31,9 @@ namespace extras {
       return index() == other.index() && count() == other.count() &&
              rle() == other.rle() && line() == other.line();
     }
+    bool operator!=(HexPacketInterface const& other) const {
+      return !(*this == other);
+    }
     bool operator<(HexPacketInterface const& other) const;
   };
 
