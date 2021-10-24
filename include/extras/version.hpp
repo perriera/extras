@@ -12,7 +12,7 @@
  */
 
 #define EXTRAS_VER_MAJOR 3
-#define EXTRAS_VER_MINOR 24
+#define EXTRAS_VER_MINOR 25
 #define EXTRAS_VER_PATCH 0
 
 #define EXTRAS_VERSION \

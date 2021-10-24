@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v3.24.0 -m "AverageTempInterface"</br>
-> > git push origin v3.24.0
+> > git tag -a v3.25.0 -m "FileTransferInterface"</br>
+> > git push origin v3.25.0
 > >
 >
 > > POPULAR LINKS:
@@ -24,6 +24,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 - dev branch added
+
+#### 3.25.0 (2021-10-24)
+### Added
+- FileTransferInterface
 
 #### 3.24.0 (2021-10-16)
 ### Added
@@ -344,7 +348,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.23.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.25.0...HEAD
+[3.25.0]: https://github.com/perriera/extras/compare/v3.24.0...v3.25.0
+[3.24.0]: https://github.com/perriera/extras/compare/v3.23.0...v3.24.0
 [3.23.0]: https://github.com/perriera/extras/compare/v3.22.0...v3.23.0
 [3.22.0]: https://github.com/perriera/extras/compare/v3.21.0...v3.22.0
 [3.21.0]: https://github.com/perriera/extras/compare/v3.20.0...v3.21.0
