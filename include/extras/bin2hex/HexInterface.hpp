@@ -23,6 +23,7 @@ namespace extras {
   using HexArray = std::vector<std::string>;
 
   interface HexInterface {
+    virtual const HexName& name() const pure;
     virtual const HexArray& array() const pure;
     virtual int lines() const pure;
     virtual int size() const pure;
