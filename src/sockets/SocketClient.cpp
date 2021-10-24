@@ -37,10 +37,6 @@ namespace extras {
   // }
 
   void SocketClient::connect() {
-    int valread;
-    // struct sockaddr_in serv_addr;
-    const char *hello = "Hello from client";
-    char buffer[1024] = {0};
     if ((_socket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
       printf("\n Socket creation error \n");
       throw -1;
