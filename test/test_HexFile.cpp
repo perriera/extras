@@ -9,6 +9,7 @@
 #include "extras/bin2hex/ConvertBin2Hex.hpp"
 #include "extras/bin2hex/HexConverter.hpp"
 #include "extras/bin2hex/HexFile.hpp"
+#include "extras/paths.hpp"
 
 using namespace std;
 using namespace extras;
@@ -20,7 +21,7 @@ namespace fs = std::filesystem;
  */
 SCENARIO("Test HexFile >>", "[BinInterface]") {
   string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
-  ifstream myfile(filename);
+  ifstream myfile(~Paths(filename));
   REQUIRE(myfile.good());
   BinFile binFile;
   myfile >> binFile;
@@ -75,7 +76,7 @@ SCENARIO("Test HexFile >>", "[BinInterface]") {
 
 HexFile createHexFile() {
   string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
-  ifstream myfile(filename);
+  ifstream myfile(~Paths(filename));
   REQUIRE(myfile.good());
   BinFile binFile;
   myfile >> binFile;

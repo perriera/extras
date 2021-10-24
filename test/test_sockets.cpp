@@ -3,6 +3,7 @@
 #include <extras/bin2hex/HexConverter.hpp>
 #include <extras/bin2hex/HexFile.hpp>
 #include <extras/bin2hex/HexFileTransfer.hpp>
+#include <extras/paths.hpp>
 #include <extras/sockets/SocketClient.hpp>
 #include <extras/sockets/SocketServer.hpp>
 #include <filesystem>
@@ -22,7 +23,7 @@ namespace fs = std::filesystem;
 
 SCENARIO("MockSocketServer/MockSocketClient", "[HexFileTransfer2]") {
   std::string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
-  std::ifstream myfile(filename);
+  std::ifstream myfile(~Paths(filename));
   REQUIRE(myfile.good());
   BinFile binFile;
   myfile >> binFile;

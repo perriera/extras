@@ -3,6 +3,7 @@
 #include <extras/bin2hex/HexFile.hpp>
 #include <extras/bin2hex/HexFileTransfer.hpp>
 #include <extras/bin2hex/HexPacket.hpp>
+#include <extras/paths.hpp>
 #include <extras/sockets/SocketClient.hpp>
 #include <extras/sockets/SocketServer.hpp>
 #include <filesystem>
@@ -53,7 +54,7 @@ struct Downloader implements DownloaderInterface {
  */
 SCENARIO("Mock UploaderInterface: upload", "[HexFileTransfer]") {
   std::string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
-  std::ifstream myfile(filename);
+  std::ifstream myfile(~Paths(filename));
   REQUIRE(myfile.good());
   BinFile binFile;
   myfile >> binFile;
