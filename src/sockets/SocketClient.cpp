@@ -17,12 +17,12 @@ using namespace std;
 namespace extras {
 
   SocketClient::SocketClient(const std::string &hostname, int port)
-      : _hostname(hostname) {
+      : _hostname(hostname), _port(port) {
     this->_socket = socket(AF_INET, SOCK_STREAM, 0);
     SocketException::assertLTZ(_socket, "SocketClient creation error",
                                __INFO__);
     this->_serv_addr.sin_family = AF_INET;
-    this->_serv_addr.sin_port = htons(port);
+    this->_serv_addr.sin_port = htons(_port);
     // Convert IPv4 and IPv6 addresses from text to binary form
     auto test =
         inet_pton(AF_INET, ip_address(_hostname).c_str(), &_serv_addr.sin_addr);
@@ -41,6 +41,7 @@ namespace extras {
     if (domainname == "localhost") return result;
     struct hostent *ghbn =
         gethostbyname("localhost");  // change the domain name
+    if (domainname.length() > 1 && isdigit(domainname[0])) return domainname;
     if (ghbn) {
       printf("Host Name->%s\n", ghbn->h_name);
       result = inet_ntoa(*(struct in_addr *)ghbn->h_name);
