@@ -18,6 +18,7 @@ namespace extras {
    * Maintains a hex array in memory
    */
 
+  using HexName = std::string;
   using HexLine = std::string;
   using HexArray = std::vector<std::string>;
 

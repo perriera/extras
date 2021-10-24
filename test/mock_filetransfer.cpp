@@ -51,16 +51,16 @@ SCENARIO("Mock FileTransferInterface", "[FileTransferInterface]") {
   When(Method(mock_client, connect)).Return();
   SocketClientInterface& i_client = mock_client.get();
   Mock<FileTransferInterface> mock;
-  When(Method(mock, transfer))
+  When(Method(mock, upload))
       .AlwaysDo([&hexFile, &i_client](const HexInterface&,
                                       SocketInterface& socket) {});
 
   FileTransferInterface& i = mock.get();
-  i.transfer(hexFile, i_client);
-  Verify(Method(mock, transfer));
+  i.upload(hexFile, i_client);
+  Verify(Method(mock, upload));
 }
 
-SCENARIO("Mock FileTransferInterface 2", "[FileTransferInterface]") {
+SCENARIO("Mock FileTransferInterface upload", "[FileTransferInterface]") {
   HexFile hexFile = createHexFile();
   const HexArray& array = hexFile.array();
 
@@ -72,7 +72,7 @@ SCENARIO("Mock FileTransferInterface 2", "[FileTransferInterface]") {
 
   SocketInterface& i_client = mockClient;
   Mock<FileTransferInterface> mock;
-  When(Method(mock, transfer))
+  When(Method(mock, upload))
       .AlwaysDo([&echo](const HexInterface& hexFile, SocketInterface& socket) {
         int i = 0;
         int count = hexFile.array().size();
@@ -98,7 +98,50 @@ SCENARIO("Mock FileTransferInterface 2", "[FileTransferInterface]") {
       });
 
   FileTransferInterface& i = mock.get();
-  i.transfer(hexFile, i_client);
+  i.upload(hexFile, i_client);
   REQUIRE(array == echo);
-  Verify(Method(mock, transfer));
+  Verify(Method(mock, upload));
+}
+
+SCENARIO("Mock FileTransferInterface download", "[FileTransferInterface]") {
+  HexFile hexFile = createHexFile();
+  const HexArray& array = hexFile.array();
+
+  HexArray packets;
+  HexArray echo;
+  HexArray echo2;
+  MockServer mockServer(packets);
+  MockClient mockClient(packets);
+
+  SocketInterface& i_server = mockServer;
+  Mock<FileTransferInterface> mock;
+  When(Method(mock, download))
+      .AlwaysDo([&echo](const HexInterface& hexFile, SocketInterface& socket) {
+        int i = 0;
+        int count = hexFile.array().size();
+        for (auto line : hexFile.array()) {
+          // send
+          HexPacket request(line, i++, count);
+          {
+            std::stringstream ss;
+            ss << request << std::endl;
+            socket.send(ss.str());
+          }
+          // recieve
+          std::string rawData = socket.read(1024);
+          HexPacket response;
+          {
+            std::stringstream ss;
+            ss << rawData << std::flush;
+            ss >> response;
+          }
+          if (response != request) throw "Somethign wrong";
+          echo.push_back(response.line());
+        }
+      });
+
+  FileTransferInterface& i = mock.get();
+  i.download(hexFile, i_server);
+  REQUIRE(array == echo);
+  Verify(Method(mock, download));
 }
