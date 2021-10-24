@@ -24,6 +24,8 @@ SCENARIO("Mock FileTransferInterface", "[FileTransferInterface]") {
   When(Method(mock, array)).Return(correct_answer);
   When(Method(mock, size)).Return(sizeof(correct_answer) / sizeof(byte));
 
+  HexFile hexFile = createHexFile();
+
   BinInterface& i = mock.get();
   REQUIRE(i.array() == correct_answer);
   REQUIRE(i.size() == 3);
