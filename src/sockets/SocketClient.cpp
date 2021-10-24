@@ -8,6 +8,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include <cctype>
 #include <extras/sockets/Socket.hpp>
 #include <iostream>
 #include <sstream>
@@ -46,6 +47,7 @@ namespace extras {
     this->_serv_addr.sin_port = htons(_port);
 
     // Convert IPv4 and IPv6 addresses from text to binary form
+    auto _hn = ip_address(_hostname).c_str();
     if (inet_pton(AF_INET, "159.223.103.27", &this->_serv_addr.sin_addr) <= 0) {
       printf("\nInvalid address/ Address not supported \n");
       throw -1;
@@ -65,6 +67,7 @@ namespace extras {
     if (domainname == "localhost") return result;
     struct hostent *ghbn =
         gethostbyname("localhost");  // change the domain name
+    if (domainname.length() > 1 && isdigit(domainname[0])) return domainname;
     if (ghbn) {
       printf("Host Name->%s\n", ghbn->h_name);
       result = inet_ntoa(*(struct in_addr *)ghbn->h_name);
