@@ -9,45 +9,24 @@
 #include "extras/bin2hex/ConvertBin2Hex.hpp"
 #include "extras/bin2hex/HexConverter.hpp"
 #include "extras/bin2hex/HexFile.hpp"
+#include "extras/types.hpp"
 #include "fakeit.hpp"
 
-using namespace std;
 using namespace fakeit;
 using namespace extras;
 namespace fs = std::filesystem;
 
-/**
- * @brief BinFile Unit Tests
- *
- */
+HexFile createHexFile();
+
 SCENARIO("Mock FileTransferInterface", "[FileTransferInterface]") {
-  string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
-  ifstream myfile(filename);
-  REQUIRE(myfile.good());
-  BinFile binFile;
-  myfile >> binFile;
-  auto file_size = fs::file_size(filename);
-  REQUIRE(binFile.array() != nullptr);
-  REQUIRE(binFile.size() == file_size);
-  HexConverter hexConverter;
-  HexFile hexFile = hexConverter.bin2hex(binFile);
-  REQUIRE(hexFile.size() == file_size * 2);
-  BinConverter binConverter;
-  BinFile binFile2 = binConverter.hex2bin(hexFile);
-  REQUIRE(binFile2.size() == file_size);
-  REQUIRE(binFile2 == binFile);
-  cout << hexFile << endl;
-  string filename2 = "/tmp/cplusplusorg.freeformjs.imploded.zip.txt";
-  {
-    ofstream tmpfile(filename2);
-    REQUIRE(tmpfile.good());
-    tmpfile << hexFile;
-  }
-  ifstream myfile2(filename2);
-  REQUIRE(myfile2.good());
-  HexFile hexFile2;
-  myfile2 >> hexFile2;
-  REQUIRE(hexFile2.size() == fs::file_size(filename) * 2);
-  // REQUIRE(fs::file_size(filename2) == fs::file_size(filename) * 2);
-  REQUIRE(hexFile == hexFile2);
+  const byte correct_answer[] = {0x01, 0x02, 0x03};
+  Mock<BinInterface> mock;
+  When(Method(mock, array)).Return(correct_answer);
+  When(Method(mock, size)).Return(sizeof(correct_answer) / sizeof(byte));
+
+  BinInterface& i = mock.get();
+  REQUIRE(i.array() == correct_answer);
+  REQUIRE(i.size() == 3);
+  Verify(Method(mock, array));
+  Verify(Method(mock, size));
 }
