@@ -38,7 +38,7 @@ namespace extras {
 
   void SocketClient::connect() {
     int valread;
-    struct sockaddr_in serv_addr;
+    // struct sockaddr_in serv_addr;
     const char *hello = "Hello from client";
     char buffer[1024] = {0};
     if ((_socket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
@@ -46,17 +46,17 @@ namespace extras {
       throw -1;
     }
 
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(_port);
+    this->_serv_addr.sin_family = AF_INET;
+    this->_serv_addr.sin_port = htons(_port);
 
     // Convert IPv4 and IPv6 addresses from text to binary form
-    if (inet_pton(AF_INET, "159.223.103.27", &serv_addr.sin_addr) <= 0) {
+    if (inet_pton(AF_INET, "159.223.103.27", &this->_serv_addr.sin_addr) <= 0) {
       printf("\nInvalid address/ Address not supported \n");
       throw -1;
     }
 
-    if (::connect(_socket, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) <
-        0) {
+    if (::connect(_socket, (struct sockaddr *)&this->_serv_addr,
+                  sizeof(this->_serv_addr)) < 0) {
       printf("\nConnection Failed \n");
       throw -1;
     }
