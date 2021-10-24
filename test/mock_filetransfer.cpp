@@ -7,8 +7,10 @@
 #include "extras/bin2hex/BinConverter.hpp"
 #include "extras/bin2hex/BinFile.hpp"
 #include "extras/bin2hex/ConvertBin2Hex.hpp"
+#include "extras/bin2hex/FileTransferInterface.hpp"
 #include "extras/bin2hex/HexConverter.hpp"
 #include "extras/bin2hex/HexFile.hpp"
+#include "extras/sockets/SocketClient.hpp"
 #include "extras/types.hpp"
 #include "fakeit.hpp"
 
@@ -18,7 +20,8 @@ namespace fs = std::filesystem;
 
 HexFile createHexFile();
 
-SCENARIO("Mock FileTransferInterface", "[FileTransferInterface]") {
+SCENARIO("Mock FileTransferInterface: HexInterface",
+         "[FileTransferInterface]") {
   HexFile hexFile = createHexFile();
   const HexFile& correct_answer = hexFile;
   Mock<HexInterface> mock;
@@ -38,4 +41,20 @@ SCENARIO("Mock FileTransferInterface", "[FileTransferInterface]") {
   Verify(Method(mock, array));
   Verify(Method(mock, lines));
   Verify(Method(mock, size));
+}
+
+SCENARIO("Mock FileTransferInterface", "[FileTransferInterface]") {
+  HexFile hexFile = createHexFile();
+  const HexFile& correct_answer = hexFile;
+  Mock<SocketClientInterface> mock_client;
+  When(Method(mock_client, connect)).Return();
+  SocketClientInterface& i_client = mock_client.get();
+  Mock<FileTransferInterface> mock;
+  When(Method(mock, transfer))
+      .AlwaysDo([&hexFile, &i_client](const HexInterface&,
+                                      SocketInterface& socket) {});
+
+  FileTransferInterface& i = mock.get();
+  i.transfer(hexFile, i_client);
+  Verify(Method(mock, transfer));
 }

@@ -22,8 +22,7 @@ namespace extras {
    * Maintains a hex array in memory
    */
   interface FileTransferInterface {
-    // virtual SocketInterface& socket() pure;
-    // virtual void transfer(const HexInterface&) pure;
+    virtual void transfer(const HexInterface&, SocketInterface& socket) pure;
   };
 
 }  // namespace extras
