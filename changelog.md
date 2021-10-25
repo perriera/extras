@@ -25,9 +25,14 @@ IMPORTANT:
 - Update Doxygen content
 - dev branch added
 
+#### 3.26.0 (2021-10-24)
+### Added
+- DomainInterface
+* (PE-14)[https://github.com/perriera/extras/compare/v3.25.1...v3.26.0]
+
 #### 3.25.1 (2021-10-24)
 ### Added
-- Fixed issue with ip_address 
+- Fixed issue with IP address
 
 #### 3.25.0 (2021-10-24)
 ### Added
