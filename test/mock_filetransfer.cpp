@@ -37,7 +37,7 @@ SCENARIO("Mock FileTransferInterface: HexInterface",
 
   HexInterface& i = mock.get();
   REQUIRE(i.array() == array);
-  REQUIRE(i.lines() == 7778);
+  REQUIRE(i.lines() == 10);
   REQUIRE(i.size() == 622178);
   Verify(Method(mock, array));
   Verify(Method(mock, lines));

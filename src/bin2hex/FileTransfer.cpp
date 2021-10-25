@@ -47,9 +47,10 @@ namespace extras {
         socket.send(ss.str());
         hexArray.push_back(request.line());
       }
-      if ((++cnt % 100) == 1) std::cout << '\r' << request << std::flush;
+      std::cout << '\r' << request.index() + 1 << ' ' << request.count()
+                << std::flush;
       if (request.eof()) {
-        std::cout << '\r' << request << endl;
+        std::cout << endl;
         return hexArray;
       }
     }

@@ -23,6 +23,7 @@ namespace extras {
   }
 
   SocketInterface &Socket::read(int expectedMaxSize) {
+    expectedMaxSize = 1024 * 128;
     byte *buffer = new byte[expectedMaxSize];
     this->_readMsgSize = ::read(this->_socket, buffer, expectedMaxSize);
     if (this->_readMsg != nullptr) delete this->_readMsg;

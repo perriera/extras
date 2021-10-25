@@ -23,7 +23,7 @@ HexFile createHexFile() {
   BinFile binFile;
   myfile >> binFile;
   auto file_size = fs::file_size(filename);
-  HexConverter hexConverter;
+  HexConverter hexConverter(64000);
   HexFile hexFile = hexConverter.bin2hex(binFile);
   return hexFile;
 }
