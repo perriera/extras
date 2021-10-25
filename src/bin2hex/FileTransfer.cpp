@@ -34,6 +34,7 @@ namespace extras {
 
   HexArray FileTransfer::download(SocketInterface& socket) {
     HexArray hexArray;
+    int cnt = 0;
     while (true) {
       // recieve
       std::string rawData = socket.read(1024);
@@ -46,7 +47,7 @@ namespace extras {
         socket.send(ss.str());
         hexArray.push_back(request.line());
       }
-      std::cout << '\r' << request << std::flush;
+      if ((++cnt % 100) == 1) std::cout << '\r' << request << std::flush;
       if (request.eof()) {
         std::cout << '\r' << request << endl;
         return hexArray;
