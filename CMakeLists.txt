@@ -114,27 +114,31 @@ add_executable(client instances/client.cpp)
 target_include_directories(client PUBLIC ${INCLUDES})
 target_link_libraries(client PRIVATE ${PROJECT_NAME} stdc++fs )
 
-#
-# FreeFormJS server
-#
 add_executable(server instances/server.cpp) 
 target_include_directories(server PUBLIC ${INCLUDES})
 target_link_libraries(server PRIVATE ${PROJECT_NAME} stdc++fs )
 
 #
-# FreeFormJS test_server
-#
-add_executable(test_server instances/test_server.cpp) 
-target_include_directories(test_server PUBLIC ${INCLUDES})
-target_link_libraries(test_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
-
-#
-# FreeFormJS test_client
+# FreeFormJS test_client / test_server
 #
 add_executable(test_client instances/test_client.cpp) 
 target_include_directories(test_client PUBLIC ${INCLUDES})
 target_link_libraries(test_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
+add_executable(test_server instances/test_server.cpp) 
+target_include_directories(test_server PUBLIC ${INCLUDES})
+target_link_libraries(test_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
+#
+# FreeFormJS file_client / file_server
+#
+add_executable(file_client instances/file_client.cpp) 
+target_include_directories(file_client PUBLIC ${INCLUDES})
+target_link_libraries(file_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
+add_executable(file_server instances/file_server.cpp) 
+target_include_directories(file_server PUBLIC ${INCLUDES})
+target_link_libraries(file_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 # if the compiler supports iter-procedural optimization, turn it on
 check_ipo_supported(RESULT result OUTPUT output)
