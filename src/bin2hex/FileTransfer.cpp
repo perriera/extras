@@ -32,6 +32,6 @@ namespace extras {
     }
   }
 
-  void FileTransfer::download(const HexInterface&, SocketInterface& socket) {}
+  HexArray FileTransfer::download(SocketInterface& socket) {}
 
 }  // namespace extras

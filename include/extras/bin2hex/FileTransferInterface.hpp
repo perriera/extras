@@ -24,7 +24,7 @@ namespace extras {
   interface FileTransferInterface {
     virtual void upload(const HexInterface&, SocketInterface& socket) pure;
     // virtual void inquire(const HexInterface&, SocketInterface& socket) pure;
-    virtual void download(const HexInterface&, SocketInterface& socket) pure;
+    virtual HexArray download(SocketInterface& socket) pure;
   };
 
   /**
@@ -38,8 +38,7 @@ namespace extras {
    public:
     virtual void upload(const HexInterface&, SocketInterface& socket) override;
     // virtual void inquire(const HexInterface&, SocketInterface& socket) pure;
-    virtual void download(const HexInterface&,
-                          SocketInterface& socket) override;
+    virtual HexArray download(SocketInterface& socket) override;
 
     operator const HexArray&() { return _echo; }
   };
