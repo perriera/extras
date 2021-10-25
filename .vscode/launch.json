@@ -14,7 +14,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/run-unittests-extras",
-            "args": [],
+            "args": [
+                "[HexFileTransfer]"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -82,7 +84,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/test_client",
             "args": [
-                "localhost"
+                "159.223.103.27"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

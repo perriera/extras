@@ -54,6 +54,30 @@ struct Downloader implements DownloaderInterface {
  */
 SCENARIO("Mock UploaderInterface: upload", "[HexFileTransfer]") {
   std::string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
+  GIVEN('we need to get this working') {
+    Paths path(filename);
+    WHEN('we try this') {
+      Path actual_path = ~path;
+      THEN('we can try this') {
+        std::cout << "PRINT THIS OUT" << std::endl
+                  << std::endl
+                  << actual_path << std::endl
+                  << std::endl;
+        if (fs::exists(actual_path))
+          std::cout << "file found" << std::endl;
+        else
+          std::cout << "file not found" << std::endl;
+
+        // THEN('we can try this') {
+        //   std::ifstream myfile(
+        //       // "/home/perry/Projects/extras/data/Downloads/"
+        //       // "cplusplusorg.freeformjs.imploded.zip");
+        //       "cplusplusorg.freeformjs.imploded.zip");
+        //   std::cout << "hello" << std::endl;
+        // }
+      }
+    }
+  }
   std::ifstream myfile(~Paths(filename));
   REQUIRE(myfile.good());
   BinFile binFile;

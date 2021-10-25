@@ -12,13 +12,29 @@ namespace extras {
    *
    */
 
+  using Path = std::string;
+
   interface PathsInterface {
     /**
      * @brief actualPath
      * @return replace the '~' with the value gained from getenv('home')
      * @exception invalid path supplied
      */
-    virtual std::string actualPath(const std::string &path) const pure;
+    virtual Path actualPath(const Path &path) const pure;
+
+    /**
+     * @brief find
+     * @param path to be found
+     * @return the full path to the actual file being requested
+     * @exception invalid path supplied
+     *
+     * In the case of running the test scripts the build/ directory is
+     * not always the place where run-unittests is executed from. In order
+     * to make sure that the test scripts run properly, we need to make
+     * an educated guess as to where the actual path, (of the file) is.
+     *
+     */
+    virtual Path find(const Path &path) const pure;
   };
 
   /**
@@ -36,6 +52,8 @@ namespace extras {
      * @exception invalid path supplied
      */
     virtual std::string actualPath(const std::string &path) const override;
+
+    virtual Path find(const Path &path) const override;
 
     static auto instance() -> PathsInterface & {
       static Paths paths;
