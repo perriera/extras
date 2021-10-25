@@ -23,8 +23,24 @@ namespace extras {
    */
   interface FileTransferInterface {
     virtual void upload(const HexInterface&, SocketInterface& socket) pure;
-    virtual void inquire(const HexInterface&, SocketInterface& socket) pure;
-    virtual void download(const HexInterface&, SocketInterface& socket) pure;
+    // virtual void inquire(const HexInterface&, SocketInterface& socket) pure;
+    virtual HexArray download(SocketInterface& socket) pure;
+  };
+
+  /**
+   * @brief HexFileTransferInterface
+   *
+   * Maintains a hex array in memory
+   */
+  concrete class FileTransfer implements FileTransferInterface {
+    HexArray _echo;
+
+   public:
+    virtual void upload(const HexInterface&, SocketInterface& socket) override;
+    // virtual void inquire(const HexInterface&, SocketInterface& socket) pure;
+    virtual HexArray download(SocketInterface& socket) override;
+
+    operator const HexArray&() { return _echo; }
   };
 
 }  // namespace extras

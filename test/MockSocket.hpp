@@ -24,6 +24,7 @@ namespace fs = std::filesystem;
 
 struct MockSocket implements SocketInterface {
   HexArray& _packets;
+  HexArray _localEcho;
   HexLine _nextLine;
   HexArray _sent;
   HexArray _recieved;
@@ -37,12 +38,18 @@ struct MockSocket implements SocketInterface {
   };
   virtual SocketInterface& read(int) {
     _nextLine = _packets.front();
+    _localEcho.push_back(_nextLine);
     _packets.erase(_packets.begin());
     _recieved.push_back(_nextLine);
     return *this;
   };
   virtual operator std::string() const { return _nextLine; };
   virtual operator SocketPacket() const { return SocketPacket(); };
+  const HexArray& localEcho() { return _localEcho; }
+  void reload(const HexArray& localEcho) {
+    _packets = localEcho;
+    std::cout << _packets.size() << std::endl;
+  }
 };
 
 struct MockServer extends MockSocket {

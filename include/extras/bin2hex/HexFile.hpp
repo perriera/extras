@@ -43,6 +43,7 @@ namespace extras {
       }
       return _size;
     }
+    operator const HexArray&() { return _array; }
   };
 
 }  // namespace extras

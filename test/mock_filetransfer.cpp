@@ -52,8 +52,7 @@ SCENARIO("Mock FileTransferInterface", "[FileTransferInterface]") {
   SocketClientInterface& i_client = mock_client.get();
   Mock<FileTransferInterface> mock;
   When(Method(mock, upload))
-      .AlwaysDo(
-          [&hexFile, &i_client](const HexInterface&, SocketInterface&) {});
+      .AlwaysDo([](const HexInterface&, SocketInterface&) {});
 
   FileTransferInterface& i = mock.get();
   i.upload(hexFile, i_client);
@@ -103,7 +102,7 @@ SCENARIO("Mock FileTransferInterface upload", "[FileTransferInterface]") {
   Verify(Method(mock, upload));
 }
 
-SCENARIO("Mock FileTransferInterface download", "[FileTransferInterface]") {
+SCENARIO("Mock FileTransferInterface download", "[FileTransferInterfaceX]") {
   HexFile hexFile = createHexFile();
   const HexArray& array = hexFile.array();
 
@@ -113,9 +112,9 @@ SCENARIO("Mock FileTransferInterface download", "[FileTransferInterface]") {
   MockServer mockServer(packets);
   MockClient mockClient(packets);
 
-  SocketInterface& i_server = mockServer;
+  SocketInterface& i_client = mockClient;
   Mock<FileTransferInterface> mock;
-  When(Method(mock, download))
+  When(Method(mock, upload))
       .AlwaysDo([&echo](const HexInterface& hexFile, SocketInterface& socket) {
         int i = 0;
         int count = hexFile.array().size();
@@ -141,7 +140,32 @@ SCENARIO("Mock FileTransferInterface download", "[FileTransferInterface]") {
       });
 
   FileTransferInterface& i = mock.get();
-  i.download(hexFile, i_server);
+  i.upload(hexFile, i_client);
+
+  std::cout << echo.size() << std::endl;
+  mockServer.reload(mockClient.localEcho());
+  SocketInterface& i_server = mockServer;
+  When(Method(mock, download)).AlwaysDo([](SocketInterface& socket) {
+    HexArray hexArray;
+    while (true) {
+      // recieve
+      std::string rawData = socket.read(1024);
+      HexPacket request;
+      {
+        std::stringstream ss;
+        ss << rawData << std::flush;
+        ss >> request;
+        ss << std::endl;
+        socket.send(ss.str());
+        hexArray.push_back(request.line());
+      }
+      std::cout << request.index() + 1 << ' ' << request.count() << std::endl;
+      if (request.eof()) return hexArray;
+    }
+  });
+
+  i.download(i_server);
   REQUIRE(array == echo);
+  Verify(Method(mock, upload));
   Verify(Method(mock, download));
 }
