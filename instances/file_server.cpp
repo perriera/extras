@@ -27,8 +27,9 @@ int main(int, char const*[]) {
   try {
     SocketServer server(PORT);
     server.accept();
+
     FileTransfer fileTransfer;
-    // HexArray hexArray = fileTransfer.download(server);
+    HexArray hexArray = fileTransfer.download(server);
 
     string msg = server.read();
     cout << msg << endl;

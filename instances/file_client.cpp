@@ -36,6 +36,7 @@ int main(int, char const* argv[]) {
     std::string argv1 = argv[1];
     SocketClient client(argv1, PORT);
     client.connect();
+
     FileTransfer fileTransfer;
     fileTransfer.upload(hexFile, client);
 
