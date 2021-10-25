@@ -52,8 +52,7 @@ SCENARIO("Mock FileTransferInterface", "[FileTransferInterface]") {
   SocketClientInterface& i_client = mock_client.get();
   Mock<FileTransferInterface> mock;
   When(Method(mock, upload))
-      .AlwaysDo(
-          [&hexFile, &i_client](const HexInterface&, SocketInterface&) {});
+      .AlwaysDo([](const HexInterface&, SocketInterface&) {});
 
   FileTransferInterface& i = mock.get();
   i.upload(hexFile, i_client);
