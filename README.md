@@ -595,6 +595,23 @@ DomainInterface:
 
     IPAddress ip = ~Domain("cplusplus.org")
 
+## extras/Sockets/FileTransferInterface.hpp
+ > add **extras/Sockets/FileTransferInterface.hpp**  to your C++ source</br>
+ > **using namespace extras;**</br>
+This header file provides a simple means uploading and downloading a file across sockets.
+
+    /**
+    * @brief FileTransferInterface
+    *
+    * Transfers an file across sockets
+    *
+    */
+    interface FileTransferInterface {
+        virtual void upload(const HexInterface&, SocketInterface& socket) pure;
+        virtual HexArray download(SocketInterface& socket) pure;
+    };
+
+
 Returns the current IP address of the domain, (or throws an exception if it does not exist)
 
 ## extras/spdlog, (as a shared library)
