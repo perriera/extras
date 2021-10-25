@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v3.25.1 -m "Fixed issue with ip_address"</br>
-> > git push origin v3.25.1
+> > git tag -a v3.26.0 -m "Fixed issue with ip_address"</br>
+> > git push origin v3.26.0
 > >
 >
 > > POPULAR LINKS:
@@ -357,7 +357,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.25.1...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.26.0...HEAD
+[3.26.0]: https://github.com/perriera/extras/compare/v3.25.1...v3.26.0
 [3.25.1]: https://github.com/perriera/extras/compare/v3.25.0...v3.25.1
 [3.25.0]: https://github.com/perriera/extras/compare/v3.24.0...v3.25.0
 [3.24.0]: https://github.com/perriera/extras/compare/v3.23.0...v3.24.0

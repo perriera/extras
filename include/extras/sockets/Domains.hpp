@@ -8,9 +8,12 @@
 namespace extras {
 
   /**
-   * @brief PathsInterface
+   * @brief DomainInterface
    *
    */
+
+  using IPAddress = std::string;
+  using DomainName = std::string;
 
   interface DomainInterface {
     /**
@@ -18,11 +21,14 @@ namespace extras {
      * @return replace the '~' with the value gained from getenv('home')
      * @exception invalid path supplied
      */
-    virtual bool isIPAddress(const std::string &ipAddress) const pure;
+    virtual IPAddress resolve() const pure;
+    virtual DomainName name() const pure;
+    virtual IPAddress ip() const pure;
+    virtual bool exists() const pure;
   };
 
   /**
-   * @brief PathsInterface
+   * @brief class Domain
    *
    */
 
@@ -36,7 +42,10 @@ namespace extras {
      * @return replace the '~' with the value gained from getenv('home')
      * @exception invalid path supplied
      */
-    virtual bool isIPAddress(const std::string &ipAddress) const override;
+    virtual IPAddress resolve() const override;
+    virtual DomainName name() const override { return _domainname; };
+    virtual IPAddress ip() const override { return _ipaddress; };
+    virtual bool exists() const override;
 
     static auto instance() -> DomainInterface & {
       static Domain domain;
@@ -44,38 +53,31 @@ namespace extras {
     }
 
     Domain(){};
-    Domain(const std::string &candidate) : _domainname(candidate){};
+    Domain(const std::string &candidate) : _domainname(candidate) {
+      _ipaddress = this->resolve();
+    };
 
     /**
      * @brief overloaded ~() operator to remove the ~ from the path
      * @return the full path, (where the '~' is replaced with home path)
      */
-    Paths &operator~() noexcept { return *this; }
-    operator std::string() { return actualPath(_path); }
+    Domain &operator~() noexcept { return *this; }
+    operator std::string() { return _ipaddress; }
   };
 
   /**
-   * @brief OctalException
+   * @brief DomainException
    *
    * To be thrown if either string or value supplied is out of range.
    *
    */
-  concrete class PathsException extends AbstractCustomException {
+  concrete class DomainException extends AbstractCustomException {
    public:
-    PathsException(const char *msg, const WhereAmI &whereAmI)
+    DomainException(const char *msg, const WhereAmI &whereAmI)
         : AbstractCustomException(msg, whereAmI._file.c_str(),
                                   whereAmI._func.c_str(), whereAmI._line) {}
-    static void assertion(const std::string &row_col, const WhereAmI &ref) {
-      if (row_col.length() != 2 || row_col[0] < 'a' || row_col[0] > 'h' ||
-          row_col[1] < '0' || row_col[0] > '7') {
-        throw PathsException(row_col.c_str(), ref);
-      }
-    }
-    static void assertion(int octalValue, const WhereAmI &ref) {
-      if (octalValue < 0 || octalValue > 7) {
-        throw SpecificCustomException(std::to_string(octalValue).c_str(), ref);
-      }
-    }
+    static void assertion(const std::string &response, const DomainName &name);
+    static void assertion(const Domain &domain);
   };
 
 }  // namespace extras

@@ -14,9 +14,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/run-unittests-extras",
-            "args": [
-                "[FileTransferInterface]"
-            ],
+            "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -84,8 +82,29 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/test_client",
             "args": [
-                "127.0.0.1"
+                "localhost"
             ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++ project",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "test_server",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_server",
+            "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
