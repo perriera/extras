@@ -46,14 +46,14 @@ SCENARIO("Mock FileTransferInterface: HexInterface",
 
 SCENARIO("Mock FileTransferInterface", "[FileTransferInterface]") {
   HexFile hexFile = createHexFile();
-  const HexFile& correct_answer = hexFile;
+  // const HexFile& correct_answer = hexFile;
   Mock<SocketClientInterface> mock_client;
   When(Method(mock_client, connect)).Return();
   SocketClientInterface& i_client = mock_client.get();
   Mock<FileTransferInterface> mock;
   When(Method(mock, upload))
-      .AlwaysDo([&hexFile, &i_client](const HexInterface&,
-                                      SocketInterface& socket) {});
+      .AlwaysDo(
+          [&hexFile, &i_client](const HexInterface&, SocketInterface&) {});
 
   FileTransferInterface& i = mock.get();
   i.upload(hexFile, i_client);
