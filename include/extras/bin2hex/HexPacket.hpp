@@ -61,7 +61,7 @@ namespace extras {
     virtual int count() const override { return _count; };
     virtual int rle() const override { return _line.size(); };
     virtual const HexLine& line() const override { return _line; }
-    virtual bool eof() const override { return _index == _count; };
+    virtual bool eof() const override { return _index + 1 == _count; };
   };
 
 }  // namespace extras

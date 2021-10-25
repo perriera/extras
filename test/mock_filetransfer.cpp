@@ -102,7 +102,7 @@ SCENARIO("Mock FileTransferInterface upload", "[FileTransferInterface]") {
   Verify(Method(mock, upload));
 }
 
-SCENARIO("Mock FileTransferInterface download", "[FileTransferInterface]") {
+SCENARIO("Mock FileTransferInterface download", "[FileTransferInterfaceX]") {
   HexFile hexFile = createHexFile();
   const HexArray& array = hexFile.array();
 
@@ -139,6 +139,12 @@ SCENARIO("Mock FileTransferInterface download", "[FileTransferInterface]") {
         }
       });
 
+  FileTransferInterface& i = mock.get();
+  i.upload(hexFile, i_client);
+
+  std::cout << echo.size() << std::endl;
+  mockServer.reload(mockClient.localEcho());
+  SocketInterface& i_server = mockServer;
   When(Method(mock, download)).AlwaysDo([](SocketInterface& socket) {
     HexArray hexArray;
     while (true) {
@@ -148,16 +154,17 @@ SCENARIO("Mock FileTransferInterface download", "[FileTransferInterface]") {
       {
         std::stringstream ss;
         ss << rawData << std::flush;
-        ss << request << std::endl;
+        ss >> request;
         socket.send(ss.str());
         hexArray.push_back(request.line());
       }
+      std::cout << request.index() << ' ' << request.count() << std::endl;
       if (request.eof()) return hexArray;
     }
   });
 
-  FileTransferInterface& i = mock.get();
-  i.upload(hexFile, i_client);
+  i.download(i_server);
   REQUIRE(array == echo);
   Verify(Method(mock, upload));
+  Verify(Method(mock, download));
 }
