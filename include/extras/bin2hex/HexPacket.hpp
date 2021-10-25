@@ -27,6 +27,7 @@ namespace extras {
     virtual int count() const pure;
     virtual int rle() const pure;
     virtual const HexLine& line() const pure;
+    virtual bool eof() const pure;
     bool operator==(HexPacketInterface const& other) const {
       return index() == other.index() && count() == other.count() &&
              rle() == other.rle() && line() == other.line();
@@ -60,6 +61,7 @@ namespace extras {
     virtual int count() const override { return _count; };
     virtual int rle() const override { return _line.size(); };
     virtual const HexLine& line() const override { return _line; }
+    virtual bool eof() const override { return _index == _count; };
   };
 
 }  // namespace extras
