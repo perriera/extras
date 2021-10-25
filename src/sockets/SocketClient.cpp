@@ -12,6 +12,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "extras/sockets/Domains.hpp"
+
 using namespace std;
 
 namespace extras {
@@ -38,17 +40,17 @@ namespace extras {
   std::string SocketClient::ip_address(const std::string &domainname) {
     string result = "127.0.0.1";
     if (domainname == "localhost") return result;
-    struct hostent *ghbn =
-        gethostbyname(domainname.c_str());  // change the domain name
     if (domainname.length() > 1 && isdigit(domainname[0])) return domainname;
-    if (ghbn) {
-      printf("Host Name->%s\n", ghbn->h_name);
-      result = inet_ntoa(*(struct in_addr *)ghbn->h_name);
-      printf("IP ADDRESS->%s\n", result.c_str());
-    } else {
-      string msg = "Unknown IP address: " + domainname;
-      throw SocketException(msg.c_str(), __INFO__);
-    }
+    // struct hostent *ghbn =
+    //     gethostbyname(domainname.c_str());  // change the domain name
+    // if (ghbn) {
+    //   printf("Host Name->%s\n", ghbn->h_name);
+    //   result = inet_ntoa(*(struct in_addr *)ghbn->h_name);
+    //   printf("IP ADDRESS->%s\n", result.c_str());
+    // } else {
+    //   string msg = "Unknown IP address: " + domainname;
+    //   throw SocketException(msg.c_str(), __INFO__);
+    // }
     return result;
   }
 

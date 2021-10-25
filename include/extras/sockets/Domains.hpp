@@ -21,7 +21,7 @@ namespace extras {
      * @return replace the '~' with the value gained from getenv('home')
      * @exception invalid path supplied
      */
-    virtual IPAddress resolve(const DomainName &domainName) const pure;
+    virtual IPAddress resolve() const pure;
     virtual DomainName name() const pure;
     virtual IPAddress ip() const pure;
     virtual bool exists() const pure;
@@ -35,7 +35,6 @@ namespace extras {
   concrete class Domain implements DomainInterface {
     std::string _domainname;
     std::string _ipaddress;
-    bool _exists = false;
 
    public:
     /**
@@ -43,10 +42,10 @@ namespace extras {
      * @return replace the '~' with the value gained from getenv('home')
      * @exception invalid path supplied
      */
-    virtual IPAddress resolve(const DomainName &domainName) const override;
+    virtual IPAddress resolve() const override;
     virtual DomainName name() const override { return _domainname; };
     virtual IPAddress ip() const override { return _ipaddress; };
-    virtual bool exists() const override { return _exists; };
+    virtual bool exists() const override;
 
     static auto instance() -> DomainInterface & {
       static Domain domain;
@@ -55,8 +54,7 @@ namespace extras {
 
     Domain(){};
     Domain(const std::string &candidate) : _domainname(candidate) {
-      _ipaddress = this->resolve(_domainname);
-      _exists = true;
+      _ipaddress = this->resolve();
     };
 
     /**
@@ -79,6 +77,7 @@ namespace extras {
         : AbstractCustomException(msg, whereAmI._file.c_str(),
                                   whereAmI._func.c_str(), whereAmI._line) {}
     static void assertion(const std::string &response, const DomainName &name);
+    static void assertion(const Domain &domain);
   };
 
 }  // namespace extras
