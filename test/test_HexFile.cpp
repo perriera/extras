@@ -17,12 +17,6 @@ namespace fs = std::filesystem;
 
 HexFile createHexFile() {
   string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
-  {
-    Paths path(filename);
-    Path actual_path = ~path;
-    std::cout << actual_path << std::endl;
-    std::ifstream myfile(actual_path);
-  }
   std::string path = ~Paths(filename);
   ifstream myfile(path);
   REQUIRE(myfile.good());
