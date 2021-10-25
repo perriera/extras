@@ -155,10 +155,11 @@ SCENARIO("Mock FileTransferInterface download", "[FileTransferInterfaceX]") {
         std::stringstream ss;
         ss << rawData << std::flush;
         ss >> request;
+        ss << std::endl;
         socket.send(ss.str());
         hexArray.push_back(request.line());
       }
-      std::cout << request.index() << ' ' << request.count() << std::endl;
+      std::cout << request.index() + 1 << ' ' << request.count() << std::endl;
       if (request.eof()) return hexArray;
     }
   });
