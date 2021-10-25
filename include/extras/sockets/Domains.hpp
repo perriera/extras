@@ -8,7 +8,7 @@
 namespace extras {
 
   /**
-   * @brief PathsInterface
+   * @brief DomainInterface
    *
    */
 
@@ -28,7 +28,7 @@ namespace extras {
   };
 
   /**
-   * @brief PathsInterface
+   * @brief class Domain
    *
    */
 
@@ -66,7 +66,7 @@ namespace extras {
   };
 
   /**
-   * @brief OctalException
+   * @brief DomainException
    *
    * To be thrown if either string or value supplied is out of range.
    *

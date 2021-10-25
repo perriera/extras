@@ -569,6 +569,34 @@ For Hex to Binary:
         virtual int size() const pure;
     };
 
+## extras/Sockets/Domains.hpp
+ > add **extras/Sockets/Domains.hpp**  to your C++ source</br>
+ > **using namespace extras;**</br>
+This header file provides a simple means of checking for the online existance of a domain name as well as returning it's current IP address:
+
+DomainInterface:
+
+    using IPAddress = std::string;
+    using DomainName = std::string;
+
+    interface DomainInterface {
+        /**
+        * @brief actualPath
+        * @return replace the '~' with the value gained from getenv('home')
+        * @exception invalid path supplied
+        */
+        virtual IPAddress resolve() const pure;
+        virtual DomainName name() const pure;
+        virtual IPAddress ip() const pure;
+        virtual bool exists() const pure;
+    };
+ 
+ Basic usage:
+
+    IPAddress ip = ~Domain("cplusplus.org")
+
+Returns the current IP address of the domain, (or throws an exception if it does not exist)
+
 ## extras/spdlog, (as a shared library)
  > when you git clone this repository to your directory structure and build it using the install 
  > procedure, (defined above), the ever popular spdlog library will now be available to you as a shared 
