@@ -2,8 +2,8 @@
 #include <extras/paths.hpp>
 #include <extras/strings.hpp>
 
-#include "catch.hpp"
 #include "extras/sockets/SocketClient.hpp"
+#include "vendor/catch.hpp"
 
 using namespace std;
 using namespace extras;

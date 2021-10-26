@@ -3,13 +3,13 @@
 #include <iostream>
 #include <sstream>
 
-#include "catch.hpp"
 #include "extras/bin2hex/BinConverter.hpp"
 #include "extras/bin2hex/BinFile.hpp"
 #include "extras/bin2hex/ConvertBin2Hex.hpp"
 #include "extras/bin2hex/HexConverter.hpp"
 #include "extras/bin2hex/HexFile.hpp"
 #include "extras/paths.hpp"
+#include "vendor/catch.hpp"
 
 using namespace std;
 using namespace extras;

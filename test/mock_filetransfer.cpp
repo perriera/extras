@@ -4,7 +4,6 @@
 #include <sstream>
 
 #include "MockSocket.hpp"
-#include "catch.hpp"
 #include "extras/bin2hex/BinConverter.hpp"
 #include "extras/bin2hex/BinFile.hpp"
 #include "extras/bin2hex/ConvertBin2Hex.hpp"
@@ -13,7 +12,8 @@
 #include "extras/bin2hex/HexFile.hpp"
 #include "extras/sockets/SocketClient.hpp"
 #include "extras/types.hpp"
-#include "fakeit.hpp"
+#include "vendor/catch.hpp"
+#include "vendor/fakeit.hpp"
 
 using namespace fakeit;
 using namespace extras;

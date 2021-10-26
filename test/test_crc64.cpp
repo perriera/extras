@@ -1,12 +1,11 @@
 #include <cstdint>
 #include <extras/crc64_support.hpp>
 
-#include "catch.hpp"
+#include "vendor/catch.hpp"
 
 using namespace extras;
 
-SCENARIO("Verify crc64 default", "[crc64]")
-{
+SCENARIO("Verify crc64 default", "[crc64]") {
   {
     const char *data_piece4 = "\x80";
     crc64 crc;

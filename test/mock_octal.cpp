@@ -1,9 +1,9 @@
 
 #include <iostream>
 
-#include "catch.hpp"
 #include "extras/octal_support.hpp"
-#include "fakeit.hpp"
+#include "vendor/catch.hpp"
+#include "vendor/fakeit.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart

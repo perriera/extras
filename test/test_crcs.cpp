@@ -5,8 +5,8 @@
 #include <sstream>   // std::stringstream
 #include <string>    // std::string
 
-#include "catch.hpp"
 #include "extras/crcs.hpp"
+#include "vendor/catch.hpp"
 
 using namespace std;
 using namespace extras;

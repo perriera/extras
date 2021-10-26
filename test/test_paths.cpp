@@ -3,7 +3,7 @@
 #include <extras/strings.hpp>
 #include <fstream>
 
-#include "catch.hpp"
+#include "vendor/catch.hpp"
 
 using namespace extras;
 

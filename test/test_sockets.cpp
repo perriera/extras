@@ -12,7 +12,7 @@
 #include <sstream>
 
 #include "MockSocket.hpp"
-#include "catch.hpp"
+#include "vendor/catch.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart

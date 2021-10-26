@@ -1,10 +1,10 @@
 
 #include <iostream>
 
-#include "catch.hpp"
 #include "extras/exceptions.hpp"
 #include "extras/strings.hpp"
-#include "fakeit.hpp"
+#include "vendor/catch.hpp"
+#include "vendor/fakeit.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart

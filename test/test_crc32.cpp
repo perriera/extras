@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <extras/crc32_support.hpp>
 
-#include "catch.hpp"
+#include "vendor/catch.hpp"
 
 using namespace extras;
 using namespace std;
