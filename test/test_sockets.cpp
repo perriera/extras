@@ -21,18 +21,10 @@
 using namespace extras;
 namespace fs = std::filesystem;
 
+HexFile createHexFile();
+
 SCENARIO("MockSocketServer/MockSocketClient", "[HexFileTransfer2]") {
-  std::string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
-  std::ifstream myfile(~Paths(filename));
-  REQUIRE(myfile.good());
-  BinFile binFile;
-  myfile >> binFile;
-  auto file_size = fs::file_size(filename);
-  REQUIRE(binFile.array() != nullptr);
-  REQUIRE(binFile.size() == file_size);
-  HexConverter hexConverter;
-  HexFile hexFile = hexConverter.bin2hex(binFile);
-  REQUIRE(hexFile.size() == file_size * 2);
+  HexFile hexFile = createHexFile();
 
   HexArray packets;
   MockServer mockServer(packets);
