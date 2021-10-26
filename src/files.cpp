@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "extras/string_support.hpp"
+#include "extras/strings/string_support.hpp"
 
 using namespace std;
 

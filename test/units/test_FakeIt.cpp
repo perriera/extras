@@ -1,6 +1,6 @@
 #include <extras/crcs/crc32_support.hpp>
 #include <extras/crcs/crc64_support.hpp>
-#include <extras/string_support.hpp>
+#include <extras/strings/string_support.hpp>
 #include <fstream>
 #include <iostream>  // std::cout
 #include <sstream>   // std::stringstream
