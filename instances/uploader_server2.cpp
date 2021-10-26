@@ -31,14 +31,8 @@ int main(int argc, char const *argv[]) {
   //
   // do business
   //
-  const char *filename = "send.txt";
-  FILE *fp = fopen(filename, "r");
-  if (fp == NULL) {
-    perror("[-]Error in reading file.");
-    exit(1);
-  }
-  send_file(fp, new_sock);
-  printf("[+]File data sent successfully.\n");
+  write_file(new_sock);
+  printf("[+]Data written in the file successfully.\n");
 
   //
   // close connection
