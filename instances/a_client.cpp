@@ -17,7 +17,6 @@ void send_file(FILE *fp, int sockfd) {
     }
     bzero(data, SIZE);
   }
-  send(sockfd, "done", 4, 0);
 }
 
 int main(int argc, char const *argv[]) {
