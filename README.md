@@ -18,7 +18,7 @@
 	#include <extras/crcs.hpp>
 	#include <extras/dotenv.hpp>
 	#include <extras/vendor/cxxopts.hpp>
-	#include <extras/interfaces.hpp>
+	#include <extras/language/interfaces.hpp>
 	#include <extras/vendor/json.hpp>
 	#include <extras/keywords.hpp>
 	#include <extras/strings.hpp>
@@ -364,13 +364,13 @@ https://github.com/perriera/extras/blob/main/include/extras/language/exceptions.
 
 
 ## extras/interfaces
- > add **extras/interfaces.hpp** to your C++ source</br>
+ > add **extras/language/interfaces.hpp** to your C++ source</br>
  > (this library is header only at this point in time)</br>
  > **using namespace extras;**</br>
 Especially useful to programmers that like to program using interfaces, (aka. GoF: Abstract factory pattern))
 
     #include <iostream>
-    #include <extras/interfaces.hpp>
+    #include <extras/language/interfaces.hpp>
 
     //
     // CrossTableInterface
