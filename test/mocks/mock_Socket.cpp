@@ -1,9 +1,9 @@
 
 #include <iostream>
 
+#include "../vendor/catch.hpp"
+#include "../vendor/fakeit.hpp"
 #include "extras/sockets/SocketClient.hpp"
-#include "vendor/catch.hpp"
-#include "vendor/fakeit.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart

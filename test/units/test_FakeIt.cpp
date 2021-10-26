@@ -6,8 +6,8 @@
 #include <sstream>   // std::stringstream
 #include <string>    // std::string
 
-#include "vendor/catch.hpp"
-#include "vendor/fakeit.hpp"
+#include "../vendor/catch.hpp"
+#include "../vendor/fakeit.hpp"
 
 struct SomeInterface {
   virtual int foo(int) = 0;

@@ -1,8 +1,8 @@
 
 #include <iostream>
 
+#include "../vendor/catch.hpp"
 #include "extras/devices/AverageTemp.hpp"
-#include "vendor/catch.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart

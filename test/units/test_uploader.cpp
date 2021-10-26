@@ -11,9 +11,9 @@
 #include <iostream>
 #include <sstream>
 
-#include "MockSocket.hpp"
-#include "vendor/catch.hpp"
-#include "vendor/fakeit.hpp"
+#include "../mocks/MockSocket.hpp"
+#include "../vendor/catch.hpp"
+#include "../vendor/fakeit.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart

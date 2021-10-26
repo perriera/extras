@@ -3,7 +3,8 @@
 #include <iostream>
 #include <sstream>
 
-#include "MockSocket.hpp"
+#include "../mocks/MockSocket.hpp"
+#include "../vendor/catch.hpp"
 #include "extras/bin2hex/BinConverter.hpp"
 #include "extras/bin2hex/BinFile.hpp"
 #include "extras/bin2hex/ConvertBin2Hex.hpp"
@@ -12,7 +13,6 @@
 #include "extras/bin2hex/HexFile.hpp"
 #include "extras/sockets/SocketClient.hpp"
 #include "extras/types.hpp"
-#include "vendor/catch.hpp"
 
 using namespace extras;
 namespace fs = std::filesystem;
