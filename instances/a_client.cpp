@@ -20,8 +20,12 @@ void send_file(FILE *fp, int sockfd) {
   send(sockfd, "done", 4, 0);
 }
 
-int main() {
-  char *ip = "159.223.103.27";
+int main(int argc, char const *argv[]) {
+  if (argc < 2) {
+    printf("need an ip\n");
+    return -1;
+  }
+  const char *ip = argv[1];
   int port = 8080;
   int e;
 

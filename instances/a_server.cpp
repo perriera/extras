@@ -23,8 +23,12 @@ void write_file(int sockfd) {
   return;
 }
 
-int main() {
-  char *ip = "159.223.103.27";
+int main(int argc, char const *argv[]) {
+  if (argc < 2) {
+    printf("need an ip\n");
+    return -1;
+  }
+  const char *ip = argv[1];
   int port = 8080;
   int e;
 
