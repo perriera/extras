@@ -6,17 +6,9 @@
 
 #include <extras/uploader/UploaderInterface.hpp>
 
-int main(int argc, char const *argv[]) {
-  if (argc < 2) {
-    printf("need an ip\n");
-    return -1;
-  }
-  const char *ip = argv[1];
-  int port = 8080;
-  int e;
-
+int configure_serversocket(const char *ip, int port,
+                           struct sockaddr_in &server_addr) {
   int sockfd;
-  struct sockaddr_in server_addr;
 
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {
@@ -37,7 +29,7 @@ int main(int argc, char const *argv[]) {
   server_addr.sin_port = port;
   server_addr.sin_addr.s_addr = inet_addr(ip);
 
-  e = bind(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr));
+  int e = bind(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr));
   if (e < 0) {
     perror("[-]Error in bind");
     exit(1);
@@ -50,6 +42,21 @@ int main(int argc, char const *argv[]) {
     perror("[-]Error in listening");
     exit(1);
   }
+  return sockfd;
+}
+
+int main(int argc, char const *argv[]) {
+  if (argc < 2) {
+    printf("need an ip\n");
+    return -1;
+  }
+  const char *ip = argv[1];
+  int port = 8080;
+
+  int sockfd;
+  struct sockaddr_in server_addr;
+
+  sockfd = configure_serversocket(ip, port, server_addr);
 
   struct sockaddr_in new_addr;
   socklen_t addr_size = sizeof(new_addr);
