@@ -37,7 +37,7 @@
 //  16 bit value, 0x1021.
 
 #include <cstdint>
-#include <extras/crc16_support.hpp>
+#include <extras/crcs/crc16_support.hpp>
 #include <string>
 
 /**

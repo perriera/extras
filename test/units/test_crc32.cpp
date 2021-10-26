@@ -1,5 +1,5 @@
 #include <cstdint>
-#include <extras/crc32_support.hpp>
+#include <extras/crcs/crc32_support.hpp>
 
 #include "../vendor/catch.hpp"
 
