@@ -17,8 +17,14 @@ int configure_serversocket(const char *ip, int port,
   }
   printf("[+]Server socket created successfully.\n");
 
-  // Forcefully attaching socket to the port 8080
+  // Set a 7 second timeout
   int opt = 1;
+  struct timeval timeout;
+  timeout.tv_sec = 7;  // after 7 seconds connect() will timeout
+  timeout.tv_usec = 0;
+  setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+
+  // Forcefully attaching socket to the port 8080
   if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
                  sizeof(opt))) {
     perror("setsockopt");
