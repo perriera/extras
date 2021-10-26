@@ -20,7 +20,7 @@
 	#include <extras/vendor/cxxopts.hpp>
 	#include <extras/language/interfaces.hpp>
 	#include <extras/vendor/json.hpp>
-	#include <extras/language/keywords.hpp>
+	#include <extras/keywords.hpp>
 	#include <extras/strings.hpp>
 	#include <extras/support.hpp>
 	
@@ -438,7 +438,7 @@ Copyright (c) 2013-2019 Niels Lohmann <http://nlohmann.me>
 	}
 
 ## extras/keywords, (now known as extras/language/types.hpp)
- > add **extras/language/keywords.hpp** to your C++ source</br>
+ > add **extras/keywords.hpp** to your C++ source</br>
  > (this library is header only at this point in time)</br>
  > **using namespace extras;**</br>
 This header file defines constructs like the byte keyword:
