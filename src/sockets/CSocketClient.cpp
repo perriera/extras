@@ -4,6 +4,7 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
@@ -20,22 +21,29 @@ namespace extras {
 
   CSocketClient::CSocketClient(const std::string &hostname, int port)
       : _hostname(ip_address(hostname)), _port(port) {
-    this->_socket = socket(AF_INET, SOCK_STREAM, 0);
-    SocketException::assertLTZ(_socket, "SocketClient creation error",
-                               __INFO__);
-    this->_serv_addr.sin_family = AF_INET;
-    this->_serv_addr.sin_port = htons(_port);
-    // Convert IPv4 and IPv6 addresses from text to binary form
-    auto test = inet_pton(AF_INET, _hostname.c_str(), &_serv_addr.sin_addr);
-    SocketException::assertLTZ(test, "IPv6 addresses not supported", __INFO__);
-    _proxy = new Socket(this->_socket);
+    const char *ip = _hostname.c_str();
+
+    _socket = socket(AF_INET, SOCK_STREAM, 0);
+    SocketException::assertLTZ(_socket, "[-]Error in socket", __INFO__);
+    printf("[+]Server socket created successfully.\n");
+
+    _server_addr.sin_family = AF_INET;
+    _server_addr.sin_port = port;
+    _server_addr.sin_addr.s_addr = inet_addr(ip);
+
+    _proxy = new CSocket(this->_socket);
   }
 
   void CSocketClient::connect() {
-    auto test = ::connect(this->_socket, (struct sockaddr *)&_serv_addr,
-                          sizeof(_serv_addr));
-    SocketException::assertLTZ(test, "Connection Failed", __INFO__);
+    _e = ::connect(_socket, (struct sockaddr *)&_server_addr,
+                   sizeof(_server_addr));
+    SocketException::assertEQMINUS1(_e, "[-]Error in socket", __INFO__);
+    printf("[+]Connected to Server.\n");
   }
+
+  void CSocketClient::close() {
+    if (_e != -1) ::close(_socket);
+  };
 
   std::string CSocketClient::ip_address(const std::string &domainname) {
     string result = "127.0.0.1";

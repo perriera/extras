@@ -25,7 +25,8 @@ namespace extras {
     const std::string _hostname;
     int _socket;
     int _port;
-    struct sockaddr_in _serv_addr;
+    struct sockaddr_in _server_addr;
+    int _e = -1;
 
     SocketInterface *_proxy = nullptr;
     std::string ip_address(const std::string &domainname);
@@ -39,6 +40,7 @@ namespace extras {
       }
     }
     virtual void connect() override;
+    virtual void close() override;
     virtual void send(const std::string &msg) override { _proxy->send(msg); }
     virtual SocketInterface &read(int expectedMaxSize = 1024) override {
       return _proxy->read(expectedMaxSize);

@@ -21,6 +21,7 @@ namespace extras {
 
   interface SocketServerInterface extends SocketInterface {
     virtual void accept() pure;
+    virtual void close() pure;
   };
 
   /**
@@ -50,6 +51,7 @@ namespace extras {
       }
     }
     virtual void accept() override;
+    virtual void close() override;
     virtual void send(const std::string &msg) override { _proxy->send(msg); }
     virtual SocketInterface &read(int expectedMaxSize = 1024) override {
       return _proxy->read(expectedMaxSize);

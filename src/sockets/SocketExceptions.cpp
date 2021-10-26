@@ -29,5 +29,9 @@ namespace extras {
                                    const WhereAmI &ref) {
     if (socket == 0) throw SocketException(msg.c_str(), ref);
   }
+  void SocketException::assertEQMINUS1(int socket, const std::string &msg,
+                                       const WhereAmI &ref) {
+    if (socket == -1) throw SocketException(msg.c_str(), ref);
+  }
 
 }  // namespace extras

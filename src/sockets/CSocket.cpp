@@ -10,6 +10,27 @@
 #include <sstream>
 
 using namespace std;
+#define SIZE 1024 * 256
+
+string write_file(int sockfd) {
+  int n;
+  FILE *fp;
+  stringstream ss;
+  char buffer[SIZE];
+
+  while (1) {
+    n = recv(sockfd, buffer, SIZE, 0);
+    if (n <= 0) {
+      break;
+      return ss.str();
+    }
+    ss << buffer;
+    bzero(buffer, SIZE);
+  }
+  printf("[+]Data written in the file successfully.\n");
+
+  return ss.str();
+}
 
 namespace extras {
 
@@ -23,33 +44,13 @@ namespace extras {
   }
 
   SocketInterface &CSocket::read(int expectedMaxSize) {
-    expectedMaxSize = 1024 * 128;
-    byte buffer[1024 * 128];
-    this->_readMsgSize = 0;
-    bool done = false;
-    int index = 0;
-    while (!done) {
-      byte localBuffer[1024];
-      int readSoFar = 0;
-      while (readSoFar == 0) {
-        readSoFar = ::read(this->_socket, localBuffer, 1024);
-        if (readSoFar < 0) {
-          cout << "Let me know" << endl;
-        }
-      }
-      this->_readMsgSize += readSoFar;
-      for (int i = 0; i < 1024; i++) {
-        buffer[index++] = localBuffer[i];
-        char c = (char)localBuffer[i];
-        if (c == '\n') done = true;
-      }
-    }
-    cout << this->_readMsgSize << endl;
+    string msg = write_file(_socket);
+    this->_readMsgSize = msg.size();
     if (this->_readMsg != nullptr) delete this->_readMsg;
     this->_readMsg = new byte[this->_readMsgSize];
     byte *ptr = this->_readMsg;
     for (int i = 0; i < this->_readMsgSize; i++) {
-      *ptr++ = buffer[i];
+      *ptr++ = msg[i];
     }
     return *this;
   }

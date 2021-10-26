@@ -6,9 +6,13 @@ using namespace std;
 using namespace extras;
 
 #define PORT 8000
-int main(int, char const*[]) {
+int main(int argc, char const* argv[]) {
+  if (argc < 2) {
+    printf("need an ip\n");
+    return -1;
+  }
   try {
-    CSocketServer server(PORT);
+    CSocketServer server(argv[1], PORT);
     server.accept();
     string msg = server.read();
     cout << msg << endl;

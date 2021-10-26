@@ -10,43 +10,44 @@
 #include <sstream>
 
 using namespace std;
+#define SIZE 1024 * 256
 
 namespace extras {
 
-  CSocketServer::CSocketServer(int port) : _port(port) {
-    this->_opt = 1;
-    this->_addrlen = sizeof(_address);
+  CSocketServer::CSocketServer(const std::string &hostname, int port)
+      : _hostname(hostname), _port(port) {
+    const char *ip = _hostname.c_str();
 
-    // Creating socket file descriptor
-    _server_fd = socket(AF_INET, SOCK_STREAM, 0);
-    SocketException::assertLTEQZ(_server_fd, "Socket creation error", __INFO__);
+    _socket = ::socket(AF_INET, SOCK_STREAM, 0);
+    SocketException::assertLTZ(_socket, "[-]Error in socket", __INFO__);
+    printf("[+]Server socket created successfully.\n");
 
-    // Forcefully attaching socket to the port 8080
-    auto test = setsockopt(_server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,
-                           &this->_opt, sizeof(this->_opt));
-    SocketException::assertZERO(test, "setsockopt", __INFO__);
+    _server_addr.sin_family = AF_INET;
+    _server_addr.sin_port = port;
+    _server_addr.sin_addr.s_addr = inet_addr(ip);
 
-    _address.sin_family = AF_INET;
-    _address.sin_addr.s_addr = INADDR_ANY;
-    _address.sin_port = htons(_port);
+    _e = bind(_socket, (struct sockaddr *)&_server_addr, sizeof(_server_addr));
+    SocketException::assertLTZ(_e, "[-]Error in bind", __INFO__);
+    printf("[+]Binding successfull.\n");
 
-    // Forcefully attaching socket to the port 8080
-    test = bind(_server_fd, (struct sockaddr *)&_address, sizeof(_address));
-    SocketException::assertLTZ(test, "bind failed", __INFO__);
-
-    test = listen(_server_fd, 3);
-    SocketException::assertLTZ(test, "listen", __INFO__);
+    auto test = listen(_socket, 10);
+    SocketException::assertZERO(_e, "[-]Error in listening", __INFO__);
+    printf("[+]Listening....\n");
   }
 
+  void CSocketServer::close() {
+    if (_e != -1) ::close(_socket);
+  };
+
   void CSocketServer::accept() {
-    _new_socket = ::accept(_server_fd, (struct sockaddr *)&_address,
-                           (socklen_t *)&_addrlen);
+    _addr_size = sizeof(_new_addr);
+    _new_socket = ::accept(_socket, (struct sockaddr *)&_new_addr, &_addr_size);
+    SocketException::assertLTZ(_new_socket, "accept", __INFO__);
     if (_proxy != nullptr) {
       delete _proxy;
       _proxy = nullptr;
     }
     _proxy = new Socket(this->_new_socket);
-    SocketException::assertLTZ(_new_socket, "accept", __INFO__);
   }
 
 }  // namespace extras

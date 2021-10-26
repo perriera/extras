@@ -30,6 +30,8 @@ namespace extras {
                            const WhereAmI &ref);
     static void assertNEQZ(int socket, const std::string &msg,
                            const WhereAmI &ref);
+    static void assertEQMINUS1(int socket, const std::string &msg,
+                               const WhereAmI &ref);
   };
 
 }  // namespace extras

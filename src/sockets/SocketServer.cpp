@@ -49,4 +49,8 @@ namespace extras {
     SocketException::assertLTZ(_new_socket, "accept", __INFO__);
   }
 
+  void SocketServer::close() {
+    if (_server_fd != -1) ::close(_server_fd);
+  };
+
 }  // namespace extras

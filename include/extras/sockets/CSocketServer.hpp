@@ -21,17 +21,21 @@ namespace extras {
    */
 
   concrete class CSocketServer implements SocketServerInterface {
+    const std::string _hostname;
     int _port;
     int _server_fd;
     int _opt;
-    struct sockaddr_in _address;
+    struct sockaddr_in _server_addr, _new_addr;
+    socklen_t _addr_size;
     int _addrlen;
+    int _socket;
     int _new_socket;
+    int _e;
 
     SocketInterface *_proxy = nullptr;
 
    public:
-    CSocketServer(int port);
+    CSocketServer(const std::string &hostname, int port);
     virtual ~CSocketServer() {
       if (_proxy != nullptr) {
         delete _proxy;
@@ -39,6 +43,7 @@ namespace extras {
       }
     }
     virtual void accept() override;
+    virtual void close() override;
     virtual void send(const std::string &msg) override { _proxy->send(msg); }
     virtual SocketInterface &read(int expectedMaxSize = 1024) override {
       return _proxy->read(expectedMaxSize);
