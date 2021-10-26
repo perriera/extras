@@ -5,18 +5,23 @@
 #include <unistd.h>
 #define SIZE 1024 * 256
 
-void send_file(FILE *fp, int sockfd) {
-  // int n;
-  char data[SIZE] = {0};
+void write_file(int sockfd) {
+  int n;
+  FILE *fp;
+  const char *filename = "recv.txt";
+  char buffer[SIZE];
 
-  while (fgets(data, SIZE, fp) != NULL) {
-    int len = strlen(data);
-    if (send(sockfd, data, len, 0) == -1) {
-      perror("[-]Error in sending file.");
-      exit(1);
+  fp = fopen(filename, "w");
+  while (1) {
+    n = recv(sockfd, buffer, SIZE, 0);
+    if (n <= 0) {
+      break;
+      return;
     }
-    bzero(data, SIZE);
+    fprintf(fp, "%s", buffer);
+    bzero(buffer, SIZE);
   }
+  return;
 }
 
 int main(int argc, char const *argv[]) {
@@ -30,8 +35,6 @@ int main(int argc, char const *argv[]) {
 
   int sockfd;
   struct sockaddr_in server_addr;
-  FILE *fp;
-  const char *filename = "send.txt";
 
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {
@@ -51,14 +54,16 @@ int main(int argc, char const *argv[]) {
   }
   printf("[+]Connected to Server.\n");
 
-  fp = fopen(filename, "r");
-  if (fp == NULL) {
-    perror("[-]Error in reading file.");
-    exit(1);
-  }
+  //
+  //
+  //
 
-  send_file(fp, sockfd);
-  printf("[+]File data sent successfully.\n");
+  write_file(sockfd);
+  printf("[+]Data written in the file successfully.\n");
+
+  //
+  //
+  //
 
   printf("[+]Closing the connection.\n");
   close(sockfd);

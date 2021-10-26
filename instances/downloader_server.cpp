@@ -2,25 +2,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #define SIZE 1024 * 256
 
-void write_file(int sockfd) {
-  int n;
-  FILE *fp;
-  const char *filename = "recv.txt";
-  char buffer[SIZE];
+void send_file(FILE *fp, int sockfd) {
+  // int n;
+  char data[SIZE] = {0};
 
-  fp = fopen(filename, "w");
-  while (1) {
-    n = recv(sockfd, buffer, SIZE, 0);
-    if (n <= 0) {
-      break;
-      return;
+  while (fgets(data, SIZE, fp) != NULL) {
+    int len = strlen(data);
+    if (send(sockfd, data, len, 0) == -1) {
+      perror("[-]Error in sending file.");
+      exit(1);
     }
-    fprintf(fp, "%s", buffer);
-    bzero(buffer, SIZE);
+    bzero(data, SIZE);
   }
-  return;
 }
 
 int main(int argc, char const *argv[]) {
@@ -32,10 +28,8 @@ int main(int argc, char const *argv[]) {
   int port = 8080;
   int e;
 
-  int sockfd, new_sock;
-  struct sockaddr_in server_addr, new_addr;
-  socklen_t addr_size;
-  // char buffer[SIZE];
+  int sockfd;
+  struct sockaddr_in server_addr;
 
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {
@@ -43,6 +37,14 @@ int main(int argc, char const *argv[]) {
     exit(1);
   }
   printf("[+]Server socket created successfully.\n");
+
+  // Forcefully attaching socket to the port 8080
+  int opt = 1;
+  if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
+                 sizeof(opt))) {
+    perror("setsockopt");
+    exit(EXIT_FAILURE);
+  }
 
   server_addr.sin_family = AF_INET;
   server_addr.sin_port = port;
@@ -62,10 +64,29 @@ int main(int argc, char const *argv[]) {
     exit(1);
   }
 
-  addr_size = sizeof(new_addr);
-  new_sock = accept(sockfd, (struct sockaddr *)&new_addr, &addr_size);
-  write_file(new_sock);
-  printf("[+]Data written in the file successfully.\n");
+  struct sockaddr_in new_addr;
+  socklen_t addr_size = sizeof(new_addr);
+  int new_sock = accept(sockfd, (struct sockaddr *)&new_addr, &addr_size);
+
+  //
+  //
+  //
+
+  const char *filename = "send.txt";
+  FILE *fp = fopen(filename, "r");
+  if (fp == NULL) {
+    perror("[-]Error in reading file.");
+    exit(1);
+  }
+
+  send_file(fp, new_sock);
+  printf("[+]File data sent successfully.\n");
+  close(new_sock);
+  close(sockfd);
+
+  //
+  //
+  //
 
   return 0;
 }

@@ -151,6 +151,17 @@ add_executable(uploader_server instances/uploader_server.cpp)
 target_include_directories(uploader_server PUBLIC ${INCLUDES})
 target_link_libraries(uploader_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
+#
+# FreeFormJS uploader_client / uploader_server
+#
+add_executable(downloader_client instances/downloader_client.cpp) 
+target_include_directories(downloader_client PUBLIC ${INCLUDES})
+target_link_libraries(downloader_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
+add_executable(downloader_server instances/downloader_server.cpp) 
+target_include_directories(downloader_server PUBLIC ${INCLUDES})
+target_link_libraries(downloader_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
 # if the compiler supports iter-procedural optimization, turn it on
 check_ipo_supported(RESULT result OUTPUT output)
 if(result)
