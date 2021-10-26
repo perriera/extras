@@ -6,6 +6,10 @@
 
 #include <extras/uploader/UploaderInterface.hpp>
 
+//
+// https://cdmana.com/2021/02/20210220084428841j.html
+//
+
 int configure_serversocket(const char *ip, int port,
                            struct sockaddr_in &server_addr) {
   int sockfd;
