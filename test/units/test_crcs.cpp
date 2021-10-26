@@ -6,7 +6,7 @@
 #include <string>    // std::string
 
 #include "../vendor/catch.hpp"
-#include "extras/crcs/crcs.hpp"
+#include "extras/crcs.hpp"
 
 using namespace std;
 using namespace extras;

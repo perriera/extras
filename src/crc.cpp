@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "extras/crcs/crcs.hpp"
+#include "extras/crcs.hpp"
 
 using namespace std;
 
