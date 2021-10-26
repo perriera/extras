@@ -24,7 +24,7 @@ void write_file(int sockfd) {
 }
 
 int main() {
-  char *ip = "127.0.0.1";
+  char *ip = "159.223.103.27";
   int port = 8080;
   int e;
 
