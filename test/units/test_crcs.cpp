@@ -5,7 +5,7 @@
 #include <sstream>   // std::stringstream
 #include <string>    // std::string
 
-#include "catch.hpp"
+#include "../vendor/catch.hpp"
 #include "extras/crcs.hpp"
 
 using namespace std;

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "catch.hpp"
+#include "../vendor/catch.hpp"
 #include "extras/dotenv.hpp"
 
 using namespace extras;

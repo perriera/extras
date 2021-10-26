@@ -1,11 +1,11 @@
 
 #include <iostream>
 
-#include "catch.hpp"
+#include "../vendor/catch.hpp"
+#include "../vendor/fakeit.hpp"
 #include "extras/bin2hex/BinFile.hpp"
 #include "extras/bin2hex/ConvertBin2Hex.hpp"
 #include "extras/bin2hex/HexFile.hpp"
-#include "fakeit.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart

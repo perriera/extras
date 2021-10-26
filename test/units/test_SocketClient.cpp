@@ -2,7 +2,7 @@
 #include <extras/paths.hpp>
 #include <extras/strings.hpp>
 
-#include "catch.hpp"
+#include "../vendor/catch.hpp"
 #include "extras/sockets/SocketClient.hpp"
 
 using namespace std;

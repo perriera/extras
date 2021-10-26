@@ -3,8 +3,8 @@
 #include <iostream>
 #include <sstream>
 
-#include "MockSocket.hpp"
-#include "catch.hpp"
+#include "../mocks/MockSocket.hpp"
+#include "../vendor/catch.hpp"
 #include "extras/bin2hex/BinConverter.hpp"
 #include "extras/bin2hex/BinFile.hpp"
 #include "extras/bin2hex/ConvertBin2Hex.hpp"

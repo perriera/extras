@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "catch.hpp"
+#include "../vendor/catch.hpp"
 #include "extras/bin2hex/BinFile.hpp"
 #include "extras/bin2hex/ConvertBin2Hex.hpp"
 #include "extras/bin2hex/HexFile.hpp"

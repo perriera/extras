@@ -1,8 +1,8 @@
 #include <extras/sockets/Domains.hpp>
 #include <iostream>
 
-#include "catch.hpp"
-#include "fakeit.hpp"
+#include "../vendor/catch.hpp"
+#include "../vendor/fakeit.hpp"
 
 using namespace extras;
 

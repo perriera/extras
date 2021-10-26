@@ -1,7 +1,7 @@
 
 #include <iostream>
 
-#include "catch.hpp"
+#include "../vendor/catch.hpp"
 #include "extras/devices/AverageTemp.hpp"
 
 //
