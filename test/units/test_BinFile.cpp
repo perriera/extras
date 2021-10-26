@@ -7,7 +7,7 @@
 #include "extras/bin2hex/BinFile.hpp"
 #include "extras/bin2hex/ConvertBin2Hex.hpp"
 #include "extras/bin2hex/HexFile.hpp"
-#include "extras/paths.hpp"
+#include "extras/filesystem/paths.hpp"
 
 using namespace std;
 using namespace extras;

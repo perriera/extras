@@ -3,7 +3,7 @@
 #include <extras/bin2hex/HexConverter.hpp>
 #include <extras/bin2hex/HexFile.hpp>
 #include <extras/bin2hex/HexFileTransfer.hpp>
-#include <extras/paths.hpp>
+#include <extras/filesystem/paths.hpp>
 #include <extras/sockets/SocketClient.hpp>
 #include <extras/sockets/SocketServer.hpp>
 #include <filesystem>

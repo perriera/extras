@@ -1,5 +1,5 @@
 #include <cstdint>
-#include <extras/paths.hpp>
+#include <extras/filesystem/paths.hpp>
 #include <extras/strings.hpp>
 
 #include "../vendor/catch.hpp"

@@ -3,7 +3,7 @@
 
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
-#include "extras/paths.hpp"
+#include "extras/filesystem/paths.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart

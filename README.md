@@ -664,13 +664,13 @@ How many times how you wanted to do something really simple with strings but fou
     inline  std::string  to_lower(const  std::string  &data);
     
 ## extras/paths
- > add **extras/paths.hpp** to your C++ source</br>
+ > add **extras/filesystem/paths.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 For sublties such as replacing the '~' character in a path to it's home value we have the **Paths** class
 
     #include <cstdint>
-    #include <extras/paths.hpp>
+    #include <extras/filesystem/paths.hpp>
     #include <extras/strings.hpp>
 
     #include "../vendor/catch.hpp"
