@@ -15,7 +15,7 @@ namespace extras {
     int i = 0;
     while (i < bin.size()) {
       stringstream ss;
-      for (int x = 0; x < 40 && i < bin.size(); x++, i++) {
+      for (int x = 0; x < _lineLenght / 2 && i < bin.size(); x++, i++) {
         byte value = *p++;
         ss << std::hex << std::setfill('0') << std::setw(2);
         ss << static_cast<int>(value);

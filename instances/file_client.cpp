@@ -22,8 +22,8 @@ HexFile createHexFile() {
   ifstream myfile(path);
   BinFile binFile;
   myfile >> binFile;
-  // auto file_size = fs::file_size(filename);
-  HexConverter hexConverter;
+  auto file_size = fs::file_size(filename);
+  HexConverter hexConverter(64000);
   HexFile hexFile = hexConverter.bin2hex(binFile);
   return hexFile;
 }

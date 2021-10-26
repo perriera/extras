@@ -23,15 +23,34 @@ namespace extras {
   }
 
   SocketInterface &Socket::read(int expectedMaxSize) {
-    byte *buffer = new byte[expectedMaxSize];
-    this->_readMsgSize = ::read(this->_socket, buffer, expectedMaxSize);
+    expectedMaxSize = 1024 * 128;
+    byte buffer[1024 * 128];
+    this->_readMsgSize = 0;
+    bool done = false;
+    int index = 0;
+    while (!done) {
+      byte localBuffer[1024];
+      int readSoFar = 0;
+      while (readSoFar == 0) {
+        readSoFar = ::read(this->_socket, localBuffer, 1024);
+        if (readSoFar < 0) {
+          cout << "Let me know" << endl;
+        }
+      }
+      this->_readMsgSize += readSoFar;
+      for (int i = 0; i < 1024; i++) {
+        buffer[index++] = localBuffer[i];
+        char c = (char)localBuffer[i];
+        if (c == '\n') done = true;
+      }
+    }
+    cout << this->_readMsgSize << endl;
     if (this->_readMsg != nullptr) delete this->_readMsg;
     this->_readMsg = new byte[this->_readMsgSize];
     byte *ptr = this->_readMsg;
     for (int i = 0; i < this->_readMsgSize; i++) {
       *ptr++ = buffer[i];
     }
-    delete[] buffer;
     return *this;
   }
 

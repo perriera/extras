@@ -48,7 +48,7 @@ namespace extras {
       }
       std::cout << '\r' << request << std::flush;
       if (request.eof()) {
-        std::cout << '\r' << request << endl;
+        std::cout << endl;
         return hexArray;
       }
     }

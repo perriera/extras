@@ -25,7 +25,7 @@ HexFile createHexFile() {
   auto file_size = fs::file_size(filename);
   REQUIRE(binFile.array() != nullptr);
   REQUIRE(binFile.size() == file_size);
-  HexConverter hexConverter;
+  HexConverter hexConverter(64000);
   HexFile hexFile = hexConverter.bin2hex(binFile);
   REQUIRE(hexFile.size() == file_size * 2);
   BinConverter binConverter;
@@ -53,7 +53,7 @@ HexFile createHexFile() {
  * @brief BinFile Unit Tests
  *
  */
-SCENARIO("Test HexFile >>", "[BinInterface]") {
+SCENARIO("Test HexFile >>", "[HexConverter]") {
   auto test = createHexFile();
   REQUIRE(test.array().size() > 0);
 }

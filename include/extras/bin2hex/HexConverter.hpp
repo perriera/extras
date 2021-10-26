@@ -20,7 +20,10 @@ namespace extras {
    */
 
   concrete class HexConverter implements Bin2HexInterface {
+    int _lineLenght;
+
    public:
+    HexConverter(int lineLenght = 80) : _lineLenght(lineLenght) {}
     virtual HexArray bin2hex(const BinInterface &bin) const override;
   };
 
