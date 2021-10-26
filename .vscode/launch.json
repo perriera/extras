@@ -100,6 +100,48 @@
             "miDebuggerPath": "/usr/bin/gdb"
         },
         {
+            "name": "a_client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/a_client",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++ project",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "a_server",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/a_server",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++ project",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
             "name": "test_client",
             "type": "cppdbg",
             "request": "launch",
