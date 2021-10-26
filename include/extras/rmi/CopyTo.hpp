@@ -6,8 +6,8 @@
 
 #include <extras/language/exceptions.hpp>
 #include <extras/language/interfaces.hpp>
+#include <extras/language/types.hpp>
 #include <extras/rmi/RMIInterface.hpp>
-#include <extras/types.hpp>
 #include <iostream>
 
 namespace extras {

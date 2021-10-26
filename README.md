@@ -437,7 +437,7 @@ Copyright (c) 2013-2019 Niels Lohmann <http://nlohmann.me>
 	  }
 	}
 
-## extras/keywords, (now known as extras/types.hpp)
+## extras/keywords, (now known as extras/language/types.hpp)
  > add **extras/language/keywords.hpp** to your C++ source</br>
  > (this library is header only at this point in time)</br>
  > **using namespace extras;**</br>

@@ -6,9 +6,9 @@
 
 #include <extras/language/exceptions.hpp>
 #include <extras/language/interfaces.hpp>
+#include <extras/language/types.hpp>
 #include <extras/sockets/SocketExceptions.hpp>
 #include <extras/sockets/SocketPackets.hpp>
-#include <extras/types.hpp>
 #include <iostream>
 
 void send_file(FILE *fp, int sockfd);

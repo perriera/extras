@@ -11,8 +11,8 @@
 #include "extras/bin2hex/FileTransferInterface.hpp"
 #include "extras/bin2hex/HexConverter.hpp"
 #include "extras/bin2hex/HexFile.hpp"
+#include "extras/language/types.hpp"
 #include "extras/sockets/SocketClient.hpp"
-#include "extras/types.hpp"
 
 using namespace extras;
 namespace fs = std::filesystem;
