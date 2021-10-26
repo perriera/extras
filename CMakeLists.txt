@@ -141,26 +141,37 @@ target_include_directories(file_server PUBLIC ${INCLUDES})
 target_link_libraries(file_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 #
-# FreeFormJS the_client / the_server
+# FreeFormJS uploader_client / uploader_server
 #
-add_executable(the_client instances/the_client.cpp) 
-target_include_directories(the_client PUBLIC ${INCLUDES})
-target_link_libraries(the_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+add_executable(uploader_client instances/uploader_client.cpp) 
+target_include_directories(uploader_client PUBLIC ${INCLUDES})
+target_link_libraries(uploader_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
-add_executable(the_server instances/the_server.cpp) 
-target_include_directories(the_server PUBLIC ${INCLUDES})
-target_link_libraries(the_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+add_executable(uploader_server instances/uploader_server.cpp) 
+target_include_directories(uploader_server PUBLIC ${INCLUDES})
+target_link_libraries(uploader_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 #
-# FreeFormJS a_client / a_server
+# FreeFormJS uploader_client / uploader_server
 #
-add_executable(a_client instances/a_client.cpp) 
-target_include_directories(a_client PUBLIC ${INCLUDES})
-target_link_libraries(a_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+add_executable(downloader_client instances/downloader_client.cpp) 
+target_include_directories(downloader_client PUBLIC ${INCLUDES})
+target_link_libraries(downloader_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
-add_executable(a_server instances/a_server.cpp) 
-target_include_directories(a_server PUBLIC ${INCLUDES})
-target_link_libraries(a_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+add_executable(downloader_server instances/downloader_server.cpp) 
+target_include_directories(downloader_server PUBLIC ${INCLUDES})
+target_link_libraries(downloader_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
+#
+# FreeFormJS uploader_client1 / uploader_server1
+#
+add_executable(uploader_client1 instances/uploader_client1.cpp) 
+target_include_directories(uploader_client1 PUBLIC ${INCLUDES})
+target_link_libraries(uploader_client1 PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
+add_executable(uploader_server1 instances/uploader_server1.cpp) 
+target_include_directories(uploader_server1 PUBLIC ${INCLUDES})
+target_link_libraries(uploader_server1 PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 # if the compiler supports iter-procedural optimization, turn it on
 check_ipo_supported(RESULT result OUTPUT output)

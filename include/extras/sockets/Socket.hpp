@@ -21,11 +21,13 @@ namespace extras {
    *
    */
 
+  using Message = std::string;
+
   interface SocketInterface {
-    virtual void send(const std::string &msg) pure;
+    virtual void send(const Message &msg) pure;
     virtual SocketInterface &read(int expectedMaxSize) pure;
     virtual ~SocketInterface() {}
-    virtual operator std::string() const pure;
+    virtual operator Message() const pure;
     virtual operator SocketPacket() const pure;
   };
 
