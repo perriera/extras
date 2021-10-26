@@ -16,7 +16,7 @@
 >
 
 	#include <extras/crcs.hpp>
-	#include <extras/dotenv.hpp>
+	#include <extras/devices/dotenv.hpp>
 	#include <extras/vendor/cxxopts.hpp>
 	#include <extras/language/interfaces.hpp>
 	#include <extras/vendor/json.hpp>
@@ -259,13 +259,13 @@ Use of this library will give your application quick access to either crc16, crc
     }
 
 ## extras/dotenv
- > add **extras/dotenv.hpp** to your C++ source</br>
+ > add **extras/devices/dotenv.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 Use of this class will give you a simpler means of managing environment variables
 
     #include  <iostream>
-    #include  <extras/dotenv.hpp>
+    #include  <extras/devices/dotenv.hpp>
     #include "../vendor/catch.hpp"
 
     using namespace extras;

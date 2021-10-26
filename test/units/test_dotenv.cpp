@@ -3,7 +3,7 @@
 #include <sstream>
 
 #include "../vendor/catch.hpp"
-#include "extras/dotenv.hpp"
+#include "extras/devices/dotenv.hpp"
 
 using namespace extras;
 
