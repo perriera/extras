@@ -6,8 +6,6 @@
 
 #include <extras/uploader/UploaderInterface.hpp>
 
-#define SIZE 1024 * 256
-
 int main(int argc, char const *argv[]) {
   if (argc < 2) {
     printf("need an ip\n");

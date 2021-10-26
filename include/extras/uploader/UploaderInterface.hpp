@@ -16,8 +16,9 @@ void write_file(int sockfd);
 int connect_to_server(const char *ip, int port,
                       struct sockaddr_in &server_addr);
 
-namespace extras {
+static constexpr int const &SIZE = 1024 * 256;
 
+namespace extras {
   /**
    * @brief UploaderInterface
    *

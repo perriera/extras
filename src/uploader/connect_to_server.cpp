@@ -4,6 +4,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <extras/uploader/UploaderInterface.hpp>
+
 int connect_to_server(const char *ip, int port,
                       struct sockaddr_in &server_addr) {
   int e;

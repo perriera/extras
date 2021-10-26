@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#define SIZE 1024 * 256
+
+#include <extras/uploader/UploaderInterface.hpp>
 
 void write_file(int sockfd) {
   int n;
