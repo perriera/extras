@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #define SIZE 1024 * 256
 
 void write_file(int sockfd) {
@@ -74,6 +75,9 @@ int main(int argc, char const *argv[]) {
   new_sock = accept(sockfd, (struct sockaddr *)&new_addr, &addr_size);
   write_file(new_sock);
   printf("[+]Data written in the file successfully.\n");
+
+  close(new_sock);
+  close(sockfd);
 
   return 0;
 }
