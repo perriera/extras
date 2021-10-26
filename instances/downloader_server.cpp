@@ -3,21 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
+#include <extras/uploader/UploaderInterface.hpp>
+
 #define SIZE 1024 * 256
-
-void send_file(FILE *fp, int sockfd) {
-  // int n;
-  char data[SIZE] = {0};
-
-  while (fgets(data, SIZE, fp) != NULL) {
-    int len = strlen(data);
-    if (send(sockfd, data, len, 0) == -1) {
-      perror("[-]Error in sending file.");
-      exit(1);
-    }
-    bzero(data, SIZE);
-  }
-}
 
 int main(int argc, char const *argv[]) {
   if (argc < 2) {
