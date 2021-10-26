@@ -8,17 +8,11 @@
 
 #define SIZE 1024 * 256
 
-int main(int argc, char const *argv[]) {
-  if (argc < 2) {
-    printf("need an ip\n");
-    return -1;
-  }
-  const char *ip = argv[1];
-  int port = 8080;
+int connect_to_server(const char *ip, int port,
+                      struct sockaddr_in &server_addr) {
   int e;
 
   int sockfd;
-  struct sockaddr_in server_addr;
 
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {
@@ -38,6 +32,19 @@ int main(int argc, char const *argv[]) {
   }
   printf("[+]Connected to Server.\n");
 
+  return sockfd;
+}
+
+int main(int argc, char const *argv[]) {
+  if (argc < 2) {
+    printf("need an ip\n");
+    return -1;
+  }
+  const char *ip = argv[1];
+  int port = 8080;
+
+  struct sockaddr_in server_addr;
+  int sockfd = connect_to_server(ip, port, server_addr);
   //
   //
   //
