@@ -332,7 +332,7 @@ Copyright (c) 2014 Jarryd Beck
  > 
 Custom exceptions are now possible in your applications with the use of **CustomExceptionInterface**</br>
 https://github.com/perriera/extras/blob/main/include/extras/language/exceptions.hpp</br>
-(See [test/mock_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/mock_exceptions.cpp), [test/test_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/test_exceptions.cpp) & [OctalException](https://github.com/perriera/extras/blob/main/include/extras/octal_support.hpp) for more on this)
+(See [test/mock_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/mock_exceptions.cpp), [test/test_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/test_exceptions.cpp) & [OctalException](https://github.com/perriera/extras/blob/main/include/extras/crcs/octal_support.hpp) for more on this)
 
 
     #include  <iostream>
@@ -390,7 +390,7 @@ Especially useful to programmers that like to program using interfaces, (aka. Go
          void  verbose(bool  on_or_off)  override;
     };
 
-### FakeIt Mock Framework support, ([OctalInterface](https://github.com/perriera/extras/blob/main/include/extras/octal_support.hpp))
+### FakeIt Mock Framework support, ([OctalInterface](https://github.com/perriera/extras/blob/main/include/extras/crcs/octal_support.hpp))
  > View **extras/octal_suppoer.hpp** to see a simple interface</br>
  > (see **mock_octal.cpp** in the **test/** directory)</br>
  > **using namespace extras;**</br>
