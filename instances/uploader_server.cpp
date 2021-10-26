@@ -44,6 +44,14 @@ int main(int argc, char const *argv[]) {
   }
   printf("[+]Server socket created successfully.\n");
 
+  // Forcefully attaching socket to the port 8080
+  int opt = 1;
+  if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
+                 sizeof(opt))) {
+    perror("setsockopt");
+    exit(EXIT_FAILURE);
+  }
+
   server_addr.sin_family = AF_INET;
   server_addr.sin_port = port;
   server_addr.sin_addr.s_addr = inet_addr(ip);
