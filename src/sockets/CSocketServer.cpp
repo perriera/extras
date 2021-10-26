@@ -9,6 +9,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "extras/sockets/CSocket.hpp"
+
 using namespace std;
 #define SIZE 1024 * 256
 
@@ -31,13 +33,13 @@ namespace extras {
     printf("[+]Binding successfull.\n");
 
     auto test = listen(_socket, 10);
-    SocketException::assertZERO(_e, "[-]Error in listening", __INFO__);
+    SocketException::assertZERO(test, "[-]Error in listening", __INFO__);
     printf("[+]Listening....\n");
   }
 
   void CSocketServer::close() {
     if (_e != -1) ::close(_socket);
-  };
+  }
 
   void CSocketServer::accept() {
     _addr_size = sizeof(_new_addr);
@@ -47,7 +49,7 @@ namespace extras {
       delete _proxy;
       _proxy = nullptr;
     }
-    _proxy = new Socket(this->_new_socket);
+    _proxy = new CSocket(this->_new_socket);
   }
 
 }  // namespace extras

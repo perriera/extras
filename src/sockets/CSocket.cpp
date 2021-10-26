@@ -25,6 +25,8 @@ string write_file(int sockfd) {
       return ss.str();
     }
     ss << buffer;
+    string test = ss.str();
+    if (test.length() > 0 && test[test.length() - 1] == '\n') break;
     bzero(buffer, SIZE);
   }
   printf("[+]Data written in the file successfully.\n");
