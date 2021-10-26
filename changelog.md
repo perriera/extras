@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v3.28.0 -m "Fixed Paths issue"</br>
-> > git push origin v3.28.0
+> > git tag -a v3.29.0 -m "PortAuthorityInterface"</br>
+> > git push origin v3.29.0
 > >
 >
 > > POPULAR LINKS:
@@ -24,6 +24,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 - dev branch added
+
+#### 3.29.0 (2021-10-25)
+### Added
+- PortAuthorityInterface
 
 #### 3.28.0 (2021-10-25)
 ### Added
@@ -365,7 +369,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.28.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v3.29.0...HEAD
+[3.29.0]: https://github.com/perriera/extras/compare/v3.28.0...v3.29.0
 [3.28.0]: https://github.com/perriera/extras/compare/v3.27.0...v3.28.0
 [3.27.0]: https://github.com/perriera/extras/compare/v3.26.0...v3.27.0
 [3.26.0]: https://github.com/perriera/extras/compare/v3.25.1...v3.26.0
