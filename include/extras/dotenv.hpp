@@ -18,8 +18,8 @@
  *
  */
 
-#include <extras/exceptions.hpp>
 #include <extras/interfaces.hpp>
+#include <extras/language/exceptions.hpp>
 #include <iostream>
 #include <map>
 #include <sstream>
@@ -149,8 +149,8 @@ namespace extras {
      * @param key
      * @return EnvironmentVariableValue
      */
-    virtual EnvironmentVariableValue value(const EnvironmentVariableKey &key)
-        const pure;
+    virtual EnvironmentVariableValue value(
+        const EnvironmentVariableKey &key) const pure;
   };
 
   /**

@@ -3,7 +3,7 @@
 
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
-#include "extras/exceptions.hpp"
+#include "extras/language/exceptions.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart

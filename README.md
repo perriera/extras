@@ -326,17 +326,17 @@ Copyright (c) 2014 Jarryd Beck
     }
 
 ## extras/exceptions
- > add **extras/exceptions.hpp** to your C++ source</br>
+ > add **extras/language/exceptions.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
  > 
 Custom exceptions are now possible in your applications with the use of **CustomExceptionInterface**</br>
-https://github.com/perriera/extras/blob/main/include/extras/exceptions.hpp</br>
+https://github.com/perriera/extras/blob/main/include/extras/language/exceptions.hpp</br>
 (See [test/mock_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/mock_exceptions.cpp), [test/test_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/test_exceptions.cpp) & [OctalException](https://github.com/perriera/extras/blob/main/include/extras/octal_support.hpp) for more on this)
 
 
     #include  <iostream>
-    #include  <extras/exceptions.hpp>
+    #include  <extras/language/exceptions.hpp>
     #include "../vendor/catch.hpp"
 
     using namespace extras;
