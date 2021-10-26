@@ -34,7 +34,6 @@ namespace extras {
 
   HexArray FileTransfer::download(SocketInterface& socket) {
     HexArray hexArray;
-    int cnt = 0;
     while (true) {
       // recieve
       std::string rawData = socket.read(1024);
