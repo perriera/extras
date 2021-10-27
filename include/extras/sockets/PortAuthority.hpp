@@ -27,7 +27,37 @@ namespace extras {
   using PortRangeSize = int;
 
   interface PortAuthorityInterface {
-    virtual PortDomainName domainName() const pure;
+    /**
+     * @brief domainName
+     * @return the website providing the ports
+     *
+     */
+
+    virtual const PortDomainName& domainName() const pure;
+
+    /**
+     * @brief serversocketport
+     * @return of the primary port providing the ports
+     *
+     */
+    virtual const PortNumber& serversocketport() const pure;
+
+    /**
+     * @brief request of the website providing the ports
+     * @return a port number that can be used by connect()/accept()
+     *
+     * The general idea is that the port # being returned will not
+     * be needed again for a while. The idea is that whatever process
+     * needs that unique port # will dispense with it quickly.
+     *
+     * The server portion would create a seversocket with accept()
+     * expecting a connect to appear, (within 7 seconds, perhaps)
+     * to carry out whatever is required.
+     *
+     * @note It would be good to ensure that the server can timeout.
+     * (aka. otherwise you can expect a port collision)
+     *
+     */
     virtual PortNumber request() pure;
   };
 
@@ -44,12 +74,18 @@ namespace extras {
     PortServerNumber _port;
     PortServerNumber _start;
     PortServerNumber _size;
+    PortServerNumber _next;
 
    public:
     PortAuthority(const PortDomainName& name, PortNumber port = 8080,
                   PortRangeStart start = 9000, PortRangeSize size = 1000)
-        : _name(name), _port(port), _start(start), _size(size){};
-    virtual PortDomainName domainName() const override { return _name; };
+        : _name(name), _port(port), _start(start), _size(size), _next(0){};
+
+    virtual const PortDomainName& domainName() const override { return _name; };
+    virtual const PortNumber& serversocketport() const override {
+      return _port;
+    };
+
     virtual PortNumber request() override;
   };
 

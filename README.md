@@ -595,6 +595,47 @@ DomainInterface:
 
     IPAddress ip = ~Domain("cplusplus.org")
 
+## extras/Sockets/Domains.hpp
+ > add **extras/sockets/PortAuthority.hpp**  to your C++ source</br>
+ > **using namespace extras;**</br>
+This header file provides a simple means of providing unique port numbers for short term socket server requests.
+
+  interface PortAuthorityInterface {
+    /**
+     * @brief domainName
+     * @return the website providing the ports
+     *
+     */
+
+    virtual const PortDomainName& domainName() const pure;
+
+    /**
+        * @brief serversocketport
+        * @return of the primary port providing the ports
+        *
+        */
+    virtual const PortNumber& serversocketport() const pure;
+
+    /**
+        * @brief request of the website providing the ports
+        * @return a port number that can be used by connect()/accept()
+        *
+        * The general idea is that the port # being returned will not
+        * be needed again for a while. The idea is that whatever process
+        * needs that unique port # will dispense with it quickly.
+        *
+        * The server portion would create a seversocket with accept()
+        * expecting a connect to appear, (within 7 seconds, perhaps)
+        * to carry out whatever is required.
+        *
+        * @note It would be good to ensure that the server can timeout.
+        * (aka. otherwise you can expect a port collision)
+        *
+        */
+    virtual PortNumber request() pure;
+    };
+
+
 ## extras/Sockets/FileTransferInterface.hpp
  > add **extras/Sockets/FileTransferInterface.hpp**  to your C++ source</br>
  > **using namespace extras;**</br>
