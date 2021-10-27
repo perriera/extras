@@ -33,7 +33,10 @@ int main(int argc, char const *argv[]) {
   //
   // do business
   //
-  extras::RequestedService serviceName = service;
+  std::stringstream ss_cmd;
+  ss_cmd << service << ' ' << filename;
+  std::string cmd = ss_cmd.str();
+  extras::RequestedService serviceName = cmd;
   extras::Requests requests;
   extras::PortNumber port_to_use = requests.request(serviceName, sockfd);
   printf("[+]RequestedService '%s' Invoked on port: %i.\n", serviceName.c_str(),

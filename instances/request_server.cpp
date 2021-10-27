@@ -57,17 +57,9 @@ int main(int argc, char const *argv[]) {
     // ss_cmd <<
 
     std::string actualServiceName = serviceName;
-    std::string cmd = serviceName + " &";
-    std::string logFile = "RequestedService_" + serviceName + "_state.txt";
-    {
-      std::ofstream logit(logFile);
-      logit << "requesting" << std::endl;
-    }
+    std::string cmd =
+        serviceName + " " + ip + " " + std::to_string(port) + " &";
     system(cmd.c_str());
-    {
-      std::ofstream logit(logFile);
-      logit << "requested" << std::endl;
-    }
     printf("[+]RequestedService '%s' Invoked on: %i.\n", serviceName.c_str(),
            port_to_use);
     close(new_sock);
