@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <extras/strings.hpp>
 #include <extras/uploader/UploaderInterface.hpp>
 #include <fstream>
 #include <iostream>
@@ -62,6 +63,10 @@ int main(int argc, char const *argv[]) {
     std::string cmd =
         serviceName + " " + ip + " " + std::to_string(port_to_use);
     if (!server_nsync) serviceName += " &";
+    if (extras::contains(cmd, "&")) {
+      cmd = extras::replace_all(cmd, "ip", ip);
+      cmd = extras::replace_all(cmd, "port", std::to_string(port));
+    }
     system(cmd.c_str());
     printf("[+]RequestedService '%s' Invoked on: %i.\n", serviceName.c_str(),
            port_to_use);

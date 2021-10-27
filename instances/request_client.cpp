@@ -36,20 +36,23 @@ int main(int argc, char const *argv[]) {
   //
   // do business
   //
-  std::stringstream ss_server_cmd;
-  ss_server_cmd << service << ' ' << filename;
-  std::string cmd = ss_server_cmd.str();
-  std::string server_cmd = ss_server_cmd.str();
-  extras::RequestedService serviceName = server_cmd;
+  std::stringstream ss_remote_cmd;
+  ss_remote_cmd << service << ' ' << filename;
+  if (!nsync) ss_remote_cmd << "ip port &";
+  std::string cmd = ss_remote_cmd.str();
+  std::string remote_cmd = ss_remote_cmd.str();
+  extras::RequestedService serviceName = remote_cmd;
   extras::Requests requests;
   extras::PortNumber port_to_use = requests.request(serviceName, sockfd);
-  std::stringstream ss_client_cmd;
-  ss_client_cmd << client << ' ' << filename << ' ' << ip << ' ' << port_to_use;
-  if (!nsync) ss_client_cmd << " &";
-  std::string client_cmd = ss_client_cmd.str();
-  printf("[+]RequestedService '%s' Invoked on port: %i.\n", serviceName.c_str(),
+  std::stringstream ss_local_cmd;
+  ss_local_cmd << client << ' ' << filename << ' ' << ip << ' ' << port_to_use;
+  if (!nsync) ss_local_cmd << " &";
+  std::string local_cmd = ss_local_cmd.str();
+  printf("[+]ServerService Invoked '%s' on port: %i.\n", remote_cmd.c_str(),
          port_to_use);
-  system(client_cmd.c_str());
+  printf("[+]ClientService Invoked '%s' on port: %i.\n", local_cmd.c_str(),
+         port_to_use);
+  system(local_cmd.c_str());
 
   //
   // close connection
