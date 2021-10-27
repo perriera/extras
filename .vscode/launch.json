@@ -215,7 +215,8 @@
             "program": "${workspaceFolder}/build/request_server",
             "args": [
                 "127.0.0.1",
-                "8080"
+                "8080",
+                "-server_nsync"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -243,6 +244,7 @@
                 "build/uploader_server",
                 "send.txt",
                 "build/uploader_client",
+                "-nsync"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

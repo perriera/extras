@@ -18,14 +18,16 @@ int main(int argc, char const *argv[]) {
   // collect parameters
   //
   if (argc < 3) {
-    std::cout << "params: ip port" << std::endl;
+    std::cout << "params: ip port [-server_nsync]" << std::endl;
     return -1;
   }
   std::stringstream ss;
   for (int i = 0; i < argc; i++) ss << argv[i] << ' ';
-  std::string prg, ip;
+  std::string prg, ip, server_sync;
   int port;
   ss >> prg >> ip >> port;
+  ss >> server_sync;
+  bool server_nsync = (server_sync == "-server_nsync");
 
   //
   // make connection
@@ -58,7 +60,8 @@ int main(int argc, char const *argv[]) {
 
     std::string actualServiceName = serviceName;
     std::string cmd =
-        serviceName + " " + ip + " " + std::to_string(port_to_use) + " &";
+        serviceName + " " + ip + " " + std::to_string(port_to_use);
+    if (!server_nsync) serviceName += " &";
     system(cmd.c_str());
     printf("[+]RequestedService '%s' Invoked on: %i.\n", serviceName.c_str(),
            port_to_use);
