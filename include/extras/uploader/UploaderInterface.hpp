@@ -10,13 +10,19 @@
 #include <extras/sockets/SocketExceptions.hpp>
 #include <extras/sockets/SocketPackets.hpp>
 #include <iostream>
+#include <string>
 
 void send_file(FILE *fp, int sockfd);
 void write_file(int sockfd);
 int connect_to_server(const char *ip, int port,
                       struct sockaddr_in &server_addr);
 int configure_serversocket(const char *ip, int port,
-                           struct sockaddr_in &server_addr);
+                           struct sockaddr_in &server_addr,
+                           bool timeout = true);
+void send_string(const std::string &msg, int sockfd);
+std::string read_string(int sockfd);
+int read_int(int sockfd);
+void send_int(int msg, int sockfd);
 
 static constexpr int const &SIZE = 1024 * 256;
 

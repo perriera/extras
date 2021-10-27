@@ -22,8 +22,8 @@ namespace extras {
     ::send(this->_socket, _msg, strlen(_msg), 0);
   }
 
-  SocketInterface &Socket::read(int expectedMaxSize) {
-    expectedMaxSize = 1024 * 128;
+  SocketInterface &Socket::read(int) {
+    // int expectedMaxSize = 1024 * 128;
     byte buffer[1024 * 128];
     this->_readMsgSize = 0;
     bool done = false;

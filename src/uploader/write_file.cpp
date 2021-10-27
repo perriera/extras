@@ -15,10 +15,7 @@ void write_file(int sockfd) {
   fp = fopen(filename, "w");
   while (1) {
     n = recv(sockfd, buffer, SIZE, 0);
-    if (n <= 0) {
-      break;
-      return;
-    }
+    if (n <= 0) break;
     fprintf(fp, "%s", buffer);
     bzero(buffer, SIZE);
   }

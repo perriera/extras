@@ -11,8 +11,9 @@
 //
 
 int configure_serversocket(const char *ip, int port,
-                           struct sockaddr_in &server_addr) {
+                           struct sockaddr_in &server_addr, bool timeoutmode) {
   int sockfd;
+  int opt = 1;
 
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {
@@ -21,12 +22,13 @@ int configure_serversocket(const char *ip, int port,
   }
   printf("[+]Server socket created successfully.\n");
 
-  // Set a 7 second timeout
-  int opt = 1;
-  struct timeval timeout;
-  timeout.tv_sec = 7;  // after 7 seconds connect() will timeout
-  timeout.tv_usec = 0;
-  setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+  if (timeoutmode) {
+    // Set a 7 second timeout
+    struct timeval timeout;
+    timeout.tv_sec = 7;  // after 7 seconds connect() will timeout
+    timeout.tv_usec = 0;
+    setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+  }
 
   // Forcefully attaching socket to the port 8080
   if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,

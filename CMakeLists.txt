@@ -173,6 +173,17 @@ add_executable(uploader_server1 instances/uploader_server1.cpp)
 target_include_directories(uploader_server1 PUBLIC ${INCLUDES})
 target_link_libraries(uploader_server1 PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
+#
+# FreeFormJS port_client / port_server
+#
+add_executable(port_client instances/port_client.cpp) 
+target_include_directories(port_client PUBLIC ${INCLUDES})
+target_link_libraries(port_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
+add_executable(port_server instances/port_server.cpp) 
+target_include_directories(port_server PUBLIC ${INCLUDES})
+target_link_libraries(port_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
 # if the compiler supports iter-procedural optimization, turn it on
 check_ipo_supported(RESULT result OUTPUT output)
 if(result)
