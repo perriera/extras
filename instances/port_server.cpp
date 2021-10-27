@@ -7,7 +7,7 @@
 #include <extras/uploader/UploaderInterface.hpp>
 
 #include "extras/sockets/PortAuthority.hpp"
-extras::PortAuthority portAuthority("no need for domain name");
+extras::PortAuthority portAuthority;
 
 int main(int argc, char const *argv[]) {
   //

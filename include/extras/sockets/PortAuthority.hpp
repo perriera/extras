@@ -28,14 +28,6 @@ namespace extras {
 
   interface PortAuthorityInterface {
     /**
-     * @brief domainName
-     * @return the website providing the ports
-     *
-     */
-
-    virtual const PortDomainName& domainName() const pure;
-
-    /**
      * @brief serversocketport
      * @return of the primary port providing the ports
      *
@@ -70,18 +62,16 @@ namespace extras {
    */
 
   concrete class PortAuthority implements PortAuthorityInterface {
-    PortDomainName _name;
     PortServerNumber _port;
     PortServerNumber _start;
     PortServerNumber _size;
     PortServerNumber _next;
 
    public:
-    PortAuthority(const PortDomainName& name, PortNumber port = 8080,
-                  PortRangeStart start = 9000, PortRangeSize size = 1000)
-        : _name(name), _port(port), _start(start), _size(size), _next(0){};
+    PortAuthority(PortNumber port = 8080, PortRangeStart start = 9000,
+                  PortRangeSize size = 1000)
+        : _port(port), _start(start), _size(size), _next(0){};
 
-    virtual const PortDomainName& domainName() const override { return _name; };
     virtual const PortNumber& serversocketport() const override {
       return _port;
     };
