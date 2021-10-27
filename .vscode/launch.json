@@ -15,7 +15,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/run-unittests-extras",
             "args": [
-                "[ServicesInterface]"
+                "[RequestsInterface]"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

@@ -15,10 +15,6 @@
 
 #include "MockSocket.hpp"
 
-//
-// https://github.com/eranpeer/FakeIt/wiki/Quickstart
-//
-
 using namespace extras;
 namespace fs = std::filesystem;
 

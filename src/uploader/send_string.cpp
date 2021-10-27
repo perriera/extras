@@ -9,7 +9,7 @@
 
 void send_string(const std::string& msg, int sockfd) {
   if (send(sockfd, msg.c_str(), msg.length(), 0) == -1) {
-    perror("[-]Error in sending file.");
+    perror("[-]Error in sending string.");
     exit(1);
   }
 }

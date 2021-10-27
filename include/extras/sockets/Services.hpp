@@ -11,17 +11,35 @@
 namespace extras {
 
   /**
-   * @brief RequestInterface
+   * @brief ServicesInterface, (PE-18)
    *
-   * Used by the ChessMind project, it introduces an interface
-   * to safely convert a number to and from octal format.
+   * GIVEN we need different types of services to run on the server port WHEN we
+   * indicate what kind of service to run on the server port THEN the client
+   * code can know what to expect on the server port
    *
    */
 
   using ServiceName = std::string;
 
   interface ServicesInterface {
-    virtual PortNumber request(const ServiceName &msg) pure;
+    virtual PortNumber request(const ServiceName &serviceName,
+                               const PortNumber &serverSocket) pure;
+  };
+
+  /**
+   * @brief Services class
+   *
+   */
+
+  concrete class Services implements ServicesInterface {
+    PortDomainName _domainName;
+    PortAuthority _portAuthority;
+
+   public:
+    Services(PortDomainName domainName, PortNumber port = 8080)
+        : _domainName(domainName), _portAuthority(port) {}
+    virtual PortNumber request(const ServiceName &serviceName,
+                               const PortNumber &serverSocket) override;
   };
 
 }  // namespace extras

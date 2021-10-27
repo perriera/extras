@@ -4,8 +4,6 @@
 #include <iostream>
 #include <sstream>
 
-#include "extras/strings/string_support.hpp"
-
 using namespace std;
 
 namespace extras {
