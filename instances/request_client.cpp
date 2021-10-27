@@ -27,9 +27,11 @@ int main(int argc, char const *argv[]) {
   //
   // do business
   //
+  extras::RequestedService serviceName = "upload";
   extras::Requests requests;
-  int port_to_use = requests.request("upload", sockfd);
-  printf("[+]Service port to use: %i.\n", port_to_use);
+  extras::PortNumber port_to_use = requests.request(serviceName, sockfd);
+  printf("[+]RequestedService '%s' Invoked on port: %i.\n", serviceName.c_str(),
+         port_to_use);
 
   //
   // close connection

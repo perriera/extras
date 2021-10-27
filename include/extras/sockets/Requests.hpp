@@ -22,8 +22,8 @@ namespace extras {
   using RequestedService = std::string;
 
   interface RequestsInterface {
-    virtual PortServerNumber request(const RequestedService& serviceName,
-                                     const PortServerNumber& serverSocket) pure;
+    virtual PortNumber request(const RequestedService& serviceName,
+                               const PortServerNumber& serverSocket) pure;
   };
 
   /**
@@ -33,9 +33,8 @@ namespace extras {
 
   concrete class Requests implements RequestsInterface {
    public:
-    virtual PortServerNumber request(
-        const RequestedService& serviceName,
-        const PortServerNumber& serverSocket) override;
+    virtual PortNumber request(const RequestedService& serviceName,
+                               const PortServerNumber& serverSocket) override;
   };
 
 }  // namespace extras

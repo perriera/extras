@@ -6,6 +6,7 @@
 
 #include <extras/keywords.hpp>
 #include <extras/sockets/PortAuthority.hpp>
+#include <extras/sockets/Requests.hpp>
 #include <iostream>
 
 namespace extras {
@@ -19,11 +20,9 @@ namespace extras {
    *
    */
 
-  using ServiceName = std::string;
-
   interface ServicesInterface {
-    virtual PortNumber request(const ServiceName &serviceName,
-                               const PortNumber &serverSocket) pure;
+    virtual RequestedService request(const PortNumber &serverSocket) pure;
+    virtual PortNumber lastPortRequested() const pure;
   };
 
   /**
@@ -32,14 +31,14 @@ namespace extras {
    */
 
   concrete class Services implements ServicesInterface {
-    PortDomainName _domainName;
-    PortAuthority _portAuthority;
+    extras::PortAuthority _portAuthority;
+    extras::PortNumber _lastPortRequested;
 
    public:
-    Services(PortDomainName domainName, PortNumber port = 8080)
-        : _domainName(domainName), _portAuthority(port) {}
-    virtual PortNumber request(const ServiceName &serviceName,
-                               const PortNumber &serverSocket) override;
+    virtual RequestedService request(const PortNumber &serverSocket) override;
+    virtual PortNumber lastPortRequested() const override {
+      return _lastPortRequested;
+    };
   };
 
 }  // namespace extras

@@ -9,13 +9,11 @@ using namespace std;
 
 namespace extras {
 
-  PortNumber Services::request(const ServiceName& serviceName,
-                               const PortNumber& serverSocket) {
-    int port_to_use = read_int(serverSocket);
-    int servce_port = _portAuthority.request();
-    std::string cmd = serviceName + " &";
-    system(serviceName.c_str());
-    return servce_port;
+  RequestedService Services::request(const PortNumber &serverSocket) {
+    RequestedService serviceName = read_line(serverSocket);
+    _lastPortRequested = _portAuthority.request();
+    send_int(_lastPortRequested, serverSocket);
+    return serviceName;
   }
 
 }  // namespace extras
