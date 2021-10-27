@@ -62,7 +62,7 @@ int main(int argc, char const *argv[]) {
     std::string actualServiceName = serviceName;
     std::string cmd =
         serviceName + " " + ip + " " + std::to_string(port_to_use);
-    if (!server_nsync) serviceName += " &";
+    if (!server_nsync) cmd += " &";
     if (extras::contains(cmd, "&")) {
       cmd = extras::replace_all(cmd, "ip", ip);
       cmd = extras::replace_all(cmd, "port", std::to_string(port));
