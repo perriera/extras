@@ -281,7 +281,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/downloader_server",
             "args": [
-                "127.0.0.1"
+                "send.txt",
+                "127.0.0.1",
+                "8080"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
