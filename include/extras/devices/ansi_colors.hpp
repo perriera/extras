@@ -24,12 +24,6 @@ namespace extras {
 
 #define declare_color(n, v) std::ostream &n(std::ostream &out)
 
-#define define_color(n, v)                    \
-  std::ostream &n(std::ostream &out) {        \
-    out << "\u001b[" << std::dec << v << "m"; \
-    return out;                               \
-  }
-
   declare_color(black, 30);
   declare_color(red, 31);
   declare_color(green, 32);
@@ -39,6 +33,12 @@ namespace extras {
   declare_color(cyan, 36);
   declare_color(white, 37);
   declare_color(reset, 0);
+
+#define define_color(n, v)                    \
+  std::ostream &n(std::ostream &out) {        \
+    out << "\u001b[" << std::dec << v << "m"; \
+    return out;                               \
+  }
 
 }  // namespace extras
 
