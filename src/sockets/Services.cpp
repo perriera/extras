@@ -16,6 +16,6 @@ namespace extras {
     std::string cmd = serviceName + " &";
     system(serviceName.c_str());
     return servce_port;
-  };
+  }
 
 }  // namespace extras

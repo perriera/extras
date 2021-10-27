@@ -26,8 +26,9 @@ int main(int argc, char const *argv[]) {
   //
   // do business
   //
+  send_line("upload", sockfd);
   int port_to_use = read_int(sockfd);
-  printf("[+]Read port to use: %i.\n", port_to_use);
+  printf("[+]Service port to use: %i.\n", port_to_use);
 
   //
   // close connection

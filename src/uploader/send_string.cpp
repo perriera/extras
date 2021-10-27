@@ -18,3 +18,11 @@ void send_int(int msg, int sockfd) {
   std::string value = std::to_string(msg);
   return send_string(value, sockfd);
 }
+
+void send_line(const std::string& msg, int sockfd) {
+  std::string line = msg + "\n";
+  if (send(sockfd, line.c_str(), line.length(), 0) == -1) {
+    perror("[-]Error in sending string.");
+    exit(1);
+  }
+}

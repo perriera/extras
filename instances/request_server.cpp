@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #include <extras/uploader/UploaderInterface.hpp>
+#include <string>
 
 #include "extras/sockets/PortAuthority.hpp"
 extras::PortAuthority portAuthority;
@@ -41,8 +42,13 @@ int main(int argc, char const *argv[]) {
     // do business
     //
     int port_to_use = portAuthority.request();
+    std::string serviceName = read_line(new_sock);
     send_int(port_to_use, new_sock);
     printf("[+]Sent port to use: %i.\n", port_to_use);
+    std::string cmd = serviceName + " &";
+    system(serviceName.c_str());
+    printf("[+]Started service '%s' on: %i.\n", serviceName.c_str(),
+           port_to_use);
     close(new_sock);
   }
   //
