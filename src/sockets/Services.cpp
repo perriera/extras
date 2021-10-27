@@ -12,7 +12,7 @@ namespace extras {
   RequestedService Services::request(const PortNumber &serverSocket) {
     RequestedService serviceName = read_line(serverSocket);
     _lastPortRequested = _portAuthority.request();
-    send_int(_lastPortRequested, serverSocket);
+    send_line(to_string(_lastPortRequested), serverSocket);
     return serviceName;
   }
 

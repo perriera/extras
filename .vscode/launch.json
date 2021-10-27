@@ -241,7 +241,8 @@
                 "127.0.0.1",
                 "8080",
                 "build/uploader_server",
-                "send.txt"
+                "send.txt",
+                "build/uploader_client",
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

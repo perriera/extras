@@ -58,7 +58,7 @@ int main(int argc, char const *argv[]) {
 
     std::string actualServiceName = serviceName;
     std::string cmd =
-        serviceName + " " + ip + " " + std::to_string(port) + " &";
+        serviceName + " " + ip + " " + std::to_string(port_to_use) + " &";
     system(cmd.c_str());
     printf("[+]RequestedService '%s' Invoked on: %i.\n", serviceName.c_str(),
            port_to_use);
