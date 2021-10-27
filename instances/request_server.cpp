@@ -68,7 +68,7 @@ int main(int argc, char const *argv[]) {
       cmd = extras::replace_all(cmd, "port", std::to_string(port));
     }
     system(cmd.c_str());
-    printf("[+]RequestedService '%s' Invoked on: %i.\n", serviceName.c_str(),
+    printf("[+]RequestedService '%s' Invoked on: %i.\n", cmd.c_str(),
            port_to_use);
     close(new_sock);
   }
