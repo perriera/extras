@@ -15,7 +15,16 @@ int main(int argc, char const *argv[]) {
     return -1;
   }
   const char *ip = argv[1];
-  int port = 8080;
+  if (argc < 3) {
+    printf("need a port\n");
+    return -1;
+  }
+  int port = std::stoi(argv[2]);
+  if (argc < 4) {
+    printf("need a file\n");
+    return -1;
+  }
+  const char *filename = argv[3];
 
   //
   // make connection
@@ -26,7 +35,7 @@ int main(int argc, char const *argv[]) {
   //
   // do business
   //
-  write_file(sockfd);
+  write_file(filename, sockfd);
   printf("[+]Data written in the file successfully.\n");
 
   //
