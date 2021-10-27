@@ -13,7 +13,7 @@
 #include <string>
 
 void send_file(FILE *fp, int sockfd);
-void write_file(int sockfd);
+void write_file(const char *filename, int sockfd);
 int connect_to_server(const char *ip, int port,
                       struct sockaddr_in &server_addr);
 int configure_serversocket(const char *ip, int port,

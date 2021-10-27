@@ -6,10 +6,9 @@
 
 #include <extras/uploader/UploaderInterface.hpp>
 
-void write_file(int sockfd) {
+void write_file(const char* filename, int sockfd) {
   int n;
-  FILE *fp;
-  const char *filename = "recv.txt";
+  FILE* fp;
   char buffer[SIZE];
 
   fp = fopen(filename, "w");

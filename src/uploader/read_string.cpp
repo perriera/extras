@@ -29,6 +29,7 @@ int read_int(int sockfd) {
 std::string read_line(int sockfd) {
   std::string result;
   char buffer[1024];
+  bzero(buffer, 1024);
   int n;
 
   while (1) {

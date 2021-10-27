@@ -13,7 +13,7 @@ namespace extras {
   PortNumber Requests::request(const RequestedService& serviceName,
                                const PortServerNumber& serverSocket) {
     send_line(serviceName, serverSocket);
-    int port_to_use = read_int(serverSocket);
+    int port_to_use = stoi(read_line(serverSocket));
     return port_to_use;
   }
 

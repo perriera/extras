@@ -6,30 +6,44 @@
 
 #include <extras/sockets/Requests.hpp>
 #include <extras/uploader/UploaderInterface.hpp>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 int main(int argc, char const *argv[]) {
   //
   // collect parameters
   //
-  if (argc < 2) {
-    printf("need an ip\n");
+  if (argc < 6) {
+    std::cout << "params: ip port service filename client" << std::endl;
     return -1;
   }
-  const char *ip = argv[1];
-  int port = 8080;
+  std::stringstream ss;
+  for (int i = 0; i < argc; i++) ss << argv[i] << ' ';
+  std::string prg, service, filename, ip, client;
+  int port;
+  ss >> prg >> ip >> port >> service >> filename >> client;
 
   //
   // make connection
   //
   struct sockaddr_in server_addr;
-  int sockfd = connect_to_server(ip, port, server_addr);
+  int sockfd = connect_to_server(ip.c_str(), port, server_addr);
 
   //
   // do business
   //
-  extras::RequestedService serviceName = "upload";
+  std::stringstream ss_server_cmd;
+  ss_server_cmd << service << ' ' << filename;
+  std::string cmd = ss_server_cmd.str();
+  std::string server_cmd = ss_server_cmd.str();
+  extras::RequestedService serviceName = server_cmd;
   extras::Requests requests;
   extras::PortNumber port_to_use = requests.request(serviceName, sockfd);
+  std::stringstream ss_client_cmd;
+  ss_client_cmd << client << ' ' << filename << ' ' << ip << ' ' << port_to_use;
+  std::string client_cmd = ss_client_cmd.str();
+  system(client_cmd.c_str());
   printf("[+]RequestedService '%s' Invoked on port: %i.\n", serviceName.c_str(),
          port_to_use);
 

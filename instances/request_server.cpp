@@ -7,6 +7,7 @@
 #include <extras/uploader/UploaderInterface.hpp>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include "extras/sockets/Services.hpp"
@@ -16,26 +17,29 @@ int main(int argc, char const *argv[]) {
   //
   // collect parameters
   //
-  if (argc < 2) {
-    printf("need an ip\n");
+  if (argc < 3) {
+    std::cout << "params: ip port" << std::endl;
     return -1;
   }
-  const char *ip = argv[1];
-  int port = 8080;
+  std::stringstream ss;
+  for (int i = 0; i < argc; i++) ss << argv[i] << ' ';
+  std::string prg, ip;
+  int port;
+  ss >> prg >> ip >> port;
 
   //
   // make connection
   //
   int sockfd;
   struct sockaddr_in server_addr;
-  sockfd = configure_serversocket(ip, port, server_addr, false);
+  sockfd = configure_serversocket(ip.c_str(), port, server_addr, false);
 
   for (int i = 0; i < 1000; i++) {
     struct sockaddr_in new_addr;
     socklen_t addr_size = sizeof(new_addr);
     int new_sock = accept(sockfd, (struct sockaddr *)&new_addr, &addr_size);
     if (new_sock == -1) {
-      perror("[-]Timeout on accept");
+      perror("[-]Timeout on request_server accept");
       close(sockfd);
       exit(1);
     }
@@ -46,17 +50,16 @@ int main(int argc, char const *argv[]) {
     extras::RequestedService serviceName = services.request(new_sock);
     extras::PortNumber port_to_use = services.lastPortRequested();
     printf("[+]Sent port to use: %i.\n", port_to_use);
-    std::string cmd = serviceName + " &";
-    std::string logFile = "RequestedService_" + serviceName + "_state.txt";
-    {
-      std::ofstream logit(logFile);
-      logit << "requesting" << std::endl;
-    }
+    //
+    // form command
+    //
+    // std::stringstream ss_cmd;
+    // ss_cmd <<
+
+    std::string actualServiceName = serviceName;
+    std::string cmd =
+        serviceName + " " + ip + " " + std::to_string(port_to_use) + " &";
     system(cmd.c_str());
-    {
-      std::ofstream logit(logFile);
-      logit << "requested" << std::endl;
-    }
     printf("[+]RequestedService '%s' Invoked on: %i.\n", serviceName.c_str(),
            port_to_use);
     close(new_sock);
