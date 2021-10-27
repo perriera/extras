@@ -27,7 +27,7 @@ namespace extras {
   using PortRangeSize = int;
 
   interface PortAuthorityInterface {
-    virtual PortDomainName domainName() const pure;
+    virtual const PortDomainName& domainName() const pure;
     virtual PortNumber request() pure;
   };
 
@@ -49,7 +49,7 @@ namespace extras {
     PortAuthority(const PortDomainName& name, PortNumber port = 8080,
                   PortRangeStart start = 9000, PortRangeSize size = 1000)
         : _name(name), _port(port), _start(start), _size(size){};
-    virtual PortDomainName domainName() const override { return _name; };
+    virtual const PortDomainName& domainName() const override { return _name; };
     virtual PortNumber request() override;
   };
 
