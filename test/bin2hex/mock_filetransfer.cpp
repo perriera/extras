@@ -3,9 +3,9 @@
 #include <iostream>
 #include <sstream>
 
+#include "../sockets/MockSocket.hpp"
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
-#include "MockSocket.hpp"
 #include "extras/bin2hex/BinConverter.hpp"
 #include "extras/bin2hex/BinFile.hpp"
 #include "extras/bin2hex/ConvertBin2Hex.hpp"

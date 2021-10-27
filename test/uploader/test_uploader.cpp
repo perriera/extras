@@ -11,7 +11,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "../mocks/MockSocket.hpp"
+#include "../sockets/MockSocket.hpp"
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
 
