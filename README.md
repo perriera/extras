@@ -595,12 +595,13 @@ DomainInterface:
 
     IPAddress ip = ~Domain("cplusplus.org")
 
-## extras/Sockets/Domains.hpp
+## extras/sockets/PortAuthority.hpp
  > add **extras/sockets/PortAuthority.hpp**  to your C++ source</br>
  > **using namespace extras;**</br>
 This header file provides a simple means of providing unique port numbers for short term socket server requests.
 
-  interface PortAuthorityInterface {
+    interface PortAuthorityInterface {
+
     /**
      * @brief domainName
      * @return the website providing the ports
