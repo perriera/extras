@@ -10,7 +10,7 @@
 #include "extras/bin2hex/FileTransferInterface.hpp"
 #include "extras/bin2hex/HexConverter.hpp"
 #include "extras/bin2hex/HexFile.hpp"
-#include "extras/paths.hpp"
+#include "extras/filesystem/paths.hpp"
 
 using namespace std;
 using namespace extras;

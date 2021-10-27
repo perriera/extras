@@ -4,10 +4,10 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 
-#include <extras/exceptions.hpp>
-#include <extras/interfaces.hpp>
+#include <extras/language/exceptions.hpp>
+#include <extras/language/interfaces.hpp>
+#include <extras/language/types.hpp>
 #include <extras/sockets/Socket.hpp>
-#include <extras/types.hpp>
 #include <iostream>
 
 namespace extras {

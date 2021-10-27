@@ -1,8 +1,8 @@
 #ifndef _EXTRA_DOMAINS_HPP
 #define _EXTRA_DOMAINS_HPP
 
-#include <extras/exceptions.hpp>
-#include <extras/interfaces.hpp>
+#include <extras/language/exceptions.hpp>
+#include <extras/language/interfaces.hpp>
 #include <iostream>
 
 namespace extras {

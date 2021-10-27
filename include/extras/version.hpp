@@ -11,8 +11,8 @@
  * All Rights Reserved, MIT License.
  */
 
-#define EXTRAS_VER_MAJOR 3
-#define EXTRAS_VER_MINOR 30
+#define EXTRAS_VER_MAJOR 4
+#define EXTRAS_VER_MINOR 0
 #define EXTRAS_VER_PATCH 0
 
 #define EXTRAS_VERSION \

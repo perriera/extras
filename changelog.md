@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v3.30.0 -m "Reorganized tests directory"</br>
-> > git push origin v3.30.0
+> > git tag -a v4.0.0 -m "new include/extras direcory structure"</br>
+> > git push origin v4.0.0
 > >
 >
 > > POPULAR LINKS:
@@ -24,6 +24,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 - dev branch added
+
+#### 4.0.0 (2021-10-25)
+### Refactored
+- include/extras direcory structure
 
 #### 3.30.0 (2021-10-25)
 ### Refactored
@@ -373,7 +377,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v3.30.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/perriera/extras/compare/v3.30.0...v4.0.0
 [3.30.0]: https://github.com/perriera/extras/compare/v3.29.0...v3.30.0
 [3.29.0]: https://github.com/perriera/extras/compare/v3.28.0...v3.29.0
 [3.28.0]: https://github.com/perriera/extras/compare/v3.27.0...v3.28.0

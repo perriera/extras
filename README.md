@@ -16,9 +16,9 @@
 >
 
 	#include <extras/crcs.hpp>
-	#include <extras/dotenv.hpp>
+	#include <extras/devices/dotenv.hpp>
 	#include <extras/vendor/cxxopts.hpp>
-	#include <extras/interfaces.hpp>
+	#include <extras/language/interfaces.hpp>
 	#include <extras/vendor/json.hpp>
 	#include <extras/keywords.hpp>
 	#include <extras/strings.hpp>
@@ -259,13 +259,13 @@ Use of this library will give your application quick access to either crc16, crc
     }
 
 ## extras/dotenv
- > add **extras/dotenv.hpp** to your C++ source</br>
+ > add **extras/devices/dotenv.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 Use of this class will give you a simpler means of managing environment variables
 
     #include  <iostream>
-    #include  <extras/dotenv.hpp>
+    #include  <extras/devices/dotenv.hpp>
     #include "../vendor/catch.hpp"
 
     using namespace extras;
@@ -326,17 +326,17 @@ Copyright (c) 2014 Jarryd Beck
     }
 
 ## extras/exceptions
- > add **extras/exceptions.hpp** to your C++ source</br>
+ > add **extras/language/exceptions.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
  > 
 Custom exceptions are now possible in your applications with the use of **CustomExceptionInterface**</br>
-https://github.com/perriera/extras/blob/main/include/extras/exceptions.hpp</br>
-(See [test/mock_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/mock_exceptions.cpp), [test/test_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/test_exceptions.cpp) & [OctalException](https://github.com/perriera/extras/blob/main/include/extras/octal_support.hpp) for more on this)
+https://github.com/perriera/extras/blob/main/include/extras/language/exceptions.hpp</br>
+(See [test/mock_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/mock_exceptions.cpp), [test/test_exceptions.cpp](https://github.com/perriera/extras/blob/main/test/test_exceptions.cpp) & [OctalException](https://github.com/perriera/extras/blob/main/include/extras/crcs/octal_support.hpp) for more on this)
 
 
     #include  <iostream>
-    #include  <extras/exceptions.hpp>
+    #include  <extras/language/exceptions.hpp>
     #include "../vendor/catch.hpp"
 
     using namespace extras;
@@ -364,13 +364,13 @@ https://github.com/perriera/extras/blob/main/include/extras/exceptions.hpp</br>
 
 
 ## extras/interfaces
- > add **extras/interfaces.hpp** to your C++ source</br>
+ > add **extras/language/interfaces.hpp** to your C++ source</br>
  > (this library is header only at this point in time)</br>
  > **using namespace extras;**</br>
 Especially useful to programmers that like to program using interfaces, (aka. GoF: Abstract factory pattern))
 
     #include <iostream>
-    #include <extras/interfaces.hpp>
+    #include <extras/language/interfaces.hpp>
 
     //
     // CrossTableInterface
@@ -390,7 +390,7 @@ Especially useful to programmers that like to program using interfaces, (aka. Go
          void  verbose(bool  on_or_off)  override;
     };
 
-### FakeIt Mock Framework support, ([OctalInterface](https://github.com/perriera/extras/blob/main/include/extras/octal_support.hpp))
+### FakeIt Mock Framework support, ([OctalInterface](https://github.com/perriera/extras/blob/main/include/extras/crcs/octal_support.hpp))
  > View **extras/octal_suppoer.hpp** to see a simple interface</br>
  > (see **mock_octal.cpp** in the **test/** directory)</br>
  > **using namespace extras;**</br>
@@ -437,7 +437,7 @@ Copyright (c) 2013-2019 Niels Lohmann <http://nlohmann.me>
 	  }
 	}
 
-## extras/keywords, (now known as extras/types.hpp)
+## extras/keywords, (now known as extras/language/types.hpp)
  > add **extras/keywords.hpp** to your C++ source</br>
  > (this library is header only at this point in time)</br>
  > **using namespace extras;**</br>
@@ -664,13 +664,13 @@ How many times how you wanted to do something really simple with strings but fou
     inline  std::string  to_lower(const  std::string  &data);
     
 ## extras/paths
- > add **extras/paths.hpp** to your C++ source</br>
+ > add **extras/filesystem/paths.hpp** to your C++ source</br>
  > add **extras** library to your CMakeLists.txt target</br>
  > **using namespace extras;**</br>
 For sublties such as replacing the '~' character in a path to it's home value we have the **Paths** class
 
     #include <cstdint>
-    #include <extras/paths.hpp>
+    #include <extras/filesystem/paths.hpp>
     #include <extras/strings.hpp>
 
     #include "../vendor/catch.hpp"
