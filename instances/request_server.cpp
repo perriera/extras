@@ -5,6 +5,8 @@
 #include <unistd.h>
 
 #include <extras/uploader/UploaderInterface.hpp>
+#include <fstream>
+#include <iostream>
 #include <string>
 
 #include "extras/sockets/Services.hpp"
@@ -45,7 +47,16 @@ int main(int argc, char const *argv[]) {
     extras::PortNumber port_to_use = services.lastPortRequested();
     printf("[+]Sent port to use: %i.\n", port_to_use);
     std::string cmd = serviceName + " &";
-    system(serviceName.c_str());
+    std::string logFile = "RequestedService_" + serviceName + "_state.txt";
+    {
+      std::ofstream logit(logFile);
+      logit << "requesting" << std::endl;
+    }
+    system(cmd.c_str());
+    {
+      std::ofstream logit(logFile);
+      logit << "requested" << std::endl;
+    }
     printf("[+]RequestedService '%s' Invoked on: %i.\n", serviceName.c_str(),
            port_to_use);
     close(new_sock);
