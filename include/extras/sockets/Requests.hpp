@@ -1,32 +1,42 @@
-#ifndef _REQUESTS_SOCKET_HPP
-#define _REQUESTS_SOCKET_HPP
+#ifndef _EXTRA_REQUESTS_HPP
+#define _EXTRA_REQUESTS_HPP
 
 #include <netinet/in.h>
 #include <sys/socket.h>
 
-#include <extras/language/exceptions.hpp>
-#include <extras/language/interfaces.hpp>
-#include <extras/language/types.hpp>
+#include <extras/keywords.hpp>
 #include <extras/sockets/PortAuthority.hpp>
-#include <extras/sockets/SocketExceptions.hpp>
 #include <iostream>
 
 namespace extras {
 
   /**
-   * @brief RequestInterface
+   * @brief ServicesInterface, (PE-18)
    *
-   * Used by the ChessMind project, it introduces an interface
-   * to safely convert a number to and from octal format.
+   * GIVEN we need different types of services to run on the server port WHEN we
+   * indicate what kind of service to run on the server port THEN the client
+   * code can know what to expect on the server port
    *
    */
 
-  using TypeOfRequest = std::string;
+  using RequestedService = std::string;
 
-  interface RequestInterface extends PortAuthorityInterface {
-    virtual void command(const TypeOfRequest &msg) pure;
+  interface RequestsInterface {
+    virtual PortNumber request(const RequestedService& serviceName,
+                               const PortServerNumber& serverSocket) pure;
+  };
+
+  /**
+   * @brief Services class
+   *
+   */
+
+  concrete class Requests implements RequestsInterface {
+   public:
+    virtual PortNumber request(const RequestedService& serviceName,
+                               const PortServerNumber& serverSocket) override;
   };
 
 }  // namespace extras
 
-#endif  // _REQUESTS_SOCKET_HPP
+#endif  // _EXTRA_REQUESTS_HPP

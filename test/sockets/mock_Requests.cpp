@@ -1,35 +1,22 @@
 
-// #include <iostream>
+#include <iostream>
 
-// #include "../vendor/catch.hpp"
-// #include "../vendor/fakeit.hpp"
-// #include "extras/sockets/Requests.hpp"
+#include "../vendor/catch.hpp"
+#include "../vendor/fakeit.hpp"
+#include "extras/sockets/Requests.hpp"
 
-// //
-// // https://github.com/eranpeer/FakeIt/wiki/Quickstart
-// //
+using namespace extras;
+using namespace fakeit;
+using namespace std;
 
-// using namespace extras;
-// using namespace fakeit;
+SCENARIO("Mock RequestsInterface", "[RequestsInterface]") {
+  RequestedService serviceName = "upload";
+  PortServerNumber serverSocket = 8080;
+  int port_to_use = 9000;
+  Mock<RequestsInterface> mock;
+  When(Method(mock, request)).Return(port_to_use);
 
-// /**
-//  * @brief PortAuthorityInterface
-//  * @ref https://eval.atlassian.net/browse/PE-16
-//  *
-//  * GIVEN we need to anticipate many requests to the a sockets based server
-//  WHEN
-//  * we use a centralized port for the purposes of just allocating available
-//  * socket ports THEN we can service many socket server requests from the same
-//  * linux box, (local, Internet, VPN or otherwise)
-//  *
-//  */
-
-// SCENARIO("Mock PortAuthorityInterface", "[PortAuthorityInterface]") {
-//   int correct_request = 9000;
-//   Mock<PortAuthorityInterface> mock;
-//   When(Method(mock, request)).Return(correct_request);
-
-//   PortAuthorityInterface &i = mock.get();
-//   REQUIRE(i.request() == correct_request);
-//   Verify(Method(mock, request));
-// }
+  RequestsInterface& i = mock.get();
+  REQUIRE(i.request(serviceName, serverSocket) == port_to_use);
+  Verify(Method(mock, request));
+}

@@ -9,7 +9,7 @@
 
 void send_string(const std::string& msg, int sockfd) {
   if (send(sockfd, msg.c_str(), msg.length(), 0) == -1) {
-    perror("[-]Error in sending file.");
+    perror("[-]Error in sending string.");
     exit(1);
   }
 }
@@ -17,4 +17,12 @@ void send_string(const std::string& msg, int sockfd) {
 void send_int(int msg, int sockfd) {
   std::string value = std::to_string(msg);
   return send_string(value, sockfd);
+}
+
+void send_line(const std::string& msg, int sockfd) {
+  std::string line = msg + "\n";
+  if (send(sockfd, line.c_str(), line.length(), 0) == -1) {
+    perror("[-]Error in sending string.");
+    exit(1);
+  }
 }

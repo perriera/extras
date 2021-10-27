@@ -22,7 +22,9 @@ int configure_serversocket(const char *ip, int port,
 void send_string(const std::string &msg, int sockfd);
 std::string read_string(int sockfd);
 int read_int(int sockfd);
+std::string read_line(int sockfd);
 void send_int(int msg, int sockfd);
+void send_line(const std::string &msg, int sockfd);
 
 static constexpr int const &SIZE = 1024 * 256;
 

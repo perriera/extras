@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v4.2.0 -m "PortAuthority class"</br>
-> > git push origin v4.2.0
+> > git tag -a v4.3.0 -m "request_server, request_client"</br>
+> > git push origin v4.3.0
 > >
 >
 > > POPULAR LINKS:
@@ -24,6 +24,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 - dev branch added
+
+#### 4.3.0 (2021-10-25)
+### Added 
+- request_server, request_client
 
 #### 4.2.0 (2021-10-25)
 ### Added 
@@ -385,8 +389,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v4.2.0...HEAD
-[4.2.0]: https://github.com/perriera/extras/compare/v4.1.0...v4.1.0
+[Unreleased]: https://github.com/perriera/extras/compare/v4.3.0...HEAD
+[4.3.0]: https://github.com/perriera/extras/compare/v4.2.0...v4.3.0
+[4.2.0]: https://github.com/perriera/extras/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/perriera/extras/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/perriera/extras/compare/v3.30.0...v4.0.0
 [3.30.0]: https://github.com/perriera/extras/compare/v3.29.0...v3.30.0
