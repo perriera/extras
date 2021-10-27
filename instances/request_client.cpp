@@ -41,11 +41,12 @@ int main(int argc, char const *argv[]) {
   extras::Requests requests;
   extras::PortNumber port_to_use = requests.request(serviceName, sockfd);
   std::stringstream ss_client_cmd;
-  ss_client_cmd << client << ' ' << filename << ' ' << ip << ' ' << port_to_use;
+  ss_client_cmd << client << ' ' << filename << ' ' << ip << ' ' << port_to_use
+                << " &";
   std::string client_cmd = ss_client_cmd.str();
-  system(client_cmd.c_str());
   printf("[+]RequestedService '%s' Invoked on port: %i.\n", serviceName.c_str(),
          port_to_use);
+  system(client_cmd.c_str());
 
   //
   // close connection
