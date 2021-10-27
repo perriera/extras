@@ -39,7 +39,7 @@ int main(int argc, char const *argv[]) {
     socklen_t addr_size = sizeof(new_addr);
     int new_sock = accept(sockfd, (struct sockaddr *)&new_addr, &addr_size);
     if (new_sock == -1) {
-      perror("[-]Timeout on accept");
+      perror("[-]Timeout on request_server accept");
       close(sockfd);
       exit(1);
     }
