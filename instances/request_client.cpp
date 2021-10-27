@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <extras/sockets/Requests.hpp>
 #include <extras/uploader/UploaderInterface.hpp>
 
 int main(int argc, char const *argv[]) {
@@ -26,8 +27,8 @@ int main(int argc, char const *argv[]) {
   //
   // do business
   //
-  send_line("upload", sockfd);
-  int port_to_use = read_int(sockfd);
+  extras::Requests requests;
+  int port_to_use = requests.request("upload", sockfd);
   printf("[+]Service port to use: %i.\n", port_to_use);
 
   //

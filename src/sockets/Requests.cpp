@@ -4,15 +4,16 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
 namespace extras {
 
-  PortNumber Requests::request(const ServiceName& serviceName,
-                               const PortNumber& servce_port) {
-    send_string(serviceName, servce_port);
-    int port_to_use = read_int(servce_port);
+  PortServerNumber Requests::request(const RequestedService& serviceName,
+                                     const PortServerNumber& serverSocket) {
+    send_line(serviceName, serverSocket);
+    int port_to_use = read_int(serverSocket);
     return port_to_use;
   }
 

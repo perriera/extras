@@ -5,7 +5,7 @@
 #include <sys/socket.h>
 
 #include <extras/keywords.hpp>
-#include <extras/sockets/Services.hpp>
+#include <extras/sockets/PortAuthority.hpp>
 #include <iostream>
 
 namespace extras {
@@ -19,9 +19,11 @@ namespace extras {
    *
    */
 
+  using RequestedService = std::string;
+
   interface RequestsInterface {
-    virtual PortNumber request(const ServiceName& serviceName,
-                               const PortNumber& serverSocket) pure;
+    virtual PortServerNumber request(const RequestedService& serviceName,
+                                     const PortServerNumber& serverSocket) pure;
   };
 
   /**
@@ -31,8 +33,9 @@ namespace extras {
 
   concrete class Requests implements RequestsInterface {
    public:
-    virtual PortNumber request(const ServiceName& serviceName,
-                               const PortNumber& serverSocket) override;
+    virtual PortServerNumber request(
+        const RequestedService& serviceName,
+        const PortServerNumber& serverSocket) override;
   };
 
 }  // namespace extras
