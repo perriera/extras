@@ -17,15 +17,15 @@ int main(int argc, char const *argv[]) {
   //
   // collect parameters
   //
-  if (argc < 5) {
-    std::cout << "params: service filename ip port" << std::endl;
+  if (argc < 3) {
+    std::cout << "params: ip port" << std::endl;
     return -1;
   }
   std::stringstream ss;
   for (int i = 0; i < argc; i++) ss << argv[i] << ' ';
-  std::string prg, service, filename, ip;
+  std::string prg, ip;
   int port;
-  ss >> prg >> service >> filename >> ip >> port;
+  ss >> prg >> ip >> port;
 
   //
   // make connection
@@ -50,6 +50,7 @@ int main(int argc, char const *argv[]) {
     extras::RequestedService serviceName = services.request(new_sock);
     extras::PortNumber port_to_use = services.lastPortRequested();
     printf("[+]Sent port to use: %i.\n", port_to_use);
+    std::string actualServiceName = serviceName;
     std::string cmd = serviceName + " &";
     std::string logFile = "RequestedService_" + serviceName + "_state.txt";
     {

@@ -15,14 +15,14 @@ int main(int argc, char const *argv[]) {
   // collect parameters
   //
   if (argc < 5) {
-    std::cout << "params: service filename ip port" << std::endl;
+    std::cout << "params: ip port service filename" << std::endl;
     return -1;
   }
   std::stringstream ss;
   for (int i = 0; i < argc; i++) ss << argv[i] << ' ';
   std::string prg, service, filename, ip;
   int port;
-  ss >> prg >> service >> filename >> ip >> port;
+  ss >> prg >> ip >> port >> service >> filename;
 
   //
   // make connection
