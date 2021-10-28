@@ -10,18 +10,18 @@ using namespace fakeit;
 
 SCENARIO("Mock RSIInterface", "[RSIInterface]") {
   bool async_mode = true;
-  RSIRequest request = "upload";
-  RSIResponse response = "upload";
+  RSICLient request = "upload";
+  RSIServer response = "upload";
   Mock<RSIInterface> mock;
   When(Method(mock, async)).Return(async_mode);
-  When(Method(mock, request)).Return(request);
-  When(Method(mock, response)).Return(response);
+  When(Method(mock, client)).Return(request);
+  When(Method(mock, server)).Return(response);
 
   RSIInterface &i = mock.get();
   REQUIRE(i.async() == async_mode);
-  REQUIRE(i.request() == request);
-  REQUIRE(i.response() == response);
+  REQUIRE(i.client() == request);
+  REQUIRE(i.server() == response);
   Verify(Method(mock, async));
-  Verify(Method(mock, request));
-  Verify(Method(mock, response));
+  Verify(Method(mock, client));
+  Verify(Method(mock, server));
 }

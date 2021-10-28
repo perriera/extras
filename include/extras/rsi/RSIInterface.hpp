@@ -23,8 +23,8 @@ namespace extras {
   using IP = std::string;
   using Port = int;
   using Async = bool;
-  using RSIRequest = std::string;
-  using RSIResponse = std::string;
+  using RSICLient = std::string;
+  using RSIServer = std::string;
 
   interface RSIInterface {
     friend std::ostream& operator<<(std::ostream& out, const RSIInterface& obj);
@@ -35,8 +35,8 @@ namespace extras {
     virtual const IP& ip() const pure;
     virtual const Port& port() const pure;
     virtual const Async& async() const pure;
-    virtual RSIRequest request() const pure;
-    virtual RSIResponse response() const pure;
+    virtual RSICLient client() const pure;
+    virtual RSIServer server() const pure;
   };
 
   /**
@@ -53,12 +53,12 @@ namespace extras {
     Port _port;
     Async _async;
     RequestedService _service;
-    RSIRequest _request;
-    RSIResponse _response;
+    RSICLient _request;
+    RSIServer _response;
 
    public:
     RSI(const Filename& filename, const IP& ip, Port port, Async async,
-        RequestedService service, RSIRequest request, RSIResponse response)
+        RequestedService service, RSICLient request, RSIServer response)
         : _filename(filename),
           _ip(ip),
           _port(port),
@@ -73,13 +73,13 @@ namespace extras {
     virtual const IP& ip() const override { return _ip; };
     virtual const Port& port() const override { return _port; };
     virtual const Async& async() const override { return _async; };
-    virtual RSIRequest request() const override {
+    virtual RSICLient client() const override {
       std::stringstream ss;
       ss << *this;
       std::string cmd = extras::replace_all(ss.str(), service(), _request);
       return cmd;
     };
-    virtual RSIResponse response() const override {
+    virtual RSIServer server() const override {
       std::stringstream ss;
       ss << *this;
       std::string cmd = extras::replace_all(ss.str(), service(), _response);

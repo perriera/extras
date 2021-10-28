@@ -62,8 +62,8 @@ int main(int argc, char const *argv[]) {
   // form RSI
   //
   extras::RSIUpload upload(filename, ip, port_to_use, async);
-  std::string upload_request = upload.request();
-  std::string upload_response = upload.response();
+  std::string upload_request = upload.client();
+  std::string upload_response = upload.server();
 
   printf("[+]ServerService Invoked '%s'\n", upload_response.c_str());
   printf("[+]ClientService Invoked '%s'\n", upload_request.c_str());
