@@ -35,9 +35,12 @@ int main(int argc, char const *argv[]) {
   int sockfd = connect_to_server(ip.c_str(), port, server_addr);
 
   //
-  // form RSI
+  // form RSI macro
   //
-  extras::RSIUpload upload(filename, ip, port, async);
+  extras::RSIMacro macro(filename, ip, port, async, service);
+  std::stringstream ss_macro;
+  ss_macro << macro;
+  std::string test = ss_macro.str();
 
   //
   // do business
@@ -54,9 +57,16 @@ int main(int argc, char const *argv[]) {
   ss_local_cmd << client << ' ' << filename << ' ' << ip << ' ' << port_to_use;
   if (!async) ss_local_cmd << " &";
   std::string local_cmd = ss_local_cmd.str();
-  printf("[+]ServerService Invoked '%s %s %i (& status unknown)'\n",
-         remote_cmd.c_str(), ip.c_str(), port_to_use);
-  printf("[+]ClientService Invoked '%s'\n", local_cmd.c_str());
+
+  //
+  // form RSI
+  //
+  extras::RSIUpload upload(filename, ip, port_to_use, async);
+  std::string upload_request = upload.request();
+  std::string upload_response = upload.response();
+
+  printf("[+]ServerService Invoked '%s'\n", upload_response.c_str());
+  printf("[+]ClientService Invoked '%s'\n", upload_request.c_str());
   system(local_cmd.c_str());
 
   //

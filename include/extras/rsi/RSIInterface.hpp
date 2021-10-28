@@ -6,6 +6,7 @@
 
 #include <extras/keywords.hpp>
 #include <extras/sockets/Requests.hpp>
+#include <extras/strings.hpp>
 #include <iostream>
 #include <sstream>
 
@@ -18,6 +19,10 @@ namespace extras {
    *
    */
 
+  using Filename = std::string;
+  using IP = std::string;
+  using Port = int;
+  using Async = bool;
   using RSIRequest = std::string;
   using RSIResponse = std::string;
 
@@ -26,9 +31,12 @@ namespace extras {
     friend std::istream& operator>>(std::istream& in, RSIInterface& obj);
 
     virtual const RequestedService& service() const pure;
-    virtual bool async() const pure;
-    virtual const RSIRequest& request() const pure;
-    virtual const RSIResponse& response() const pure;
+    virtual const Filename& filename() const pure;
+    virtual const IP& ip() const pure;
+    virtual const Port& port() const pure;
+    virtual const Async& async() const pure;
+    virtual RSIRequest request() const pure;
+    virtual RSIResponse response() const pure;
   };
 
   /**
@@ -40,45 +48,66 @@ namespace extras {
    */
 
   abstract class RSI implements RSIInterface {
-    bool _async;
+    Filename _filename;
+    IP _ip;
+    Port _port;
+    Async _async;
     RequestedService _service;
     RSIRequest _request;
     RSIResponse _response;
 
    public:
-    RSI(bool async, RequestedService service, RSIRequest request,
-        RSIResponse response)
-        : _async(async),
+    RSI(const Filename& filename, const IP& ip, Port port, Async async,
+        RequestedService service, RSIRequest request, RSIResponse response)
+        : _filename(filename),
+          _ip(ip),
+          _port(port),
+          _async(async),
           _service(service),
           _request(request),
           _response(response) {}
-    virtual bool async() const override { return _async; };
     virtual const RequestedService& service() const override {
       return _service;
     };
-    virtual const RSIRequest& request() const override { return _request; };
-    virtual const RSIResponse& response() const override { return _response; };
+    virtual const Filename& filename() const override { return _filename; };
+    virtual const IP& ip() const override { return _ip; };
+    virtual const Port& port() const override { return _port; };
+    virtual const Async& async() const override { return _async; };
+    virtual RSIRequest request() const override {
+      std::stringstream ss;
+      ss << *this;
+      std::string cmd = extras::replace_all(ss.str(), service(), _request);
+      return cmd;
+    };
+    virtual RSIResponse response() const override {
+      std::stringstream ss;
+      ss << *this;
+      std::string cmd = extras::replace_all(ss.str(), service(), _response);
+      return cmd;
+    };
+  };
+
+  /**
+   * @brief Macro
+   */
+
+  concrete class RSIMacro extends RSI {
+   public:
+    RSIMacro(const Filename& filename, const IP& ip, Port port, Async async,
+             RequestedService macro)
+        : RSI(filename, ip, port, async, macro, "build/macro_client",
+              "build/macro_server") {}
   };
 
   /**
    * @brief Upload
    */
-  using Filename = std::string;
-  using IP = std::string;
-  using Port = int;
-  using Async = bool;
 
   concrete class RSIUpload extends RSI {
-    Filename _filename;
-    IP _ip;
-    Port _port;
-
    public:
     RSIUpload(const Filename& filename, const IP& ip, Port port, Async async)
-        : RSI(async, "upload", "uploader_client", "uploader_server"),
-          _filename(filename),
-          _ip(ip),
-          _port(port) {}
+        : RSI(filename, ip, port, async, "upload", "build/uploader_client",
+              "build/uploader_server") {}
   };
 
 }  // namespace extras
