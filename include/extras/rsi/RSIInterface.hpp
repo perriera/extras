@@ -53,6 +53,26 @@ namespace extras {
     }
   };
 
+  interface RSIRequestInterface {
+    virtual const RSIInterface& request(
+        const RSIInterface& serviceName,
+        const PortServerNumber& serverSocket) pure;
+  };
+
+  concrete class RSIServerImp implements RSIRequestInterface {
+   public:
+    virtual const RSIInterface& request(
+        const RSIInterface& serviceName,
+        const PortServerNumber& serverSocket) override;
+  };
+
+  concrete class RSIClientImp implements RSIRequestInterface {
+   public:
+    virtual const RSIInterface& request(
+        const RSIInterface& serviceName,
+        const PortServerNumber& serverSocket) override;
+  };
+
   /**
    * @brief RSI class
    *
