@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v4.5.0 -m "added -nsync, -server_nsync options"</br>
-> > git push origin v4.5.0
+> > git tag -a v4.6.0 -m "Working -async, -server_async parameters"</br>
+> > git push origin v4.6.0
 > >
 >
 > > POPULAR LINKS:
@@ -24,6 +24,10 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 - dev branch added
+
+#### 4.6.0 (2021-10-25)
+### Added 
+- Working -async, -server_async parameters 
 
 #### 4.5.0 (2021-10-25)
 ### Added 
@@ -397,7 +401,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v4.5.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v4.6.0...HEAD
+[4.6.0]: https://github.com/perriera/extras/compare/v4.5.0...v4.6.0
 [4.5.0]: https://github.com/perriera/extras/compare/v4.4.0...v4.5.0
 [4.4.0]: https://github.com/perriera/extras/compare/v4.3.0...v4.4.0
 [4.3.0]: https://github.com/perriera/extras/compare/v4.2.0...v4.3.0
