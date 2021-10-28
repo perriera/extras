@@ -10,7 +10,7 @@ using namespace fakeit;
 
 SCENARIO("Mock RSIInterface", "[RSIInterface]") {
   bool async_mode = true;
-  RSICLient client = "upload";
+  RSIClient client = "upload";
   RSIServer server = "upload";
   RSIUpload request("filename", "ip", 8080, true);
   Mock<RSIInterface> mock;
