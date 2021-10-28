@@ -48,10 +48,9 @@ int main(int argc, char const *argv[]) {
   ss_local_cmd << client << ' ' << filename << ' ' << ip << ' ' << port_to_use;
   if (!async) ss_local_cmd << " &";
   std::string local_cmd = ss_local_cmd.str();
-  printf("[+]ServerService Invoked '%s' on port: %i.\n", remote_cmd.c_str(),
-         port_to_use);
-  printf("[+]ClientService Invoked '%s' on port: %i.\n", local_cmd.c_str(),
-         port_to_use);
+  printf("[+]ServerService Invoked '%s %s %i (& status unknown)'\n",
+         remote_cmd.c_str(), ip.c_str(), port_to_use);
+  printf("[+]ClientService Invoked '%s'\n", local_cmd.c_str(), port_to_use);
   system(local_cmd.c_str());
 
   //
