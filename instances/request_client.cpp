@@ -38,7 +38,7 @@ int main(int argc, char const *argv[]) {
   //
   std::stringstream ss_remote_cmd;
   ss_remote_cmd << service << ' ' << filename;
-  if (!nsync) ss_remote_cmd << "ip port &";
+  // if (!nsync) ss_remote_cmd << "ip port &";
   std::string cmd = ss_remote_cmd.str();
   std::string remote_cmd = ss_remote_cmd.str();
   extras::RequestedService serviceName = remote_cmd;
