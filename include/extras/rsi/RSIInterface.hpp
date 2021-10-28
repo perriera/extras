@@ -7,6 +7,7 @@
 #include <extras/keywords.hpp>
 #include <extras/sockets/Requests.hpp>
 #include <iostream>
+#include <sstream>
 
 namespace extras {
 
@@ -21,6 +22,9 @@ namespace extras {
   using RSIResponse = std::string;
 
   interface RSIInterface {
+    friend std::ostream& operator<<(std::ostream& out, const RSIInterface& obj);
+    friend std::istream& operator>>(std::istream& in, RSIInterface& obj);
+
     virtual const RequestedService& service() const pure;
     virtual bool async() const pure;
     virtual const RSIRequest& request() const pure;
@@ -59,9 +63,22 @@ namespace extras {
   /**
    * @brief Upload
    */
+  using Filename = std::string;
+  using IP = std::string;
+  using Port = int;
+  using Async = bool;
+
   concrete class RSIUpload extends RSI {
+    Filename _filename;
+    IP _ip;
+    Port _port;
+
    public:
-    RSIUpload() : RSI(true, "upload", "uploader_client", "uploader_server") {}
+    RSIUpload(const Filename& filename, const IP& ip, Port port, Async async)
+        : RSI(async, "upload", "uploader_client", "uploader_server"),
+          _filename(filename),
+          _ip(ip),
+          _port(port) {}
   };
 
 }  // namespace extras

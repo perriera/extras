@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <extras/rsi/RSIInterface.hpp>
 #include <extras/sockets/Requests.hpp>
 #include <extras/uploader/UploaderInterface.hpp>
 #include <iostream>
@@ -34,6 +35,11 @@ int main(int argc, char const *argv[]) {
   int sockfd = connect_to_server(ip.c_str(), port, server_addr);
 
   //
+  // form RSI
+  //
+  extras::RSIUpload upload(filename, ip, port, async);
+
+  //
   // do business
   //
   std::stringstream ss_remote_cmd;
@@ -50,7 +56,7 @@ int main(int argc, char const *argv[]) {
   std::string local_cmd = ss_local_cmd.str();
   printf("[+]ServerService Invoked '%s %s %i (& status unknown)'\n",
          remote_cmd.c_str(), ip.c_str(), port_to_use);
-  printf("[+]ClientService Invoked '%s'\n", local_cmd.c_str(), port_to_use);
+  printf("[+]ClientService Invoked '%s'\n", local_cmd.c_str());
   system(local_cmd.c_str());
 
   //
