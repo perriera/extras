@@ -33,7 +33,9 @@ namespace extras {
     virtual const RequestedService& service() const pure;
     virtual const Filename& filename() const pure;
     virtual const IP& ip() const pure;
+    virtual void setIP(const IP& ip) pure;
     virtual const Port& port() const pure;
+    virtual void setPort(const Port& port) pure;
     virtual const Async& async() const pure;
     virtual RSIClient client() const pure;
     virtual RSIServer server() const pure;
@@ -51,26 +53,6 @@ namespace extras {
       std::string testB = ssB.str();
       return testB == testA;
     }
-  };
-
-  interface RSIRequestInterface {
-    virtual const RSIInterface& request(
-        const RSIInterface& serviceName,
-        const PortServerNumber& serverSocket) pure;
-  };
-
-  concrete class RSIServerImp implements RSIRequestInterface {
-   public:
-    virtual const RSIInterface& request(
-        const RSIInterface& serviceName,
-        const PortServerNumber& serverSocket) override;
-  };
-
-  concrete class RSIClientImp implements RSIRequestInterface {
-   public:
-    virtual const RSIInterface& request(
-        const RSIInterface& serviceName,
-        const PortServerNumber& serverSocket) override;
   };
 
   /**
@@ -105,7 +87,9 @@ namespace extras {
     };
     virtual const Filename& filename() const override { return _filename; };
     virtual const IP& ip() const override { return _ip; };
+    virtual void setIP(const IP& ip) override { _ip = ip; };
     virtual const Port& port() const override { return _port; };
+    virtual void setPort(const Port& port) override { _port = port; };
     virtual const Async& async() const override { return _async; };
     virtual RSIClient client() const override {
       std::stringstream ss;
@@ -145,6 +129,27 @@ namespace extras {
     RSIUpload(const Filename& filename, const IP& ip, Port port, Async async)
         : RSI(filename, ip, port, async, "upload", "build/uploader_client",
               "build/uploader_server") {}
+  };
+
+  /**
+   * @brief Upload
+   */
+
+  interface RSIRequestInterface {
+    virtual void request(RSIInterface& requestedService,
+                         const PortServerNumber& serverSocket) pure;
+  };
+
+  concrete class RSIServerImp implements RSIRequestInterface {
+   public:
+    virtual void request(RSIInterface& requestedService,
+                         const PortServerNumber& serverSocket) override;
+  };
+
+  concrete class RSIClientImp implements RSIRequestInterface {
+   public:
+    virtual void request(RSIInterface& requestedService,
+                         const PortServerNumber& serverSocket) override;
   };
 
 }  // namespace extras
