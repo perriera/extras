@@ -38,9 +38,8 @@ int main(int argc, char const *argv[]) {
   // form RSI macro
   //
   extras::RSIMacro macro(filename, ip, port, async, service);
-  std::stringstream ss_macro;
-  ss_macro << macro;
-  std::string test = ss_macro.str();
+  extras::RSIClientImp rsi_client;
+  rsi_client.request(macro, sockfd);
 
   //
   // do business

@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <extras/rsi/RSIInterface.hpp>
 #include <extras/strings.hpp>
 #include <extras/uploader/UploaderInterface.hpp>
 #include <fstream>
@@ -54,7 +55,16 @@ int main(int argc, char const *argv[]) {
     extras::PortNumber port_to_use = services.lastPortRequested();
     printf("[+]Sent port to use: %i.\n", port_to_use);
 
-        //
+    //
+    // form RSI macro
+    //
+    extras::RSIMacro macro;
+    extras::RSIServerImp rsi_server;
+    rsi_server.request(macro, new_sock);
+
+    // rsi_server.request()
+
+    //
     // form command
     //
     // std::stringstream ss_cmd;

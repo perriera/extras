@@ -23,6 +23,9 @@ concrete class MockRSIServer implements RSIRequestInterface {
      */
     requestedService.setPort(sevicePort);
   }
+  virtual std::string send_line(const std::string& request,
+                                int serverSocket) const override{};
+  virtual std::string read_line(int serverSocket) override{};
 };
 
 /**
@@ -43,6 +46,9 @@ concrete class MockRSIClient implements RSIRequestInterface {
      */
     return mockRSIServer.request(requestedService, serverSocket);
   }
+  virtual std::string send_line(const std::string& request,
+                                int serverSocket) const override{};
+  virtual std::string read_line(int serverSocket) override{};
 };
 
 SCENARIO("Test RSIRequestInterface", "[RSIRequestInterface]") {

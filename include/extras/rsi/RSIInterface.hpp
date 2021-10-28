@@ -33,12 +33,19 @@ namespace extras {
     virtual const RequestedService& service() const pure;
     virtual const Filename& filename() const pure;
     virtual const IP& ip() const pure;
-    virtual void setIP(const IP& ip) pure;
     virtual const Port& port() const pure;
-    virtual void setPort(const Port& port) pure;
     virtual const Async& async() const pure;
     virtual RSIClient client() const pure;
     virtual RSIServer server() const pure;
+
+    //
+    // POJO
+    //
+    virtual void setService(const RequestedService& service) pure;
+    virtual void setFilename(const Filename& filename) pure;
+    virtual void setIP(const IP& ip) pure;
+    virtual void setPort(const Port& port) pure;
+    virtual void setAsync(const Async& async) pure;
 
     virtual const RSIInterface& request(
         const RSIInterface& serviceName,
@@ -53,6 +60,8 @@ namespace extras {
       std::string testB = ssB.str();
       return testB == testA;
     }
+
+    bool operator!=(const RSIInterface& rhs) const { return !(*this == rhs); }
   };
 
   /**
@@ -87,10 +96,19 @@ namespace extras {
     };
     virtual const Filename& filename() const override { return _filename; };
     virtual const IP& ip() const override { return _ip; };
-    virtual void setIP(const IP& ip) override { _ip = ip; };
     virtual const Port& port() const override { return _port; };
-    virtual void setPort(const Port& port) override { _port = port; };
     virtual const Async& async() const override { return _async; };
+
+    virtual void setService(const RequestedService& service) override {
+      _service = service;
+    }
+    virtual void setFilename(const Filename& filename) override {
+      _filename = filename;
+    }
+    virtual void setIP(const IP& ip) override { _ip = ip; }
+    virtual void setPort(const Port& port) override { _port = port; }
+    virtual void setAsync(const Async& async) override { _async = async; }
+
     virtual RSIClient client() const override {
       std::stringstream ss;
       ss << *this;
@@ -114,6 +132,9 @@ namespace extras {
 
   concrete class RSIMacro extends RSI {
    public:
+    RSIMacro()
+        : RSI("", "", 0, true, "", "build/macro_client", "build/macro_server") {
+    }
     RSIMacro(const Filename& filename, const IP& ip, Port port, Async async,
              RequestedService macro)
         : RSI(filename, ip, port, async, macro, "build/macro_client",
@@ -138,18 +159,27 @@ namespace extras {
   interface RSIRequestInterface {
     virtual void request(RSIInterface& requestedService,
                          const PortServerNumber& serverSocket) pure;
+    virtual std::string send_line(const std::string& request,
+                                  int serverSocket) const pure;
+    virtual std::string read_line(int serverSocket) pure;
   };
 
   concrete class RSIServerImp implements RSIRequestInterface {
    public:
     virtual void request(RSIInterface& requestedService,
                          const PortServerNumber& serverSocket) override;
+    virtual std::string send_line(const std::string& request,
+                                  int serverSocket) const override;
+    virtual std::string read_line(int serverSocket) override;
   };
 
   concrete class RSIClientImp implements RSIRequestInterface {
    public:
     virtual void request(RSIInterface& requestedService,
                          const PortServerNumber& serverSocket) override;
+    virtual std::string send_line(const std::string& request,
+                                  int serverSocket) const override;
+    virtual std::string read_line(int serverSocket) override;
   };
 
 }  // namespace extras
