@@ -12,7 +12,7 @@ namespace extras {
   std::ostream& operator<<(std::ostream& out, const RSIInterface& obj) {
     stringstream ss;
     ss << obj.service() << ' ' << obj.filename() << ' ' << obj.ip() << ' ';
-    ss << obj.port() << ' ' << (obj.async() ? ' ' : '&');
+    ss << obj.port() << ' ' << (obj.async() ? '.' : '&');
     string test = ss.str();
     out << test;
     return out;

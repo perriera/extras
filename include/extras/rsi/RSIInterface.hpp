@@ -41,6 +41,16 @@ namespace extras {
     virtual const RSIInterface& request(
         const RSIInterface& serviceName,
         const PortServerNumber& serverSocket) pure;
+
+    bool operator==(const RSIInterface& rhs) const {
+      std::stringstream ssA;
+      ssA << *this;
+      std::string testA = ssA.str();
+      std::stringstream ssB;
+      ssB << rhs;
+      std::string testB = ssB.str();
+      return testB == testA;
+    }
   };
 
   /**

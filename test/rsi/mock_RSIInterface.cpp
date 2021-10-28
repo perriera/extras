@@ -8,20 +8,27 @@
 using namespace extras;
 using namespace fakeit;
 
+const RSIInterface& RSI::request(const RSIInterface& serviceName,
+                                 const PortServerNumber& serverSocket) {}
+
 SCENARIO("Mock RSIInterface", "[RSIInterface]") {
   bool async_mode = true;
-  RSICLient request = "upload";
-  RSIServer response = "upload";
+  RSICLient client = "upload";
+  RSIServer server = "upload";
+  RSIUpload request("filename", "ip", 8080, true);
   Mock<RSIInterface> mock;
   When(Method(mock, async)).Return(async_mode);
-  When(Method(mock, client)).Return(request);
-  When(Method(mock, server)).Return(response);
+  When(Method(mock, client)).Return(client);
+  When(Method(mock, server)).Return(server);
+  When(Method(mock, request)).Return(request);
 
-  RSIInterface &i = mock.get();
+  RSIInterface& i = mock.get();
   REQUIRE(i.async() == async_mode);
-  REQUIRE(i.client() == request);
-  REQUIRE(i.server() == response);
+  REQUIRE(i.client() == client);
+  REQUIRE(i.server() == server);
+  REQUIRE(i.request(request, 8080) == request);
   Verify(Method(mock, async));
   Verify(Method(mock, client));
   Verify(Method(mock, server));
+  Verify(Method(mock, request));
 }
