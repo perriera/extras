@@ -8,9 +8,6 @@
 using namespace extras;
 using namespace fakeit;
 
-const RSIInterface& RSI::request(const RSIInterface& serviceName,
-                                 const PortServerNumber& serverSocket) {}
-
 SCENARIO("Mock RSIInterface", "[RSIInterface]") {
   bool async_mode = true;
   RSICLient client = "upload";

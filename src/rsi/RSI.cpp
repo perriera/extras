@@ -19,7 +19,9 @@ namespace extras {
   }
   std::istream& operator>>(std::istream& in, RSIInterface& obj) { return in; }
 
-  const RSIInterface& RSI::request(const RSIInterface& serviceName,
-                                   const PortServerNumber& serverSocket) {}
+  const RSIInterface& RSI::request(const RSIInterface& request,
+                                   const PortServerNumber& serverSocket) {
+    return request;
+  }
 
 }  // namespace extras
