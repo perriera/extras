@@ -37,6 +37,10 @@ namespace extras {
     virtual const Async& async() const pure;
     virtual RSICLient client() const pure;
     virtual RSIServer server() const pure;
+
+    virtual const RSIInterface& request(
+        const RSIInterface& serviceName,
+        const PortServerNumber& serverSocket) pure;
   };
 
   /**
@@ -85,6 +89,9 @@ namespace extras {
       std::string cmd = extras::replace_all(ss.str(), service(), _response);
       return cmd;
     };
+    virtual const RSIInterface& request(
+        const RSIInterface& serviceName,
+        const PortServerNumber& serverSocket) override;
   };
 
   /**
