@@ -5,6 +5,7 @@
 #include <sys/socket.h>
 
 #include <extras/keywords.hpp>
+#include <extras/sockets/PortAuthority.hpp>
 #include <extras/sockets/Requests.hpp>
 #include <extras/strings.hpp>
 #include <iostream>
@@ -159,17 +160,19 @@ namespace extras {
   interface RSIRequestInterface {
     virtual void request(RSIInterface& requestedService,
                          const PortServerNumber& serverSocket) pure;
-    virtual std::string send_line(const std::string& request,
-                                  int serverSocket) const pure;
+    virtual void send_line(const std::string& request,
+                           int serverSocket) const pure;
     virtual std::string read_line(int serverSocket) pure;
   };
 
   concrete class RSIServerImp implements RSIRequestInterface {
+    PortAuthority _portAuthority;
+
    public:
     virtual void request(RSIInterface& requestedService,
                          const PortServerNumber& serverSocket) override;
-    virtual std::string send_line(const std::string& request,
-                                  int serverSocket) const override;
+    virtual void send_line(const std::string& request,
+                           int serverSocket) const override;
     virtual std::string read_line(int serverSocket) override;
   };
 
@@ -177,8 +180,8 @@ namespace extras {
    public:
     virtual void request(RSIInterface& requestedService,
                          const PortServerNumber& serverSocket) override;
-    virtual std::string send_line(const std::string& request,
-                                  int serverSocket) const override;
+    virtual void send_line(const std::string& request,
+                           int serverSocket) const override;
     virtual std::string read_line(int serverSocket) override;
   };
 

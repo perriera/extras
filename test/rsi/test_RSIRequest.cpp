@@ -16,16 +16,15 @@ static PortNumber sevicePort = 9000;
 concrete class MockRSIServer implements RSIRequestInterface {
  public:
   virtual void request(RSIInterface& requestedService,
-                       const PortServerNumber& serverSocket) override {
+                       const PortServerNumber&) override {
     /**
      * All it has to do is set the service port
      * (but could also set a service ip or other parameters)
      */
     requestedService.setPort(sevicePort);
   }
-  virtual std::string send_line(const std::string& request,
-                                int serverSocket) const override{};
-  virtual std::string read_line(int serverSocket) override{};
+  virtual void send_line(const std::string&, int) const override{};
+  virtual std::string read_line(int) override{};
 };
 
 /**
@@ -46,9 +45,8 @@ concrete class MockRSIClient implements RSIRequestInterface {
      */
     return mockRSIServer.request(requestedService, serverSocket);
   }
-  virtual std::string send_line(const std::string& request,
-                                int serverSocket) const override{};
-  virtual std::string read_line(int serverSocket) override{};
+  virtual void send_line(const std::string&, int) const override{};
+  virtual std::string read_line(int) override{};
 };
 
 SCENARIO("Test RSIRequestInterface", "[RSIRequestInterface]") {

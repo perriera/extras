@@ -15,10 +15,10 @@ SCENARIO("Mock RSIRequestInterface", "[RSIRequestInterface]") {
 
   Mock<RSIRequestInterface> mock;
   When(Method(mock, request))
-      .AlwaysDo([&after](RSIInterface& requestedService,
-                         const PortServerNumber& serverSocket) {
-        requestedService.setPort(after);
-      });
+      .AlwaysDo(
+          [&after](RSIInterface& requestedService, const PortServerNumber&) {
+            requestedService.setPort(after);
+          });
 
   RSIRequestInterface& i = mock.get();
   REQUIRE(request.port() == before);

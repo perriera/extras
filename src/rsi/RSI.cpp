@@ -30,20 +30,37 @@ namespace extras {
   }
 
   const RSIInterface& RSI::request(const RSIInterface& request,
-                                   const PortServerNumber& serverSocket) {
+                                   const PortServerNumber&) {
     return request;
   }
 
+  void RSIServerImp::send_line(const std::string& request,
+                               int serverSocket) const {
+    ::send_line(request, serverSocket);
+  }
+
+  std::string RSIServerImp::read_line(int serverSocket) {
+    return ::read_line(serverSocket);
+  }
+
+  void RSIClientImp::send_line(const std::string& request,
+                               int serverSocket) const {
+    ::send_line(request, serverSocket);
+  }
+
+  std::string RSIClientImp::read_line(int serverSocket) {
+    return ::read_line(serverSocket);
+  }
+
   void RSIServerImp::request(RSIInterface& requestedService,
-                             const PortServerNumber& serverSocket) {}
-
-  std::string RSIServerImp::send_line(const std::string& request,
-                                      int serverSocket) const {};
-  std::string RSIServerImp::read_line(int serverSocket) {}
-
-  std::string RSIClientImp::send_line(const std::string& request,
-                                      int serverSocket) const {};
-  std::string RSIClientImp::read_line(int serverSocket) {}
+                             const PortServerNumber& serverSocket) {
+    int _nextAvailablePort = _portAuthority.request();
+    requestedService.setPort(_nextAvailablePort);
+    stringstream ss_in;
+    ss_in << requestedService;
+    string request = ss_in.str();
+    send_line(request, serverSocket);
+  }
 
   void RSIClientImp::request(RSIInterface& requestedService,
                              const PortServerNumber& serverSocket) {
