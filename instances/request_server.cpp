@@ -19,7 +19,7 @@ int main(int argc, char const *argv[]) {
   // collect parameters
   //
   if (argc < 3) {
-    std::cout << "params: ip port [-server_nsync]" << std::endl;
+    std::cout << "params: ip port [-server_async]" << std::endl;
     return -1;
   }
   std::stringstream ss;
@@ -28,7 +28,7 @@ int main(int argc, char const *argv[]) {
   int port;
   ss >> prg >> ip >> port;
   ss >> server_sync;
-  bool server_nsync = (server_sync == "-server_nsync");
+  bool not_server_async = (server_sync == "-server_async");
 
   //
   // make connection
@@ -62,7 +62,7 @@ int main(int argc, char const *argv[]) {
     std::string actualServiceName = serviceName;
     std::string cmd =
         serviceName + " " + ip + " " + std::to_string(port_to_use);
-    if (!server_nsync) cmd += " &";
+    if (!not_server_async) cmd += " &";
     // if (extras::contains(cmd, "&")) {
     //   cmd = extras::replace_all(cmd, "ip", ip);
     //   cmd = extras::replace_all(cmd, "port", std::to_string(port));
