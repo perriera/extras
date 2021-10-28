@@ -195,6 +195,17 @@ add_executable(request_server instances/request_server.cpp)
 target_include_directories(request_server PUBLIC ${INCLUDES})
 target_link_libraries(request_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
+#
+# FreeFormJS rsi_client / rsi_server
+#
+add_executable(rsi_client instances/rsi_client.cpp) 
+target_include_directories(rsi_client PUBLIC ${INCLUDES})
+target_link_libraries(rsi_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
+add_executable(rsi_server instances/rsi_server.cpp) 
+target_include_directories(rsi_server PUBLIC ${INCLUDES})
+target_link_libraries(rsi_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
 # if the compiler supports iter-procedural optimization, turn it on
 check_ipo_supported(RESULT result OUTPUT output)
 if(result)
