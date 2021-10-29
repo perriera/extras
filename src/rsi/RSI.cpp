@@ -1,4 +1,4 @@
-#include <extras/rsi/interfaces.hpp>
+#include <extras/rsi/requests.hpp>
 #include <extras/rsi/subsystems.hpp>
 #include <fstream>
 #include <iostream>
@@ -26,11 +26,6 @@ namespace extras {
     obj.setPort(stoi(port));
     obj.setAsync(async == "&");
     return in;
-  }
-
-  const RSIInterface& RSI::request(const RSIInterface& request,
-                                   const PortServerNumber&) {
-    return request;
   }
 
   void RSIServerImp::send_line(const std::string& request,

@@ -1,5 +1,5 @@
 
-#include <extras/rsi/interfaces.hpp>
+#include <extras/rsi/requests.hpp>
 #include <iostream>
 #include <sstream>
 
