@@ -154,7 +154,7 @@ namespace extras {
   };
 
   /**
-   * @brief Upload
+   * @brief RSIRequestInterface
    */
 
   interface RSIRequestInterface {
