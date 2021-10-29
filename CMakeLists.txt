@@ -110,11 +110,11 @@ export(TARGETS ${PROJECT_NAME} FILE extrasConfig.cmake)
 #
 # FreeFormJS client
 #
-add_executable(client instances/prototypes/client.cpp) 
+add_executable(client instances/vendor/ex3_client.cpp) 
 target_include_directories(client PUBLIC ${INCLUDES})
 target_link_libraries(client PRIVATE ${PROJECT_NAME} stdc++fs )
 
-add_executable(server instances/prototypes/server.cpp) 
+add_executable(server instances/vendor/ex3_server.cpp) 
 target_include_directories(server PUBLIC ${INCLUDES})
 target_link_libraries(server PRIVATE ${PROJECT_NAME} stdc++fs )
 
