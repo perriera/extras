@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/uploader/UploaderInterface.hpp>
+#include <extras/rsi/subsystem/RSISubsystem.hpp>
 #include <string>
 
 void send_string(const std::string& msg, int sockfd) {

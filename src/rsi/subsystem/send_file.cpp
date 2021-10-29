@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/uploader/UploaderInterface.hpp>
+#include <extras/rsi/subsystem/RSISubsystem.hpp>
 
 void send_file(FILE *fp, int sockfd) {
   // int n;

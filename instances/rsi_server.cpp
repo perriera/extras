@@ -5,8 +5,8 @@
 #include <unistd.h>
 
 #include <extras/rsi/RSIInterface.hpp>
+#include <extras/rsi/subsystem/RSISubsystem.hpp>
 #include <extras/strings.hpp>
-#include <extras/uploader/UploaderInterface.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>

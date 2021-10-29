@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/uploader/UploaderInterface.hpp>
+#include <extras/rsi/subsystem/RSISubsystem.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>
