@@ -15,7 +15,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/run-unittests-extras",
             "args": [
-                "[ServicesInterface]"
+                "[RSIRequestInterface]"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -239,12 +239,65 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/request_client",
             "args": [
+                "159.223.103.27",
+                "8080",
+                "build/uploader_server",
+                "send.txt",
+                "build/uploader_client",
+                "-nsync"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++ project",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "rsi_client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/rsi_client",
+            "args": [
                 "127.0.0.1",
                 "8080",
                 "build/uploader_server",
                 "send.txt",
                 "build/uploader_client",
                 "-nsync"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++ project",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "rsi_server",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/rsi_server",
+            "args": [
+                "127.0.0.1",
+                "8080",
+                "-server_nsync"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

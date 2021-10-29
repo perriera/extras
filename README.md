@@ -752,6 +752,55 @@ Output the following:
 
 This is rather ironic and kinda against recommended coding practises, (as we are inserting here subtle changes in the expected behavior of the operator). But given the ironic nature that the same '~' is being used to remove another '~' character causes me to ponder about the meaning of life, (or at least mine).
 
+## extras/rsi
+ > add **extras/rsi/RSIRequestInterface.hpp** to your C++ source</br>
+ > add **extras** library to your CMakeLists.txt target</br>
+ > **using namespace extras;**</br>
+This interface supports the remote execution of services on a remote server via sockets.
+
+    /**
+    * @brief RSIRequestInterface
+    */
+
+    interface RSIRequestInterface {
+        virtual void request(RSIInterface& requestedService,
+                            const PortServerNumber& serverSocket) pure;
+        virtual void send_line(const std::string& request,
+                            int serverSocket) const pure;
+        virtual std::string read_line(int serverSocket) pure;
+    };
+
+Essentially you have a server running on the web, (wuth a range of sockets open):
+
+    build/rsi_server 159.223.103.27 8080 
+
+Then you run your client locally for the type of operation you'd like the server to perform. In the following case you want to upload a local file to the server as quickly as possible, (and do in the background if possible):
+
+    build/rsi_client 159.223.103.27 8080 upload send.txt -async
+
+The server would print out diagnostics as follows:
+
+    [+]Server socket created successfully.
+    [+]Binding successfull.
+    [+]Listening....
+    [+]Data written in the file successfully.
+    [+]Sent port to use: 9076.
+    [+]RequestedService 'build/uploader_server send.txt 159.223.103.27 9076 &' Invoked
+
+The client would print out diagnostics as follows:
+
+    [+]Server socket created successfully.
+    [+]Connected to Server.
+    [+]ServerService Invoked 'build/uploader_server send.txt 159.223.103.27 9077 &'
+    [+]ClientService Invoked 'build/uploader_client send.txt 159.223.103.27 9077 &'
+    [+]Closing the connection.
+    [+]Server socket created successfully.
+    [+]Connected to Server.
+    [+]File data sent successfully.
+    [+]Closing the connection.
+
+Whereas the socket server at 8080 received a request to deligate port to be used for the purpose of loading a file to the server. 
+
 ## extras/support
  > add **extras/support.hpp** to your C++ source</br>
  > This will include all the head files available in the extras/ directory.</br>

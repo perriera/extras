@@ -6,7 +6,6 @@
 #include "extras/sockets/PortAuthority.hpp"
 
 using namespace extras;
-using namespace fakeit;
 
 SCENARIO("Test PortAuthorityInterface", "[PortAuthorityInterface]") {
   int correct_socketserverport = 8080;
