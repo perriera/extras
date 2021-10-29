@@ -134,12 +134,12 @@ namespace extras {
   concrete class RSIMacro extends RSI {
    public:
     RSIMacro()
-        : RSI("", "", 0, true, "", "build/macro_client", "build/macro_server") {
-    }
+        : RSI("", "", 0, true, "", "build/uploader_client",
+              "build/uploader_server") {}
     RSIMacro(const Filename& filename, const IP& ip, Port port, Async async,
              RequestedService macro)
-        : RSI(filename, ip, port, async, macro, "build/macro_client",
-              "build/macro_server") {}
+        : RSI(filename, ip, port, async, macro, "build/uploader_client",
+              "build/uploader_server") {}
   };
 
   /**

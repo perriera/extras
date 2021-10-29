@@ -54,12 +54,17 @@ namespace extras {
 
   void RSIServerImp::request(RSIInterface& requestedService,
                              const PortServerNumber& serverSocket) {
+    string request = read_line(serverSocket);
+    stringstream ss_in;
+    ss_in << request;
+    ss_in >> requestedService;
     int _nextAvailablePort = _portAuthority.request();
     requestedService.setPort(_nextAvailablePort);
-    stringstream ss_in;
-    ss_in << requestedService;
-    string request = ss_in.str();
-    send_line(request, serverSocket);
+    stringstream ss_out;
+    ss_out << requestedService;
+    string response = ss_out.str();
+    system(requestedService.server().c_str());
+    send_line(response, serverSocket);
   }
 
   void RSIClientImp::request(RSIInterface& requestedService,

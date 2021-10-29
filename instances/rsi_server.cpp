@@ -29,7 +29,7 @@ int main(int argc, char const *argv[]) {
   int port;
   ss >> prg >> ip >> port;
   ss >> server_sync;
-  bool not_server_async = (server_sync == "-server_async");
+  // bool not_server_async = (server_sync == "-server_async");
 
   //
   // make connection
@@ -37,6 +37,8 @@ int main(int argc, char const *argv[]) {
   int sockfd;
   struct sockaddr_in server_addr;
   sockfd = configure_serversocket(ip.c_str(), port, server_addr, false);
+
+  extras::RSIServerImp rsi_server;
 
   for (int i = 0; i < 1000; i++) {
     struct sockaddr_in new_addr;
@@ -49,18 +51,17 @@ int main(int argc, char const *argv[]) {
     }
 
     //
-    // do business
-    //
-    extras::RequestedService serviceName = services.request(new_sock);
-    extras::PortNumber port_to_use = services.lastPortRequested();
-    printf("[+]Sent port to use: %i.\n", port_to_use);
-
-    //
     // form RSI macro
     //
     extras::RSIMacro macro;
-    extras::RSIServerImp rsi_server;
     rsi_server.request(macro, new_sock);
+
+    //
+    // do business
+    //
+    // extras::RequestedService serviceName = services.request(new_sock);
+    // extras::PortNumber port_to_use = services.lastPortRequested();
+    printf("[+]Sent port to use: %i.\n", macro.port());
 
     // rsi_server.request()
 
@@ -70,17 +71,16 @@ int main(int argc, char const *argv[]) {
     // std::stringstream ss_cmd;
     // ss_cmd <<
 
-    std::string actualServiceName = serviceName;
-    std::string cmd =
-        serviceName + " " + ip + " " + std::to_string(port_to_use);
-    if (!not_server_async) cmd += " &";
+    // std::string actualServiceName = serviceName;
+    // std::string cmd =
+    //     serviceName + " " + ip + " " + std::to_string(port_to_use);
+    // if (!not_server_async) cmd += " &";
     // if (extras::contains(cmd, "&")) {
     //   cmd = extras::replace_all(cmd, "ip", ip);
     //   cmd = extras::replace_all(cmd, "port", std::to_string(port));
     // }
-    printf("[+]RequestedService '%s' Invoked on: %i.\n", cmd.c_str(),
-           port_to_use);
-    system(cmd.c_str());
+    printf("[+]RequestedService '%s' Invoked\n", macro.server().c_str());
+    // system(macro.server().c_str());
     close(new_sock);
   }
   //
