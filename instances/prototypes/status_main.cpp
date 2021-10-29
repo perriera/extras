@@ -8,4 +8,4 @@ using namespace std;
 namespace fs = std::filesystem;
 
 #define PORT 8000
-int main(int argc, char const* argv[]) { return argc - 1; }
+int main(int argc, char const*[]) { return argc - 1; }
