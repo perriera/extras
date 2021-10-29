@@ -165,13 +165,13 @@ target_link_libraries(downloader_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 #
 # FreeFormJS uploader_client1 / uploader_server1
 #
-add_executable(uploader_client1 instances/prototypes/uploader_client1.cpp) 
-target_include_directories(uploader_client1 PUBLIC ${INCLUDES})
-target_link_libraries(uploader_client1 PRIVATE ${PROJECT_NAME} stdc++fs extras)
+add_executable(ex1b_client instances/vendor/ex1b_client.cpp) 
+target_include_directories(ex1b_client PUBLIC ${INCLUDES})
+target_link_libraries(ex1b_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
-add_executable(uploader_server1 instances/prototypes/uploader_server1.cpp) 
-target_include_directories(uploader_server1 PUBLIC ${INCLUDES})
-target_link_libraries(uploader_server1 PRIVATE ${PROJECT_NAME} stdc++fs extras)
+add_executable(ex1b_server instances/vendor/ex1b_server.cpp) 
+target_include_directories(ex1b_server PUBLIC ${INCLUDES})
+target_link_libraries(ex1b_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 #
 # FreeFormJS port_client / port_server
