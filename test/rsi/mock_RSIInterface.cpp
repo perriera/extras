@@ -1,9 +1,9 @@
 
+#include <extras/rsi/interfaces.hpp>
 #include <iostream>
 
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
-#include "extras/rsi/RSIInterface.hpp"
 
 using namespace extras;
 using namespace fakeit;
@@ -17,15 +17,12 @@ SCENARIO("Mock RSIInterface", "[RSIInterface]") {
   When(Method(mock, async)).Return(async_mode);
   When(Method(mock, client)).Return(client);
   When(Method(mock, server)).Return(server);
-  When(Method(mock, request)).Return(request);
 
   RSIInterface& i = mock.get();
   REQUIRE(i.async() == async_mode);
   REQUIRE(i.client() == client);
   REQUIRE(i.server() == server);
-  REQUIRE(i.request(request, 8080) == request);
   Verify(Method(mock, async));
   Verify(Method(mock, client));
   Verify(Method(mock, server));
-  Verify(Method(mock, request));
 }

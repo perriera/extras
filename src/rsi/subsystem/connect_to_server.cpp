@@ -4,10 +4,10 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/uploader/UploaderInterface.hpp>
+#include <extras/rsi/subsystems.hpp>
 
-int connect_to_server(const char *ip, int port,
-                      struct sockaddr_in &server_addr) {
+int extras::rsi::connect_to_server(const char *ip, int port,
+                                   struct sockaddr_in &server_addr) {
   int e;
 
   int sockfd;

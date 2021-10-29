@@ -1,9 +1,9 @@
 
+#include <extras/rsi/requests.hpp>
 #include <iostream>
 #include <sstream>
 
 #include "../vendor/catch.hpp"
-#include "extras/rsi/RSIInterface.hpp"
 
 using namespace extras;
 using namespace std;
@@ -24,7 +24,7 @@ concrete class MockRSIServer implements RSIRequestInterface {
     requestedService.setPort(sevicePort);
   }
   virtual void send_line(const std::string&, int) const override{};
-  virtual std::string read_line(int) override{};
+  virtual std::string read_line(int) override { return "n/a"; };
 };
 
 /**
@@ -46,7 +46,7 @@ concrete class MockRSIClient implements RSIRequestInterface {
     return mockRSIServer.request(requestedService, serverSocket);
   }
   virtual void send_line(const std::string&, int) const override{};
-  virtual std::string read_line(int) override{};
+  virtual std::string read_line(int) override { return "n/a"; };
 };
 
 SCENARIO("Test RSIRequestInterface", "[RSIRequestInterface]") {

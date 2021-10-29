@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/uploader/UploaderInterface.hpp>
+#include <extras/rsi/subsystems.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -27,12 +27,12 @@ int main(int argc, char const *argv[]) {
   // make connection
   //
   struct sockaddr_in server_addr;
-  int sockfd = connect_to_server(ip.c_str(), port, server_addr);
+  int sockfd = extras::rsi::connect_to_server(ip.c_str(), port, server_addr);
 
   //
   // do business
   //
-  write_file(filename.c_str(), sockfd);
+  extras::rsi::write_file(filename.c_str(), sockfd);
   printf("[+]Data written in the file successfully.\n");
 
   //

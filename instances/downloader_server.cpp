@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/uploader/UploaderInterface.hpp>
+#include <extras/rsi/subsystems.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -28,7 +28,7 @@ int main(int argc, char const *argv[]) {
   //
   int sockfd;
   struct sockaddr_in server_addr;
-  sockfd = configure_serversocket(ip.c_str(), port, server_addr);
+  sockfd = extras::rsi::configure_serversocket(ip.c_str(), port, server_addr);
 
   struct sockaddr_in new_addr;
   socklen_t addr_size = sizeof(new_addr);
@@ -47,7 +47,7 @@ int main(int argc, char const *argv[]) {
     perror("[-]Error in reading file.");
     exit(1);
   }
-  send_file(fp, new_sock);
+  extras::rsi::send_file(fp, new_sock);
   printf("[+]File data sent successfully.\n");
 
   //

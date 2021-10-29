@@ -4,9 +4,9 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/RSIInterface.hpp>
+#include <extras/rsi/requests.hpp>
+#include <extras/rsi/subsystems.hpp>
 #include <extras/strings.hpp>
-#include <extras/uploader/UploaderInterface.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -33,7 +33,8 @@ int main(int argc, char const *argv[]) {
 
   int sockfd;
   struct sockaddr_in server_addr;
-  sockfd = configure_serversocket(ip.c_str(), port, server_addr, false);
+  sockfd =
+      extras::rsi::configure_serversocket(ip.c_str(), port, server_addr, false);
 
   extras::RSIServerImp rsi_server;
 

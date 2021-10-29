@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v4.8.0 -m "Remote Async option"</br>
-> > git push origin v4.8.0
+> > git tag -a v4.9.0 -m "RSI Subsystem Refactoring"</br>
+> > git push origin v4.9.0
 > >
 >
 > > POPULAR LINKS:
@@ -24,6 +24,11 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 - dev branch added
+
+#### 4.9.0 (2021-10-29)
+### Resolved 
+- RSI Subsystem Refactoring
+- PE-27
 
 #### 4.8.0 (2021-10-29)
 ### Added 
@@ -411,7 +416,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v4.8.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v4.9.0...HEAD
+[4.9.0]: https://github.com/perriera/extras/compare/v4.8.0...v4.9.0
 [4.8.0]: https://github.com/perriera/extras/compare/v4.7.0...v4.8.0
 [4.7.0]: https://github.com/perriera/extras/compare/v4.6.0...v4.7.0
 [4.6.0]: https://github.com/perriera/extras/compare/v4.5.0...v4.6.0

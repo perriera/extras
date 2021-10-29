@@ -4,14 +4,15 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/uploader/UploaderInterface.hpp>
+#include <extras/rsi/subsystems.hpp>
 
 //
 // https://cdmana.com/2021/02/20210220084428841j.html
 //
 
-int configure_serversocket(const char *ip, int port,
-                           struct sockaddr_in &server_addr, bool timeoutmode) {
+int extras::rsi::configure_serversocket(const char *ip, int port,
+                                        struct sockaddr_in &server_addr,
+                                        bool timeoutmode) {
   int sockfd;
   int opt = 1;
 

@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/uploader/UploaderInterface.hpp>
+#include <extras/rsi/subsystems.hpp>
 
 int main(int argc, char const *argv[]) {
   //
@@ -21,12 +21,12 @@ int main(int argc, char const *argv[]) {
   // make connection
   //
   struct sockaddr_in server_addr;
-  int sockfd = connect_to_server(ip, port, server_addr);
+  int sockfd = extras::rsi::connect_to_server(ip, port, server_addr);
 
   //
   // do business
   //
-  int port_to_use = read_int(sockfd);
+  int port_to_use = extras::rsi::read_int(sockfd);
   printf("[+]Read port to use: %i.\n", port_to_use);
 
   //

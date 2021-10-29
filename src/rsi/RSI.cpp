@@ -1,9 +1,8 @@
-#include <extras/uploader/UploaderInterface.hpp>
+#include <extras/rsi/requests.hpp>
+#include <extras/rsi/subsystems.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>
-
-#include "extras/rsi/RSIInterface.hpp"
 
 using namespace std;
 
@@ -29,27 +28,22 @@ namespace extras {
     return in;
   }
 
-  const RSIInterface& RSI::request(const RSIInterface& request,
-                                   const PortServerNumber&) {
-    return request;
-  }
-
   void RSIServerImp::send_line(const std::string& request,
                                int serverSocket) const {
-    ::send_line(request, serverSocket);
+    extras::rsi::send_line(request, serverSocket);
   }
 
   std::string RSIServerImp::read_line(int serverSocket) {
-    return ::read_line(serverSocket);
+    return extras::rsi::read_line(serverSocket);
   }
 
   void RSIClientImp::send_line(const std::string& request,
                                int serverSocket) const {
-    ::send_line(request, serverSocket);
+    extras::rsi::send_line(request, serverSocket);
   }
 
   std::string RSIClientImp::read_line(int serverSocket) {
-    return ::read_line(serverSocket);
+    return extras::rsi::read_line(serverSocket);
   }
 
   void RSIServerImp::request(RSIInterface& requestedService,

@@ -1,5 +1,5 @@
-#ifndef _EXTRA_RSIINTERFACE_HPP
-#define _EXTRA_RSIINTERFACE_HPP
+#ifndef _EXTRA_RSIINTERFACES_HPP
+#define _EXTRA_RSIINTERFACES_HPP
 
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -47,10 +47,6 @@ namespace extras {
     virtual void setIP(const IP& ip) pure;
     virtual void setPort(const Port& port) pure;
     virtual void setAsync(const Async& async) pure;
-
-    virtual const RSIInterface& request(
-        const RSIInterface& serviceName,
-        const PortServerNumber& serverSocket) pure;
 
     bool operator==(const RSIInterface& rhs) const {
       std::stringstream ssA;
@@ -122,9 +118,6 @@ namespace extras {
       std::string cmd = extras::replace_all(ss.str(), service(), _response);
       return cmd;
     };
-    virtual const RSIInterface& request(
-        const RSIInterface& serviceName,
-        const PortServerNumber& serverSocket) override;
   };
 
   /**
@@ -153,38 +146,6 @@ namespace extras {
               "build/uploader_server") {}
   };
 
-  /**
-   * @brief RSIRequestInterface
-   */
-
-  interface RSIRequestInterface {
-    virtual void request(RSIInterface& requestedService,
-                         const PortServerNumber& serverSocket) pure;
-    virtual void send_line(const std::string& request,
-                           int serverSocket) const pure;
-    virtual std::string read_line(int serverSocket) pure;
-  };
-
-  concrete class RSIServerImp implements RSIRequestInterface {
-    PortAuthority _portAuthority;
-
-   public:
-    virtual void request(RSIInterface& requestedService,
-                         const PortServerNumber& serverSocket) override;
-    virtual void send_line(const std::string& request,
-                           int serverSocket) const override;
-    virtual std::string read_line(int serverSocket) override;
-  };
-
-  concrete class RSIClientImp implements RSIRequestInterface {
-   public:
-    virtual void request(RSIInterface& requestedService,
-                         const PortServerNumber& serverSocket) override;
-    virtual void send_line(const std::string& request,
-                           int serverSocket) const override;
-    virtual std::string read_line(int serverSocket) override;
-  };
-
 }  // namespace extras
 
-#endif  // _EXTRA_RSIINTERFACE_HPP
+#endif  // _EXTRA_RSIINTERFACES_HPP

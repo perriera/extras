@@ -4,9 +4,9 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/RSIInterface.hpp>
+#include <extras/rsi/interfaces.hpp>
+#include <extras/rsi/subsystems.hpp>
 #include <extras/sockets/Requests.hpp>
-#include <extras/uploader/UploaderInterface.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -32,7 +32,7 @@ int main(int argc, char const *argv[]) {
   // make connection
   //
   struct sockaddr_in server_addr;
-  int sockfd = connect_to_server(ip.c_str(), port, server_addr);
+  int sockfd = extras::rsi::connect_to_server(ip.c_str(), port, server_addr);
 
   //
   // form RSI macro
