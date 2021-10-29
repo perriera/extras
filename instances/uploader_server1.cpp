@@ -5,7 +5,7 @@
 #include <unistd.h>
 #define SIZE 1024 * 256
 
-void write_file(int sockfd) {
+static void write_file(int sockfd) {
   int n;
   FILE *fp;
   const char *filename = "recv.txt";
@@ -36,7 +36,7 @@ int main(int argc, char const *argv[]) {
   int sockfd, new_sock;
   struct sockaddr_in server_addr, new_addr;
   socklen_t addr_size;
-  // char buffer[SIZE];
+  // char buffer[extras::rsi::SIZE];
 
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {

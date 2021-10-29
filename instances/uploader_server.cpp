@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/subsystem/RSISubsystem.hpp>
+#include <extras/rsi/subsystem.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -28,7 +28,7 @@ int main(int argc, char const *argv[]) {
   //
   int sockfd;
   struct sockaddr_in server_addr;
-  sockfd = configure_serversocket(ip.c_str(), port, server_addr);
+  sockfd = extras::rsi::configure_serversocket(ip.c_str(), port, server_addr);
 
   struct sockaddr_in new_addr;
   socklen_t addr_size = sizeof(new_addr);
@@ -42,7 +42,7 @@ int main(int argc, char const *argv[]) {
   //
   // do business
   //
-  write_file(filename.c_str(), new_sock);
+  extras::rsi::write_file(filename.c_str(), new_sock);
   printf("[+]Data written in the file successfully.\n");
 
   //

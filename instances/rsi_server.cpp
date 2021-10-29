@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 #include <extras/rsi/RSIInterface.hpp>
-#include <extras/rsi/subsystem/RSISubsystem.hpp>
+#include <extras/rsi/subsystem.hpp>
 #include <extras/strings.hpp>
 #include <fstream>
 #include <iostream>
@@ -33,7 +33,8 @@ int main(int argc, char const *argv[]) {
 
   int sockfd;
   struct sockaddr_in server_addr;
-  sockfd = configure_serversocket(ip.c_str(), port, server_addr, false);
+  sockfd =
+      extras::rsi::configure_serversocket(ip.c_str(), port, server_addr, false);
 
   extras::RSIServerImp rsi_server;
 

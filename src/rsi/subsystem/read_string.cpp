@@ -4,10 +4,11 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <extras/rsi/subsystem.hpp>
 #include <extras/strings.hpp>
 #include <string>
 
-std::string read_string(int sockfd) {
+std::string extras::rsi::read_string(int sockfd) {
   std::string result;
   char buffer[1024];
   int n;
@@ -21,12 +22,12 @@ std::string read_string(int sockfd) {
   return result;
 }
 
-int read_int(int sockfd) {
+int extras::rsi::read_int(int sockfd) {
   std::string msg = read_string(sockfd);
   return std::stoi(msg);
 }
 
-std::string read_line(int sockfd) {
+std::string extras::rsi::read_line(int sockfd) {
   std::string result;
   char buffer[1024];
   bzero(buffer, 1024);

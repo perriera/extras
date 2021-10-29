@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/subsystem/RSISubsystem.hpp>
+#include <extras/rsi/subsystem.hpp>
 
 #include "extras/sockets/PortAuthority.hpp"
 extras::PortAuthority portAuthority;
@@ -25,7 +25,7 @@ int main(int argc, char const *argv[]) {
   //
   int sockfd;
   struct sockaddr_in server_addr;
-  sockfd = configure_serversocket(ip, port, server_addr, false);
+  sockfd = extras::rsi::configure_serversocket(ip, port, server_addr, false);
 
   for (int i = 0; i < 1000; i++) {
     struct sockaddr_in new_addr;
@@ -41,7 +41,7 @@ int main(int argc, char const *argv[]) {
     // do business
     //
     int port_to_use = portAuthority.request();
-    send_int(port_to_use, new_sock);
+    extras::rsi::send_int(port_to_use, new_sock);
     printf("[+]Sent port to use: %i.\n", port_to_use);
     close(new_sock);
   }

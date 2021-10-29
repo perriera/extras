@@ -4,10 +4,10 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/subsystem/RSISubsystem.hpp>
+#include <extras/rsi/subsystem.hpp>
 
-int connect_to_server(const char *ip, int port,
-                      struct sockaddr_in &server_addr) {
+int extras::rsi::connect_to_server(const char *ip, int port,
+                                   struct sockaddr_in &server_addr) {
   int e;
 
   int sockfd;

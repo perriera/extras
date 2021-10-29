@@ -1,4 +1,4 @@
-#include <extras/rsi/subsystem/RSISubsystem.hpp>
+#include <extras/rsi/subsystem.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -36,20 +36,20 @@ namespace extras {
 
   void RSIServerImp::send_line(const std::string& request,
                                int serverSocket) const {
-    ::send_line(request, serverSocket);
+    extras::rsi::send_line(request, serverSocket);
   }
 
   std::string RSIServerImp::read_line(int serverSocket) {
-    return ::read_line(serverSocket);
+    return extras::rsi::read_line(serverSocket);
   }
 
   void RSIClientImp::send_line(const std::string& request,
                                int serverSocket) const {
-    ::send_line(request, serverSocket);
+    extras::rsi::send_line(request, serverSocket);
   }
 
   std::string RSIClientImp::read_line(int serverSocket) {
-    return ::read_line(serverSocket);
+    return extras::rsi::read_line(serverSocket);
   }
 
   void RSIServerImp::request(RSIInterface& requestedService,

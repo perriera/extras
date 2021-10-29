@@ -4,19 +4,19 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/subsystem/RSISubsystem.hpp>
+#include <extras/rsi/subsystem.hpp>
 
-void write_file(const char* filename, int sockfd) {
+void extras::rsi::write_file(const char* filename, int sockfd) {
   int n;
   FILE* fp;
-  char buffer[SIZE];
+  char buffer[extras::rsi::SIZE];
 
   fp = fopen(filename, "w");
   while (1) {
-    n = recv(sockfd, buffer, SIZE, 0);
+    n = recv(sockfd, buffer, extras::rsi::SIZE, 0);
     if (n <= 0) break;
     fprintf(fp, "%s", buffer);
-    bzero(buffer, SIZE);
+    bzero(buffer, extras::rsi::SIZE);
   }
   return;
 }

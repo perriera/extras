@@ -2,23 +2,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define SIZE 1024 * 256
+#define extras ::rsi::SIZE 1024 * 256
 
 void write_file(int sockfd) {
   int n;
   FILE *fp;
   char *filename = "recv.txt";
-  char buffer[SIZE];
+  char buffer[extras::rsi::SIZE];
 
   fp = fopen(filename, "w");
   while (1) {
-    n = recv(sockfd, buffer, SIZE, 0);
+    n = recv(sockfd, buffer, extras::rsi::SIZE, 0);
     if (n <= 0) {
       break;
       return;
     }
     fprintf(fp, "%s", buffer);
-    bzero(buffer, SIZE);
+    bzero(buffer, extras::rsi::SIZE);
   }
   return;
 }
@@ -31,7 +31,7 @@ int main() {
   int sockfd, new_sock;
   struct sockaddr_in server_addr, new_addr;
   socklen_t addr_size;
-  char buffer[SIZE];
+  char buffer[extras::rsi::SIZE];
 
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {
