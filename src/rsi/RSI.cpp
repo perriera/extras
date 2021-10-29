@@ -1,5 +1,5 @@
 #include <extras/rsi/requests.hpp>
-#include <extras/rsi/subsystems.hpp>
+#include <extras/rsi/subsystem.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -17,6 +17,7 @@ namespace extras {
     out << test;
     return out;
   }
+
   std::istream& operator>>(std::istream& in, RSIInterface& obj) {
     string service, filename, ip, port, async;
     in >> service >> filename >> ip >> port >> async;
