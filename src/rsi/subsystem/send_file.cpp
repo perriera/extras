@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/subsystem.hpp>
+#include <extras/rsi/subsystems.hpp>
 
 void extras::rsi::send_file(FILE *fp, int sockfd) {
   // int n;

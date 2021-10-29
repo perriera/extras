@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/subsystem.hpp>
+#include <extras/rsi/subsystems.hpp>
 
 void extras::rsi::write_file(const char* filename, int sockfd) {
   int n;

@@ -4,8 +4,8 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/RSIInterface.hpp>
-#include <extras/rsi/subsystem.hpp>
+#include <extras/rsi/interfaces.hpp>
+#include <extras/rsi/subsystems.hpp>
 #include <extras/sockets/Requests.hpp>
 #include <iostream>
 #include <sstream>

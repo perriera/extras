@@ -1,9 +1,8 @@
-#include <extras/rsi/subsystem.hpp>
+#include <extras/rsi/interfaces.hpp>
+#include <extras/rsi/subsystems.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>
-
-#include "extras/rsi/RSIInterface.hpp"
 
 using namespace std;
 

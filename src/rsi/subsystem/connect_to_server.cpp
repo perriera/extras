@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/subsystem.hpp>
+#include <extras/rsi/subsystems.hpp>
 
 int extras::rsi::connect_to_server(const char *ip, int port,
                                    struct sockaddr_in &server_addr) {

@@ -1,9 +1,9 @@
 
+#include <extras/rsi/interfaces.hpp>
 #include <iostream>
 #include <sstream>
 
 #include "../vendor/catch.hpp"
-#include "extras/rsi/RSIInterface.hpp"
 
 using namespace extras;
 using namespace std;

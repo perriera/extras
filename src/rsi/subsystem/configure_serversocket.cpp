@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/subsystem.hpp>
+#include <extras/rsi/subsystems.hpp>
 
 //
 // https://cdmana.com/2021/02/20210220084428841j.html
