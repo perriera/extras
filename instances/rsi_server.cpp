@@ -31,9 +31,6 @@ int main(int argc, char const *argv[]) {
   ss >> server_sync;
   // bool not_server_async = (server_sync == "-server_async");
 
-  //
-  // make connection
-  //
   int sockfd;
   struct sockaddr_in server_addr;
   sockfd = configure_serversocket(ip.c_str(), port, server_addr, false);
@@ -41,6 +38,9 @@ int main(int argc, char const *argv[]) {
   extras::RSIServerImp rsi_server;
 
   for (int i = 0; i < 1000; i++) {
+    //
+    // make connection to socket client
+    //
     struct sockaddr_in new_addr;
     socklen_t addr_size = sizeof(new_addr);
     int new_sock = accept(sockfd, (struct sockaddr *)&new_addr, &addr_size);
@@ -51,36 +51,13 @@ int main(int argc, char const *argv[]) {
     }
 
     //
-    // form RSI macro
+    // do business
     //
     extras::RSIMacro macro;
     rsi_server.request(macro, new_sock);
-
-    //
-    // do business
-    //
-    // extras::RequestedService serviceName = services.request(new_sock);
-    // extras::PortNumber port_to_use = services.lastPortRequested();
     printf("[+]Sent port to use: %i.\n", macro.port());
-
-    // rsi_server.request()
-
-    //
-    // form command
-    //
-    // std::stringstream ss_cmd;
-    // ss_cmd <<
-
-    // std::string actualServiceName = serviceName;
-    // std::string cmd =
-    //     serviceName + " " + ip + " " + std::to_string(port_to_use);
-    // if (!not_server_async) cmd += " &";
-    // if (extras::contains(cmd, "&")) {
-    //   cmd = extras::replace_all(cmd, "ip", ip);
-    //   cmd = extras::replace_all(cmd, "port", std::to_string(port));
-    // }
     printf("[+]RequestedService '%s' Invoked\n", macro.server().c_str());
-    // system(macro.server().c_str());
+
     close(new_sock);
   }
   //

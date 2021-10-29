@@ -29,40 +29,17 @@ int main(int argc, char const *argv[]) {
   bool async = (sync == "-async");
 
   //
-  // make connection
+  // make connection to socket server
   //
   struct sockaddr_in server_addr;
   int sockfd = connect_to_server(ip.c_str(), port, server_addr);
 
   //
-  // form RSI macro
+  // do business
   //
   extras::RSIMacro macro(filename, ip, port, async, service);
   extras::RSIClientImp rsi_client;
   rsi_client.request(macro, sockfd);
-
-  //
-  // do business
-  //
-  // std::stringstream ss_remote_cmd;
-  // ss_remote_cmd << service << ' ' << filename;
-  // if (!async) ss_remote_cmd << "ip port &";
-  // std::string cmd = ss_remote_cmd.str();
-  // std::string remote_cmd = ss_remote_cmd.str();
-  // extras::RequestedService serviceName = remote_cmd;
-  // extras::Requests requests;
-  // extras::PortNumber port_to_use = requests.request(serviceName, sockfd);
-  // std::stringstream ss_local_cmd;
-  // ss_local_cmd << client << ' ' << filename << ' ' << ip << ' ' <<
-  // port_to_use; if (!async) ss_local_cmd << " &"; std::string local_cmd =
-  // ss_local_cmd.str();
-
-  //
-  // form RSI
-  //
-  // extras::RSIUpload upload(filename, ip, macro, async);
-  // std::string upload_request = upload.client();
-  // std::string upload_response = upload.server();
 
   printf("[+]ServerService Invoked '%s'\n", macro.server().c_str());
   printf("[+]ClientService Invoked '%s'\n", macro.client().c_str());
