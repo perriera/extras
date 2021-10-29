@@ -1,5 +1,5 @@
-#ifndef _EXTRA_RSISUBSYSTEM_HPP
-#define _EXTRA_RSISUBSYSTEM_HPP
+#ifndef _EXTRA_RSISUBSYSTEMS_HPP
+#define _EXTRA_RSISUBSYSTEMS_HPP
 
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -52,4 +52,4 @@ namespace extras {
 
 }  // namespace extras
 
-#endif  // _EXTRA_RSISUBSYSTEM_HPP
+#endif  // _EXTRA_RSISUBSYSTEMS_HPP

@@ -1,5 +1,5 @@
-#ifndef _EXTRA_RSIINTERFACE_HPP
-#define _EXTRA_RSIINTERFACE_HPP
+#ifndef _EXTRA_RSIINTERFACES_HPP
+#define _EXTRA_RSIINTERFACES_HPP
 
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -187,4 +187,4 @@ namespace extras {
 
 }  // namespace extras
 
-#endif  // _EXTRA_RSIINTERFACE_HPP
+#endif  // _EXTRA_RSIINTERFACES_HPP
