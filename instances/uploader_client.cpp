@@ -4,47 +4,24 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <extras/rsi/services/Uploader.hpp>
 #include <extras/rsi/subsystem.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>
 
-int main(int argc, char const *argv[]) {
-  //
-  // collect parameters
-  //
-  if (argc < 4) {
-    std::cout << "params: filename ip port" << std::endl;
+int main(int argc, char const* argv[]) {
+  try {
+    extras::rsi::Uploader uploader;
+    uploader.parameters(argc, argv);
+    uploader.connect();
+    uploader.send_file();
+    printf("[+]File data sent successfully.\n");
+    uploader.close();
+    printf("[+]Closed the connection.\n");
+    return 0;
+  } catch (std::exception& ex) {
+    printf("[-]%s.\n", ex.what());
     return -1;
   }
-  std::stringstream ss;
-  for (int i = 0; i < argc; i++) ss << argv[i] << ' ';
-  std::string prg, filename, ip;
-  int port;
-  ss >> prg >> filename >> ip >> port;
-
-  //
-  // make connection
-  //
-  struct sockaddr_in server_addr;
-  int sockfd = extras::rsi::connect_to_server(ip.c_str(), port, server_addr);
-
-  //
-  // do business
-  //
-  FILE *fp = fopen(filename.c_str(), "r");
-  if (fp == NULL) {
-    perror("[-]Error in reading file.");
-    exit(1);
-  }
-  extras::rsi::send_file(fp, sockfd);
-  printf("[+]File data sent successfully.\n");
-
-  //
-  // close connection
-  //
-  printf("[+]Closing the connection.\n");
-  close(sockfd);
-
-  return 0;
 }

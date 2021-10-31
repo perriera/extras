@@ -47,12 +47,7 @@ namespace extras {
       int _sockfd;
 
      public:
-      virtual Parameters parameters(int argc, char const* argv[]) override {
-        rsi::Parameters result;
-        for (int i = 0; i < argc; i++) result.push_back(argv[i]);
-        _parameters = result;
-        return _parameters;
-      };
+      virtual Parameters parameters(int argc, char const* argv[]) override;
       virtual const Parameter& program() const override {
         return _parameters[0];
       };
