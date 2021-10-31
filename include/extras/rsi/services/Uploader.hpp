@@ -28,6 +28,9 @@ namespace extras {
       virtual const Parameter& filename() const pure;
       virtual const Parameter& ip() const pure;
       virtual const Parameter& port() const pure;
+      virtual void connect() const pure;
+      virtual int socket() const pure;
+      virtual void send_file() const pure;
     };
   }  // namespace rsi
 }  // namespace extras
