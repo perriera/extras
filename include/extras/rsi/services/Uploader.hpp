@@ -73,6 +73,23 @@ namespace extras {
       virtual void upload() const override;
       virtual void close() const override;
     };
+
+    /**
+     * @brief concrete class UploaderServer
+     *
+     *   build/rsi_client 127.0.0.1 8080 upload send.txt
+     *   ss >> prg >> filename >> ip >> port;
+     *
+     */
+    concrete class UploaderServer extends Uploader {
+      struct sockaddr_in _new_addr;
+      int _new_sock;
+
+     public:
+      virtual void connect() override;
+      virtual void upload() const override;
+      virtual void close() const override;
+    };
   }  // namespace rsi
 }  // namespace extras
 
