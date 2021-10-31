@@ -32,7 +32,7 @@ SCENARIO("Mock UploaderInterface: client", "[UploaderInterface]") {
   When(Method(mock, ip)).Return(ip);
   When(Method(mock, port)).Return(port);
   When(Method(mock, socket)).Return(socket);
-  When(Method(mock, send_file)).Return();
+  When(Method(mock, upload)).Return();
   When(Method(mock, close)).Return();
 
   rsi::UploaderInterface& i = mock.get();
@@ -41,14 +41,14 @@ SCENARIO("Mock UploaderInterface: client", "[UploaderInterface]") {
   REQUIRE(i.ip() == ip);
   REQUIRE(i.port() == port);
   REQUIRE(i.socket() == socket);
-  i.send_file();
+  i.upload();
   i.close();
   Verify(Method(mock, parameters));
   Verify(Method(mock, program));
   Verify(Method(mock, ip));
   Verify(Method(mock, port));
   Verify(Method(mock, socket));
-  Verify(Method(mock, send_file));
+  Verify(Method(mock, upload));
   Verify(Method(mock, close));
 }
 
@@ -72,7 +72,7 @@ SCENARIO("Mock UploaderInterface: server", "[UploaderInterface]") {
   When(Method(mock, ip)).Return(ip);
   When(Method(mock, port)).Return(port);
   When(Method(mock, socket)).Return(socket);
-  When(Method(mock, send_file)).Return();
+  When(Method(mock, upload)).Return();
   When(Method(mock, close)).Return();
 
   rsi::UploaderInterface& i = mock.get();
@@ -81,13 +81,13 @@ SCENARIO("Mock UploaderInterface: server", "[UploaderInterface]") {
   REQUIRE(i.ip() == ip);
   REQUIRE(i.port() == port);
   REQUIRE(i.socket() == socket);
-  i.send_file();
+  i.upload();
   i.close();
   Verify(Method(mock, parameters));
   Verify(Method(mock, program));
   Verify(Method(mock, ip));
   Verify(Method(mock, port));
   Verify(Method(mock, socket));
-  Verify(Method(mock, send_file));
+  Verify(Method(mock, upload));
   Verify(Method(mock, close));
 }

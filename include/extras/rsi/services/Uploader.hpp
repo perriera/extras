@@ -30,7 +30,7 @@ namespace extras {
       virtual const Parameter& port() const pure;
       virtual void connect() pure;
       virtual int socket() const pure;
-      virtual void send_file() const pure;
+      virtual void upload() const pure;
       virtual void close() const pure;
     };
 
@@ -70,7 +70,7 @@ namespace extras {
     concrete class UploaderClient extends Uploader {
      public:
       virtual void connect() override;
-      virtual void send_file() const override;
+      virtual void upload() const override;
       virtual void close() const override;
     };
   }  // namespace rsi

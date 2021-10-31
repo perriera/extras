@@ -46,7 +46,7 @@ namespace extras {
     this->_sockfd = extras::rsi::connect_to_server(ip().c_str(), stoi(port()),
                                                    _server_addr);
   }
-  void rsi::UploaderClient::send_file() const {
+  void rsi::UploaderClient::upload() const {
     FILE* fp = fopen(filename().c_str(), "r");
     if (fp == NULL) {
       perror("[-]Error in reading file.");
