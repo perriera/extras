@@ -32,6 +32,7 @@ SCENARIO("Mock UploaderInterface: parameters", "[UploaderInterface]") {
   When(Method(mock, ip)).Return(ip);
   When(Method(mock, port)).Return(port);
   When(Method(mock, socket)).Return(socket);
+  When(Method(mock, send_file)).Return();
 
   rsi::UploaderInterface& i = mock.get();
   REQUIRE(i.parameters(argc, argv).size() == argc);
@@ -39,9 +40,11 @@ SCENARIO("Mock UploaderInterface: parameters", "[UploaderInterface]") {
   REQUIRE(i.ip() == ip);
   REQUIRE(i.port() == port);
   REQUIRE(i.socket() == socket);
+  i.send_file();
   Verify(Method(mock, parameters));
   Verify(Method(mock, program));
   Verify(Method(mock, ip));
   Verify(Method(mock, port));
   Verify(Method(mock, socket));
+  Verify(Method(mock, send_file));
 }
