@@ -12,7 +12,7 @@
 
 int main(int argc, char const* argv[]) {
   try {
-    extras::rsi::Uploader uploader;
+    extras::rsi::UploaderClient uploader;
     uploader.parameters(argc, argv);
     uploader.connect();
     uploader.send_file();

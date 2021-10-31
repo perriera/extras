@@ -35,13 +35,14 @@ namespace extras {
     };
 
     /**
-     * @brief class Uploader
+     * @brief abstract class Uploader
      *
      *   build/rsi_client 127.0.0.1 8080 upload send.txt
      *   ss >> prg >> filename >> ip >> port;
      *
      */
-    concrete class Uploader implements UploaderInterface {
+    abstract class Uploader implements UploaderInterface {
+     protected:
       Parameters _parameters;
       struct sockaddr_in _server_addr;
       int _sockfd;
@@ -56,8 +57,19 @@ namespace extras {
       };
       virtual const Parameter& ip() const override { return _parameters[2]; };
       virtual const Parameter& port() const override { return _parameters[3]; };
+      virtual int socket() const override { return _sockfd; }
+    };
+
+    /**
+     * @brief concrete class UploaderClient
+     *
+     *   build/rsi_client 127.0.0.1 8080 upload send.txt
+     *   ss >> prg >> filename >> ip >> port;
+     *
+     */
+    concrete class UploaderClient extends Uploader {
+     public:
       virtual void connect() override;
-      virtual int socket() const override;
       virtual void send_file() const override;
       virtual void close() const override;
     };
