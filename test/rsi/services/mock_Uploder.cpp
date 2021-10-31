@@ -8,18 +8,36 @@
 using namespace extras;
 using namespace fakeit;
 
+//
+// ss >> prg >> filename >> ip >> port;
+//
+
 SCENARIO("Mock UploaderInterface: parameters", "[UploaderInterface]") {
-  char const* argv[] = {"build/rsi_client", "159.223.103.27", "8080", "upload",
-                        "send.txt"};
-  int argc = 5;
+  rsi::Parameter program = "build/rsi_client";
+  rsi::Parameter filename = "send.txt";
+  rsi::Parameter ip = "159.223.103.27";
+  rsi::Parameter port = "8080";
+  const char* argv[] = {program.c_str(), filename.c_str(), ip.c_str(),
+                        port.c_str()};
+  int argc = 4;
   Mock<rsi::UploaderInterface> mock;
   When(Method(mock, parameters)).AlwaysDo([](int argc, char const* argv[]) {
     rsi::Parameters result;
     for (int i = 0; i < argc; i++) result.push_back(argv[i]);
     return result;
   });
+  When(Method(mock, program)).Return(program);
+  When(Method(mock, filename)).Return(filename);
+  When(Method(mock, ip)).Return(ip);
+  When(Method(mock, port)).Return(port);
 
   rsi::UploaderInterface& i = mock.get();
-  REQUIRE(i.parameters(argc, argv).size() == 5);
+  REQUIRE(i.parameters(argc, argv).size() == argc);
+  REQUIRE(i.program() == program);
+  REQUIRE(i.ip() == ip);
+  REQUIRE(i.port() == port);
   Verify(Method(mock, parameters));
+  Verify(Method(mock, program));
+  Verify(Method(mock, ip));
+  Verify(Method(mock, port));
 }
