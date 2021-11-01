@@ -15,7 +15,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/run-unittests-extras",
             "args": [
-                "[ProcessInterface]"
+                "[UploaderInterface]"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -380,14 +380,39 @@
             "miDebuggerPath": "/usr/bin/gdb"
         },
         {
-            "name": "downloader_server",
+            "name": "process_server",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/downloader_server",
+            "program": "${workspaceFolder}/build/process_server",
             "args": [
                 "send.txt",
                 "127.0.0.1",
-                "8080"
+                "9000"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++ project",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "process_client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/process_client",
+            "args": [
+                "send.txt",
+                "127.0.0.1",
+                "9000"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

@@ -19,9 +19,9 @@ int main(int argc, char const* argv[]) {
     printf("[+]File data received successfully.\n");
     downloader.close();
     printf("[+]Closed the connection.\n");
-    return 0;
+    exit(0);
   } catch (std::exception& ex) {
     printf("[-]%s.\n", ex.what());
-    return -1;
+    exit(-1);
   }
 }

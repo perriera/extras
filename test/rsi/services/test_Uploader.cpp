@@ -14,8 +14,8 @@ SCENARIO("Test UploaderInterface: upload", "[UploaderInterface]") {
   if (fs::exists(target)) fs::remove(target);
   REQUIRE(fs::exists("send.txt"));
   REQUIRE(!fs::exists(target));
-  system("build/uploader_server send_up.txt 127.0.0.1 9000 &");
-  REQUIRE(system("build/uploader_client send.txt 127.0.0.1 9000") == 0);
+  system("build/uploader_server send_up.txt 127.0.0.1 9002 &");
+  REQUIRE(system("build/uploader_client send.txt 127.0.0.1 9002") == 0);
   REQUIRE(fs::exists(target));
   REQUIRE(fs::exists("send.txt"));
   if (fs::exists(target)) fs::remove(target);
@@ -26,8 +26,8 @@ SCENARIO("Test UploaderInterface: download", "[UploaderInterface]") {
   if (fs::exists(target)) fs::remove(target);
   REQUIRE(fs::exists("send.txt"));
   REQUIRE(!fs::exists(target));
-  system("build/downloader_server send.txt 127.0.0.1 9000 &");
-  REQUIRE(system("build/downloader_client send_down.txt 127.0.0.1 9000") == 0);
+  system("build/downloader_server send.txt 127.0.0.1 9003 &");
+  REQUIRE(system("build/downloader_client send_down.txt 127.0.0.1 9003") == 0);
   REQUIRE(fs::exists(target));
   REQUIRE(fs::exists("send.txt"));
   if (fs::exists(target)) fs::remove(target);

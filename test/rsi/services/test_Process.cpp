@@ -14,8 +14,8 @@ SCENARIO("Test ProcessInterface", "[ProcessInterface]") {
   if (fs::exists(target)) fs::remove(target);
   REQUIRE(fs::exists("send.txt"));
   REQUIRE(!fs::exists(target));
-  system("build/process_server send_up.txt 127.0.0.1 9000 &");
-  REQUIRE(system("build/process_client send.txt 127.0.0.1 9000") == 0);
+  system("build/uploader_server send_up.txt 127.0.0.1 9001 &");
+  REQUIRE(system("build/uploader_client send.txt 127.0.0.1 9001") == 0);
   REQUIRE(fs::exists(target));
   REQUIRE(fs::exists("send.txt"));
   if (fs::exists(target)) fs::remove(target);
