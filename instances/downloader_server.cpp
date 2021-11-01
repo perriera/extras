@@ -15,7 +15,7 @@ int main(int argc, char const* argv[]) {
     extras::rsi::DownloaderServer downloader;
     downloader.parameters(argc, argv);
     downloader.connect();
-    downloader.upload();
+    downloader.transfer();
     printf("[+]File data received successfully.\n");
     downloader.close();
     printf("[+]Closed the connection.\n");

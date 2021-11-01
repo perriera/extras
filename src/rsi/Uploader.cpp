@@ -20,7 +20,7 @@ namespace extras {
   /**
    * @brief abstract class Uploader
    *
-   *   build/rsi_client 127.0.0.1 8080 upload send.txt
+   *   build/rsi_client 127.0.0.1 8080 transfer send.txt
    *   ss >> prg >> filename >> ip >> port;
    *
    */
@@ -38,7 +38,7 @@ namespace extras {
   /**
    * @brief concrete class UploaderClient
    *
-   *   build/rsi_client 127.0.0.1 8080 upload send.txt
+   *   build/rsi_client 127.0.0.1 8080 transfer send.txt
    *   ss >> prg >> filename >> ip >> port;
    *
    */
@@ -47,7 +47,7 @@ namespace extras {
                                                    _server_addr);
   }
 
-  void rsi::UploaderClient::upload() const {
+  void rsi::UploaderClient::transfer() const {
     FILE* fp = fopen(filename().c_str(), "r");
     if (fp == NULL) {
       throw RSIException("Error in reading file.", __INFO__);
@@ -55,7 +55,7 @@ namespace extras {
     extras::rsi::send_file(fp, this->_sockfd);
   }
 
-  void rsi::DownloaderClient::upload() const {
+  void rsi::DownloaderClient::transfer() const {
     extras::rsi::write_file(filename().c_str(), this->_sockfd);
   }
 
@@ -64,7 +64,7 @@ namespace extras {
   /**
    * @brief concrete class UploaderServer
    *
-   *   build/rsi_client 127.0.0.1 8080 upload send.txt
+   *   build/rsi_client 127.0.0.1 8080 transfer send.txt
    *   ss >> prg >> filename >> ip >> port;
    *
    */
@@ -80,11 +80,11 @@ namespace extras {
     }
   }
 
-  void rsi::UploaderServer::upload() const {
+  void rsi::UploaderServer::transfer() const {
     extras::rsi::write_file(filename().c_str(), this->_new_sock);
   }
 
-  void rsi::DownloaderServer::upload() const {
+  void rsi::DownloaderServer::transfer() const {
     FILE* fp = fopen(filename().c_str(), "r");
     if (fp == NULL) {
       throw RSIException("Error in reading file.", __INFO__);

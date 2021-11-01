@@ -15,7 +15,7 @@ int main(int argc, char const* argv[]) {
     extras::rsi::UploaderClient uploader;
     uploader.parameters(argc, argv);
     uploader.connect();
-    uploader.upload();
+    uploader.transfer();
     printf("[+]File data sent successfully.\n");
     uploader.close();
     printf("[+]Closed the connection.\n");

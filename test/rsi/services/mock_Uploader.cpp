@@ -17,7 +17,6 @@ SCENARIO("Mock UploaderInterface", "[UploaderInterface]") {
   rsi::Parameter filename = "send.txt";
   rsi::Parameter ip = "159.223.103.27";
   rsi::Parameter port = "8080";
-  int socket = 5;
   const char* argv[] = {program.c_str(), filename.c_str(), ip.c_str(),
                         port.c_str()};
   int argc = 4;
@@ -31,8 +30,7 @@ SCENARIO("Mock UploaderInterface", "[UploaderInterface]") {
   When(Method(mock, filename)).Return(filename);
   When(Method(mock, ip)).Return(ip);
   When(Method(mock, port)).Return(port);
-  When(Method(mock, socket)).Return(socket);
-  When(Method(mock, upload)).Return();
+  When(Method(mock, transfer)).Return();
   When(Method(mock, close)).Return();
 
   rsi::UploaderInterface& i = mock.get();
@@ -40,14 +38,12 @@ SCENARIO("Mock UploaderInterface", "[UploaderInterface]") {
   REQUIRE(i.program() == program);
   REQUIRE(i.ip() == ip);
   REQUIRE(i.port() == port);
-  REQUIRE(i.socket() == socket);
-  i.upload();
+  i.transfer();
   i.close();
   Verify(Method(mock, parameters));
   Verify(Method(mock, program));
   Verify(Method(mock, ip));
   Verify(Method(mock, port));
-  Verify(Method(mock, socket));
-  Verify(Method(mock, upload));
+  Verify(Method(mock, transfer));
   Verify(Method(mock, close));
 }
