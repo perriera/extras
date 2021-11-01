@@ -40,19 +40,19 @@ namespace extras {
      */
     concrete class ProcessClient extends UploaderClient {
      public:
-      virtual void transfer() const override {}
+      virtual void transfer() const override;
     };
 
     /**
      * @brief ProcessServer
      *
      *   build/rsi_client 127.0.0.1 8080 transfer send.txt
-     *   ss >> prg >> filename >> ip >> port;
+     *   ss >> prg >> filename >> ip >> port;ProcessServer
      *
      */
     concrete class ProcessServer extends UploaderServer {
      public:
-      virtual void transfer() const override {}
+      virtual void transfer() const override;
     };
 
   }  // namespace rsi
