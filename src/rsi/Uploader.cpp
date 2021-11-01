@@ -46,6 +46,7 @@ namespace extras {
     this->_sockfd = extras::rsi::connect_to_server(ip().c_str(), stoi(port()),
                                                    _server_addr);
   }
+
   void rsi::UploaderClient::upload() const {
     FILE* fp = fopen(filename().c_str(), "r");
     if (fp == NULL) {
@@ -53,6 +54,11 @@ namespace extras {
     }
     extras::rsi::send_file(fp, this->_sockfd);
   }
+
+  void rsi::DownloaderClient::upload() const {
+    extras::rsi::write_file(filename().c_str(), this->_sockfd);
+  }
+
   void rsi::UploaderClient::close() const { ::close(this->_sockfd); }
 
   /**
@@ -73,9 +79,19 @@ namespace extras {
       throw RSIException("Timeout on uploader_server accept", __INFO__);
     }
   }
+
   void rsi::UploaderServer::upload() const {
     extras::rsi::write_file(filename().c_str(), this->_new_sock);
   }
+
+  void rsi::DownloaderServer::upload() const {
+    FILE* fp = fopen(filename().c_str(), "r");
+    if (fp == NULL) {
+      throw RSIException("Error in reading file.", __INFO__);
+    }
+    extras::rsi::send_file(fp, this->_new_sock);
+  }
+
   void rsi::UploaderServer::close() const {
     ::close(this->_new_sock);
     ::close(this->_sockfd);

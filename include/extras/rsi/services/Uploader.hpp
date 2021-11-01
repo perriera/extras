@@ -74,6 +74,11 @@ namespace extras {
       virtual void close() const override;
     };
 
+    concrete class DownloaderClient extends UploaderClient {
+     public:
+      virtual void upload() const override;
+    };
+
     /**
      * @brief concrete class UploaderServer
      *
@@ -82,6 +87,7 @@ namespace extras {
      *
      */
     concrete class UploaderServer extends Uploader {
+     protected:
       struct sockaddr_in _new_addr;
       int _new_sock;
 
@@ -90,7 +96,13 @@ namespace extras {
       virtual void upload() const override;
       virtual void close() const override;
     };
+
+    concrete class DownloaderServer extends UploaderServer {
+     public:
+      virtual void upload() const override;
+    };
   }  // namespace rsi
+
 }  // namespace extras
 
 #endif  // _EXTRA_RSISERVICES_UPLOADER_HPP

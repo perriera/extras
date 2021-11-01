@@ -9,14 +9,26 @@
 using namespace extras;
 namespace fs = std::filesystem;
 
-SCENARIO("Test UploaderInterface", "[UploaderInterface]") {
+SCENARIO("Test UploaderInterface: upload", "[UploaderInterface]") {
+  std::string target = "send_uploaded.txt";
+  if (fs::exists(target)) fs::remove(target);
+  REQUIRE(fs::exists("send.txt"));
+  REQUIRE(!fs::exists(target));
+  system("build/uploader_server send_uploaded.txt 127.0.0.1 9000 &");
+  system("build/uploader_client send.txt 127.0.0.1 9000");
+  REQUIRE(fs::exists(target));
+  REQUIRE(fs::exists("send.txt"));
+  if (fs::exists(target)) fs::remove(target);
+}
+
+SCENARIO("Test UploaderInterface: download", "[UploaderInterface]") {
   std::string target = "send_downloaded.txt";
   if (fs::exists(target)) fs::remove(target);
   REQUIRE(fs::exists("send.txt"));
-  REQUIRE(!fs::exists("send_downloaded.txt"));
-  system("build/uploader_server send_downloaded.txt 127.0.0.1 9000 &");
-  system("build/uploader_client send.txt 127.0.0.1 9000");
-  REQUIRE(fs::exists("send_downloaded.txt"));
+  REQUIRE(!fs::exists(target));
+  system("build/downloader_server send.txt 127.0.0.1 9000 &");
+  system("build/downloader_client send_downloaded.txt 127.0.0.1 9000");
+  REQUIRE(fs::exists(target));
   REQUIRE(fs::exists("send.txt"));
   if (fs::exists(target)) fs::remove(target);
 }
