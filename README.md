@@ -801,6 +801,45 @@ The client would print out diagnostics as follows:
 
 Whereas the socket server at 8080 received a request to deligate port to be used for the purpose of loading a file to the server. 
 
+## extras/rsi/services
+ > add **extras/rsi/Uploader.hpp** to your C++ source</br>
+ > add **extras** library to your CMakeLists.txt target</br>
+ > **using namespace extras;**</br>
+This interface supports the uploading, processing and downloading of files onto a remote server.
+
+    interface UploaderInterface {
+      /**
+       * @brief parameters()
+       * @note collect the parameters required for the Uploader from the
+       * tradional C/C++ main() arguments.
+       */
+      virtual Parameters parameters(int argc, char const* argv[]) pure;
+      virtual const Parameter& program() const pure;
+      virtual const Parameter& filename() const pure;
+      virtual const Parameter& ip() const pure;
+      virtual const Parameter& port() const pure;
+
+      /**
+       * @brief connect()
+       * @note do whatever socket connection is required, (using the parameters
+       * collected earlier)
+       */
+      virtual void connect() pure;
+
+      /**
+       * @brief transfer()
+       * @note this is where the magic happens, depending what type of class you
+       * are this method performs the data transfer, (or initiates it)
+       */
+      virtual void transfer() const pure;
+
+      /**
+       * @brief transfer()
+       * @note safely closes all sockets
+       */
+      virtual void close() const pure;
+    };
+
 ## extras/support
  > add **extras/support.hpp** to your C++ source</br>
  > This will include all the head files available in the extras/ directory.</br>
