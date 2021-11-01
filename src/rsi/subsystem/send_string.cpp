@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/subsystems.hpp>
+#include <extras/rsi/subsystem.hpp>
 #include <string>
 
 void extras::rsi::send_string(const std::string& msg, int sockfd) {

@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 #include <extras/rsi/requests.hpp>
-#include <extras/rsi/subsystems.hpp>
+#include <extras/rsi/subsystem.hpp>
 #include <extras/strings.hpp>
 #include <fstream>
 #include <iostream>
