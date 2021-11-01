@@ -94,11 +94,6 @@ namespace extras {
       virtual void close() const override;
     };
 
-    concrete class ProcessClient extends UploaderClient {
-     public:
-      virtual void transfer() const override;
-    };
-
     concrete class DownloaderClient extends UploaderClient {
      public:
       virtual void transfer() const override;
@@ -120,11 +115,6 @@ namespace extras {
       virtual void connect() override;
       virtual void transfer() const override;
       virtual void close() const override;
-    };
-
-    concrete class ProcessServer extends UploaderClient {
-     public:
-      virtual void transfer() const override;
     };
 
     concrete class DownloaderServer extends UploaderServer {

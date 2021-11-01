@@ -6,6 +6,7 @@
 
 #include <extras/keywords.hpp>
 #include <extras/rsi.hpp>
+#include <extras/rsi/services/Uploader.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -14,7 +15,7 @@
 namespace extras {
   namespace rsi {
     /**
-     * @brief UploaderInterface
+     * @brief ProcessInterface
      *
      *   build/rsi_client 127.0.0.1 8080 transfer send.txt
      *   ss >> prg >> filename >> ip >> port;
@@ -28,6 +29,30 @@ namespace extras {
        * tradional C/C++ main() arguments.
        */
       virtual void process() const pure;
+    };
+
+    /**
+     * @brief ProcessClient
+     *
+     *   build/rsi_client 127.0.0.1 8080 transfer send.txt
+     *   ss >> prg >> filename >> ip >> port;
+     *
+     */
+    concrete class ProcessClient extends UploaderClient {
+     public:
+      virtual void transfer() const override {}
+    };
+
+    /**
+     * @brief ProcessServer
+     *
+     *   build/rsi_client 127.0.0.1 8080 transfer send.txt
+     *   ss >> prg >> filename >> ip >> port;
+     *
+     */
+    concrete class ProcessServer extends UploaderServer {
+     public:
+      virtual void transfer() const override {}
     };
 
   }  // namespace rsi

@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/services/Uploader.hpp>
+#include <extras/rsi/services/Process.hpp>
 #include <extras/rsi/subsystem.hpp>
 #include <iostream>
 #include <sstream>
@@ -12,23 +12,12 @@
 
 int main(int argc, char const* argv[]) {
   try {
-    // upload
-    extras::rsi::UploaderServer uploader;
-    uploader.parameters(argc, argv);
-    uploader.connect();
-    uploader.transfer();
-    printf("[+]File data sent successfully.\n");
-    uploader.close();
-    printf("[+]Closed the connection.\n");
-    // process
-    std::cout << "processed" << std::endl;
-    // download
-    extras::rsi::DownloaderServer downloader;
-    downloader.parameters(argc, argv);
-    downloader.connect();
-    downloader.transfer();
-    printf("[+]File data sent successfully.\n");
-    downloader.close();
+    extras::rsi::ProcessServer server;
+    server.parameters(argc, argv);
+    server.connect();
+    server.transfer();
+    printf("[+]File data received successfully.\n");
+    server.close();
     printf("[+]Closed the connection.\n");
     return 0;
   } catch (std::exception& ex) {
