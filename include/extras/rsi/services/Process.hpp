@@ -28,7 +28,9 @@ namespace extras {
        * @note collect the parameters required for the Uploader from the
        * tradional C/C++ main() arguments.
        */
+      virtual void upload() const pure;
       virtual void process() const pure;
+      virtual void download() const pure;
     };
 
     /**
@@ -40,8 +42,10 @@ namespace extras {
      */
     concrete class ProcessClient extends UploaderClient with ProcessInterface {
      public:
-      virtual void transfer() const override;
+      virtual void transfer() const override { throw "Not implemented here"; }
+      virtual void upload() const override;
       virtual void process() const override;
+      virtual void download() const override;
     };
 
     /**
@@ -53,8 +57,10 @@ namespace extras {
      */
     concrete class ProcessServer extends UploaderServer with ProcessInterface {
      public:
-      virtual void transfer() const override;
+      virtual void transfer() const override { throw "Not implemented here"; }
+      virtual void upload() const override;
       virtual void process() const override;
+      virtual void download() const override;
     };
 
   }  // namespace rsi

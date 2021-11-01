@@ -25,20 +25,32 @@ namespace extras {
    *
    */
 
-  void rsi::ProcessClient::transfer() const {
-    FILE* fp = fopen(filename().c_str(), "r");
-    if (fp == NULL) {
-      throw RSIException("Error in reading file.", __INFO__);
-    }
-    extras::rsi::send_file(fp, this->_sockfd);
+  // void rsi::ProcessClient::transfer() const {
+  //   FILE* fp = fopen(filename().c_str(), "r");
+  //   if (fp == NULL) {
+  //     throw RSIException("Error in reading file.", __INFO__);
+  //   }
+  //   extras::rsi::send_file(fp, this->_sockfd);
+  // }
+
+  // void rsi::ProcessServer::transfer() const {
+  //   extras::rsi::write_file(filename().c_str(), this->_new_sock);
+  // }
+
+  void rsi::ProcessClient::upload() const {
+    extras::rsi::send_file2(filename().c_str(), this->_sockfd);
+  }
+  void rsi::ProcessClient::process() const { cout << "Processed" << endl; }
+  void rsi::ProcessClient::download() const {
+    extras::rsi::write_file(filename().c_str(), this->_sockfd);
   }
 
-  void rsi::ProcessServer::transfer() const {
+  void rsi::ProcessServer::upload() const {
     extras::rsi::write_file(filename().c_str(), this->_new_sock);
   }
-
-  void rsi::ProcessClient::process() const { transfer(); }
-
-  void rsi::ProcessServer::process() const { transfer(); }
+  void rsi::ProcessServer::process() const { cout << "Processed" << endl; }
+  void rsi::ProcessServer::download() const {
+    extras::rsi::send_file2(filename().c_str(), this->_new_sock);
+  }
 
 }  // namespace extras

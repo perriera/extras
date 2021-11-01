@@ -48,11 +48,7 @@ namespace extras {
   }
 
   void rsi::UploaderClient::transfer() const {
-    FILE* fp = fopen(filename().c_str(), "r");
-    if (fp == NULL) {
-      throw RSIException("Error in reading file.", __INFO__);
-    }
-    extras::rsi::send_file(fp, this->_sockfd);
+    extras::rsi::send_file2(filename().c_str(), this->_sockfd);
   }
 
   void rsi::DownloaderClient::transfer() const {
@@ -85,11 +81,7 @@ namespace extras {
   }
 
   void rsi::DownloaderServer::transfer() const {
-    FILE* fp = fopen(filename().c_str(), "r");
-    if (fp == NULL) {
-      throw RSIException("Error in reading file.", __INFO__);
-    }
-    extras::rsi::send_file(fp, this->_new_sock);
+    extras::rsi::send_file2(filename().c_str(), this->_sockfd);
   }
 
   void rsi::UploaderServer::close() const {

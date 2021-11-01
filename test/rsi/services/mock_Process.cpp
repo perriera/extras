@@ -15,8 +15,14 @@ using namespace fakeit;
 
 SCENARIO("Mock ProcessInterface", "[ProcessInterface]") {
   Mock<rsi::ProcessInterface> mock;
+  When(Method(mock, upload)).Return();
   When(Method(mock, process)).Return();
+  When(Method(mock, download)).Return();
   rsi::ProcessInterface& i = mock.get();
+  i.upload();
   i.process();
+  i.download();
+  Verify(Method(mock, upload));
   Verify(Method(mock, process));
+  Verify(Method(mock, download));
 }
