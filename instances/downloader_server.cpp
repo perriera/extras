@@ -4,57 +4,24 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <extras/rsi/services/Uploader.hpp>
 #include <extras/rsi/subsystem.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>
 
-int main(int argc, char const *argv[]) {
-  //
-  // collect parameters
-  //
-  if (argc < 4) {
-    std::cout << "params: filename ip port" << std::endl;
+int main(int argc, char const* argv[]) {
+  try {
+    extras::rsi::DownloaderServer downloader;
+    downloader.parameters(argc, argv);
+    downloader.connect();
+    downloader.upload();
+    printf("[+]File data received successfully.\n");
+    downloader.close();
+    printf("[+]Closed the connection.\n");
+    return 0;
+  } catch (std::exception& ex) {
+    printf("[-]%s.\n", ex.what());
     return -1;
   }
-  std::stringstream ss;
-  for (int i = 0; i < argc; i++) ss << argv[i] << ' ';
-  std::string prg, filename, ip;
-  int port;
-  ss >> prg >> filename >> ip >> port;
-
-  //
-  // make connection
-  //
-  int sockfd;
-  struct sockaddr_in server_addr;
-  sockfd = extras::rsi::configure_serversocket(ip.c_str(), port, server_addr);
-
-  struct sockaddr_in new_addr;
-  socklen_t addr_size = sizeof(new_addr);
-  int new_sock = accept(sockfd, (struct sockaddr *)&new_addr, &addr_size);
-  if (new_sock == -1) {
-    perror("[-]Timeout on accept");
-    close(sockfd);
-    exit(1);
-  }
-
-  //
-  // do business
-  //
-  FILE *fp = fopen(filename.c_str(), "r");
-  if (fp == NULL) {
-    perror("[-]Error in reading file.");
-    exit(1);
-  }
-  extras::rsi::send_file(fp, new_sock);
-  printf("[+]File data sent successfully.\n");
-
-  //
-  // close connection
-  //
-  close(new_sock);
-  close(sockfd);
-
-  return 0;
 }
