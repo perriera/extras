@@ -30,6 +30,7 @@ namespace extras {
       virtual void process() const pure;
     };
 
-  }  // namespace extras
+  }  // namespace rsi
+}  // namespace extras
 
 #endif  // _EXTRA_RSISERVICES_PROCESS_HPP
