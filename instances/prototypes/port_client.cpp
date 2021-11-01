@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/subsystems.hpp>
+#include <extras/rsi/subsystem.hpp>
 
 int main(int argc, char const *argv[]) {
   //
