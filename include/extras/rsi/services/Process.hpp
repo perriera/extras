@@ -38,9 +38,10 @@ namespace extras {
      *   ss >> prg >> filename >> ip >> port;
      *
      */
-    concrete class ProcessClient extends UploaderClient {
+    concrete class ProcessClient extends UploaderClient with ProcessInterface {
      public:
       virtual void transfer() const override;
+      virtual void process() const override;
     };
 
     /**
@@ -50,9 +51,10 @@ namespace extras {
      *   ss >> prg >> filename >> ip >> port;ProcessServer
      *
      */
-    concrete class ProcessServer extends UploaderServer {
+    concrete class ProcessServer extends UploaderServer with ProcessInterface {
      public:
       virtual void transfer() const override;
+      virtual void process() const override;
     };
 
   }  // namespace rsi

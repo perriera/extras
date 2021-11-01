@@ -36,4 +36,9 @@ namespace extras {
   void rsi::ProcessServer::transfer() const {
     extras::rsi::write_file(filename().c_str(), this->_new_sock);
   }
+
+  void rsi::ProcessClient::process() const { transfer(); }
+
+  void rsi::ProcessServer::process() const { transfer(); }
+
 }  // namespace extras

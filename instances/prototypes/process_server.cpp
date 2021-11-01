@@ -15,7 +15,7 @@ int main(int argc, char const* argv[]) {
     extras::rsi::ProcessServer server;
     server.parameters(argc, argv);
     server.connect();
-    server.transfer();
+    server.process();
     printf("[+]File data received successfully.\n");
     server.close();
     printf("[+]Closed the connection.\n");
