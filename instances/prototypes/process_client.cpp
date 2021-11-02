@@ -15,7 +15,9 @@ int main(int argc, char const* argv[]) {
     extras::rsi::ProcessClient client;
     client.parameters(argc, argv);
     client.connect();
+    client.upload();
     client.process();
+    client.download();
     printf("[+]File data sent successfully.\n");
     client.close();
     printf("[+]Closed the connection.\n");

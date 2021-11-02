@@ -40,7 +40,9 @@ namespace extras {
   void rsi::ProcessClient::upload() const {
     extras::rsi::send_file2(filename().c_str(), this->_sockfd);
   }
-  void rsi::ProcessClient::process() const { cout << "Processed" << endl; }
+  void rsi::ProcessClient::process() const {
+    cout << "Processed: ProcessClient" << endl;
+  }
   void rsi::ProcessClient::download() const {
     extras::rsi::write_file(filename().c_str(), this->_sockfd);
   }
@@ -48,7 +50,9 @@ namespace extras {
   void rsi::ProcessServer::upload() const {
     extras::rsi::write_file(filename().c_str(), this->_new_sock);
   }
-  void rsi::ProcessServer::process() const { cout << "Processed" << endl; }
+  void rsi::ProcessServer::process() const {
+    cout << "Processed: ProcessServer" << endl;
+  }
   void rsi::ProcessServer::download() const {
     extras::rsi::send_file2(filename().c_str(), this->_new_sock);
   }
