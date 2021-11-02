@@ -24,6 +24,8 @@ namespace extras {
   namespace rsi {
 
     void send_file(FILE *fp, int sockfd);
+    void send_file2(const char *filename, int sockfd);
+
     void write_file(const char *filename, int sockfd);
 
     int connect_to_server(const char *ip, int port,

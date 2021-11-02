@@ -19,9 +19,9 @@ int main(int argc, char const* argv[]) {
     printf("[+]File data received successfully.\n");
     uploader.close();
     printf("[+]Closed the connection.\n");
-    return 1;
+    exit(0);
   } catch (std::exception& ex) {
     printf("[-]%s.\n", ex.what());
-    return 0;
+    exit(-1);
   }
 }

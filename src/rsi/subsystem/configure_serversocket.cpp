@@ -26,7 +26,7 @@ int extras::rsi::configure_serversocket(const char *ip, int port,
   if (timeoutmode) {
     // Set a 7 second timeout
     struct timeval timeout;
-    timeout.tv_sec = 7;  // after 7 seconds connect() will timeout
+    timeout.tv_sec = 20;  // after 7 seconds connect() will timeout
     timeout.tv_usec = 0;
     setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
   }

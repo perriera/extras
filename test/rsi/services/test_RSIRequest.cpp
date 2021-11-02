@@ -1,9 +1,9 @@
 
-#include <extras/rsi/requests.hpp>
+#include <extras/rsi/services/Requests.hpp>
 #include <iostream>
 #include <sstream>
 
-#include "../vendor/catch.hpp"
+#include "../../vendor/catch.hpp"
 
 using namespace extras;
 using namespace std;

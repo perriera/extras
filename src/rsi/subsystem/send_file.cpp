@@ -4,9 +4,18 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <extras/rsi/exceptions.hpp>
 #include <extras/rsi/subsystem.hpp>
 
-void extras::rsi::send_file(FILE *fp, int sockfd) {
+void extras::rsi::send_file2(const char* filename, int sockfd) {
+  FILE* fp = fopen(filename, "r");
+  if (fp == NULL) {
+    throw extras::RSIException("Error in reading file.", __INFO__);
+  }
+  extras::rsi::send_file(fp, sockfd);
+}
+
+void extras::rsi::send_file(FILE* fp, int sockfd) {
   // int n;
   char data[extras::rsi::SIZE] = {0};
 

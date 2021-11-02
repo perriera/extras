@@ -1,9 +1,9 @@
 
-#include <extras/rsi/requests.hpp>
+#include <extras/rsi/services/Requests.hpp>
 #include <iostream>
 
-#include "../vendor/catch.hpp"
-#include "../vendor/fakeit.hpp"
+#include "../../vendor/catch.hpp"
+#include "../../vendor/fakeit.hpp"
 
 using namespace extras;
 using namespace fakeit;
