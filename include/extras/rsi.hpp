@@ -26,6 +26,6 @@
 
 #include <extras/rsi/exceptions.hpp>
 #include <extras/rsi/interfaces.hpp>
-#include <extras/rsi/requests.hpp>
+#include <extras/rsi/services/requests.hpp>
 
 #endif  // _EXTRA_RSI_HPP

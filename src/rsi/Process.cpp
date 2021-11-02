@@ -5,8 +5,8 @@
 #include <unistd.h>
 
 #include <extras/rsi/exceptions.hpp>
-#include <extras/rsi/requests.hpp>
 #include <extras/rsi/services/Process.hpp>
+#include <extras/rsi/services/requests.hpp>
 #include <extras/rsi/subsystem.hpp>
 #include <fstream>
 #include <iostream>
