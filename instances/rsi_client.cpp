@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <extras/rsi/services/requests.hpp>
+#include <extras/rsi/services/Requests.hpp>
 #include <extras/rsi/subsystem.hpp>
 #include <extras/sockets/Requests.hpp>
 #include <iostream>

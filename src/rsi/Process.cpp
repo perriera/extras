@@ -6,7 +6,7 @@
 
 #include <extras/rsi/exceptions.hpp>
 #include <extras/rsi/services/Process.hpp>
-#include <extras/rsi/services/requests.hpp>
+#include <extras/rsi/services/Requests.hpp>
 #include <extras/rsi/subsystem.hpp>
 #include <fstream>
 #include <iostream>
