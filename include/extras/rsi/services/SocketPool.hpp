@@ -7,6 +7,7 @@
 #include <extras/keywords.hpp>
 #include <extras/rsi/exceptions.hpp>
 #include <extras/rsi/interfaces.hpp>
+#include <extras/rsi/services/Uploader.hpp>
 #include <iostream>
 #include <map>
 #include <sstream>
@@ -41,6 +42,7 @@ namespace extras {
     using SocketRequestTypeMap = std::map<PortNumber, SocketRequestType>;
 
     interface SocketPoolInterface {
+      virtual Parameters parameters(int argc, char const *argv[]) pure;
       virtual SocketRequestTypeList types() const pure;
       virtual PortNumberPool request(
           const PortNumber &portNumber,
@@ -48,6 +50,57 @@ namespace extras {
       virtual SocketRequestTypeMap lastRequest() const pure;
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const pure;
+    };
+
+    /**
+     * @brief SocketPoolInterface
+     *
+     * The idea is that we assign a port to be the authority on deligating
+     * available port numbers, (from a range of port numbers). At the basic
+     * level a series of predefined tokens are given to this interface. If all
+     * tokens are reconized then a port number is returned for each token.
+     *
+     * The purpose of a token is to inform the SocketPool instance what type of
+     * socket service will be expected to be running on that port. Earlier
+     * prototypes to this just returned a single port number. However, it was
+     * soon realized that perhaps more than one port is required and to inform
+     * the socket pool manager in advance of what type of service to running on
+     * that port would be advantageous.
+     *
+     * This version only returns a port number, a more enhanced version would
+     * support IP addresses, (hence supporting socket pools over different IPs).
+     *
+     */
+    abstract class SocketPool implements SocketPoolInterface {
+     protected:
+      Parameters _parameters;
+      SocketRequestTypeList _types;
+      SocketRequestTypeMap _lastRequest;
+
+     public:
+      virtual Parameters parameters(int argc, char const *argv[]) override;
+      virtual SocketRequestTypeList types() const override { return _types; };
+      virtual SocketRequestTypeMap lastRequest() const override {
+        return _lastRequest;
+      };
+    };
+
+    concrete class SocketPoolClient extends SocketPool {
+     public:
+      virtual PortNumberPool request(
+          const PortNumber &portNumber,
+          const SocketRequestTypeList &requests) override;
+      virtual SocketRequestTypeMap startServices(
+          const SocketRequestTypeMap &map) const override;
+    };
+
+    concrete class SocketPoolServer extends SocketPool {
+     public:
+      virtual PortNumberPool request(
+          const PortNumber &portNumber,
+          const SocketRequestTypeList &requests) override;
+      virtual SocketRequestTypeMap startServices(
+          const SocketRequestTypeMap &map) const override;
     };
 
     /**

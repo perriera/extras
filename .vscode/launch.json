@@ -334,6 +334,61 @@
             "miDebuggerPath": "/usr/bin/gdb"
         },
         {
+            "name": "socketpool_client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/socketpool_client",
+            "args": [
+                "127.0.0.1",
+                "8080",
+                "send.txt",
+                "convert",
+                "download",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++ project",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "socketpool_server",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/socketpool_server",
+            "args": [
+                "127.0.0.1",
+                "8080",
+                "build/uploader_server",
+                "send.txt",
+                "build/uploader_client",
+                "-nsync"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++ project",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
             "name": "rsi_server",
             "type": "cppdbg",
             "request": "launch",

@@ -228,6 +228,17 @@ add_executable(process_server instances/prototypes/process_server.cpp)
 target_include_directories(process_server PUBLIC ${INCLUDES})
 target_link_libraries(process_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
+#
+# FreeFormJS process_client / process_server
+#
+add_executable(socketpool_client instances/prototypes/socketpool_client.cpp) 
+target_include_directories(socketpool_client PUBLIC ${INCLUDES})
+target_link_libraries(socketpool_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
+add_executable(socketpool_server instances/prototypes/socketpool_server.cpp) 
+target_include_directories(socketpool_server PUBLIC ${INCLUDES})
+target_link_libraries(socketpool_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
 # if the compiler supports iter-procedural optimization, turn it on
 check_ipo_supported(RESULT result OUTPUT output)
 if(result)
