@@ -120,3 +120,25 @@ SCENARIO("Mock SocketPoolParametersInterface", "[SocketPoolInterface]") {
   Verify(Method(mock, port));
   Verify(Method(mock, requests));
 }
+
+SCENARIO("Mock SocketPoolClientInterface", "[SocketPoolInterface]") {
+  Mock<rsi::SocketPoolClientInterface> mock;
+  When(Method(mock, connect)).Return();
+  When(Method(mock, close)).Return();
+  rsi::SocketPoolClientInterface& i = mock.get();
+  i.connect();
+  i.close();
+  Verify(Method(mock, connect));
+  Verify(Method(mock, close));
+}
+
+SCENARIO("Mock SocketPoolServerInterface", "[SocketPoolInterface]") {
+  Mock<rsi::SocketPoolServerInterface> mock;
+  When(Method(mock, accept)).Return();
+  When(Method(mock, close)).Return();
+  rsi::SocketPoolServerInterface& i = mock.get();
+  i.accept();
+  i.close();
+  Verify(Method(mock, accept));
+  Verify(Method(mock, close));
+}
