@@ -43,6 +43,11 @@ namespace extras {
 
     interface SocketPoolInterface {
       virtual Parameters parameters(int argc, char const *argv[]) pure;
+      virtual const Parameter &program() const pure;
+      virtual const Parameter &ip() const pure;
+      virtual const Parameter &port() const pure;
+      virtual const Parameter &filename() const pure;
+      virtual const SocketRequestTypeList &requests() const pure;
       virtual SocketRequestTypeList types() const pure;
       virtual PortNumberPool request(
           const PortNumber &portNumber,
@@ -71,14 +76,27 @@ namespace extras {
      * support IP addresses, (hence supporting socket pools over different IPs).
      *
      */
+
     abstract class SocketPool implements SocketPoolInterface {
      protected:
       Parameters _parameters;
+      SocketRequestTypeList _requests;
       SocketRequestTypeList _types;
       SocketRequestTypeMap _lastRequest;
 
      public:
       virtual Parameters parameters(int argc, char const *argv[]) override;
+      virtual const Parameter &program() const override {
+        return _parameters[0];
+      };
+      virtual const Parameter &ip() const override { return _parameters[1]; };
+      virtual const Parameter &port() const override { return _parameters[2]; };
+      virtual const Parameter &filename() const override {
+        return _parameters[4];
+      };
+      virtual const SocketRequestTypeList &requests() const override {
+        return _requests;
+      };
       virtual SocketRequestTypeList types() const override { return _types; };
       virtual SocketRequestTypeMap lastRequest() const override {
         return _lastRequest;
