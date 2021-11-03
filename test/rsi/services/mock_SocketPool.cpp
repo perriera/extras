@@ -88,25 +88,30 @@ SCENARIO("Mock SocketPoolInterface: startServices", "[SocketPoolInterface]") {
 
 SCENARIO("Mock SocketPoolInterface: parameters", "[SocketPoolInterface]") {
   PortNumber serverPort = 8080;
-  rsi::SocketRequestTypeList typesList = {"upload", "process", "download"};
-  rsi::SocketRequestTypeList requestsList = {"upload", "download"};
-  PortNumber nextPortNumber = 9000;
-  rsi::PortNumberPool correctList = {9000, 9001};
+  rsi::Parameter program = "build/rsi_client";
+  rsi::Parameter filename = "send.txt";
+  rsi::Parameter ip = "159.223.103.27";
+  rsi::Parameter port = "8080";
+  const char* argv[] = {program.c_str(), filename.c_str(), ip.c_str(),
+                        port.c_str()};
+  int argc = 4;
   Mock<rsi::SocketPoolInterface> mock;
-  When(Method(mock, types)).AlwaysDo([&typesList]() { return typesList; });
-  When(Method(mock, request))
-      .AlwaysDo(
-          [&typesList, &nextPortNumber](
-              const PortNumber&, const rsi::SocketRequestTypeList& requests) {
-            rsi::PortNumberPool ports;
-            for (auto request : requests)
-              for (auto type : typesList)
-                if (request == type) ports.push_back(nextPortNumber++);
-            return ports;
-          });
+  When(Method(mock, parameters)).AlwaysDo([](int argc, char const* argv[]) {
+    rsi::Parameters result;
+    for (int i = 0; i < argc; i++) result.push_back(argv[i]);
+    return result;
+  });
+  When(Method(mock, program)).Return(program);
+  When(Method(mock, filename)).Return(filename);
+  When(Method(mock, ip)).Return(ip);
+  When(Method(mock, port)).Return(port);
   rsi::SocketPoolInterface& i = mock.get();
-  REQUIRE(i.types() == typesList);
-  REQUIRE(i.request(serverPort, requestsList) == correctList);
-  Verify(Method(mock, types));
-  Verify(Method(mock, request));
+  REQUIRE(i.parameters(argc, argv).size() == argc);
+  REQUIRE(i.program() == program);
+  REQUIRE(i.ip() == ip);
+  REQUIRE(i.port() == port);
+  Verify(Method(mock, parameters));
+  Verify(Method(mock, program));
+  Verify(Method(mock, ip));
+  Verify(Method(mock, port));
 }
