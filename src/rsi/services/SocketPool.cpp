@@ -50,6 +50,32 @@ namespace extras {
 
   rsi::PortNumberPool rsi::SocketPoolClient::request(
       const PortNumber &portNumber, const SocketRequestTypeList &requests){};
+
+  void rsi::SocketPoolClient::transfer() const {
+    string msg = "hello";
+    extras::rsi::send_line(msg, this->_sockfd);
+  };
+
+  void rsi::SocketPoolServer::transfer() const {
+    string msg;
+    while (msg.size() == 0) msg = extras::rsi::read_line(this->_new_sock);
+    std::cout << msg << std::endl;
+    // char buffer[1024] = {0};
+    // int valread = read(new_socket, buffer, 1024);
+    // if (valread < 0) {
+    //   perror("listen");
+    //   exit(EXIT_FAILURE);
+    // }
+    // printf("%s\n", buffer);
+  };
+
+  rsi::PortNumberPool rsi::SocketPoolClient::request() {
+    return request(stoi(this->port()), this->requests());
+  };
+
+  rsi::PortNumberPool rsi::SocketPoolServer::request() {
+    return request(stoi(this->port()), this->requests());
+  };
   rsi::SocketRequestTypeMap rsi::SocketPoolClient::startServices(
       const SocketRequestTypeMap &map) const {};
 
@@ -85,7 +111,22 @@ namespace extras {
   }
 
   rsi::PortNumberPool rsi::SocketPoolServer::request(
-      const PortNumber &portNumber, const SocketRequestTypeList &requests){};
+      const PortNumber &portNumber, const SocketRequestTypeList &requests) {
+    rsi::PortNumberPool ports;
+    rsi::SocketRequestTypeMap lastRequestsMap;
+    for (auto request : requests) {
+      bool found = false;
+      for (auto type : this->types()) {
+        if (request == type) {
+          lastRequestsMap[_nextPortNumber] = request;
+          ports.push_back(_nextPortNumber++);
+          found = true;
+        }
+      }
+      if (!found) throw rsi::UnsupportedTokenException(request, __INFO__);
+    }
+    return ports;
+  };
   rsi::SocketRequestTypeMap rsi::SocketPoolServer::startServices(
       const SocketRequestTypeMap &map) const {};
 

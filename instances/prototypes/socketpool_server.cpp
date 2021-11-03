@@ -14,8 +14,11 @@ int main(int argc, char const* argv[]) {
   try {
     extras::rsi::SocketPoolServer server;
     server.parameters(argc, argv);
-    // uploader.connect();
-    // uploader.transfer();
+    server.connect();
+    while (true) {
+      server.accept();
+      server.transfer();
+    }
     printf("[+]File data sent successfully.\n");
     // uploader.close();
     printf("[+]Closed the connection.\n");

@@ -14,11 +14,13 @@ int main(int argc, char const* argv[]) {
   try {
     extras::rsi::SocketPoolClient client;
     client.parameters(argc, argv);
-    // uploader.connect();
+    client.connect();
+    client.transfer();
     // uploader.transfer();
     printf("[+]File data sent successfully.\n");
     // uploader.close();
     printf("[+]Closed the connection.\n");
+    client.close();
     return 0;
   } catch (std::exception& ex) {
     printf("[-]%s.\n", ex.what());

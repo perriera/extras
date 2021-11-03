@@ -49,6 +49,7 @@ namespace extras {
       virtual SocketRequestTypeMap lastRequest() const pure;
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const pure;
+      virtual void transfer() const pure;
     };
 
     interface SocketPoolParametersInterface {
@@ -129,8 +130,10 @@ namespace extras {
       virtual PortNumberPool request(
           const PortNumber &portNumber,
           const SocketRequestTypeList &requests) override;
+      virtual PortNumberPool request();
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const override;
+      virtual void transfer() const override;
     };
 
     concrete class SocketPoolServer extends SocketPool with
@@ -139,16 +142,19 @@ namespace extras {
       struct sockaddr_in _new_addr;
       int _sockfd;
       int _new_sock;
+      PortNumber _nextPortNumber = 9000;
 
      public:
       virtual void connect() override;
       virtual void accept() override;
       virtual void close() const override;
+      virtual PortNumberPool request();
       virtual PortNumberPool request(
           const PortNumber &portNumber,
           const SocketRequestTypeList &requests) override;
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const override;
+      virtual void transfer() const override;
     };
 
     /**
