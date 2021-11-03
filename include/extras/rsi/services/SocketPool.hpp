@@ -42,12 +42,6 @@ namespace extras {
     using SocketRequestTypeMap = std::map<PortNumber, SocketRequestType>;
 
     interface SocketPoolInterface {
-      virtual Parameters parameters(int argc, char const *argv[]) pure;
-      virtual const Parameter &program() const pure;
-      virtual const Parameter &ip() const pure;
-      virtual const Parameter &port() const pure;
-      virtual const Parameter &filename() const pure;
-      virtual const SocketRequestTypeList &requests() const pure;
       virtual SocketRequestTypeList types() const pure;
       virtual PortNumberPool request(
           const PortNumber &portNumber,
@@ -55,6 +49,25 @@ namespace extras {
       virtual SocketRequestTypeMap lastRequest() const pure;
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const pure;
+    };
+
+    interface SocketPoolParametersInterface {
+      virtual Parameters parameters(int argc, char const *argv[]) pure;
+      virtual const Parameter &program() const pure;
+      virtual const Parameter &ip() const pure;
+      virtual const Parameter &port() const pure;
+      virtual const Parameter &filename() const pure;
+      virtual const SocketRequestTypeList &requests() const pure;
+    };
+
+    interface SocketPoolClientInterface {
+      virtual void connect() pure;
+      virtual void close() const pure;
+    };
+
+    interface SocketPoolServerInterface {
+      virtual void accept() pure;
+      virtual void close() const pure;
     };
 
     /**
@@ -77,7 +90,8 @@ namespace extras {
      *
      */
 
-    abstract class SocketPool implements SocketPoolInterface {
+    abstract class SocketPool implements SocketPoolInterface with
+        SocketPoolParametersInterface {
      protected:
       Parameters _parameters;
       SocketRequestTypeList _requests;
