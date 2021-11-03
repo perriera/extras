@@ -41,6 +41,12 @@ namespace extras {
    *   ss >> prg >> filename >> ip >> port;
    *
    */
+  void rsi::SocketPoolClient::connect() {
+    this->_sockfd = extras::rsi::connect_to_server(ip().c_str(), stoi(port()),
+                                                   _server_addr);
+  }
+
+  void rsi::SocketPoolClient::close() const { ::close(this->_sockfd); }
 
   rsi::PortNumberPool rsi::SocketPoolClient::request(
       const PortNumber &portNumber, const SocketRequestTypeList &requests){};
@@ -54,6 +60,29 @@ namespace extras {
    *   ss >> prg >> filename >> ip >> port;
    *
    */
+  void rsi::SocketPoolServer::connect() {
+    this->_sockfd = extras::rsi::configure_serversocket(
+        ip().c_str(), stoi(port()), _server_addr);
+    if (this->_sockfd == -1) {
+      ::close(this->_sockfd);
+      throw RSIException("Timeout on uploader_server accept", __INFO__);
+    }
+  }
+
+  void rsi::SocketPoolServer::accept() {
+    socklen_t addr_size = sizeof(_new_addr);
+    this->_new_sock =
+        ::accept(this->_sockfd, (struct sockaddr *)&_new_addr, &addr_size);
+    if (_new_sock == -1) {
+      ::close(this->_sockfd);
+      throw RSIException("Timeout on uploader_server accept", __INFO__);
+    }
+  }
+
+  void rsi::SocketPoolServer::close() const {
+    ::close(this->_new_sock);
+    ::close(this->_sockfd);
+  }
 
   rsi::PortNumberPool rsi::SocketPoolServer::request(
       const PortNumber &portNumber, const SocketRequestTypeList &requests){};

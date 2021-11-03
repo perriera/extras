@@ -66,6 +66,7 @@ namespace extras {
     };
 
     interface SocketPoolServerInterface {
+      virtual void connect() pure;
       virtual void accept() pure;
       virtual void close() const pure;
     };
@@ -117,8 +118,14 @@ namespace extras {
       };
     };
 
-    concrete class SocketPoolClient extends SocketPool {
+    concrete class SocketPoolClient extends SocketPool with
+        SocketPoolClientInterface {
+      struct sockaddr_in _server_addr;
+      int _sockfd;
+
      public:
+      virtual void connect() override;
+      virtual void close() const override;
       virtual PortNumberPool request(
           const PortNumber &portNumber,
           const SocketRequestTypeList &requests) override;
@@ -126,8 +133,17 @@ namespace extras {
           const SocketRequestTypeMap &map) const override;
     };
 
-    concrete class SocketPoolServer extends SocketPool {
+    concrete class SocketPoolServer extends SocketPool with
+        SocketPoolServerInterface {
+      struct sockaddr_in _server_addr;
+      struct sockaddr_in _new_addr;
+      int _sockfd;
+      int _new_sock;
+
      public:
+      virtual void connect() override;
+      virtual void accept() override;
+      virtual void close() const override;
       virtual PortNumberPool request(
           const PortNumber &portNumber,
           const SocketRequestTypeList &requests) override;

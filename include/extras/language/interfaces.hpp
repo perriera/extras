@@ -1,8 +1,7 @@
 #ifndef _EXTRA_INTERFACES_HPP
 #define _EXTRA_INTERFACES_HPP
 
-namespace extras
-{
+namespace extras {
 
 /**
  * @file interfaces.hpp
@@ -35,21 +34,21 @@ namespace extras
  * @brief design_by_contract keyword
  * @ref https://en.wikipedia.org/wiki/Design_by_contract
  *
- * " Design by contract (DbC), also known as contract programming, 
- *   programming by contract and design-by-contract programming, 
+ * " Design by contract (DbC), also known as contract programming,
+ *   programming by contract and design-by-contract programming,
  *   is an approach for designing software. ""
  *   -- Wikipedia, August 6th, 2021
- *  
- * It's a more formal version of the 'interface' keyword but 
+ *
+ * It's a more formal version of the 'interface' keyword but
  * intended for business level classes, (whereas the 'interface'
  * keyword is intended for system interface classes). As this
- * keyword implies there will be a 'precondition' and then 
+ * keyword implies there will be a 'precondition' and then
  * 'postcondition' and perhaps 'when' method to be found
- * somewhere in your interface declaration. 
- * 
+ * somewhere in your interface declaration.
+ *
  * design_by_contract is a throw back to the days of more formal
  * Use Case driven software development.
- * 
+ *
  */
 #define design_by_contract struct
 
@@ -146,6 +145,7 @@ namespace extras
  *
  */
 #define with , public
+
 }  // namespace extras
 
 #endif  // _EXTRA_INTERFACES_HPP
