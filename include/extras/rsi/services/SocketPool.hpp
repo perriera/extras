@@ -59,6 +59,26 @@ namespace extras {
       virtual const Parameter &port() const pure;
       virtual const Parameter &filename() const pure;
       virtual const SocketRequestTypeList &requests() const pure;
+
+      virtual void setProgram(const Parameter &program) pure;
+      virtual void setIP(const IP &ip) pure;
+      virtual void setPort(const Port &port) pure;
+      virtual void setFilename(const Filename &filename) pure;
+      virtual void setRequests(const SocketRequestTypeList &list) pure;
+
+      // bool operator==(const SocketPoolParametersInterface &rhs) {
+      //   std::stringstream ssA;
+      //   ssA << *this;
+      //   std::string testA = ssA.str();
+      //   std::stringstream ssB;
+      //   ssB << rhs;
+      //   std::string testB = ssB.str();
+      //   return testB == testA;
+      // }
+
+      // bool operator!=(const SocketPoolParametersInterface &rhs) {
+      //   return !(*this == rhs);
+      // }
     };
 
     interface SocketPoolClientInterface {
@@ -117,10 +137,25 @@ namespace extras {
       virtual SocketRequestTypeMap lastRequest() const override {
         return _lastRequest;
       };
+
+      virtual void setProgram(const Parameter &program) override {
+        _parameters[0] = program;
+      }
+      virtual void setIP(const IP &ip) override { _parameters[1] = ip; }
+      virtual void setPort(const Port &port) override { _parameters[2] = port; }
+      virtual void setFilename(const Filename &filename) override {
+        _parameters[4] = filename;
+      }
+      virtual void setRequests(const SocketRequestTypeList &list) override {
+        _requests = list;
+      }
     };
 
     concrete class SocketPoolClient extends SocketPool with
         SocketPoolClientInterface {
+      friend std::ostream &operator<<(std::ostream &out,
+                                      const SocketPoolClient &obj);
+      friend std::istream &operator>>(std::istream &in, SocketPoolClient &obj);
       struct sockaddr_in _server_addr;
       int _sockfd;
 
