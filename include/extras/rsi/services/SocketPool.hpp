@@ -53,6 +53,10 @@ namespace extras {
     };
 
     interface SocketPoolParametersInterface {
+      friend std::ostream &operator<<(std::ostream &out,
+                                      const SocketPoolParametersInterface &obj);
+      friend std::istream &operator>>(std::istream &in,
+                                      SocketPoolParametersInterface &obj);
       virtual Parameters parameters(int argc, char const *argv[]) pure;
       virtual const Parameter &program() const pure;
       virtual const Parameter &ip() const pure;
@@ -66,19 +70,19 @@ namespace extras {
       virtual void setFilename(const Filename &filename) pure;
       virtual void setRequests(const SocketRequestTypeList &list) pure;
 
-      // bool operator==(const SocketPoolParametersInterface &rhs) {
-      //   std::stringstream ssA;
-      //   ssA << *this;
-      //   std::string testA = ssA.str();
-      //   std::stringstream ssB;
-      //   ssB << rhs;
-      //   std::string testB = ssB.str();
-      //   return testB == testA;
-      // }
+      bool operator==(const SocketPoolParametersInterface &rhs) const {
+        std::stringstream ssA;
+        ssA << *this;
+        std::string testA = ssA.str();
+        std::stringstream ssB;
+        ssB << rhs;
+        std::string testB = ssB.str();
+        return testB == testA;
+      }
 
-      // bool operator!=(const SocketPoolParametersInterface &rhs) {
-      //   return !(*this == rhs);
-      // }
+      bool operator!=(const SocketPoolParametersInterface &rhs) const {
+        return !(*this == rhs);
+      }
     };
 
     interface SocketPoolClientInterface {
@@ -115,21 +119,20 @@ namespace extras {
     abstract class SocketPool implements SocketPoolInterface with
         SocketPoolParametersInterface {
      protected:
-      Parameters _parameters;
+      std::string _program;
+      std::string _ip;
+      std::string _port;
+      std::string _filename;
       SocketRequestTypeList _requests;
       SocketRequestTypeList _types;
       SocketRequestTypeMap _lastRequest;
 
      public:
       virtual Parameters parameters(int argc, char const *argv[]) override;
-      virtual const Parameter &program() const override {
-        return _parameters[0];
-      };
-      virtual const Parameter &ip() const override { return _parameters[1]; };
-      virtual const Parameter &port() const override { return _parameters[2]; };
-      virtual const Parameter &filename() const override {
-        return _parameters[4];
-      };
+      virtual const Parameter &program() const override { return _program; };
+      virtual const Parameter &ip() const override { return _ip; };
+      virtual const Parameter &port() const override { return _port; };
+      virtual const Parameter &filename() const override { return _filename; };
       virtual const SocketRequestTypeList &requests() const override {
         return _requests;
       };
@@ -139,12 +142,14 @@ namespace extras {
       };
 
       virtual void setProgram(const Parameter &program) override {
-        _parameters[0] = program;
+        _program = program;
       }
-      virtual void setIP(const IP &ip) override { _parameters[1] = ip; }
-      virtual void setPort(const Port &port) override { _parameters[2] = port; }
+      virtual void setIP(const IP &ip) override { _ip = ip; }
+      virtual void setPort(const Port &port) override {
+        _port = std::to_string(port);
+      }
       virtual void setFilename(const Filename &filename) override {
-        _parameters[4] = filename;
+        _filename = filename;
       }
       virtual void setRequests(const SocketRequestTypeList &list) override {
         _requests = list;
@@ -153,9 +158,6 @@ namespace extras {
 
     concrete class SocketPoolClient extends SocketPool with
         SocketPoolClientInterface {
-      friend std::ostream &operator<<(std::ostream &out,
-                                      const SocketPoolClient &obj);
-      friend std::istream &operator>>(std::istream &in, SocketPoolClient &obj);
       struct sockaddr_in _server_addr;
       int _sockfd;
 

@@ -14,12 +14,37 @@
 
 using namespace std;
 
+// virtual const Parameter &program() const pure;
+// virtual const Parameter &ip() const pure;
+// virtual const Parameter &port() const pure;
+// virtual const Parameter &filename() const pure;
+// virtual const SocketRequestTypeList &requests() const pure;
+
 namespace extras {
   namespace rsi {
-    std::ostream &operator<<(std::ostream &out, const SocketPoolClient &obj) {
+    std::ostream &operator<<(std::ostream &out,
+                             const SocketPoolParametersInterface &obj) {
+      out << obj.program() << ' ';
+      out << obj.ip() << ' ';
+      out << obj.port() << ' ';
+      out << obj.filename() << ' ';
+      for (auto request : obj.requests()) out << request << ' ';
       return out;
     }
-    std::istream &operator>>(std::istream &in, SocketPoolClient &obj) {
+    std::istream &operator>>(std::istream &in,
+                             SocketPoolParametersInterface &obj) {
+      std::string program, ip, port, filename, request;
+      in >> program >> ip >> port >> filename;
+      SocketRequestTypeList requests;
+      while (in.good()) {
+        in >> request;
+        if (in.good()) requests.push_back(request);
+      }
+      obj.setProgram(program);
+      obj.setIP(ip);
+      obj.setPort(stoi(port));
+      obj.setFilename(filename);
+      obj.setRequests(requests);
       return in;
     }
     /**
@@ -34,10 +59,14 @@ namespace extras {
         std::cout << "params: filename ip port" << std::endl;
         throw RSIException("params: filename ip port", __INFO__);
       }
-      Parameters result;
-      for (int i = 0; i < argc; i++) result.push_back(argv[i]);
-      _parameters = result;
-      return _parameters;
+      Parameters copy;
+      std::stringstream ss;
+      for (int i = 0; i < argc; i++) {
+        ss << argv[i] << ' ';
+        copy.push_back(argv[i]);
+      }
+      ss >> *this;
+      return copy;
     }
 
     /**
