@@ -87,21 +87,20 @@ namespace extras {
         const PortNumber &portNumber, const SocketRequestTypeList &requests){};
 
     void SocketPoolClient::transfer() const {
-      string msg = "hello";
+      std::stringstream ss;
+      ss << *this;
+      std::string msg = ss.str();
       send_line(msg, this->_sockfd);
     };
 
     void SocketPoolServer::transfer() const {
       string msg;
       while (msg.size() == 0) msg = read_line(this->_new_sock);
-      std::cout << msg << std::endl;
-      // char buffer[1024] = {0};
-      // int valread = read(new_socket, buffer, 1024);
-      // if (valread < 0) {
-      //   perror("listen");
-      //   exit(EXIT_FAILURE);
-      // }
-      // printf("%s\n", buffer);
+      std::stringstream ss;
+      ss << msg;
+      SocketPoolClient client;
+      ss >> client;
+      cout << "msg receive: " << client << endl;
     };
 
     PortNumberPool SocketPoolClient::request() {
