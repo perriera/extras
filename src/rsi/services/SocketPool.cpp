@@ -22,6 +22,15 @@ using namespace std;
 
 namespace extras {
   namespace rsi {
+
+    /**
+     * @brief SocketPoolParametersInterface ostream
+     *
+     * @param out
+     * @param obj
+     * @return std::ostream&
+     */
+
     std::ostream &operator<<(std::ostream &out,
                              const SocketPoolParametersInterface &obj) {
       out << obj.program() << ' ';
@@ -31,6 +40,14 @@ namespace extras {
       for (auto request : obj.requests()) out << request << ' ';
       return out;
     }
+
+    /**
+     * @brief SocketPoolParametersInterface istream
+     *
+     * @param in
+     * @param obj
+     * @return std::istream&
+     */
     std::istream &operator>>(std::istream &in,
                              SocketPoolParametersInterface &obj) {
       std::string program, ip, port, filename, request;
@@ -100,7 +117,7 @@ namespace extras {
       ss << msg;
       SocketPoolClient client;
       ss >> client;
-      cout << "msg receive: " << client << endl;
+      cout << "msg received: " << client << endl;
     };
 
     PortNumberPool SocketPoolClient::request() {
