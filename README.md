@@ -840,6 +840,29 @@ This interface supports the uploading, processing and downloading of files onto 
       virtual void close() const pure;
     };
 
+## extras/rsi/services/SocketPoolInterface
+ > add **extras/rsi/services/SocketPool.hpp** to your C++ source</br>
+ > add **extras** library to your CMakeLists.txt target</br>
+ > **using namespace extras;**</br>
+This interface simplifies the process of cordinateing sockets for multiple tasks.
+
+    using Socket = int;
+    using PortNumberPool = std::vector<PortNumber>;
+    using SocketRequestType = std::string;
+    using SocketRequestTypeList = std::vector<SocketRequestType>;
+    using SocketRequestTypeMap = std::map<PortNumber, SocketRequestType>;
+
+    interface SocketPoolInterface {
+      virtual SocketRequestTypeList types() const pure;
+      virtual PortNumberPool request(
+          const PortNumber &portNumber,
+          const SocketRequestTypeList &requests) pure;
+      virtual SocketRequestTypeMap lastRequest() const pure;
+      virtual SocketRequestTypeMap startServices(
+          const SocketRequestTypeMap &map) const pure;
+      virtual void transfer() const pure;
+    };
+
 ## extras/support
  > add **extras/support.hpp** to your C++ source</br>
  > This will include all the head files available in the extras/ directory.</br>
