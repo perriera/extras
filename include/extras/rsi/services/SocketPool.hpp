@@ -41,15 +41,60 @@ namespace extras {
     using SocketRequestTypeList = std::vector<SocketRequestType>;
     using SocketRequestTypeMap = std::map<PortNumber, SocketRequestType>;
 
+    interface StartedServicesInterface {
+      virtual void setStartedServices(const SocketRequestTypeMap &map) pure;
+      virtual const SocketRequestTypeMap &startedServices() const pure;
+    };
+
+    concrete class StartedServices implements StartedServicesInterface {
+      friend std::ostream &operator<<(std::ostream &out,
+                                      const StartedServices &obj);
+      friend std::istream &operator>>(std::istream &in, StartedServices &obj);
+      SocketRequestTypeMap _map;
+
+     public:
+      StartedServices(){};
+      StartedServices(const std::string &msg) {
+        std::stringstream ss;
+        ss << msg;
+        ss >> *this;
+      }
+      virtual void setStartedServices(
+          const SocketRequestTypeMap &map) override {
+        _map = map;
+      }
+      virtual const SocketRequestTypeMap &startedServices() const override {
+        return _map;
+      }
+      bool operator==(const StartedServices &rhs) const {
+        std::stringstream ssA;
+        ssA << *this;
+        std::string testA = ssA.str();
+        std::stringstream ssB;
+        ssB << rhs;
+        std::string testB = ssB.str();
+        return testB == testA;
+      }
+
+      bool operator!=(const StartedServices &rhs) const {
+        return !(*this == rhs);
+      }
+      operator std::string() const {
+        std::stringstream ss;
+        ss << *this;
+        return ss.str();
+      };
+    };
+
     interface SocketPoolInterface {
       virtual SocketRequestTypeList types() const pure;
-      virtual PortNumberPool request(
+      virtual SocketRequestTypeMap request(
           const PortNumber &portNumber,
           const SocketRequestTypeList &requests) pure;
-      virtual SocketRequestTypeMap lastRequest() const pure;
-      virtual SocketRequestTypeMap startServices(
+      // virtual SocketRequestTypeMap lastRequest() const pure;
+      virtual StartedServices startServices(
           const SocketRequestTypeMap &map) const pure;
-      virtual void transfer() const pure;
+      virtual void transfer() pure;
     };
 
     interface SocketPoolParametersInterface {
@@ -137,9 +182,9 @@ namespace extras {
         return _requests;
       };
       virtual SocketRequestTypeList types() const override { return _types; };
-      virtual SocketRequestTypeMap lastRequest() const override {
-        return _lastRequest;
-      };
+      // virtual SocketRequestTypeMap lastRequest() const override {
+      //   return _lastRequest;
+      // };
 
       virtual void setProgram(const Parameter &program) override {
         _program = program;
@@ -162,15 +207,28 @@ namespace extras {
       int _sockfd;
 
      public:
+      SocketPoolClient(){};
+      SocketPoolClient(const std::string &msg) {
+        std::stringstream ss;
+        ss << msg;
+        ss >> *this;
+      }
+
       virtual void connect() override;
       virtual void close() const override;
-      virtual PortNumberPool request(
+      virtual SocketRequestTypeMap request(
           const PortNumber &portNumber,
           const SocketRequestTypeList &requests) override;
-      virtual PortNumberPool request();
-      virtual SocketRequestTypeMap startServices(
+      // virtual PortNumberPool request();
+      virtual StartedServices startServices(
           const SocketRequestTypeMap &map) const override;
-      virtual void transfer() const override;
+      virtual void transfer() override;
+
+      operator std::string() const {
+        std::stringstream ss;
+        ss << *this;
+        return ss.str();
+      };
     };
 
     concrete class SocketPoolServer extends SocketPool with
@@ -185,13 +243,13 @@ namespace extras {
       virtual void connect() override;
       virtual void accept() override;
       virtual void close() const override;
-      virtual PortNumberPool request();
-      virtual PortNumberPool request(
+      // virtual PortNumberPool request();
+      virtual SocketRequestTypeMap request(
           const PortNumber &portNumber,
           const SocketRequestTypeList &requests) override;
-      virtual SocketRequestTypeMap startServices(
+      virtual StartedServices startServices(
           const SocketRequestTypeMap &map) const override;
-      virtual void transfer() const override;
+      virtual void transfer() override;
     };
 
     /**

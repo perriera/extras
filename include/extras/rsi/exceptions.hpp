@@ -22,6 +22,19 @@ namespace extras {
     static void assertion(const std::string &msg, const WhereAmI &ref);
   };
 
+  /**
+   * @brief SocketException
+   *
+   * To be thrown if either string or value supplied is out of range.
+   *
+   */
+  concrete class RSIRemoteException extends RSIException {
+   public:
+    RSIRemoteException(const char *msg, const WhereAmI &whereAmI)
+        : RSIException(msg, whereAmI) {}
+    static void assertion(const std::string &msg, const WhereAmI &ref);
+  };
+
 }  // namespace extras
 
 #endif  // _EXTRA_RSIEXCEPTIONS_HPP

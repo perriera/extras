@@ -64,6 +64,26 @@ namespace extras {
       obj.setRequests(requests);
       return in;
     }
+
+    std::ostream &operator<<(std::ostream &out, const StartedServices &obj) {
+      out << obj._map.size() << ' ';
+      for (auto item : obj._map) {
+        out << item.first << ' ' << item.second << ' ';
+      }
+      return out;
+    }
+    std::istream &operator>>(std::istream &in, StartedServices &obj) {
+      int items = 0;
+      in >> items;
+      while (items-- > 0 && in.good()) {
+        int port;
+        string request;
+        in >> port >> request;
+        obj._map[port] = request;
+      }
+      return in;
+    }
+
     /**
      * @brief abstract class SocketPool
      *
@@ -100,35 +120,91 @@ namespace extras {
 
     void SocketPoolClient::close() const { ::close(this->_sockfd); }
 
-    PortNumberPool SocketPoolClient::request(
-        const PortNumber &portNumber, const SocketRequestTypeList &requests){};
+    SocketRequestTypeMap SocketPoolClient::request(
+        const PortNumber &, const SocketRequestTypeList &) {
+      return SocketRequestTypeMap();
+    }
 
-    void SocketPoolClient::transfer() const {
-      std::stringstream ss;
-      ss << *this;
-      std::string msg = ss.str();
-      send_line(msg, this->_sockfd);
-    };
+    /**
+     * @brief transfer()
+     * @note prepare requests to be sent the server
+     *
+     */
+    void SocketPoolClient::transfer() {
+      try {
+        send_line(*this, this->_sockfd);
+        string msg;
+        while (msg.size() == 0) msg = read_line(this->_sockfd);
+        StartedServices ss(msg);
+      } catch (RSIRemoteException &ex) {
+      } catch (RSIException &ex) {
+      } catch (exception &ex) {
+      }
+    }
 
-    void SocketPoolServer::transfer() const {
-      string msg;
-      while (msg.size() == 0) msg = read_line(this->_new_sock);
-      std::stringstream ss;
-      ss << msg;
-      SocketPoolClient client;
-      ss >> client;
-      cout << "msg received: " << client << endl;
-    };
+    /**
+     * @brief transfer()
+     * @note prepare requests to be recieved from the server
+     *
+     */
+    void SocketPoolServer::transfer() {
+      try {
+        string msg;
+        while (msg.size() == 0) msg = read_line(this->_new_sock);
+        SocketPoolClient client(msg);
+        cout << "msg received: " << client << endl;
+        SocketRequestTypeList theserequests = client.requests();
+        auto pool = request(stoi(this->port()), theserequests);
+        auto services = startServices(pool);
+        send_line(services, this->_sockfd);
+      } catch (RSIRemoteException &ex) {
+      } catch (RSIException &ex) {
+      } catch (exception &ex) {
+      }
+    }
 
-    PortNumberPool SocketPoolClient::request() {
-      return request(stoi(this->port()), this->requests());
-    };
+    /**
+     * @brief request()
+     * @note
+     *
+     * @param portNumber
+     * @param requests
+     * @return PortNumberPool
+     */
+    SocketRequestTypeMap SocketPoolServer::request(
+        const PortNumber &, const SocketRequestTypeList &requests) {
+      PortNumberPool ports;
+      SocketRequestTypeMap map;
+      for (auto request : requests) {
+        bool found = false;
+        for (auto type : this->types()) {
+          if (request == type) {
+            map[_nextPortNumber++] = request;
+            found = true;
+          }
+        }
+        if (!found) throw UnsupportedTokenException(request, __INFO__);
+      }
+      return map;
+    }
 
-    PortNumberPool SocketPoolServer::request() {
-      return request(stoi(this->port()), this->requests());
-    };
-    SocketRequestTypeMap SocketPoolClient::startServices(
-        const SocketRequestTypeMap &map) const {};
+    StartedServices SocketPoolServer::startServices(
+        const SocketRequestTypeMap &) const {
+      return StartedServices();
+    }
+
+    // SocketRequestTypeMap SocketPoolClient::request() {
+    //   return request(stoi(this->port()), this->requests());
+    // }
+
+    // SocketRequestTypeMap SocketPoolServer::request() {
+    //   return request(stoi(this->port()), this->requests());
+    // }
+
+    StartedServices SocketPoolClient::startServices(
+        const SocketRequestTypeMap &) const {
+      return StartedServices();
+    }
 
     /**
      * @brief concrete class SocketPoolServer
@@ -161,24 +237,5 @@ namespace extras {
       ::close(this->_sockfd);
     }
 
-    PortNumberPool SocketPoolServer::request(
-        const PortNumber &portNumber, const SocketRequestTypeList &requests) {
-      PortNumberPool ports;
-      SocketRequestTypeMap lastRequestsMap;
-      for (auto request : requests) {
-        bool found = false;
-        for (auto type : this->types()) {
-          if (request == type) {
-            lastRequestsMap[_nextPortNumber] = request;
-            ports.push_back(_nextPortNumber++);
-            found = true;
-          }
-        }
-        if (!found) throw UnsupportedTokenException(request, __INFO__);
-      }
-      return ports;
-    };
-    SocketRequestTypeMap SocketPoolServer::startServices(
-        const SocketRequestTypeMap &map) const {};
   }  // namespace rsi
 }  // namespace extras

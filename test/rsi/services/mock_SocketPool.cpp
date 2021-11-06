@@ -24,15 +24,15 @@ SCENARIO("Mock SocketPoolInterface: types, request", "[SocketPoolInterface]") {
       .AlwaysDo(
           [&typesList, &nextPortNumber](
               const PortNumber&, const rsi::SocketRequestTypeList& requests) {
-            rsi::PortNumberPool ports;
+            rsi::SocketRequestTypeMap map;
             for (auto request : requests)
               for (auto type : typesList)
-                if (request == type) ports.push_back(nextPortNumber++);
-            return ports;
+                if (request == type) map[nextPortNumber++] = request;
+            return map;
           });
   rsi::SocketPoolInterface& i = mock.get();
   REQUIRE(i.types() == typesList);
-  REQUIRE(i.request(serverPort, requestsList) == correctList);
+  REQUIRE(i.request(serverPort, requestsList).size() == 2);
   Verify(Method(mock, types));
   Verify(Method(mock, request));
 }
@@ -51,38 +51,38 @@ SCENARIO("Mock SocketPoolInterface: startServices", "[SocketPoolInterface]") {
       .AlwaysDo(
           [&typesList, &nextPortNumber, &lastRequestsMap](
               const PortNumber&, const rsi::SocketRequestTypeList& requests) {
-            rsi::PortNumberPool ports;
+            rsi::SocketRequestTypeMap map;
             for (auto request : requests) {
               bool found = false;
               for (auto type : typesList) {
                 if (request == type) {
-                  lastRequestsMap[nextPortNumber] = request;
-                  ports.push_back(nextPortNumber++);
+                  map[nextPortNumber++] = request;
                   found = true;
                 }
               }
               if (!found)
                 throw rsi::UnsupportedTokenException(request, __INFO__);
             }
-            return ports;
+            return map;
           });
-  When(Method(mock, lastRequest)).AlwaysDo([&lastRequestsMap]() {
-    return lastRequestsMap;
-  });
+  // When(Method(mock, lastRequest)).AlwaysDo([&lastRequestsMap]() {
+  //   return lastRequestsMap;
+  // });
   When(Method(mock, startServices))
-      .AlwaysDo(
-          [&typesList](const rsi::SocketRequestTypeMap& map) { return map; });
+      .AlwaysDo([&typesList](const rsi::SocketRequestTypeMap& map) {
+        return rsi::StartedServices();
+      });
   rsi::SocketPoolInterface& i = mock.get();
   REQUIRE(i.types() == typesList);
   auto list = i.request(serverPort, requestsList);
-  REQUIRE(list == correctList);
+  REQUIRE(list.size() == 2);
   REQUIRE_THROWS_AS(i.request(serverPort, badRequestsList),
                     rsi::UnsupportedTokenException);
-  auto latestRequestsMap = i.lastRequest();
-  REQUIRE(i.startServices(latestRequestsMap) == latestRequestsMap);
+  // auto latestRequestsMap = i.lastRequest();
+  i.startServices(list);
   Verify(Method(mock, types));
   Verify(Method(mock, request));
-  Verify(Method(mock, lastRequest));
+  // Verify(Method(mock, lastRequest));
   Verify(Method(mock, startServices));
 }
 
@@ -141,4 +141,55 @@ SCENARIO("Mock SocketPoolServerInterface", "[SocketPoolInterface]") {
   i.close();
   Verify(Method(mock, accept));
   Verify(Method(mock, close));
+}
+
+SCENARIO("Mock SocketPoolInterface: startServices2", "[SocketPoolInterface]") {
+  Mock<rsi::SocketPoolInterface> mock;
+  When(Method(mock, startServices))
+      .AlwaysDo([](const rsi::SocketRequestTypeMap& map) {
+        return rsi::StartedServices();
+      });
+  rsi::SocketPoolInterface& i = mock.get();
+  rsi::SocketRequestTypeMap map;
+  i.startServices(map);
+  Verify(Method(mock, startServices));
+}
+
+SCENARIO("Mock SocketPoolInterface: startServices3", "[SocketPoolInterface]") {
+  Mock<rsi::SocketPoolInterface> mock;
+  When(Method(mock, startServices))
+      .AlwaysDo([](const rsi::SocketRequestTypeMap& map) {
+        return rsi::StartedServices();
+      });
+  rsi::SocketPoolInterface& i = mock.get();
+  rsi::SocketRequestTypeMap map;
+  map[9000] = "upload";
+  map[9001] = "process";
+  map[9002] = "download";
+  i.startServices(map);
+  Verify(Method(mock, startServices));
+}
+
+SCENARIO("Mock SocketPoolInterface: StartedServices", "[SocketPoolInterface]") {
+  Mock<rsi::SocketPoolInterface> mock;
+  When(Method(mock, startServices))
+      .AlwaysDo([](const rsi::SocketRequestTypeMap& map) {
+        rsi::StartedServices ss;
+        ss.setStartedServices(map);
+        return ss;
+      });
+  rsi::SocketPoolInterface& i = mock.get();
+  rsi::SocketRequestTypeMap map;
+  map[9000] = "upload";
+  map[9001] = "process";
+  map[9002] = "download";
+  auto list = i.startServices(map);
+  REQUIRE(list.startedServices().size() == 3);
+  std::stringstream ss;
+  ss << list;
+  rsi::StartedServices list2, list3;
+  ss >> list2;
+  REQUIRE(list == list2);
+  REQUIRE(list != list3);
+  Verify(Method(mock, startServices));
 }
