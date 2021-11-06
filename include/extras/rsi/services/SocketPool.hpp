@@ -54,6 +54,7 @@ namespace extras {
 
      public:
       StartedServices(){};
+      StartedServices(const SocketRequestTypeMap &map) : _map(map) {}
       StartedServices(const std::string &msg) {
         std::stringstream ss;
         ss << msg;

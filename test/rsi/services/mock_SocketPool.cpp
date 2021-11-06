@@ -157,9 +157,45 @@ SCENARIO("Mock SocketPoolInterface: startServices2", "[SocketPoolInterface]") {
 
 SCENARIO("Mock SocketPoolInterface: startServices3", "[SocketPoolInterface]") {
   Mock<rsi::SocketPoolInterface> mock;
+  std::string request = "upload";
   When(Method(mock, startServices))
-      .AlwaysDo([](const rsi::SocketRequestTypeMap& map) {
+      .AlwaysDo([&request](const rsi::SocketRequestTypeMap& map) {
+        throw rsi::UnsupportedTokenException(request, __INFO__);
         return rsi::StartedServices();
+      });
+  rsi::SocketPoolInterface& i = mock.get();
+  rsi::SocketRequestTypeMap map;
+  map[9000] = "upload";
+  map[9001] = "process";
+  map[9002] = "download";
+  REQUIRE_THROWS_AS(i.startServices(map), rsi::UnsupportedTokenException);
+  Verify(Method(mock, startServices));
+}
+
+SCENARIO("Mock SocketPoolInterface: startServices4", "[SocketPoolInterface]") {
+  Mock<rsi::SocketPoolInterface> mock;
+  rsi::SocketRequestTypeList types;
+  int _nextPortNumber = 9000;
+  types.push_back("upload");
+  types.push_back("process");
+  types.push_back("download");
+  When(Method(mock, startServices))
+      .AlwaysDo([&types,
+                 &_nextPortNumber](const rsi::SocketRequestTypeMap& startMap) {
+        rsi::SocketRequestTypeMap startedMap;
+        for (auto request : startMap) {
+          bool found = false;
+          for (auto type : types) {
+            if (request.second == type) {
+              startedMap[_nextPortNumber++] = request.second;
+              found = true;
+            }
+          }
+          if (!found)
+            throw rsi::UnsupportedTokenException(request.second, __INFO__);
+        }
+        rsi::StartedServices ss(startedMap);
+        return ss;
       });
   rsi::SocketPoolInterface& i = mock.get();
   rsi::SocketRequestTypeMap map;

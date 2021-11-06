@@ -173,7 +173,6 @@ namespace extras {
      */
     SocketRequestTypeMap SocketPoolServer::request(
         const PortNumber &, const SocketRequestTypeList &requests) {
-      PortNumberPool ports;
       SocketRequestTypeMap map;
       for (auto request : requests) {
         bool found = false;
