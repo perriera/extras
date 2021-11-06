@@ -108,6 +108,8 @@ namespace extras {
       ss << *this;
       std::string msg = ss.str();
       send_line(msg, this->_sockfd);
+      msg = read_line(this->_sockfd);
+      cout << "msg received: " << msg << endl;
     };
 
     void SocketPoolServer::transfer() const {
@@ -118,6 +120,7 @@ namespace extras {
       SocketPoolClient client;
       ss >> client;
       cout << "msg received: " << client << endl;
+      send_line("Thanks", this->_new_sock);
     };
 
     PortNumberPool SocketPoolClient::request() {
@@ -138,8 +141,8 @@ namespace extras {
      *
      */
     void SocketPoolServer::connect() {
-      this->_sockfd =
-          configure_serversocket(ip().c_str(), stoi(port()), _server_addr);
+      this->_sockfd = configure_serversocket(ip().c_str(), stoi(port()),
+                                             _server_addr, false);
       if (this->_sockfd == -1) {
         ::close(this->_sockfd);
         throw RSIException("Timeout on uploader_server accept", __INFO__);
