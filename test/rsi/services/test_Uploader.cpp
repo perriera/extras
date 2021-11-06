@@ -21,7 +21,7 @@ SCENARIO("Test UploaderInterface: upload", "[UploaderInterface]") {
   if (fs::exists(target)) fs::remove(target);
 }
 
-SCENARIO("Test UploaderInterface: download", "[UploaderInterface]") {
+SCENARIO("Test UploaderInterface: download", "[UploaderInterfaceX]") {
   std::string target = "send_down.txt";
   if (fs::exists(target)) fs::remove(target);
   REQUIRE(fs::exists("send.txt"));
