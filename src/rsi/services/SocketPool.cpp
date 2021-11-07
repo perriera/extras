@@ -120,7 +120,7 @@ namespace extras {
       try {
         string msg;
         while (msg.size() == 0) msg = read_line(this->_new_sock);
-        if (msg.size() > 0) throw std::string("test exception");
+        if (msg.size() == 0) throw std::string("test exception");
         SocketPoolClient client(msg);
         cout << "msg received: " << client << endl;
         send_line("Thanks", this->_new_sock);
