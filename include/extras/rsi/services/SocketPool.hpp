@@ -162,6 +162,19 @@ namespace extras {
       int _sockfd;
 
      public:
+      SocketPoolClient() {}
+      SocketPoolClient(const std::string &msg) {
+        std::stringstream ss;
+        ss << msg;
+        ss >> *this;
+      }
+      operator std::string() const {
+        std::string msg;
+        std::stringstream ss;
+        ss << *this;
+        std::getline(ss, msg);
+        return msg;
+      }
       virtual void connect() override;
       virtual void close() const override;
       virtual PortNumberPool request(

@@ -104,20 +104,32 @@ namespace extras {
         const PortNumber &portNumber, const SocketRequestTypeList &requests){};
 
     void SocketPoolClient::transfer() const {
-      std::stringstream ss;
-      ss << *this;
-      std::string msg = ss.str();
-      send_line(msg, this->_sockfd);
+      try {
+        std::string msg = *this;
+        send_line(msg, this->_sockfd);
+        msg = read_line(this->_sockfd);
+        if (extras::contains(msg, "exception"))
+          throw UnsupportedTokenException(msg, __INFO__);
+        cout << "msg received: " << msg << endl;
+      } catch (exception &ex) {
+        cout << ex.what() << endl;
+      }
     };
 
     void SocketPoolServer::transfer() const {
-      string msg;
-      while (msg.size() == 0) msg = read_line(this->_new_sock);
-      std::stringstream ss;
-      ss << msg;
-      SocketPoolClient client;
-      ss >> client;
-      cout << "msg received: " << client << endl;
+      try {
+        string msg;
+        while (msg.size() == 0) msg = read_line(this->_new_sock);
+        if (msg.size() == 0) throw std::string("test exception");
+        SocketPoolClient client(msg);
+        cout << "msg received: " << client << endl;
+        send_line("Thanks", this->_new_sock);
+      } catch (exception &ex) {
+        cout << ex.what() << endl;
+        send_line(ex.what(), this->_new_sock);
+      } catch (...) {
+        send_line("Unknown exception thrown", this->_new_sock);
+      }
     };
 
     PortNumberPool SocketPoolClient::request() {
@@ -138,8 +150,8 @@ namespace extras {
      *
      */
     void SocketPoolServer::connect() {
-      this->_sockfd =
-          configure_serversocket(ip().c_str(), stoi(port()), _server_addr);
+      this->_sockfd = configure_serversocket(ip().c_str(), stoi(port()),
+                                             _server_addr, false);
       if (this->_sockfd == -1) {
         ::close(this->_sockfd);
         throw RSIException("Timeout on uploader_server accept", __INFO__);
