@@ -115,10 +115,7 @@ namespace extras {
     void SocketPoolServer::transfer() const {
       string msg;
       while (msg.size() == 0) msg = read_line(this->_new_sock);
-      std::stringstream ss;
-      ss << msg;
-      SocketPoolClient client;
-      ss >> client;
+      SocketPoolClient client(msg);
       cout << "msg received: " << client << endl;
       send_line("Thanks", this->_new_sock);
     };
