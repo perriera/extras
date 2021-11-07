@@ -104,20 +104,32 @@ namespace extras {
         const PortNumber &portNumber, const SocketRequestTypeList &requests){};
 
     void SocketPoolClient::transfer() const {
-      std::stringstream ss;
-      ss << *this;
-      std::string msg = ss.str();
-      send_line(msg, this->_sockfd);
-      msg = read_line(this->_sockfd);
-      cout << "msg received: " << msg << endl;
+      try {
+        std::string msg = *this;
+        send_line(msg, this->_sockfd);
+        msg = read_line(this->_sockfd);
+        if (extras::contains(msg, "exception"))
+          throw UnsupportedTokenException(msg, __INFO__);
+        cout << "msg received: " << msg << endl;
+      } catch (exception &ex) {
+        cout << ex.what() << endl;
+      }
     };
 
     void SocketPoolServer::transfer() const {
-      string msg;
-      while (msg.size() == 0) msg = read_line(this->_new_sock);
-      SocketPoolClient client(msg);
-      cout << "msg received: " << client << endl;
-      send_line("Thanks", this->_new_sock);
+      try {
+        string msg;
+        while (msg.size() == 0) msg = read_line(this->_new_sock);
+        if (msg.size() > 0) throw std::string("test exception");
+        SocketPoolClient client(msg);
+        cout << "msg received: " << client << endl;
+        send_line("Thanks", this->_new_sock);
+      } catch (exception &ex) {
+        cout << ex.what() << endl;
+        send_line(ex.what(), this->_new_sock);
+      } catch (...) {
+        send_line("Unknown exception thrown", this->_new_sock);
+      }
     };
 
     PortNumberPool SocketPoolClient::request() {
