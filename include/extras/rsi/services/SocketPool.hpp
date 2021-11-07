@@ -8,6 +8,7 @@
 #include <extras/rsi/exceptions.hpp>
 #include <extras/rsi/interfaces.hpp>
 #include <extras/rsi/services/Uploader.hpp>
+#include <extras/sockets/PortAuthority.hpp>
 #include <iostream>
 #include <map>
 #include <sstream>
@@ -94,6 +95,7 @@ namespace extras {
       virtual void connect() pure;
       virtual void accept() pure;
       virtual void close() const pure;
+      virtual PortAuthority &portAuthority() pure;
     };
 
     /**
@@ -192,7 +194,7 @@ namespace extras {
       struct sockaddr_in _new_addr;
       int _sockfd;
       int _new_sock;
-      PortNumber _nextPortNumber = 9000;
+      PortAuthority _PortAuthority;
 
      public:
       virtual void connect() override;
@@ -205,6 +207,7 @@ namespace extras {
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const override;
       virtual void transfer() const override;
+      virtual PortAuthority &portAuthority() override { return _PortAuthority; }
     };
 
     /**

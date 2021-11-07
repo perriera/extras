@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #include <extras/rsi/exceptions.hpp>
+#include <extras/rsi/services/RequestType.hpp>
 #include <extras/rsi/services/SocketPool.hpp>
 #include <extras/rsi/subsystem.hpp>
 #include <fstream>
@@ -123,6 +124,8 @@ namespace extras {
         if (msg.size() == 0) throw std::string("test exception");
         SocketPoolClient client(msg);
         cout << "msg received: " << client << endl;
+        RequestTypeCompiler compiler;
+        compiler.compile(client);
         send_line("Thanks", this->_new_sock);
       } catch (exception &ex) {
         cout << ex.what() << endl;
@@ -181,8 +184,9 @@ namespace extras {
         bool found = false;
         for (auto type : this->types()) {
           if (request == type) {
+            int _nextPortNumber = this->portAuthority().request();
             lastRequestsMap[_nextPortNumber] = request;
-            ports.push_back(_nextPortNumber++);
+            ports.push_back(_nextPortNumber);
             found = true;
           }
         }

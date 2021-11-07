@@ -13,6 +13,11 @@ using namespace fakeit;
 //
 
 SCENARIO("Mock ServerInterface: types, request", "[SocketPoolInterface]") {
+  const char* args[] = {"socketclient", "127.0.0.1", "8080",
+                        "send.txt",     "convert",   "download"};
+  extras::rsi::SocketPoolClient client;
+  client.parameters(6, args);
+
   PortNumber serverPort = 8080;
   rsi::SocketRequestTypeList typesList = {"upload", "process", "download"};
   rsi::SocketRequestTypeList requestsList = {"upload", "download"};

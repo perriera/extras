@@ -68,6 +68,11 @@ namespace extras {
     PortServerNumber _next;
 
    public:
+    static auto instance() -> PortAuthorityInterface& {
+      static PortAuthority compiler;
+      return compiler;
+    }
+
     PortAuthority(PortNumber port = 8080, PortRangeStart start = 9000,
                   PortRangeSize size = 1000)
         : _port(port), _start(start), _size(size), _next(0){};
