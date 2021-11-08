@@ -28,12 +28,12 @@ SCENARIO("Test ServiceTypeCompilerInterface: types, request",
   requestList.push_back("download send.txt 127.0.0.1 9001");
   rsi::RequestTypeCompilation c1(requestList);
   rsi::ServiceTypeList correctList;
-  requestList.push_back("build/uploader_client send.txt 127.0.0.1 9000");
-  requestList.push_back("build/downloader_client send.txt 127.0.0.1 9001");
+  correctList.push_back("build/uploader_client send.txt 127.0.0.1 9000");
+  correctList.push_back("build/downloader_client send.txt 127.0.0.1 9001");
   rsi::ServiceTypeMap serviceTypeMap;
+  rsi::ServiceTypeList serviceList;
   serviceTypeMap["upload"] = "build/uploader_client";
   serviceTypeMap["download"] = "build/downloader_client";
-  rsi::ServiceTypeList serviceList;
 
   Mock<rsi::ServiceTypeCompilerInterface> mock;
   When(Method(mock, compile))
@@ -41,15 +41,19 @@ SCENARIO("Test ServiceTypeCompilerInterface: types, request",
                  &serviceList](const rsi::RequestTypeCompilation& requests) {
         rsi::ServiceTypeList list;
         for (auto request : requests.compilation()) {
-                    //     if ()
-          //   rsi::ServiceType line = extras::replace_all(request,);
-          std::cout << request << std::endl;
-          //   list.push_back(line);
+          auto parts = extras::split(request, ' ');
+          rsi::NoTokensException::assertion(parts.size(), __INFO__);
+          auto serviceType = serviceTypeMap[parts[0]];
+          rsi::UnsupportedTokenException::assertion(serviceType, __INFO__);
+          std::string line =
+              extras::replace_all(request, parts[0], serviceType);
+          list.push_back(line);
         }
         return list;
       });
 
   rsi::ServiceTypeCompilerInterface& i = mock.get();
+  //   REQUIRE_THROWS_AS(i.compile(c1), rsi::UnsupportedTokenException);
   REQUIRE(i.compile(c1) == correctList);
   Verify(Method(mock, compile));
 }

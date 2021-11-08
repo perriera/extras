@@ -220,7 +220,18 @@ namespace extras {
      public:
       UnsupportedTokenException(std::string msg, const WhereAmI &whereAmI)
           : RSIException(msg.c_str(), whereAmI) {}
-      static void assertion(const std::string &msg, const WhereAmI &ref);
+      static void assertion(const std::string &msg, const WhereAmI &ref) {
+        if (msg.length() == 0) throw UnsupportedTokenException(msg, ref);
+      }
+    };
+
+    concrete class NoTokensException extends RSIException {
+     public:
+      NoTokensException(const WhereAmI &whereAmI)
+          : RSIException("No tokens were specified", whereAmI) {}
+      static void assertion(int size, const WhereAmI &ref) {
+        if (size == 0) throw NoTokensException(ref);
+      }
     };
 
   }  // namespace rsi
