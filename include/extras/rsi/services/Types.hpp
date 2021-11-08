@@ -24,12 +24,12 @@ namespace extras {
      *
      */
 
-    using RequestType = std::string;
-    using RequestTypeList = std::vector<RequestType>;
+    // using RequestType = std::string;
+    // using RequestTypeList = std::vector<RequestType>;
 
-    using ServiceType = std::string;
-    using ServiceTypeList = std::vector<ServiceType>;
-    using ServiceTypeMap = std::map<ServiceType, ServiceType>;
+    // using ServiceType = std::string;
+    // using ServiceTypeList = std::vector<ServiceType>;
+    // using ServiceTypeMap = std::map<ServiceType, ServiceType>;
 
   }  // namespace rsi
 }  // namespace extras

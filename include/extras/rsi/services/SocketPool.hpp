@@ -43,6 +43,20 @@ namespace extras {
     using SocketRequestTypeList = std::vector<SocketRequestType>;
     using SocketRequestTypeMap = std::map<PortNumber, SocketRequestType>;
 
+    using RequestType = std::string;
+    using RequestTypeList = std::vector<RequestType>;
+
+    using ServiceType = std::string;
+    using ServiceTypeList = std::vector<ServiceType>;
+    using ServiceTypeMap = std::map<ServiceType, ServiceType>;
+
+    interface ServiceTypeCompilerInterface {
+      virtual ServiceTypeList clients(
+          const RequestTypeList &requests) const pure;
+      virtual ServiceTypeList servers(
+          const RequestTypeList &requests) const pure;
+    };
+
     interface SocketPoolInterface {
       virtual SocketRequestTypeList types() const pure;
       virtual PortNumberPool request(
