@@ -41,6 +41,17 @@ namespace extras {
         extras::replace_all(filename(), ".txt", "_uploaded.txt");
     extras::rsi::write_file(uploaded_file.c_str(), this->_new_sock);
     system("ls -la");
+    /**
+     * @brief Right here, Right now...
+     *
+     */
+    system("ls send* -la");
+    auto delete_cmd = "rm send.txt";
+    system(delete_cmd);
+    system("ls send* -la");
+    auto copy_cmd = "mv " + uploaded_file + " send.txt";
+    system(copy_cmd.c_str());
+    system("ls send* -la");
   }
 
   void rsi::DownloaderServer::transfer() const {
