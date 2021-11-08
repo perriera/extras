@@ -38,11 +38,6 @@ namespace extras {
 
     void SocketPoolClient::close() const { ::close(this->_client_socket); }
 
-    PortNumberPool SocketPoolClient::request(const PortNumber &,
-                                             const SocketRequestTypeList &) {
-      throw "not used";
-    }
-
     void SocketPoolClient::transfer() const {
       try {
         std::string msg = *this;
@@ -59,6 +54,16 @@ namespace extras {
 
     PortNumberPool SocketPoolClient::request() {
       return request(stoi(this->port()), this->requests());
+    }
+
+    /**
+     * @brief DEPERCATED
+     *
+     * @return PortNumberPool
+     */
+    PortNumberPool SocketPoolClient::request(const PortNumber &,
+                                             const SocketRequestTypeList &) {
+      throw "not used";
     }
 
     SocketRequestTypeMap SocketPoolClient::startServices(

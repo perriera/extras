@@ -46,10 +46,6 @@ namespace extras {
       }
     }
 
-    PortNumberPool SocketPoolServer::request() {
-      return request(stoi(this->port()), this->requests());
-    }
-
     /**
      * @brief concrete class SocketPoolServer
      *
@@ -79,6 +75,17 @@ namespace extras {
     void SocketPoolServer::close() const {
       ::close(this->_client_socket);
       ::close(this->_server_socket);
+    }
+
+    /**
+     * @brief DEPERCATED
+     *
+     * @param requests
+     * @return PortNumberPool
+     */
+
+    PortNumberPool SocketPoolServer::request() {
+      return request(stoi(this->port()), this->requests());
     }
 
     PortNumberPool SocketPoolServer::request(

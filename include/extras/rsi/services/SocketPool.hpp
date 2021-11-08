@@ -58,6 +58,12 @@ namespace extras {
     };
 
     interface SocketPoolInterface {
+      virtual void transfer() const pure;
+      /**
+       * @brief DEPERCATED
+       *
+       * @return SocketRequestTypeList
+       */
       virtual SocketRequestTypeList types() const pure;
       virtual PortNumberPool request(
           const PortNumber &portNumber,
@@ -65,7 +71,6 @@ namespace extras {
       virtual SocketRequestTypeMap lastRequest() const pure;
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const pure;
-      virtual void transfer() const pure;
     };
 
     interface SocketPoolParametersInterface {
@@ -222,13 +227,21 @@ namespace extras {
       }
       virtual void connect() override;
       virtual void close() const override;
+      virtual void transfer() const override;
+
+      /**
+       * @brief DEPERCATED
+       *
+       * @param portNumber
+       * @param requests
+       * @return PortNumberPool
+       */
       virtual PortNumberPool request(
           const PortNumber &portNumber,
           const SocketRequestTypeList &requests) override;
       virtual PortNumberPool request();
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const override;
-      virtual void transfer() const override;
     };
 
     concrete class SocketPoolServer extends SocketPool with
@@ -240,17 +253,26 @@ namespace extras {
       PortAuthority _PortAuthority;
 
      public:
+      virtual PortAuthority &portAuthority() override { return _PortAuthority; }
       virtual void connect() override;
       virtual void accept() override;
       virtual void close() const override;
+      virtual void transfer() const override;
+
+      /**
+       * @brief DEPERCATED
+       *
+       * @param portNumber
+       * @param requests
+       * @return PortNumberPool
+       */
+
       virtual PortNumberPool request();
       virtual PortNumberPool request(
           const PortNumber &portNumber,
           const SocketRequestTypeList &requests) override;
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const override;
-      virtual void transfer() const override;
-      virtual PortAuthority &portAuthority() override { return _PortAuthority; }
     };
 
   }  // namespace rsi
