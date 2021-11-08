@@ -7,6 +7,7 @@
 #include <extras/keywords.hpp>
 #include <extras/rsi/exceptions.hpp>
 #include <extras/rsi/interfaces.hpp>
+#include <extras/rsi/services/ServiceType.hpp>
 #include <extras/rsi/services/Uploader.hpp>
 #include <extras/sockets/PortAuthority.hpp>
 #include <iostream>
@@ -42,7 +43,27 @@ namespace extras {
     using SocketRequestTypeList = std::vector<SocketRequestType>;
     using SocketRequestTypeMap = std::map<PortNumber, SocketRequestType>;
 
+    using RequestType = std::string;
+    using RequestTypeList = std::vector<RequestType>;
+
+    using ServiceType = std::string;
+    using ServiceTypeList = std::vector<ServiceType>;
+    using ServiceTypeMap = std::map<ServiceType, ServiceType>;
+
+    interface ServiceTypeCompilerInterface {
+      virtual ServiceTypeList clients(
+          const RequestTypeList &requests) const pure;
+      virtual ServiceTypeList servers(
+          const RequestTypeList &requests) const pure;
+    };
+
     interface SocketPoolInterface {
+      virtual void transfer() const pure;
+      /**
+       * @brief DEPERCATED
+       *
+       * @return SocketRequestTypeList
+       */
       virtual SocketRequestTypeList types() const pure;
       virtual PortNumberPool request(
           const PortNumber &portNumber,
@@ -50,7 +71,6 @@ namespace extras {
       virtual SocketRequestTypeMap lastRequest() const pure;
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const pure;
-      virtual void transfer() const pure;
     };
 
     interface SocketPoolParametersInterface {
@@ -119,7 +139,7 @@ namespace extras {
      */
 
     abstract class SocketPool implements SocketPoolInterface with
-        SocketPoolParametersInterface {
+        SocketPoolParametersInterface with ServiceTypeCompilerInterface {
      protected:
       std::string _program;
       std::string _ip;
@@ -156,12 +176,40 @@ namespace extras {
       virtual void setRequests(const SocketRequestTypeList &list) override {
         _requests = list;
       }
+      virtual ServiceTypeList common(ServiceTypeMap &map,
+                                     const RequestTypeList &requests) const {
+        rsi::ServiceTypeList list;
+        for (auto request : requests) {
+          auto parts = extras::split(request, ' ');
+          NoTokensException::assertion(parts.size(), __INFO__);
+          auto serviceType = map[parts[0]];
+          UnsupportedTokenException::assertion(serviceType, __INFO__);
+          std::string line =
+              extras::replace_all(request, parts[0], serviceType);
+          list.push_back(line);
+        }
+        return list;
+      }
+      virtual ServiceTypeList clients(
+          const RequestTypeList &requests) const override {
+        rsi::ServiceTypeMap forClients;
+        forClients["upload"] = "build/uploader_client";
+        forClients["download"] = "build/downloader_client";
+        return common(forClients, requests);
+      }
+      virtual ServiceTypeList servers(
+          const RequestTypeList &requests) const override {
+        rsi::ServiceTypeMap forServers;
+        forServers["upload"] = "build/uploader_server";
+        forServers["download"] = "build/downloader_server";
+        return common(forServers, requests);
+      }
     };
 
     concrete class SocketPoolClient extends SocketPool with
         SocketPoolClientInterface {
       struct sockaddr_in _server_addr;
-      int _sockfd;
+      int _client_socket;
 
      public:
       SocketPoolClient() {}
@@ -179,48 +227,52 @@ namespace extras {
       }
       virtual void connect() override;
       virtual void close() const override;
+      virtual void transfer() const override;
+
+      /**
+       * @brief DEPERCATED
+       *
+       * @param portNumber
+       * @param requests
+       * @return PortNumberPool
+       */
       virtual PortNumberPool request(
           const PortNumber &portNumber,
           const SocketRequestTypeList &requests) override;
       virtual PortNumberPool request();
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const override;
-      virtual void transfer() const override;
     };
 
     concrete class SocketPoolServer extends SocketPool with
         SocketPoolServerInterface {
       struct sockaddr_in _server_addr;
       struct sockaddr_in _new_addr;
-      int _sockfd;
-      int _new_sock;
+      int _server_socket;
+      int _client_socket;
       PortAuthority _PortAuthority;
 
      public:
+      virtual PortAuthority &portAuthority() override { return _PortAuthority; }
       virtual void connect() override;
       virtual void accept() override;
       virtual void close() const override;
+      virtual void transfer() const override;
+
+      /**
+       * @brief DEPERCATED
+       *
+       * @param portNumber
+       * @param requests
+       * @return PortNumberPool
+       */
+
       virtual PortNumberPool request();
       virtual PortNumberPool request(
           const PortNumber &portNumber,
           const SocketRequestTypeList &requests) override;
       virtual SocketRequestTypeMap startServices(
           const SocketRequestTypeMap &map) const override;
-      virtual void transfer() const override;
-      virtual PortAuthority &portAuthority() override { return _PortAuthority; }
-    };
-
-    /**
-     * @brief SocketException
-     *
-     * To be thrown if either string or value supplied is out of range.
-     *
-     */
-    concrete class UnsupportedTokenException extends RSIException {
-     public:
-      UnsupportedTokenException(std::string msg, const WhereAmI &whereAmI)
-          : RSIException(msg.c_str(), whereAmI) {}
-      static void assertion(const std::string &msg, const WhereAmI &ref);
     };
 
   }  // namespace rsi

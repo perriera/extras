@@ -19,7 +19,6 @@ SCENARIO("Mock RequestTypeInterface: types, request",
                         "send.txt",     "convert",   "download"};
   extras::rsi::SocketPoolClient client;
   client.parameters(6, args);
-  PortNumber serverPort = 8080;
   rsi::SocketRequestTypeList typesList = {"upload", "process", "download"};
   rsi::SocketRequestTypeList requestsList = {"upload", "download"};
   PortAuthority _portAuthority;
@@ -55,7 +54,6 @@ SCENARIO("Mock RequestTypeInterface: sockets", "[RequestTypeInterface]") {
                         "send.txt",     "convert",   "download"};
   extras::rsi::SocketPoolClient client;
   client.parameters(6, args);
-  PortNumber serverPort = 8080;
   rsi::SocketRequestTypeList typesList = {"upload", "process", "download"};
   rsi::SocketRequestTypeList requestsList = {"upload", "download"};
   PortAuthority _portAuthority;
@@ -65,12 +63,12 @@ SCENARIO("Mock RequestTypeInterface: sockets", "[RequestTypeInterface]") {
   rsi::RequestTypeCompilation c1(correctList), c2;
   Mock<rsi::RequestTypeCompilationInterface> mock;
   std::string p;
-  When(Method(mock, writeSocket)).AlwaysDo([&c1, &p](int socket) {
+  When(Method(mock, writeSocket)).AlwaysDo([&c1, &p](int) {
     std::stringstream ss;
     ss << c1;
     p = extras::replace_all(ss.str(), "\n", ";");
   });
-  When(Method(mock, readSocket)).AlwaysDo([&c2, &p](int socket) {
+  When(Method(mock, readSocket)).AlwaysDo([&c2, &p](int) {
     std::string line = extras::replace_all(p, ";", "\n");
     std::stringstream ss;
     ss << line;

@@ -7,6 +7,7 @@
 #include <extras/keywords.hpp>
 #include <extras/rsi/interfaces.hpp>
 #include <extras/rsi/services/SocketPool.hpp>
+#include <extras/rsi/services/Types.hpp>
 #include <extras/sockets/PortAuthority.hpp>
 #include <iostream>
 #include <sstream>
@@ -20,9 +21,6 @@ namespace extras {
      * All the types of services that can be run on a remote server.
      *
      */
-
-    using RequestType = std::string;
-    using RequestTypeList = std::vector<RequestType>;
 
     interface RequestTypeCompilationInterface {
       friend std::ostream &operator<<(
@@ -69,6 +67,7 @@ namespace extras {
       }
     };
 
+    interface SocketPoolParametersInterface;
     interface RequestTypeCompilerInterface {
       virtual RequestTypeCompilation compile(
           const SocketPoolParametersInterface &client,

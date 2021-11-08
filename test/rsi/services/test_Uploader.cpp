@@ -10,25 +10,25 @@ using namespace extras;
 namespace fs = std::filesystem;
 
 SCENARIO("Test UploaderInterface: upload", "[UploaderInterface]") {
-  std::string target = "send_up.txt";
-  if (fs::exists(target)) fs::remove(target);
-  REQUIRE(fs::exists("send.txt"));
-  REQUIRE(!fs::exists(target));
-  system("build/uploader_server send_up.txt 127.0.0.1 9002 &");
-  REQUIRE(system("build/uploader_client send.txt 127.0.0.1 9002") == 0);
+  std::string target = "send.txt";
+  auto uploaded_file = extras::replace_all(target, ".txt", "_uploaded.txt");
+  if (fs::exists(uploaded_file)) fs::remove(uploaded_file);
   REQUIRE(fs::exists(target));
-  REQUIRE(fs::exists("send.txt"));
-  if (fs::exists(target)) fs::remove(target);
+  REQUIRE(!fs::exists(uploaded_file));
+  system("build/uploader_server send.txt 127.0.0.1 9002 &");
+  REQUIRE(system("build/uploader_client send.txt 127.0.0.1 9002") == 0);
+  REQUIRE(fs::exists(uploaded_file));
+  REQUIRE(fs::exists(target));
 }
 
 SCENARIO("Test UploaderInterface: download", "[UploaderInterface]") {
-  std::string target = "send_down.txt";
-  if (fs::exists(target)) fs::remove(target);
-  REQUIRE(fs::exists("send.txt"));
-  REQUIRE(!fs::exists(target));
-  system("build/downloader_server send.txt 127.0.0.1 9003 &");
-  REQUIRE(system("build/downloader_client send_down.txt 127.0.0.1 9003") == 0);
+  std::string target = "send.txt";
+  auto downloaded_file = extras::replace_all(target, ".txt", "_downloaded.txt");
+  if (fs::exists(downloaded_file)) fs::remove(downloaded_file);
   REQUIRE(fs::exists(target));
-  REQUIRE(fs::exists("send.txt"));
-  if (fs::exists(target)) fs::remove(target);
+  REQUIRE(!fs::exists(downloaded_file));
+  system("build/downloader_server send.txt 127.0.0.1 9003 &");
+  REQUIRE(system("build/downloader_client send.txt 127.0.0.1 9003") == 0);
+  REQUIRE(fs::exists(downloaded_file));
+  REQUIRE(fs::exists(target));
 }

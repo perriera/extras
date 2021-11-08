@@ -19,7 +19,6 @@ SCENARIO("Test RequestTypeInterface: types, request",
                         "send.txt",     "convert",   "download"};
   extras::rsi::SocketPoolClient client;
   client.parameters(6, args);
-  PortNumber serverPort = 8080;
   rsi::SocketRequestTypeList typesList = {"upload", "process", "download"};
   rsi::SocketRequestTypeList requestsList = {"upload", "download"};
   PortAuthority _portAuthority;
@@ -38,7 +37,6 @@ SCENARIO("Test RequestTypeInterface: streams", "[RequestTypeInterface]") {
                         "send.txt",     "convert",   "download"};
   extras::rsi::SocketPoolClient client;
   client.parameters(6, args);
-  PortNumber serverPort = 8080;
   rsi::SocketRequestTypeList typesList = {"upload", "process", "download"};
   rsi::SocketRequestTypeList requestsList = {"upload", "download"};
   PortAuthority _portAuthority;
