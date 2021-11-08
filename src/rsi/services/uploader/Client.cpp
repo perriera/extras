@@ -8,6 +8,7 @@
 #include <extras/rsi/services/Requests.hpp>
 #include <extras/rsi/services/Uploader.hpp>
 #include <extras/rsi/subsystem.hpp>
+#include <extras/strings.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -34,7 +35,9 @@ namespace extras {
   }
 
   void rsi::DownloaderClient::transfer() const {
-    extras::rsi::write_file(filename().c_str(), this->_sockfd);
+    auto downloaded_file =
+        extras::replace_all(filename(), ".txt", "_downloaded.txt");
+    extras::rsi::write_file(downloaded_file.c_str(), this->_sockfd);
   }
 
   void rsi::UploaderClient::close() const { ::close(this->_sockfd); }
