@@ -81,7 +81,7 @@ namespace extras {
   }
 
   void rsi::DownloaderServer::transfer() const {
-    extras::rsi::send_file2(filename().c_str(), this->_sockfd);
+    extras::rsi::send_file2(filename().c_str(), this->_new_sock);
   }
 
   void rsi::UploaderServer::close() const {
