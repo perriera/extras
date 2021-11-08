@@ -25,7 +25,7 @@ namespace extras {
   namespace rsi {
 
     RequestTypeList RequestTypeCompiler::compile(
-        const SocketPoolClientInterface& client,
+        const SocketPoolParametersInterface& client,
         PortAuthorityInterface& portAuthority) const {
 
     };
