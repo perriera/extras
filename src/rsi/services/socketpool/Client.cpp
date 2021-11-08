@@ -49,7 +49,9 @@ namespace extras {
         send_line(msg, this->_client_socket);
         RequestTypeCompilation compilation;
         compilation.readSocket(this->_client_socket);
-        cout << "msg received: " << compilation << endl;
+        auto list = compilation.compilation();
+        for (auto item : clients(list))
+          cout << "msg received: " << item << endl;
       } catch (exception &ex) {
         cout << ex.what() << endl;
       }

@@ -34,6 +34,10 @@ namespace extras {
         RequestTypeCompiler compiler;
         auto compilation = compiler.compile(client);
         compilation.writeSocket(this->_client_socket);
+        auto list = compilation.compilation();
+        for (auto item : servers(list))
+          cout << "msg received: " << item << endl;
+
       } catch (exception &ex) {
         cout << ex.what() << endl;
         send_line(ex.what(), this->_client_socket);
