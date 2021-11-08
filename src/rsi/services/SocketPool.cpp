@@ -108,10 +108,12 @@ namespace extras {
       try {
         std::string msg = *this;
         send_line(msg, this->_sockfd);
-        msg = read_line(this->_sockfd);
-        if (extras::contains(msg, "exception"))
-          throw UnsupportedTokenException(msg, __INFO__);
-        cout << "msg received: " << msg << endl;
+        RequestTypeCompilation compilation;
+        compilation.readSocket(this->_sockfd);
+        // msg = read_line(this->_sockfd);
+        // if (extras::contains(msg, "exception"))
+        //   throw UnsupportedTokenException(msg, __INFO__);
+        cout << "msg received: " << compilation << endl;
       } catch (exception &ex) {
         cout << ex.what() << endl;
       }
@@ -125,8 +127,9 @@ namespace extras {
         SocketPoolClient client(msg);
         cout << "msg received: " << client << endl;
         RequestTypeCompiler compiler;
-        compiler.compile(client);
-        send_line("Thanks", this->_new_sock);
+        auto compilation = compiler.compile(client);
+        compilation.writeSocket(this->_new_sock);
+        //        send_line("Thanks", this->_new_sock);
       } catch (exception &ex) {
         cout << ex.what() << endl;
         send_line(ex.what(), this->_new_sock);

@@ -50,8 +50,18 @@ namespace extras {
       return in;
     }
 
-    void RequestTypeCompilation::writeSocket(int socket) const {}
-    void RequestTypeCompilation::readSocket(int socket) {}
+    void RequestTypeCompilation::writeSocket(int socket) const {
+      std::stringstream ss;
+      ss << *this;
+      std::string line = extras::replace_all(ss.str(), "\n", ";");
+      send_line(line, socket);
+    }
+    void RequestTypeCompilation::readSocket(int socket) {
+      std::string line = read_line(socket);
+      std::stringstream ss;
+      ss << line;
+      ss >> *this;
+    }
 
     RequestTypeCompilation RequestTypeCompiler::compile(
         const SocketPoolParametersInterface &client,
