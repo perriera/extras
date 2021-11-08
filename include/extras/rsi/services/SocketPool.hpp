@@ -134,7 +134,7 @@ namespace extras {
      */
 
     abstract class SocketPool implements SocketPoolInterface with
-        SocketPoolParametersInterface {
+        SocketPoolParametersInterface with ServiceTypeCompilerInterface {
      protected:
       std::string _program;
       std::string _ip;
@@ -170,6 +170,34 @@ namespace extras {
       }
       virtual void setRequests(const SocketRequestTypeList &list) override {
         _requests = list;
+      }
+      virtual ServiceTypeList common(ServiceTypeMap &map,
+                                     const RequestTypeList &requests) const {
+        rsi::ServiceTypeList list;
+        for (auto request : requests) {
+          auto parts = extras::split(request, ' ');
+          NoTokensException::assertion(parts.size(), __INFO__);
+          auto serviceType = map[parts[0]];
+          UnsupportedTokenException::assertion(serviceType, __INFO__);
+          std::string line =
+              extras::replace_all(request, parts[0], serviceType);
+          list.push_back(line);
+        }
+        return list;
+      }
+      virtual ServiceTypeList clients(
+          const RequestTypeList &requests) const override {
+        rsi::ServiceTypeMap forClients;
+        forClients["convert"] = "build/converter_client";
+        forClients["download"] = "build/downloader_client";
+        return common(forClients, requests);
+      }
+      virtual ServiceTypeList servers(
+          const RequestTypeList &requests) const override {
+        rsi::ServiceTypeMap forServers;
+        forServers["convert"] = "build/converter_server";
+        forServers["download"] = "build/downloader_server";
+        return common(forServers, requests);
       }
     };
 
@@ -223,30 +251,6 @@ namespace extras {
           const SocketRequestTypeMap &map) const override;
       virtual void transfer() const override;
       virtual PortAuthority &portAuthority() override { return _PortAuthority; }
-    };
-
-    /**
-     * @brief SocketException
-     *
-     * To be thrown if either string or value supplied is out of range.
-     *
-     */
-    concrete class UnsupportedTokenException extends RSIException {
-     public:
-      UnsupportedTokenException(std::string msg, const WhereAmI &whereAmI)
-          : RSIException(msg.c_str(), whereAmI) {}
-      static void assertion(const std::string &msg, const WhereAmI &ref) {
-        if (msg.length() == 0) throw UnsupportedTokenException(msg, ref);
-      }
-    };
-
-    concrete class NoTokensException extends RSIException {
-     public:
-      NoTokensException(const WhereAmI &whereAmI)
-          : RSIException("No tokens were specified", whereAmI) {}
-      static void assertion(int size, const WhereAmI &ref) {
-        if (size == 0) throw NoTokensException(ref);
-      }
     };
 
   }  // namespace rsi

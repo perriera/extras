@@ -22,6 +22,33 @@ namespace extras {
     static void assertion(const std::string &msg, const WhereAmI &ref);
   };
 
+  namespace rsi {
+    /**
+     * @brief SocketException
+     *
+     * To be thrown if either string or value supplied is out of range.
+     *
+     */
+    concrete class UnsupportedTokenException extends RSIException {
+     public:
+      UnsupportedTokenException(std::string msg, const WhereAmI &whereAmI)
+          : RSIException(msg.c_str(), whereAmI) {}
+      static void assertion(const std::string &msg, const WhereAmI &ref) {
+        if (msg.length() == 0) throw UnsupportedTokenException(msg, ref);
+      }
+    };
+
+    concrete class NoTokensException extends RSIException {
+     public:
+      NoTokensException(const WhereAmI &whereAmI)
+          : RSIException("No tokens were specified", whereAmI) {}
+      static void assertion(int size, const WhereAmI &ref) {
+        if (size == 0) throw NoTokensException(ref);
+      }
+    };
+
+  }  // namespace rsi
+
 }  // namespace extras
 
 #endif  // _EXTRA_RSIEXCEPTIONS_HPP
