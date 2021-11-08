@@ -193,14 +193,14 @@ namespace extras {
       virtual ServiceTypeList clients(
           const RequestTypeList &requests) const override {
         rsi::ServiceTypeMap forClients;
-        forClients["convert"] = "build/converter_client";
+        forClients["upload"] = "build/uploader_client";
         forClients["download"] = "build/downloader_client";
         return common(forClients, requests);
       }
       virtual ServiceTypeList servers(
           const RequestTypeList &requests) const override {
         rsi::ServiceTypeMap forServers;
-        forServers["convert"] = "build/converter_server";
+        forServers["upload"] = "build/uploader_server";
         forServers["download"] = "build/downloader_server";
         return common(forServers, requests);
       }
