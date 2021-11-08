@@ -23,15 +23,14 @@ namespace extras {
      */
 
     using ServiceType = std::string;
-    using ServiceTypeCmd = std::string;
     using ServiceTypeList = std::vector<ServiceType>;
-    using ServiceTypeMap = std::map<ServiceType, ServiceType>;
+    using ServiceTypeMap = std::map<ServiceType,ServiceType>;
 
     interface ServiceTypeCompilerInterface {
-      virtual ServiceTypeList compile(
-          const rsi::RequestTypeCompilation& compilation) const pure;
-      virtual ServiceTypeList clients() const pure;
-      virtual ServiceTypeList servers() const pure;
+      virtual ServiceTypeList clients(
+          const RequestTypeList& requests) const pure;
+      virtual ServiceTypeList servers(
+          const RequestTypeList& requests) const pure;
     };
 
     // concrete class ServiceTypeCompiler implements

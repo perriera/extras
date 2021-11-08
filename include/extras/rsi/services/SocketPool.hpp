@@ -161,7 +161,7 @@ namespace extras {
     concrete class SocketPoolClient extends SocketPool with
         SocketPoolClientInterface {
       struct sockaddr_in _server_addr;
-      int _sockfd;
+      int _client_socket;
 
      public:
       SocketPoolClient() {}
@@ -192,8 +192,8 @@ namespace extras {
         SocketPoolServerInterface {
       struct sockaddr_in _server_addr;
       struct sockaddr_in _new_addr;
-      int _sockfd;
-      int _new_sock;
+      int _server_socket;
+      int _client_socket;
       PortAuthority _PortAuthority;
 
      public:

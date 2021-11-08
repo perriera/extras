@@ -110,35 +110,35 @@ export(TARGETS ${PROJECT_NAME} FILE extrasConfig.cmake)
 #
 # FreeFormJS client
 #
-add_executable(client instances/vendor/ex3_client.cpp) 
-target_include_directories(client PUBLIC ${INCLUDES})
-target_link_libraries(client PRIVATE ${PROJECT_NAME} stdc++fs )
+# add_executable(client instances/vendor/ex3_client.cpp) 
+# target_include_directories(client PUBLIC ${INCLUDES})
+# target_link_libraries(client PRIVATE ${PROJECT_NAME} stdc++fs )
 
-add_executable(server instances/vendor/ex3_server.cpp) 
-target_include_directories(server PUBLIC ${INCLUDES})
-target_link_libraries(server PRIVATE ${PROJECT_NAME} stdc++fs )
+# add_executable(server instances/vendor/ex3_server.cpp) 
+# target_include_directories(server PUBLIC ${INCLUDES})
+# target_link_libraries(server PRIVATE ${PROJECT_NAME} stdc++fs )
 
 #
 # FreeFormJS test_client / test_server
 #
-add_executable(test_client instances/prototypes/test_client.cpp) 
-target_include_directories(test_client PUBLIC ${INCLUDES})
-target_link_libraries(test_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(test_client instances/prototypes/test_client.cpp) 
+# target_include_directories(test_client PUBLIC ${INCLUDES})
+# target_link_libraries(test_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
-add_executable(test_server instances/prototypes/test_server.cpp) 
-target_include_directories(test_server PUBLIC ${INCLUDES})
-target_link_libraries(test_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(test_server instances/prototypes/test_server.cpp) 
+# target_include_directories(test_server PUBLIC ${INCLUDES})
+# target_link_libraries(test_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 #
 # FreeFormJS file_client / file_server
 #
-add_executable(file_client instances/prototypes/file_client.cpp) 
-target_include_directories(file_client PUBLIC ${INCLUDES})
-target_link_libraries(file_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(file_client instances/prototypes/file_client.cpp) 
+# target_include_directories(file_client PUBLIC ${INCLUDES})
+# target_link_libraries(file_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
-add_executable(file_server instances/prototypes/file_server.cpp) 
-target_include_directories(file_server PUBLIC ${INCLUDES})
-target_link_libraries(file_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(file_server instances/prototypes/file_server.cpp) 
+# target_include_directories(file_server PUBLIC ${INCLUDES})
+# target_link_libraries(file_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 #
 # FreeFormJS uploader_client / uploader_server
@@ -165,68 +165,68 @@ target_link_libraries(downloader_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 #
 # FreeFormJS uploader_client1 / uploader_server1
 #
-add_executable(ex1b_client instances/vendor/ex1b_client.cpp) 
-target_include_directories(ex1b_client PUBLIC ${INCLUDES})
-target_link_libraries(ex1b_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(ex1b_client instances/vendor/ex1b_client.cpp) 
+# target_include_directories(ex1b_client PUBLIC ${INCLUDES})
+# target_link_libraries(ex1b_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
-add_executable(ex1b_server instances/vendor/ex1b_server.cpp) 
-target_include_directories(ex1b_server PUBLIC ${INCLUDES})
-target_link_libraries(ex1b_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(ex1b_server instances/vendor/ex1b_server.cpp) 
+# target_include_directories(ex1b_server PUBLIC ${INCLUDES})
+# target_link_libraries(ex1b_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 #
 # FreeFormJS port_client / port_server
 #
-add_executable(port_client instances/prototypes/port_client.cpp) 
-target_include_directories(port_client PUBLIC ${INCLUDES})
-target_link_libraries(port_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(port_client instances/prototypes/port_client.cpp) 
+# target_include_directories(port_client PUBLIC ${INCLUDES})
+# target_link_libraries(port_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
-add_executable(port_server instances/prototypes/port_server.cpp) 
-target_include_directories(port_server PUBLIC ${INCLUDES})
-target_link_libraries(port_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(port_server instances/prototypes/port_server.cpp) 
+# target_include_directories(port_server PUBLIC ${INCLUDES})
+# target_link_libraries(port_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 #
 # FreeFormJS request_client / request_server
 #
-add_executable(request_client instances/prototypes/request_client.cpp) 
-target_include_directories(request_client PUBLIC ${INCLUDES})
-target_link_libraries(request_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(request_client instances/prototypes/request_client.cpp) 
+# target_include_directories(request_client PUBLIC ${INCLUDES})
+# target_link_libraries(request_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
-add_executable(request_server instances//prototypes/request_server.cpp) 
-target_include_directories(request_server PUBLIC ${INCLUDES})
-target_link_libraries(request_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
-
-#
-# FreeFormJS rsi_client / rsi_server
-#
-add_executable(rsi_client instances/rsi_client.cpp) 
-target_include_directories(rsi_client PUBLIC ${INCLUDES})
-target_link_libraries(rsi_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
-
-add_executable(rsi_server instances/rsi_server.cpp) 
-target_include_directories(rsi_server PUBLIC ${INCLUDES})
-target_link_libraries(rsi_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(request_server instances//prototypes/request_server.cpp) 
+# target_include_directories(request_server PUBLIC ${INCLUDES})
+# target_link_libraries(request_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 #
 # FreeFormJS rsi_client / rsi_server
 #
-add_executable(status_main instances/prototypes/status_main.cpp) 
-target_include_directories(status_main PUBLIC ${INCLUDES})
-target_link_libraries(status_main PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(rsi_client instances/rsi_client.cpp) 
+# target_include_directories(rsi_client PUBLIC ${INCLUDES})
+# target_link_libraries(rsi_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
-add_executable(status_test instances/prototypes/status_test.cpp) 
-target_include_directories(status_test PUBLIC ${INCLUDES})
-target_link_libraries(status_test PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(rsi_server instances/rsi_server.cpp) 
+# target_include_directories(rsi_server PUBLIC ${INCLUDES})
+# target_link_libraries(rsi_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
+#
+# FreeFormJS rsi_client / rsi_server
+#
+# add_executable(status_main instances/prototypes/status_main.cpp) 
+# target_include_directories(status_main PUBLIC ${INCLUDES})
+# target_link_libraries(status_main PRIVATE ${PROJECT_NAME} stdc++fs extras)
+
+# add_executable(status_test instances/prototypes/status_test.cpp) 
+# target_include_directories(status_test PUBLIC ${INCLUDES})
+# target_link_libraries(status_test PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 #
 # FreeFormJS process_client / process_server
 #
-add_executable(process_client instances/prototypes/process_client.cpp) 
-target_include_directories(process_client PUBLIC ${INCLUDES})
-target_link_libraries(process_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(process_client instances/prototypes/process_client.cpp) 
+# target_include_directories(process_client PUBLIC ${INCLUDES})
+# target_link_libraries(process_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
-add_executable(process_server instances/prototypes/process_server.cpp) 
-target_include_directories(process_server PUBLIC ${INCLUDES})
-target_link_libraries(process_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+# add_executable(process_server instances/prototypes/process_server.cpp) 
+# target_include_directories(process_server PUBLIC ${INCLUDES})
+# target_link_libraries(process_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 
 #
 # FreeFormJS process_client / process_server

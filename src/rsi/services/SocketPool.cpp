@@ -95,54 +95,58 @@ namespace extras {
      *
      */
     void SocketPoolClient::connect() {
-      this->_sockfd =
+      this->_client_socket =
           connect_to_server(ip().c_str(), stoi(port()), _server_addr);
     }
 
-    void SocketPoolClient::close() const { ::close(this->_sockfd); }
+    void SocketPoolClient::close() const { ::close(this->_client_socket); }
 
-    PortNumberPool SocketPoolClient::request(
-        const PortNumber &portNumber, const SocketRequestTypeList &requests){};
+    PortNumberPool SocketPoolClient::request(const PortNumber &,
+                                             const SocketRequestTypeList &) {
+      throw "not used";
+    }
 
     void SocketPoolClient::transfer() const {
       try {
         std::string msg = *this;
-        send_line(msg, this->_sockfd);
+        send_line(msg, this->_client_socket);
         RequestTypeCompilation compilation;
-        compilation.readSocket(this->_sockfd);
+        compilation.readSocket(this->_client_socket);
         cout << "msg received: " << compilation << endl;
       } catch (exception &ex) {
         cout << ex.what() << endl;
       }
-    };
+    }
 
     void SocketPoolServer::transfer() const {
       try {
         string msg;
-        while (msg.size() == 0) msg = read_line(this->_new_sock);
+        while (msg.size() == 0) msg = read_line(this->_client_socket);
         if (msg.size() == 0) throw std::string("test exception");
         SocketPoolClient client(msg);
         cout << "msg received: " << client << endl;
         RequestTypeCompiler compiler;
         auto compilation = compiler.compile(client);
-        compilation.writeSocket(this->_new_sock);
+        compilation.writeSocket(this->_client_socket);
       } catch (exception &ex) {
         cout << ex.what() << endl;
-        send_line(ex.what(), this->_new_sock);
+        send_line(ex.what(), this->_client_socket);
       } catch (...) {
-        send_line("Unknown exception thrown", this->_new_sock);
+        send_line("Unknown exception thrown", this->_client_socket);
       }
-    };
+    }
 
     PortNumberPool SocketPoolClient::request() {
       return request(stoi(this->port()), this->requests());
-    };
+    }
 
     PortNumberPool SocketPoolServer::request() {
       return request(stoi(this->port()), this->requests());
-    };
+    }
     SocketRequestTypeMap SocketPoolClient::startServices(
-        const SocketRequestTypeMap &map) const {};
+        const SocketRequestTypeMap &) const {
+      throw "not used";
+    }
 
     /**
      * @brief concrete class SocketPoolServer
@@ -152,31 +156,31 @@ namespace extras {
      *
      */
     void SocketPoolServer::connect() {
-      this->_sockfd = configure_serversocket(ip().c_str(), stoi(port()),
-                                             _server_addr, false);
-      if (this->_sockfd == -1) {
-        ::close(this->_sockfd);
+      this->_server_socket = configure_serversocket(ip().c_str(), stoi(port()),
+                                                    _server_addr, false);
+      if (this->_server_socket == -1) {
+        ::close(this->_server_socket);
         throw RSIException("Timeout on uploader_server accept", __INFO__);
       }
     }
 
     void SocketPoolServer::accept() {
       socklen_t addr_size = sizeof(_new_addr);
-      this->_new_sock =
-          ::accept(this->_sockfd, (struct sockaddr *)&_new_addr, &addr_size);
-      if (_new_sock == -1) {
-        ::close(this->_sockfd);
+      this->_client_socket = ::accept(
+          this->_server_socket, (struct sockaddr *)&_new_addr, &addr_size);
+      if (_client_socket == -1) {
+        ::close(this->_server_socket);
         throw RSIException("Timeout on uploader_server accept", __INFO__);
       }
     }
 
     void SocketPoolServer::close() const {
-      ::close(this->_new_sock);
-      ::close(this->_sockfd);
+      ::close(this->_client_socket);
+      ::close(this->_server_socket);
     }
 
     PortNumberPool SocketPoolServer::request(
-        const PortNumber &portNumber, const SocketRequestTypeList &requests) {
+        const PortNumber &, const SocketRequestTypeList &requests) {
       PortNumberPool ports;
       SocketRequestTypeMap lastRequestsMap;
       for (auto request : requests) {
@@ -192,8 +196,10 @@ namespace extras {
         if (!found) throw UnsupportedTokenException(request, __INFO__);
       }
       return ports;
-    };
+    }
     SocketRequestTypeMap SocketPoolServer::startServices(
-        const SocketRequestTypeMap &map) const {};
+        const SocketRequestTypeMap &) const {
+      throw "not used";
+    }
   }  // namespace rsi
 }  // namespace extras
