@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #include <extras/rsi/exceptions.hpp>
+#include <extras/rsi/services/RequestType.hpp>
 #include <extras/rsi/services/SocketPool.hpp>
 #include <extras/rsi/subsystem.hpp>
 #include <fstream>
@@ -107,10 +108,9 @@ namespace extras {
       try {
         std::string msg = *this;
         send_line(msg, this->_sockfd);
-        msg = read_line(this->_sockfd);
-        if (extras::contains(msg, "exception"))
-          throw UnsupportedTokenException(msg, __INFO__);
-        cout << "msg received: " << msg << endl;
+        RequestTypeCompilation compilation;
+        compilation.readSocket(this->_sockfd);
+        cout << "msg received: " << compilation << endl;
       } catch (exception &ex) {
         cout << ex.what() << endl;
       }
@@ -123,7 +123,9 @@ namespace extras {
         if (msg.size() == 0) throw std::string("test exception");
         SocketPoolClient client(msg);
         cout << "msg received: " << client << endl;
-        send_line("Thanks", this->_new_sock);
+        RequestTypeCompiler compiler;
+        auto compilation = compiler.compile(client);
+        compilation.writeSocket(this->_new_sock);
       } catch (exception &ex) {
         cout << ex.what() << endl;
         send_line(ex.what(), this->_new_sock);
@@ -181,8 +183,9 @@ namespace extras {
         bool found = false;
         for (auto type : this->types()) {
           if (request == type) {
+            int _nextPortNumber = this->portAuthority().request();
             lastRequestsMap[_nextPortNumber] = request;
-            ports.push_back(_nextPortNumber++);
+            ports.push_back(_nextPortNumber);
             found = true;
           }
         }

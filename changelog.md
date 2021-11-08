@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v4.13.0 -m "Exception handling"</br>
-> > git push origin v4.13.0
+> > git tag -a v4.14.0 -m "RequestTypeCompilerInterface"</br>
+> > git push origin v4.14.0
 > >
 >
 > > POPULAR LINKS:
@@ -25,10 +25,11 @@ IMPORTANT:
 - Update Doxygen content
 - dev branch added
 
-#### 4.13.0 (2021-11-01)
+#### 4.14.0 (2021-11-01)
 ### Added 
-- Added SocketPoolInterface, (Exception handling)
-- PE-32
+- Added RequestTypeCompilationInterface
+- Added RequestTypeCompilerInterface
+- PE-25
 
 #### 4.11.1 (2021-11-01)
 ### Added 
@@ -436,7 +437,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v4.13.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v4.14.0...HEAD
+[4.14.0]: https://github.com/perriera/extras/compare/v4.13.0...v4.14.0
 [4.13.0]: https://github.com/perriera/extras/compare/v4.12.0...v4.13.0
 [4.12.0]: https://github.com/perriera/extras/compare/v4.11.1...v4.12.0
 [4.11.1]: https://github.com/perriera/extras/compare/v4.11.0...v4.11.1
