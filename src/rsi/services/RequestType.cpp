@@ -58,6 +58,7 @@ namespace extras {
     }
     void RequestTypeCompilation::readSocket(int socket) {
       std::string line = read_line(socket);
+      line = extras::replace_all(line, ";", "\n");
       std::stringstream ss;
       ss << line;
       ss >> *this;

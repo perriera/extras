@@ -863,6 +863,40 @@ This interface simplifies the process of cordinateing sockets for multiple tasks
       virtual void transfer() const pure;
     };
 
+## extras/rsi/services/RequestTypeCompilationInterface
+ > add **extras/rsi/services/RequestType.hpp** to your C++ source</br>
+ > add **extras** library to your CMakeLists.txt target</br>
+ > **using namespace extras;**</br>
+This interface simplifies the process of cordinateing sockets for multiple tasks.
+
+    using RequestType = std::string;
+    using RequestTypeList = std::vector<RequestType>;
+
+    interface RequestTypeCompilationInterface {
+      friend std::ostream &operator<<(
+          std::ostream &out, const RequestTypeCompilationInterface &obj);
+      friend std::istream &operator>>(std::istream &in,
+                                      RequestTypeCompilationInterface &obj);
+      virtual void setCompilation(const RequestTypeList &list) pure;
+      virtual RequestTypeList compilation() const pure;
+      virtual void writeSocket(int socket) const pure;
+      virtual void readSocket(int socket) pure;
+      bool operator==(const RequestTypeCompilationInterface &rhs) const {
+        return compilation() == rhs.compilation();
+      }
+
+      bool operator!=(const RequestTypeCompilationInterface &rhs) const {
+        return !(*this == rhs);
+      }
+    };
+
+    interface RequestTypeCompilerInterface {
+      virtual RequestTypeCompilation compile(
+          const SocketPoolParametersInterface &client,
+          PortAuthorityInterface &portAuthority) const pure;
+    };
+
+
 ## extras/support
  > add **extras/support.hpp** to your C++ source</br>
  > This will include all the head files available in the extras/ directory.</br>
