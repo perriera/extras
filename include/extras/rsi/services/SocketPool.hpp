@@ -7,6 +7,7 @@
 #include <extras/keywords.hpp>
 #include <extras/rsi/exceptions.hpp>
 #include <extras/rsi/interfaces.hpp>
+#include <extras/rsi/services/ServiceType.hpp>
 #include <extras/rsi/services/Uploader.hpp>
 #include <extras/sockets/PortAuthority.hpp>
 #include <iostream>
