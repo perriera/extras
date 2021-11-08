@@ -40,6 +40,7 @@ namespace extras {
     auto uploaded_file =
         extras::replace_all(filename(), ".txt", "_uploaded.txt");
     extras::rsi::write_file(uploaded_file.c_str(), this->_new_sock);
+    system("ls -la");
   }
 
   void rsi::DownloaderServer::transfer() const {

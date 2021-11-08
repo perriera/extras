@@ -40,7 +40,6 @@ namespace extras {
           auto cmd = item + " &";
           system(cmd.c_str());
         }
-        system("ls -la");
       } catch (exception &ex) {
         cout << ex.what() << endl;
         send_line(ex.what(), this->_client_socket);
