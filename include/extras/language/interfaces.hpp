@@ -1,5 +1,5 @@
-#ifndef _EXTRA_INTERFACES_HPP
-#define _EXTRA_INTERFACES_HPP
+#ifndef _EXTRA_LANGUAGE_INTERFACES_HPP
+#define _EXTRA_LANGUAGE_INTERFACES_HPP
 
 namespace extras {
 
@@ -148,4 +148,4 @@ namespace extras {
 
 }  // namespace extras
 
-#endif  // _EXTRA_INTERFACES_HPP
+#endif  // _EXTRA_LANGUAGE_INTERFACES_HPP
