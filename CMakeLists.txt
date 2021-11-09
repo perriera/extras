@@ -44,12 +44,14 @@ message(STATUS "MAKE_EXTRAS_LIBRARY_ONLY is ${MAKE_EXTRAS_LIBRARY_ONLY}")
 if(MAKE_EXTRAS_LIBRARY_ONLY)
 option(BUILD_TESTS "Build tests" OFF)
 option(DEBUG "Debug Build" OFF)
+message(STATUS "BUILD_TESTS is ${BUILD_TESTS}")
+message(STATUS "DEBUG is ${DEBUG}")
 else()
 option(BUILD_TESTS "Build tests" ON)
 option(DEBUG "Debug Build" ON)
-endif()
 message(STATUS "BUILD_TESTS is ${BUILD_TESTS}")
 message(STATUS "DEBUG is ${DEBUG}")
+endif()
 
 # Build will default to debug
 if(DEBUG)
@@ -151,6 +153,7 @@ export(TARGETS ${PROJECT_NAME} FILE extrasConfig.cmake)
 #
 # FreeFormJS uploader_client / uploader_server
 #
+if(NOT MAKE_EXTRAS_LIBRARY_ONLY)
 add_executable(uploader_client instances/uploader_client.cpp) 
 target_include_directories(uploader_client PUBLIC ${INCLUDES})
 target_link_libraries(uploader_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
@@ -158,10 +161,12 @@ target_link_libraries(uploader_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 add_executable(uploader_server instances/uploader_server.cpp) 
 target_include_directories(uploader_server PUBLIC ${INCLUDES})
 target_link_libraries(uploader_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+endif()
 
 #
 # FreeFormJS uploader_client / uploader_server
 #
+if(NOT MAKE_EXTRAS_LIBRARY_ONLY)
 add_executable(downloader_client instances/downloader_client.cpp) 
 target_include_directories(downloader_client PUBLIC ${INCLUDES})
 target_link_libraries(downloader_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
@@ -169,6 +174,7 @@ target_link_libraries(downloader_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 add_executable(downloader_server instances/downloader_server.cpp) 
 target_include_directories(downloader_server PUBLIC ${INCLUDES})
 target_link_libraries(downloader_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+endif()
 
 #
 # FreeFormJS uploader_client1 / uploader_server1
@@ -239,6 +245,7 @@ target_link_libraries(downloader_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
 #
 # FreeFormJS process_client / process_server
 #
+if(NOT MAKE_EXTRAS_LIBRARY_ONLY)
 add_executable(socketpool_client instances/prototypes/socketpool_client.cpp) 
 target_include_directories(socketpool_client PUBLIC ${INCLUDES})
 target_link_libraries(socketpool_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
@@ -246,6 +253,7 @@ target_link_libraries(socketpool_client PRIVATE ${PROJECT_NAME} stdc++fs extras)
 add_executable(socketpool_server instances/prototypes/socketpool_server.cpp) 
 target_include_directories(socketpool_server PUBLIC ${INCLUDES})
 target_link_libraries(socketpool_server PRIVATE ${PROJECT_NAME} stdc++fs extras)
+endif()
 
 # if the compiler supports iter-procedural optimization, turn it on
 check_ipo_supported(RESULT result OUTPUT output)

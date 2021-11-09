@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v4.18.0 -m "Added MAKE_EXTRAS_LIBRARY_ONLY"</br>
-> > git push origin v4.18.0
+> > git tag -a v4.19.0 -m "Added MAKE_EXTRAS_LIBRARY_ONLY constraints"</br>
+> > git push origin v4.19.0
 > >
 >
 > > POPULAR LINKS:
@@ -24,6 +24,11 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 - dev branch added
+
+#### 4.19.0 (2021-11-08)
+### Added 
+- Adjusting MAKE_EXTRAS_LIBRARY_ONLY flag constraints
+- PE-33
 
 #### 4.18.0 (2021-11-08)
 ### Added 
@@ -457,7 +462,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v4.18.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v4.19.0...HEAD
+[4.19.0]: https://github.com/perriera/extras/compare/v4.18.0...v4.19.0
 [4.18.0]: https://github.com/perriera/extras/compare/v4.17.0...v4.18.0
 [4.17.0]: https://github.com/perriera/extras/compare/v4.16.0...v4.17.0
 [4.16.0]: https://github.com/perriera/extras/compare/v4.15.0...v4.16.0
