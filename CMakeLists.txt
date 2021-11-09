@@ -40,6 +40,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic --std=c++17 -fPI
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -pedantic -fPIC")
 
 # add additional project options
+message(STATUS "MAKE_EXTRAS_LIBRARY_ONLY is ${MAKE_EXTRAS_LIBRARY_ONLY}")
 if(MAKE_EXTRAS_LIBRARY_ONLY)
 option(BUILD_TESTS "Build tests" OFF)
 option(DEBUG "Debug Build" OFF)
@@ -47,6 +48,8 @@ else()
 option(BUILD_TESTS "Build tests" ON)
 option(DEBUG "Debug Build" ON)
 endif()
+message(STATUS "BUILD_TESTS is ${BUILD_TESTS}")
+message(STATUS "DEBUG is ${DEBUG}")
 
 # Build will default to debug
 if(DEBUG)
