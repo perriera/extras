@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v4.15.0 -m "Working prototype, (PE-18C)"</br>
-> > git push origin v4.15.0
+> > git tag -a v4.16.0 -m "extras/interfaces.hpp, (PE-33)"</br>
+> > git push origin v4.16.0
 > >
 >
 > > POPULAR LINKS:
@@ -24,6 +24,11 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 - dev branch added
+
+#### 4.16.0 (2021-11-08)
+### Added 
+- back the <extras/interfaces.hpp> header file
+- PE-33
 
 #### 4.15.0 (2021-11-08)
 ### Added 
@@ -442,7 +447,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v4.15.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v4.16.0...HEAD
+[4.16.0]: https://github.com/perriera/extras/compare/v4.15.0...v4.16.0
 [4.15.0]: https://github.com/perriera/extras/compare/v4.14.0...v4.15.0
 [4.14.0]: https://github.com/perriera/extras/compare/v4.13.0...v4.14.0
 [4.13.0]: https://github.com/perriera/extras/compare/v4.12.0...v4.13.0
