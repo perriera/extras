@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.0.0 -m "RSI refactored to extras_rsi"</br>
-> > git push origin v5.0.0
+> > git tag -a v5.0.1 -m "RSI refactored to extras_rsi"</br>
+> > git push origin v5.0.1
 > >
 >
 > > POPULAR LINKS:
@@ -24,6 +24,11 @@ IMPORTANT:
 ## [Unreleased]
 - Update Doxygen content
 - dev branch added
+
+#### 5.0.1 (2021-11-09)
+### Removed 
+- Updated README.md
+- Updated version.h
 
 #### 5.0.0 (2021-11-09)
 ### Removed 
@@ -467,7 +472,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.0.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.0.1...HEAD
+[5.0.1]: https://github.com/perriera/extras/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/perriera/extras/compare/v4.19.0...v5.0.0
 [4.19.0]: https://github.com/perriera/extras/compare/v4.18.0...v4.19.0
 [4.18.0]: https://github.com/perriera/extras/compare/v4.17.0...v4.18.0
