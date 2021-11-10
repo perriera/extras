@@ -477,7 +477,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.0.1...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.0.2...HEAD
+[5.0.2]: https://github.com/perriera/extras/compare/v5.0.1...v5.0.2
 [5.0.1]: https://github.com/perriera/extras/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/perriera/extras/compare/v4.19.0...v5.0.0
 [4.19.0]: https://github.com/perriera/extras/compare/v4.18.0...v4.19.0
