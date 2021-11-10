@@ -19,14 +19,45 @@ This is a collection of C++ based tools to simplify the software development pro
 >
 
 	#include <extras/interfaces.hpp>
-	#include <extras/keywords.hpp>
 	#include <extras/exceptions.hpp>
 	#include <extras/strings.hpp>
 	
 >
 > Presently supporting Linux platforms is portable to Android, iPhone, iOS, Windows environments.
 >
+# How to use perriera/extras
+There are TWO ways to include perriera/extras into your application. 
+
+## CPM installation
+Add the following to your CMakeLists.txt for CPM support. CPM support allows you to distribute your packages with other git repositories automatically downloaded, (for the users of your software). In the case of setting up distributed Debian packages, this is advantageous. As you will not be needed to do any other installation steps to be able to incorporate **perriera/extras** into your C++ framework, (on github or otherwise). 
+
+> NOTE: "Include 3rd party libraries, Perry and I maintain an open-source extras C++ library, which
+	is used extensively in our projects, it comes bundled with spdlog, cpr, and nlohmann json. extras has
+	project options that allow us to control how other libraries it includes are built. for example we
+	can tell extras to build spdlog as a static library (for faster compile times) by settings
+	MAKE_SPDLOG_SHARED OFF" -- Matt Williams, DMG Blockchain, (September, 2021)
+	
+	CPMAddPackage(
+	  NAME extras
+	  GITHUB_REPOSITORY perriera/extras
+	  VERSION 5.0.3
+	  OPTIONS "MAKE_SPDLOG_SHARED OFF"
+	  OPTIONS "MAKE_EXTRAS_LIBRARY_ONLY ON"
+	)
+	if(extras_ADDED)
+	  #
+	  # NOTE:  enable c++11 to avoid compilation errors, and force spdlog into release build
+	  #
+	  print(STATUS "Configuring extras build properties")
+	  set_target_properties(extras PROPERTIES CMAKE_BUILD_TYPE Release)
+	else()
+	  print(WARNING "extras was not configured properly")
+	endif()
+
+Once this is added to your CMakeLists.txt, the header files of *perriera/extras** will be available to both your compiler environment and perhaps your editor's lint software. 
 # Development Tools Installation
+If you wish to added features to your own branch of perriera/extras you will need to do the following
+
 ## Recommended Development Environment
 Ideally, an 27" iMac running Desktop Parallels capable of installing 20.04.3 Ubuntu LTS would be a good start. However, assuming you have such a configuration, the following is what you want to do to setup your GCC environment, (on a virgin Ubuntu box). Open a terminal window and type:
 
@@ -119,10 +150,7 @@ YOURAPPTOKEN=dev
 All tests passed (76 assertions in 30 test cases)
 ```
 
-
-# Extras Package Installation
-There are TWO ways to include perriera/extras into your application. 
-## Method #1: Local installation
+## Local installation
 One is to install it locally onto your system. Just be sure to have your LD_LIBRARY_PATH setup to be able to find the installed extras package.
 
      export LD_LIBRARY_PATH=/usr/local/lib
@@ -155,32 +183,6 @@ Should you run into a strange situation to where you issued the above command bu
     sudo dpkg -r build
 
 As you may have installed it earlier without changing the name of the package from **build** to **extras**.
-
-## Method #2: CPM installation
-Add the following to your CMakeLists.txt for CPM support. CPM support allows you to distribute your packages with other git repositories automatically downloaded, (for the users of your software). In the case of setting up distributed Debian packages, this is advantageous. 
-
-	#
-	# NOTE: Include 3rd party libraries, Perry and I maintain an open-source extras C++ library, which
-	# is used extensively in our projects, it comes bundled with spdlog, cpr, and nlohmann json. extras has
-	# project options that allow us to control how other libraries it includes are built. for example we
-	# can tell extras to build spdlog as a static library (for faster compile times) by settings
-	# MAKE_SPDLOG_SHARED OFF
-	#
-	CPMAddPackage(
-	  NAME extras
-	  GITHUB_REPOSITORY perriera/extras
-	  VERSION 3.11.0
-	  OPTIONS "MAKE_SPDLOG_SHARED OFF"
-	)
-	if(extras_ADDED)
-	  #
-	  # NOTE:  enable c++11 to avoid compilation errors, and force spdlog into release build
-	  #
-	  print(STATUS "Configuring extras build properties")
-	  set_target_properties(extras PROPERTIES CMAKE_BUILD_TYPE Release)
-	else()
-	  print(WARNING "extras was not configured properly")
-	endif()
 
 Just be sure to have the desired **VERSION** of perrier/extras specified in the **VERSION** keyword above. To optimize CPM support on your projects be sure to set the environment variable for shared CPM libraries:
 
