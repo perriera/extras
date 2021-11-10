@@ -67,7 +67,10 @@ Then in your CMakeLists.txt
 	  print(WARNING "extras was not configured properly")
 	endif()
 
-Once this is added to your CMakeLists.txt, the header files of *perriera/extras** will be available to both your compiler environment and perhaps your editor's lint software. (You might want to take a look at CMakeLists.txt used here for more details on how to properly use CPM).
+Once this is added to your CMakeLists.txt, the header files of *perriera/extras** will be available to both your compiler environment and perhaps your editor's lint software. You might want to take a look at CMakeLists.txt used here for more details on how to properly use CPM. 
+
+> NOTE:  **perriera/cpp_starter template**
+If you have the option of starting a new C++ project, (for the purposes of using **perriera/extras** or **perriera/extras_rsi**), you can use the (perriera/cpp_starter)[https://github.com/perriera/cpp_starter]  template. 
 
 # Development Tools Installation
 If you wish to added features to your own branch of perriera/extras you will need to do the following

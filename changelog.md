@@ -25,6 +25,11 @@ IMPORTANT:
 - Update Doxygen content
 - dev branch added
 
+#### 5.0.4 (2021-11-10)
+### Changed 
+- Updated README.md
+- Updated CPM instructions
+
 #### 5.0.3 (2021-11-10)
 ### Added 
 - MAKE_EXTRAS_LIBRARY_ONLY flag
@@ -485,7 +490,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.0.3...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.0.4...HEAD
+[5.0.4]: https://github.com/perriera/extras/compare/v5.0.3...v5.0.4
 [5.0.3]: https://github.com/perriera/extras/compare/v5.0.2...v5.0.3
 [5.0.2]: https://github.com/perriera/extras/compare/v5.0.1...v5.0.2
 [5.0.1]: https://github.com/perriera/extras/compare/v5.0.0...v5.0.1
