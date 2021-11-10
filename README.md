@@ -31,16 +31,29 @@ There are TWO ways to include perriera/extras into your application.
 ## CPM installation
 Add the following to your CMakeLists.txt for CPM support. CPM support allows you to distribute your packages with other git repositories automatically downloaded, (for the users of your software). In the case of setting up distributed Debian packages, this is advantageous. As you will not be needed to do any other installation steps to be able to incorporate **perriera/extras** into your C++ framework, (on github or otherwise). 
 
-> NOTE: "Include 3rd party libraries, Perry and I maintain an open-source extras C++ library, which
+> NOTE: Include 3rd party libraries, Perry and I maintain an open-source extras C++ library, which
 	is used extensively in our projects, it comes bundled with spdlog, cpr, and nlohmann json. extras has
 	project options that allow us to control how other libraries it includes are built. for example we
 	can tell extras to build spdlog as a static library (for faster compile times) by settings
-	MAKE_SPDLOG_SHARED OFF" -- Matt Williams, DMG Blockchain, (September, 2021)
+	MAKE_SPDLOG_SHARED OFF
 	
+To be able to use [CPM](https://github.com/cpm-cmake/CPM.cmake) in your CMakeLists.txt you will need to be using cmake version 3.2.1, (or better); 
+
+	cmake_minimum_required(VERSION 3.21)
+
+Include CPM.cmake https://github.com/cpm-cmake/CPM.cmake
+
+	include(cmake/CPM.cmake)
+	include(cmake/utils.cmake)
+	include(CMakeDependentOption)
+	include(CheckIPOSupported)
+
+Then in your CMakeLists.txt
+
 	CPMAddPackage(
 	  NAME extras
 	  GITHUB_REPOSITORY perriera/extras
-	  VERSION 5.0.3
+	  VERSION 5.0.1
 	  OPTIONS "MAKE_SPDLOG_SHARED OFF"
 	  OPTIONS "MAKE_EXTRAS_LIBRARY_ONLY ON"
 	)
@@ -55,6 +68,9 @@ Add the following to your CMakeLists.txt for CPM support. CPM support allows you
 	endif()
 
 Once this is added to your CMakeLists.txt, the header files of *perriera/extras** will be available to both your compiler environment and perhaps your editor's lint software. 
+
+> Note: You might want to take a look at CMakeLists.txt used here for more details on how to properly use CPM.
+
 # Development Tools Installation
 If you wish to added features to your own branch of perriera/extras you will need to do the following
 
