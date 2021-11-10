@@ -67,9 +67,7 @@ Then in your CMakeLists.txt
 	  print(WARNING "extras was not configured properly")
 	endif()
 
-Once this is added to your CMakeLists.txt, the header files of *perriera/extras** will be available to both your compiler environment and perhaps your editor's lint software. 
-
-> Note: You might want to take a look at CMakeLists.txt used here for more details on how to properly use CPM.
+Once this is added to your CMakeLists.txt, the header files of *perriera/extras** will be available to both your compiler environment and perhaps your editor's lint software. (You might want to take a look at CMakeLists.txt used here for more details on how to properly use CPM).
 
 # Development Tools Installation
 If you wish to added features to your own branch of perriera/extras you will need to do the following
