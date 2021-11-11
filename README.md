@@ -1,3 +1,4 @@
+
 [![CMake](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml/badge.svg?branch=dev)](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml)
 
 <div align="center">
@@ -6,13 +7,14 @@
 </div>
 
 ###   perriera/extras
-This is a collection of C++ based tools to simplify the software development process. Among the many nifty tools that have been added here is the **extras/interfaces.hpp** file that adds the psedo keyword '**interface**' to support C++ frameworks.</br> 
+This is a collection of C++ based tools to simplify the software development process. Among the many nifty tools that have been added here is the **extras/interfaces.hpp** file that adds the pseudo keyword '**interface**' to support C++ frameworks.</br> 
 > 
 >*Why would someone want to use this?*
 >
->Being able to use the **'interface'** keyword allows C++ developers to specify the interface of a class before actually implementing it. To an experienced C++ developer, (especially one well versed in the use of the **'interface'** keywords in other languages), this greatly simplifies the C++ software developers task by outlining in advance what the class, (to be developed) has to accomplish.
+
+Being able to use the **'interface'** keyword allows C++ developers to specify the interface of a class before actually implementing it. To an experienced C++ developer, (especially one well versed in the use of the **'interface'** keywords in other languages), this greatly simplifies the C++ software developers task by outlining in advance what the class, (to be developed) has to accomplish.
 >
->Also, in the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there is **'extras support'** for  CRC calculations, pseudo C++ keywords, command line options, standard string manipulation and interface drive programming, (GoF Abstract Factory Pattern).
+Also, in the case of someone writing C++ code and they need a little **'extra'** help this collection of C++ libraries can make the C++ programming experience a lot easier, (and more enjoyable). At present there is **'extras support'** for  CRC calculations, pseudo C++ keywords, command line options, standard string manipulation and interface drive programming, (GoF Abstract Factory Pattern).
 >
 
 	#include <extras/interfaces.hpp>
