@@ -31,7 +31,7 @@ There are TWO ways to include perriera/extras into your application. For brand n
 If you have the option of starting a new C++ project, (for the purposes of using **perriera/extras** or **perriera/extras_rsi**), you can use the [perriera/cpp_starter](https://github.com/perriera/cpp_starter) template. 
 
 ## CPM installation
-Add the following to your CMakeLists.txt for CPM support. CPM support allows you to distribute your packages with other git repositories automatically downloaded, (for the users of your software). In the case of setting up distributed Debian packages, this is advantageous. As you will not be needed to do any other installation steps to be able to incorporate **perriera/extras** into your C++ framework, (on github or otherwise). 
+Add the following to your CMakeLists.txt for CPM support. CPM support allows you to distribute your packages with other git repositories automatically downloaded, (for the users of your software). In the case of setting up distributed Debian packages, this is advantageous. As you will not be needing to do any other installation steps to be able to incorporate **perriera/extras** into your C++ framework, (on github or otherwise). 
 
 > NOTE: Include 3rd party libraries, Perry and I maintain an open-source extras C++ library, which
 	is used extensively in our projects, it comes bundled with spdlog, cpr, and nlohmann json. extras has

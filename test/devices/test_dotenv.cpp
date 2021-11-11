@@ -145,6 +145,5 @@ SCENARIO("Test DotENV load token file", "[test_dotenv]") {
   extras::DotENV dotENV_compare;
   ss2 >> dotENV_compare;
   REQUIRE(dotENV == dotENV_compare);
-  std::cout << dotENV_compare;
   REQUIRE(dotENV.value("YOURAPPTOKEN") == "dev");
 }

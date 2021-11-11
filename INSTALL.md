@@ -51,12 +51,6 @@ If the tests come back similar to the following you have a successful install:
 
 	perry@ubuntu:~/Projects/extras$ build/run-unittests-extras 
 
-	ASYNC=on
-	AUDIENCE=https://jackpot_pc_salmon
-	CLIENT_ID=sample_client_id
-	CLIENT_SECRET=34343-dfdfd-3343-fsfdf-334-sd
-	COOKIE=sample_cookie; did_compatible=sample_did_compatible
-	YOURAPPTOKEN=dev
 	===============================================================================
 	All tests passed (76 assertions in 30 test cases)
 

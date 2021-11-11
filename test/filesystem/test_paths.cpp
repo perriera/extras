@@ -20,19 +20,19 @@ SCENARIO("Verify PathsInterface operator~()", "[paths_support]") {
   REQUIRE(value != "~/Downloads");
   REQUIRE(extras::contains(value, "/home/"));
   REQUIRE(!extras::contains(value, "~"));
-  std::cout << value << std::endl;
+  // std::cout << value << std::endl;
 }
 
 SCENARIO("Verify PathsInterface filename", "[paths_support]") {
   std::string filename = "data/Downloads/cplusplusorg.freeformjs.imploded.zip";
   Paths path(filename);
   Path actual_path = ~path;
-  std::cout << actual_path << std::endl;
+  // std::cout << actual_path << std::endl;
   std::ifstream myfile(actual_path);
   REQUIRE(myfile.good());
   std::string value = ~path;
   REQUIRE(value != "~/Downloads");
   REQUIRE(extras::contains(value, "/home/"));
   REQUIRE(!extras::contains(value, "~"));
-  std::cout << value << std::endl;
+  // std::cout << value << std::endl;
 }

@@ -63,7 +63,6 @@ Use of this class will give you a simpler means of managing environment variable
         extras::DotENV dotENV_compare;
         ss2 >> dotENV_compare;
         REQUIRE(dotENV == dotENV_compare);
-        std::cout << dotENV_compare;
         REQUIRE(dotENV.value("YOURAPPTOKEN") == "dev");
     }
 
