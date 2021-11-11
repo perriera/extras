@@ -1,4 +1,5 @@
 
+
 [![CMake](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml/badge.svg?branch=dev)](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml)
 
 <div align="center">
@@ -55,7 +56,7 @@ Then in your CMakeLists.txt
 	CPMAddPackage(
 	  NAME extras
 	  GITHUB_REPOSITORY perriera/extras
-	  VERSION 5.0.1
+	  VERSION 5.0.8
 	  OPTIONS "MAKE_SPDLOG_SHARED OFF"
 	  OPTIONS "MAKE_EXTRAS_LIBRARY_ONLY ON"
 	)
@@ -71,4 +72,11 @@ Then in your CMakeLists.txt
 
 Once this is added to your CMakeLists.txt, the header files of *perriera/extras** will be available to both your compiler environment and perhaps your editor's lint software. You might want to take a look at CMakeLists.txt used here for more details on how to properly use CPM. 
 
+> Note: Just be sure to have the desired **VERSION** of perrier/extras specified in the **VERSION** keyword of the CPMAddPackage specification. Also, to optimize CPM support on your projects be sure to set the CPM_SOURCE_CACHE environment variable for shared CPM libraries. Typically you would add this to your `.bashrc` script. With this environment variable set, the CPM package manager will not need to reload after successive build/ directory resets, (aka. `rm -rf build`). 
 
+	export CPM_SOURCE_CACHE=$HOME/.cache/CPM
+
+## Visual Studio Code (build/ directory) Compilation Fail Safe
+The industry practice of compiling to a build/ directory is supported here. When you detect some funny business going on with your development environment, (for example if the cmake utility keeps rebuilding everything), merely delete the build/ directory, (aka. `rm -rf build`) and recreate it. If you are using the Visual Studio Code environment you can press **SHIFT-CTRL-B**, (see `.vscode/tasks.conf`) which will force a rebuild of the directory, (including re-creating `build/` for you).
+
+> Please note: At present whenever you re-open your project with Visual Studio Code the cmake utility may or may not be in sync with the projects, (you'll notice this when all the source files keep getting rebuilt). To correct this open a Terminal window **inside** the Visual Studio Code environment and delete the build/ directory, (aka. `rm -rf build`)then rebuild the project with **SHIFT-CTRL-B**.

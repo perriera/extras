@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.0.7 -m "Fixed issue"</br>
-> > git push origin v5.0.7
+> > git tag -a v5.0.8 -m "Updated docs"</br>
+> > git push origin v5.0.8
 > >
 >
 > > POPULAR LINKS:
@@ -22,6 +22,10 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.0.8 (2021-11-10)
+### Changed
+- Added docs on CPM CACHE optimization
 
 #### 5.0.7 (2021-11-10)
 ### Changed
@@ -510,7 +514,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.0.7...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.0.8...HEAD
+[5.0.8]: https://github.com/perriera/extras/compare/v5.0.7...v5.0.8
 [5.0.7]: https://github.com/perriera/extras/compare/v5.0.6...v5.0.7
 [5.0.6]: https://github.com/perriera/extras/compare/v5.0.5...v5.0.6
 [5.0.5]: https://github.com/perriera/extras/compare/v5.0.4...v5.0.5
