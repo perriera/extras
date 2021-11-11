@@ -20,7 +20,8 @@ namespace extras {
     string listing_file = "/tmp/listing.txt";
     string cmd = "ls " + _pathname + ">" + listing_file;
     // system("ls docopt/include -la >/tmp/listing.txt");
-    system(cmd.c_str());
+    auto result = system(cmd.c_str());
+    if (result < 0) cout << "Directory listing unsuccessful" << endl;
     ifstream listing_stream(listing_file);
     Listing listing;
     while (listing_stream.good()) {
@@ -76,7 +77,8 @@ namespace extras {
 
   void Directory::remove() const {
     string cmd = "rm -rf " + path();
-    system(cmd.c_str());
+    auto result = system(cmd.c_str());
+    if (result < 0) cout << "Directory remove() unsuccessful" << endl;
   }
 
 }  // namespace extras
