@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.0.4 -m "Added perriera/cc_starter instructions"</br>
-> > git push origin v5.0.4
+> > git tag -a v5.0.5 -m "Added perriera/cc_starter instructions"</br>
+> > git push origin v5.0.5
 > >
 >
 > > POPULAR LINKS:
@@ -22,8 +22,14 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
-- Update Doxygen content
-- dev branch added
+
+#### 5.0.5 (2021-11-10)
+### Added
+- Better perriera/cc_starter instructions
+### Changed 
+- Updated README.md
+### Removed 
+- html/ directory
 
 #### 5.0.4 (2021-11-10)
 ### Added
@@ -492,7 +498,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.0.4...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.0.5...HEAD
+[5.0.5]: https://github.com/perriera/extras/compare/v5.0.4...v5.0.5
 [5.0.4]: https://github.com/perriera/extras/compare/v5.0.3...v5.0.4
 [5.0.3]: https://github.com/perriera/extras/compare/v5.0.2...v5.0.3
 [5.0.2]: https://github.com/perriera/extras/compare/v5.0.1...v5.0.2
