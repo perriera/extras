@@ -2,6 +2,13 @@
 # regardless of platform
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 
+#
+# PROJECT_VERSION is set in the header file: include/version.hpp
+# You will need to manually keep that number in sync with the version
+# numbers you manage in the changelog.md. That is, however you choose
+# to manage your version management system. 
+#
+
 # include CPM.cmake https://github.com/cpm-cmake/CPM.cmake
 include(cmake/CPM.cmake)
 include(cmake/utils.cmake)

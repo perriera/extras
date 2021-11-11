@@ -26,6 +26,8 @@ IMPORTANT:
 #### 5.0.5 (2021-11-10)
 ### Added
 - Better perriera/cc_starter instructions
+- INSTALL.md
+- HOWTO.md
 ### Changed 
 - Updated README.md
 ### Removed 
