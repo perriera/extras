@@ -8,7 +8,7 @@ This is a collection of C++ based tools to simplify the software development pro
   <br>
 </div>
 
-## *Why would someone want to use this?*
+## Who would want to use this?
 > 
 > Being able to use the **'interface'** keyword allows C++ developers to specify the interface of a class before actually implementing it. To an experienced C++ developer, (especially one well versed in the use of the **'interface'** keywords in other languages), this greatly simplifies the C++ software developers task by outlining in advance what the class, (to be developed) has to accomplish.
 >
