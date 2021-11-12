@@ -24,10 +24,15 @@
  *
  */
 
+#include <cxxabi.h>
+
+#include <cstdlib>
 #include <exception>
 #include <extras/language/interfaces.hpp>
 #include <iostream>
+#include <memory>
 #include <string>
+#include <typeinfo>
 
 namespace extras {
 
@@ -116,6 +121,7 @@ namespace extras {
      * @return const char*
      */
     virtual int getline() const noexcept pure;
+    virtual std::string getwhat() const noexcept pure;
 
     /**
      * @brief static void assertion(... const WhereAmI &ref);
@@ -152,6 +158,7 @@ namespace extras {
       CustomExceptionInterface {
     friend std::ostream &operator<<(std::ostream &os,
                                     const AbstractCustomException &dt);
+    static std::string _lastThrownException;
 
    protected:
     std::string _msg;
@@ -159,13 +166,22 @@ namespace extras {
     std::string _func;
     int _line = 0;
 
+    std::string demangle(char const *mangled) const {
+      auto ptr = std::unique_ptr<char, decltype(&std::free)>{
+          abi::__cxa_demangle(mangled, nullptr, nullptr, nullptr), std::free};
+      return {ptr.get()};
+    }
+
    public:
     AbstractCustomException(const char *msg, const char *file, const char *func,
                             int line)
         : _msg(msg), _file(file), _func(func), _line(line) {}
 
     [[nodiscard]] const char *what() const noexcept override {
-      return _msg.c_str();
+      _lastThrownException = getwhat();
+      _lastThrownException = demangle(_lastThrownException.c_str());
+      _lastThrownException = _lastThrownException + ": " + _msg;
+      return _lastThrownException.c_str();
     };
     [[nodiscard]] virtual const char *getfile() const noexcept override {
       return _file.c_str();
@@ -175,6 +191,9 @@ namespace extras {
     };
     [[nodiscard]] virtual int getline() const noexcept override {
       return _line;
+    };
+    [[nodiscard]] virtual std::string getwhat() const noexcept override {
+      return typeid(*this).name();
     };
 
     /**

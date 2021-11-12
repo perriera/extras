@@ -58,6 +58,7 @@ SCENARIO("Test ExceptionInterface: SpecificCustomException (args)",
          "[exceptions_testcases]") {
   auto test = "8080";
   SpecificCustomException _exception(test, __INFO__);
+  REQUIRE(contains(_exception.what(), "SpecificCustomException"));
   REQUIRE(contains(_exception.what(), "Port: 8080 wasn't found"));
   REQUIRE(ends_with(_exception.getfile(), "test_exceptions.cpp"));
   REQUIRE(contains(_exception.getfunc(), "____C_A_T_C_H____T_E_S_T____6"));
