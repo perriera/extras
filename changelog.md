@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.1.0 -m "Added SystemException"</br>
-> > git push origin v5.1.0
+> > git tag -a v5.1.1 -m "Added SystemException"</br>
+> > git push origin v5.1.1
 > >
 >
 > > POPULAR LINKS:
@@ -22,6 +22,10 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.1.1 (2021-11-15)
+### Changed
+- Corrected missing parameter
 
 #### 5.1.0 (2021-11-14)
 ### Changed
@@ -522,7 +526,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.1.0...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.1.1..HEAD
+[5.1.1]: https://github.com/perriera/extras/compare/v5.1.0...v5.1.1
 [5.1.0]: https://github.com/perriera/extras/compare/v5.0.9...v5.1.0
 [5.0.9]: https://github.com/perriera/extras/compare/v5.0.8...v5.0.9
 [5.0.8]: https://github.com/perriera/extras/compare/v5.0.7...v5.0.8

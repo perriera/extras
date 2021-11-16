@@ -31,7 +31,7 @@ namespace extras {
       auto code = system(cmd.c_str());
       if (code != 0) {
         std::string msg = "[" + cmd + "] failed with error code: ";
-        throw SystemException(msg + std::to_string(code), __INFO__);
+        throw SystemException(msg + std::to_string(code), ref);
       }
     }
   };
