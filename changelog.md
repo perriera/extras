@@ -23,6 +23,10 @@ IMPORTANT:
 
 ## [Unreleased]
 
+#### 5.1.0 (2021-11-14)
+### Changed
+- Added SystemException
+
 #### 5.0.9 (2021-11-11)
 ### Changed
 - Added typeinfo to exception msg
@@ -518,7 +522,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.0.9...HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.1.0...HEAD
+[5.1.0]: https://github.com/perriera/extras/compare/v5.0.9...v5.1.0
 [5.0.9]: https://github.com/perriera/extras/compare/v5.0.8...v5.0.9
 [5.0.8]: https://github.com/perriera/extras/compare/v5.0.7...v5.0.8
 [5.0.7]: https://github.com/perriera/extras/compare/v5.0.6...v5.0.7
