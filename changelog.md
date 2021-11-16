@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.0.9 -m "Added typeinfo to exception msg"</br>
-> > git push origin v5.0.9
+> > git tag -a v5.1.0 -m "Added SystemException"</br>
+> > git push origin v5.1.0
 > >
 >
 > > POPULAR LINKS:
