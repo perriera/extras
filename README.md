@@ -73,6 +73,9 @@ Once this is added to your CMakeLists.txt, the header files of *perriera/extras*
 
 	export CPM_SOURCE_CACHE=$HOME/.cache/CPM
 
+## CPM dual inclusion
+Inevitably, if you use **perriera/extras** with more than one project, you are probably going to run into a situation where you to coordinate multiple installations. To make that work, you have to make sure that ALL projects are using the same version of **perriera/extras**. If your situation gets more complicated than that, send me an email. 
+
 ## Visual Studio Code (build/ directory) Compilation Fail Safe
 The industry practice of compiling to a build/ directory is supported here. When you detect some funny business going on with your development environment, (for example if the cmake utility keeps rebuilding everything), merely delete the build/ directory, (aka. `rm -rf build`) and recreate it. If you are using the Visual Studio Code environment you can press **SHIFT-CTRL-B**, (see `.vscode/tasks.conf`) which will force a rebuild of the directory, (including re-creating `build/` for you).
 

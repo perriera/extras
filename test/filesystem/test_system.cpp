@@ -1,7 +1,12 @@
 #include <cstdint>
 #include <extras/filesystem/system.hpp>
 #include <extras/strings.hpp>
+#include <filesystem>
 #include <fstream>
+#include <iostream>
+
+using namespace std;
+namespace fs = std::filesystem;
 
 #include "../vendor/catch.hpp"
 
