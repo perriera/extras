@@ -18,7 +18,7 @@
 namespace extras {
 
   /**
-   * @brief class NGException
+   * @brief class SystemException
    *
    */
   concrete class SystemException extends extras::AbstractCustomException {
@@ -32,6 +32,25 @@ namespace extras {
       if (code != 0) {
         std::string msg = "[" + cmd + "] failed with error code: ";
         throw SystemException(msg + std::to_string(code), ref);
+      }
+    }
+  };
+
+  /**
+   * @brief class ScriptException
+   *
+   */
+  concrete class ScriptException extends extras::AbstractCustomException {
+   public:
+    ScriptException(const std::string& msg, const extras::WhereAmI& whereAmI)
+        : extras::AbstractCustomException(msg.c_str(), whereAmI._file.c_str(),
+                                          whereAmI._func.c_str(),
+                                          whereAmI._line) {}
+    static void assertion(const std::string& cmd, const extras::WhereAmI& ref) {
+      auto code = system(cmd.c_str());
+      if (code != 0) {
+        std::string msg = "[" + cmd + "] failed with error code: ";
+        throw ScriptException(msg + std::to_string(code), ref);
       }
     }
   };
