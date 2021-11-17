@@ -15,11 +15,6 @@
 
 #include <extras/keywords.hpp>
 #include <extras/strings.hpp>
-#include <filesystem>
-#include <iostream>
-
-using namespace std;
-namespace fs = std::filesystem;
 
 namespace extras {
 
@@ -52,7 +47,7 @@ namespace extras {
         : extras::AbstractCustomException(msg.c_str(), whereAmI._file.c_str(),
                                           whereAmI._func.c_str(),
                                           whereAmI._line) {}
-    static void assertion(const std::string& script, bool autoDelete,
+    static void assertion(const std::string& script,
                           const extras::WhereAmI& ref) {
       (void)system("ls -la");
       if (!extras::contains(script, ".sh")) {
@@ -65,11 +60,16 @@ namespace extras {
         throw ScriptException(msg + script, ref);
       }
       auto code = system(script.c_str());
-      if (autoDelete)
-        if (fs::exists(script)) fs::remove(script);
       if (code != 0) {
         std::string msg = "[" + script + "] failed with error code: ";
         throw ScriptException(msg + std::to_string(code), ref);
+      } else {
+        auto rm = "rm " + script;
+        auto code = system(script.c_str());
+        if (code != 0) {
+          std::string msg = "[" + script + "] rm failed with error code: ";
+          throw ScriptException(msg + std::to_string(code), ref);
+        }
       }
     }
   };
