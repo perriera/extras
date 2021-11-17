@@ -31,7 +31,5 @@ SCENARIO("Test ScriptException 2", "[SystemException]") {
     std::ofstream out(bad_script);
     out << "lsxyz@ -la" << std::endl;
   }
-  REQUIRE(fs::exists(good_script));
-
   std::cout << "cock sucking jesus" << std::endl;
 }
