@@ -1,7 +1,12 @@
 #include <cstdint>
 #include <extras/filesystem/system.hpp>
 #include <extras/strings.hpp>
+#include <filesystem>
 #include <fstream>
+#include <iostream>
+
+using namespace std;
+namespace fs = std::filesystem;
 
 #include "../vendor/catch.hpp"
 
@@ -26,5 +31,7 @@ SCENARIO("Test ScriptException 2", "[SystemException]") {
     std::ofstream out(bad_script);
     out << "lsxyz@ -la" << std::endl;
   }
+  REQUIRE(fs::exists(good_script));
+
   std::cout << "cock sucking jesus" << std::endl;
 }
