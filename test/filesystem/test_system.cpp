@@ -14,3 +14,17 @@ SCENARIO("Test SystemException", "[SystemException]") {
   REQUIRE_THROWS_AS(SystemException::assertion(bad_cmd, __INFO__),
                     SystemException);
 }
+
+SCENARIO("Test ScriptException 2", "[SystemException]") {
+  std::string good_script = "./good_script.sh";
+  {
+    std::ofstream out(good_script);
+    out << "ls -la" << std::endl;
+  }
+  std::string bad_script = "./bad_script.sh";
+  {
+    std::ofstream out(bad_script);
+    out << "lsxyz@ -la" << std::endl;
+  }
+  std::cout << "cock sucking jesus" << std::endl;
+}
