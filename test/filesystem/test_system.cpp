@@ -31,5 +31,15 @@ SCENARIO("Test ScriptException 2", "[SystemException]") {
     std::ofstream out(bad_script);
     out << "lsxyz@ -la" << std::endl;
   }
-  std::cout << "cock sucking jesus" << std::endl;
+  REQUIRE(fs::exists(good_script));
+  ScriptException::assertion(good_script, false, __INFO__);
+  REQUIRE(fs::exists(good_script));
+  ScriptException::assertion(good_script, true, __INFO__);
+  REQUIRE(!fs::exists(good_script));
+  REQUIRE_THROWS_AS(ScriptException::assertion(bad_script, false, __INFO__),
+                    ScriptException);
+  REQUIRE(fs::exists(bad_script));
+  REQUIRE_THROWS_AS(ScriptException::assertion(bad_script, true, __INFO__),
+                    ScriptException);
+  REQUIRE(!fs::exists(bad_script));
 }
