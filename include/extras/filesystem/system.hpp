@@ -37,20 +37,19 @@ namespace extras {
     }
   };
 
-  // /**
-  //  * @brief class ScriptException
-  //  *
-  //  */
-  // concrete class ScriptException extends extras::AbstractCustomException {
-  //  public:
-  //   ScriptException(const std::string& msg, const extras::WhereAmI& whereAmI)
-  //       : extras::AbstractCustomException(msg.c_str(),
-  //       whereAmI._file.c_str(),
-  //                                         whereAmI._func.c_str(),
-  //                                         whereAmI._line) {}
-  //   static void assertion(const std::string& script, bool autoDelete,
-  //                         const extras::WhereAmI& ref);
-  // };
+  /**
+   * @brief class ScriptException
+   *
+   */
+  concrete class ScriptException extends extras::AbstractCustomException {
+   public:
+    ScriptException(const std::string& msg, const extras::WhereAmI& whereAmI)
+        : extras::AbstractCustomException(msg.c_str(), whereAmI._file.c_str(),
+                                          whereAmI._func.c_str(),
+                                          whereAmI._line) {}
+    static void assertion(const std::string& script, bool autoDelete,
+                          const extras::WhereAmI& ref);
+  };
 
 }  // namespace extras
 #endif  // _EXTRA_SYSTEM_HPP
