@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.3.2 -m "DepercatedFileNotFoundException"</br>
-> > git push origin v5.3.2
+> > git tag -a v5.3.3 -m "FileNotFoundException added back"</br>
+> > git push origin v5.3.3
 > >
 >
 > > POPULAR LINKS:
@@ -23,9 +23,13 @@ IMPORTANT:
 
 ## [Unreleased]
 
+#### 5.3.3 (2021-11-20)
+### Added
+- FileNotFoundException added back
+
 #### 5.3.2 (2021-11-20)
 ### Added
-- DepercatedFileNotFoundException
+- FileNotFoundException depercated
 
 #### 5.3.1 (2021-11-19)
 ### Added
@@ -550,7 +554,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.3.2..HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.3.3..HEAD
+[5.3.3]: https://github.com/perriera/extras/compare/v5.3.2...v5.3.3
 [5.3.2]: https://github.com/perriera/extras/compare/v5.3.1...v5.3.2
 [5.3.1]: https://github.com/perriera/extras/compare/v5.3.0...v5.3.1
 [5.3.0]: https://github.com/perriera/extras/compare/v5.2.1...v5.3.0

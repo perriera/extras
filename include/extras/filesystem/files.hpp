@@ -1,10 +1,10 @@
 #ifndef _EXTRA_DIRECTORY_HPP
 #define _EXTRA_DIRECTORY_HPP
 
+#include <extras/language/exceptions.hpp>
+#include <extras/language/interfaces.hpp>
 #include <iostream>
 #include <vector>
-
-#include "extras/language/interfaces.hpp"
 
 namespace extras {
   //
@@ -40,35 +40,42 @@ namespace extras {
     Listing _listing;
   };
 
-  class DepercatedFileNotFoundException extends std::exception {
+  class FileNotFoundException extends AbstractCustomException {
     std::string _msg;
 
    public:
-    DepercatedFileNotFoundException(const std::string &filename) {
+    FileNotFoundException(const std::string &filename,
+                          const extras::WhereAmI &whereAmI)
+        : AbstractCustomException(filename.c_str(), whereAmI) {
       _msg = "File not found: " + filename;
     }
     virtual char const *what() const noexcept { return _msg.c_str(); }
-    static void assertion(const std::string &filename) {
+    static void assertion(const std::string &filename,
+                          const extras::WhereAmI &ref) {
       if (Directory(filename).filename().size() > 0)
         if (!Directory(filename).fileExists())
-          throw DepercatedFileNotFoundException(filename);
+          throw FileNotFoundException(filename, ref);
     }
   };
 
-  class PathNotFoundException extends std::exception {
+  class PathNotFoundException extends AbstractCustomException {
     std::string _msg;
 
    public:
-    PathNotFoundException(const std::string &pathname) {
-      _msg = "Path not found: " + pathname;
+    PathNotFoundException(const std::string &filename,
+                          const extras::WhereAmI &whereAmI)
+        : AbstractCustomException(filename.c_str(), whereAmI) {
+      _msg = "Path not found: " + filename;
     }
     virtual char const *what() const noexcept { return _msg.c_str(); }
-    static void assertion(const std::string &pathname) {
-      if (Directory(pathname).pathname().size() > 0)
-        if (!Directory(pathname).fileExists())
-          throw PathNotFoundException(pathname);
+    static void assertion(const std::string &filename,
+                          const extras::WhereAmI &ref) {
+      if (Directory(filename).filename().size() > 0)
+        if (!Directory(filename).fileExists())
+          throw PathNotFoundException(filename, ref);
     }
   };
+
 }  // namespace extras
 
 #endif  // _EXTRA_DIRECTORY_HPP
