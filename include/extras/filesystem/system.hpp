@@ -15,6 +15,7 @@
 
 #include <extras/keywords.hpp>
 #include <extras/strings.hpp>
+#include <filesystem>
 
 namespace extras {
 
@@ -64,9 +65,8 @@ namespace extras {
         std::string msg = "[" + script + "] failed with error code: ";
         throw ScriptException(msg + std::to_string(code), ref);
       } else {
-        auto rm = "rm " + script;
-        auto code = system(script.c_str());
-        if (code != 0) {
+        std::filesystem::remove(script);
+        if (std::filesystem::exists(script)) {
           std::string msg = "[" + script + "] rm failed with error code: ";
           throw ScriptException(msg + std::to_string(code), ref);
         }
