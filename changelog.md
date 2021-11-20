@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.3.0 -m "Ported StatusLine"</br>
-> > git push origin v5.3.0
+> > git tag -a v5.3.1 -m "Ported StatusLine"</br>
+> > git push origin v5.3.1
 > >
 >
 > > POPULAR LINKS:
@@ -22,6 +22,10 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.3.1 (2021-11-19)
+### Added
+- Updated version info 
 
 #### 5.3.0 (2021-11-19)
 ### Added
@@ -542,7 +546,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.3.0..HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.3.1..HEAD
+[5.3.1]: https://github.com/perriera/extras/compare/v5.3.0...v5.3.1
 [5.3.0]: https://github.com/perriera/extras/compare/v5.2.1...v5.3.0
 [5.2.1]: https://github.com/perriera/extras/compare/v5.2.0...v5.2.1
 [5.2.0]: https://github.com/perriera/extras/compare/v5.1.2...v5.2.0
