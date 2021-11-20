@@ -177,6 +177,11 @@ namespace extras {
                             int line)
         : _msg(msg), _file(file), _func(func), _line(line) {}
 
+    AbstractCustomException(const char *msg, const extras::WhereAmI &whereAmI)
+        : extras::AbstractCustomException(msg, whereAmI._file.c_str(),
+                                          whereAmI._func.c_str(),
+                                          whereAmI._line) {}
+
     [[nodiscard]] const char *what() const noexcept override {
       _lastThrownException = getwhat();
       _lastThrownException = demangle(_lastThrownException.c_str());
