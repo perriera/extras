@@ -18,12 +18,12 @@ SCENARIO("Mock StatusLineInterface", "[StatusLineInterface]") {
   extras::StatusLineMsg good = "[+] File data downloaded successfully.\n";
   extras::StatusLineMsg bad = "[-] Error in socket.\n";
   Mock<extras::StatusLineInterface> mock;
-  When(Method(mock, pass)).AlwaysDo([&good](const extras::StatusLineMsg& msg) {
+  When(Method(mock, pass)).AlwaysDo([](const extras::StatusLineMsg& msg) {
     std::stringstream ss;
     ss << "[+] " << msg << "." << std::endl;
     return ss.str();
   });
-  When(Method(mock, fail)).AlwaysDo([&good](const extras::StatusLineMsg& msg) {
+  When(Method(mock, fail)).AlwaysDo([](const extras::StatusLineMsg& msg) {
     std::stringstream ss;
     ss << "[-] " << msg << "." << std::endl;
     return ss.str();

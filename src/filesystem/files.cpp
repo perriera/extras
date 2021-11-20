@@ -65,7 +65,7 @@ namespace extras {
   }
 
   void Directory::copyTo(const Directory &to) const {
-    FileNotFoundException::assertion(path());
+    DepercatedFileNotFoundException::assertion(path());
     ifstream src;
     ofstream dst;
     src.open(path(), ios::in | ios::binary);

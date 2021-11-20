@@ -40,18 +40,18 @@ namespace extras {
     Listing _listing;
   };
 
-  class FileNotFoundException extends std::exception {
+  class DepercatedFileNotFoundException extends std::exception {
     std::string _msg;
 
    public:
-    FileNotFoundException(const std::string &filename) {
+    DepercatedFileNotFoundException(const std::string &filename) {
       _msg = "File not found: " + filename;
     }
     virtual char const *what() const noexcept { return _msg.c_str(); }
     static void assertion(const std::string &filename) {
       if (Directory(filename).filename().size() > 0)
         if (!Directory(filename).fileExists())
-          throw FileNotFoundException(filename);
+          throw DepercatedFileNotFoundException(filename);
     }
   };
 
