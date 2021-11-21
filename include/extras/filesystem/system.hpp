@@ -50,7 +50,6 @@ namespace extras {
                                           whereAmI._line) {}
     static void assertion(const std::string& script,
                           const extras::WhereAmI& ref) {
-      (void)system("ls -la");
       if (!extras::contains(script, ".sh")) {
         std::string msg = "[" + script + "] does not end in .sh ";
         throw ScriptException(msg + script, ref);
