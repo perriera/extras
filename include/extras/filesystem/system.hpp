@@ -59,8 +59,10 @@ namespace extras {
         std::string msg = "[" + script + "] chmod +x failed ";
         throw ScriptException(msg + script, ref);
       }
-      auto code = system(script.c_str());
-      if (code == 32512) {
+      auto code = 0;
+      if (extras::contains(script, "/"))
+        code = system(script.c_str());
+      else {
         auto extrascript = "./" + script;
         code = system(extrascript.c_str());
       }

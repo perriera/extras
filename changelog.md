@@ -2,8 +2,8 @@
 > All notable changes to this project will be documented in this file.</br>
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.3.5 -m "ScriptException fix"</br>
-> > git push origin v5.3.5
+> > git tag -a v5.3.6 -m "ScriptException fix"</br>
+> > git push origin v5.3.6
 > >
 >
 > > POPULAR LINKS:
@@ -22,6 +22,10 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.3.6 (2021-11-24)
+### Fixed
+- a technicality on ScriptException
 
 #### 5.3.5 (2021-11-20)
 ### Fixed
@@ -562,7 +566,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.3.5..HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.3.6..HEAD
+[5.3.6]: https://github.com/perriera/extras/compare/v5.3.5...v5.3.6
 [5.3.5]: https://github.com/perriera/extras/compare/v5.3.4...v5.3.5
 [5.3.4]: https://github.com/perriera/extras/compare/v5.3.3...v5.3.4
 [5.3.3]: https://github.com/perriera/extras/compare/v5.3.2...v5.3.3
