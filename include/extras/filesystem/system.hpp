@@ -60,6 +60,10 @@ namespace extras {
         throw ScriptException(msg + script, ref);
       }
       auto code = system(script.c_str());
+      if (code == 32512) {
+        auto extrascript = "./" + script;
+        code = system(extrascript.c_str());
+      }
       if (code != 0) {
         std::string msg = "[" + script + "] failed with error code: ";
         throw ScriptException(msg + std::to_string(code), ref);
