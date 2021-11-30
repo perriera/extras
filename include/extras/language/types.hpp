@@ -1,3 +1,14 @@
+/**
+ * @file types.hpp
+ * @author Perry Anderson (perry@exparx.com)
+ * @brief generic types used by the language
+ * @version 0.1
+ * @date 2021-11-30
+ *
+ * @copyright (C) November 22, 2021 EXPARX INCORPORATED
+ *
+ */
+
 #ifndef _EXTRA_TYPES_HPP
 #define _EXTRA_TYPES_HPP
 
@@ -26,7 +37,7 @@
  * @version 1.2.1
  * @date 2021-07-25
  *
- * @copyright Copyright (c) 2021 Perry Anderson,
+ * @copyright (C) November 22, 2021 EXPARX INCORPORATED Perry Anderson,
  * All Rights Reserved, MIT License.
  *
  */
