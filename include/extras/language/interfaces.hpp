@@ -1,3 +1,14 @@
+/**
+ * @file interfaces.hpp
+ * @author Perry Anderson (perry@exparx.com)
+ * @brief interface keyword, (for use with Design by Interface)
+ * @version 0.1
+ * @date 2021-11-30
+ *
+ * @copyright (C) November 22, 2021 EXPARX INCORPORATED
+ *
+ */
+
 #ifndef _EXTRA_LANGUAGE_INTERFACES_HPP
 #define _EXTRA_LANGUAGE_INTERFACES_HPP
 
@@ -28,7 +39,7 @@ namespace extras {
  * @version 1.2.1
  * @date 2021-07-25
  *
- * @copyright Copyright (c) 2021 Perry Anderson,
+ * @copyright (C) November 22, 2021 EXPARX INCORPORATED Perry Anderson,
  * All Rights Reserved, MIT License.
  *
  */

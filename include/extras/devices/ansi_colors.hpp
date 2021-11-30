@@ -1,3 +1,14 @@
+/**
+ * @file ansi_colors.hpp
+ * @author Perry Anderson (perry@exparx.com)
+ * @brief ANSI colors implementation
+ * @version 0.1
+ * @date 2021-11-30
+ *
+ * @copyright (C) November 22, 2021 EXPARX INCORPORATED
+ *
+ */
+
 #ifndef _EXTRA_COLORS_HPP
 #define _EXTRA_COLORS_HPP
 

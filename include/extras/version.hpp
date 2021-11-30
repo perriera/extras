@@ -1,3 +1,14 @@
+/**
+ * @file version.hpp
+ * @author Matt Williams (mattltf@protonmail.com)
+ * @brief Adds version support for Cmake script
+ * @version 3.2.0
+ * @date 2021-08-08
+ *
+ * @copyright (C) August 8, 2021 Matt Williams
+ *
+ */
+
 #ifndef _EXTRA_VERSION_HPP
 #define _EXTRA_VERSION_HPP
 
@@ -17,17 +28,6 @@
  *
  * (See LICENSE.md for complete details)
  *
- */
-
-/**
- * @file version.hpp
- * @author Matt Williams (mattltf@protonmail.com)
- * @brief Adds version support for Cmake script
- * @version 3.2.0
- * @date 2021-08-08
- *
- * @copyright Copyright (c) 2021 Perry Anderson, Matt Williams
- * All Rights Reserved, MIT License.
  */
 
 #define EXTRAS_VER_MAJOR 5

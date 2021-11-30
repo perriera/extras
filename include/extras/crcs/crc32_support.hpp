@@ -1,3 +1,14 @@
+/**
+ * @file crc32_support.hpp
+ * @author Perry Anderson (perry@exparx.com)
+ * @brief CRC 32 implementation
+ * @version 0.1
+ * @date 2021-11-30
+ *
+ * @copyright (C) November 22, 2021 EXPARX INCORPORATED
+ *
+ */
+
 #ifndef _EXTRA_CRC32_SUPPORT_HPP
 #define _EXTRA_CRC32_SUPPORT_HPP
 

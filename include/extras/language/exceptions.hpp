@@ -1,3 +1,14 @@
+/**
+ * @file exceptions.hpp
+ * @author Perry Anderson (perry@exparx.com)
+ * @brief struct WhereAmI, CustomExceptionInterface, AbstractCustomException
+ * @version 0.1
+ * @date 2021-11-30
+ *
+ * @copyright (C) November 22, 2021 EXPARX INCORPORATED
+ *
+ */
+
 #ifndef _EXTRA_EXCEPTIONS
 #define _EXTRA_EXCEPTIONS
 
@@ -38,7 +49,8 @@
  * @version 1.0.0
  * @date 2021-08-11
  *
- * @copyright Copyright (c) 2021, Matt Williams, (MIT License)
+ * @copyright (C) November 22, 2021 EXPARX INCORPORATED, Matt Williams, (MIT
+ * License)
  *
  */
 
