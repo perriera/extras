@@ -30,7 +30,7 @@
  * prior written authorization from EXPARX INCORPORATED.
  *
  * exparx.com and www.exparx.com  are domain names  registered with
- * EXPARX INCORPORATED.
+ * EXPARX INCORPORATED, (other GPL-themed licenses are included).
  *
  */
 
