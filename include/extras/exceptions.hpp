@@ -343,6 +343,12 @@ namespace extras {
   /**
    * @brief class SystemException
    *
+   * Use the assertion() method to safely run calls to the system() method.
+   *
+   * For ex:     SystemException::assertion("ls -la", __INFO__);
+   *
+   * If the shell command executes with a 0 result then no exception is thrown.
+   *
    */
   concrete class SystemException extends extras::AbstractCustomException {
    public:
@@ -361,6 +367,17 @@ namespace extras {
 
   /**
    * @brief class ScriptException
+   *
+   * Use the assertion() method to safely run calls to the bash scripts using
+   * the system() method.
+   *
+   * For ex:     std::ostream script("zipit.sh");
+   *             script << "zip data,zip -d data_dir/"
+   *             script.close();
+   *             ScriptException::assertion(script, __INFO__);
+   *
+   * If the script executes with a 0 result then the script is automatically
+   * deleted. If there is an error an exception is thrown.
    *
    */
   concrete class ScriptException extends extras::AbstractCustomException {
