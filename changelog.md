@@ -3,8 +3,8 @@
 > The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), </br>
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.6.0 -m "Refactired exceptions.hpp"</br>
-> > git push origin v5.6.0
+> > git tag -a v5.7.0 -m "Updated docs"</br>
+> > git push origin v5.7.0
 > >
 >
 > > POPULAR LINKS:
@@ -23,6 +23,10 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.6.0 (2021-11-30)
+### Improved
+- Updated docs 
 
 #### 5.6.0 (2021-11-30)
 ### Improved
