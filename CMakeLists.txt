@@ -108,12 +108,14 @@ add_library(${PROJECT_NAME} SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 # Create a target for executing the Catch2 unit tests.
-if(BUILD_TESTS)
-  message(STATUS "Building tests")
-  file(GLOB_RECURSE TESTS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
-  add_executable(run-unittests-extras ${TESTS})
-  target_include_directories(run-unittests-extras PUBLIC test/)
-  target_link_libraries(run-unittests-extras ${PROJECT_NAME} stdc++fs  ${CMAKE_THREAD_LIBS_INIT})
+if (NOT MAKE_EXTRAS_LIBRARY_ONLY)
+  if(BUILD_TESTS)
+    message(STATUS "Building tests")
+    file(GLOB_RECURSE TESTS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
+    add_executable(run-unittests-extras ${TESTS})
+    target_include_directories(run-unittests-extras PUBLIC test/)
+    target_link_libraries(run-unittests-extras ${PROJECT_NAME} stdc++fs  ${CMAKE_THREAD_LIBS_INIT})
+  endif()
 endif()
 
 # Library Note: may not work on windows
