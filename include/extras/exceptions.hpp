@@ -2,6 +2,7 @@
  * @file exceptions.hpp
  * @author Perry Anderson (perry@exparx.com)
  * @brief struct WhereAmI, CustomExceptionInterface, AbstractCustomException
+ *        SystemException, ScriptException
  * @version 0.1
  * @date 2021-11-30
  *
