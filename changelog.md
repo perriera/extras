@@ -3,8 +3,8 @@
 > The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), </br>
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.5.1 -m "Corrected directive"</br>
-> > git push origin v5.5.1
+> > git tag -a v5.6.0 -m "Refactired exceptions.hpp"</br>
+> > git push origin v5.6.0
 > >
 >
 > > POPULAR LINKS:
@@ -23,6 +23,10 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.6.0 (2021-11-30)
+### Improved
+- Refactired exceptions.hpp
 
 #### 5.5.1 (2021-11-30)
 ### Improved
@@ -580,7 +584,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.5.1..HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.6.0..HEAD
+[5.6.0]: https://github.com/perriera/extras/compare/v5.5.1...v5.6.0
 [5.5.1]: https://github.com/perriera/extras/compare/v5.5.0...v5.5.1
 [5.5.0]: https://github.com/perriera/extras/compare/v5.4.0...v5.5.0
 [5.4.0]: https://github.com/perriera/extras/compare/v5.3.6...v5.4.0
