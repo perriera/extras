@@ -418,6 +418,49 @@ namespace extras {
     }
   };
 
+  /**
+   * @brief FileNotFoundException
+   *
+   */
+  class FileNotFoundException extends AbstractCustomException {
+    std::string _msg;
+
+   public:
+    FileNotFoundException(const std::string &filename,
+                          const extras::WhereAmI &whereAmI)
+        : AbstractCustomException(filename.c_str(), whereAmI) {
+      _msg = "File not found: " + filename;
+    }
+    virtual char const *what() const noexcept { return _msg.c_str(); }
+    static void assertion(const std::string &filename,
+                          const extras::WhereAmI &ref) {
+      if (std::filesystem::file_size(filename) > 0)
+        if (!std::filesystem::is_directory(filename))
+          throw FileNotFoundException(filename, ref);
+    }
+  };
+
+  /**
+   * @brief PathNotFoundException
+   *
+   */
+  class PathNotFoundException extends AbstractCustomException {
+    std::string _msg;
+
+   public:
+    PathNotFoundException(const std::string &filename,
+                          const extras::WhereAmI &whereAmI)
+        : AbstractCustomException(filename.c_str(), whereAmI) {
+      _msg = "Path not found: " + filename;
+    }
+    virtual char const *what() const noexcept { return _msg.c_str(); }
+    static void assertion(const std::string &filename,
+                          const extras::WhereAmI &ref) {
+      if (!std::filesystem::is_directory(filename))
+        throw PathNotFoundException(filename, ref);
+    }
+  };
+
 }  // namespace extras
 
 #endif  // _EXTRA_EXCEPTIONS

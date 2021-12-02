@@ -69,42 +69,6 @@ namespace extras {
     Listing _listing;
   };
 
-  class FileNotFoundException extends AbstractCustomException {
-    std::string _msg;
-
-   public:
-    FileNotFoundException(const std::string &filename,
-                          const extras::WhereAmI &whereAmI)
-        : AbstractCustomException(filename.c_str(), whereAmI) {
-      _msg = "File not found: " + filename;
-    }
-    virtual char const *what() const noexcept { return _msg.c_str(); }
-    static void assertion(const std::string &filename,
-                          const extras::WhereAmI &ref) {
-      if (Directory(filename).filename().size() > 0)
-        if (!Directory(filename).fileExists())
-          throw FileNotFoundException(filename, ref);
-    }
-  };
-
-  class PathNotFoundException extends AbstractCustomException {
-    std::string _msg;
-
-   public:
-    PathNotFoundException(const std::string &filename,
-                          const extras::WhereAmI &whereAmI)
-        : AbstractCustomException(filename.c_str(), whereAmI) {
-      _msg = "Path not found: " + filename;
-    }
-    virtual char const *what() const noexcept { return _msg.c_str(); }
-    static void assertion(const std::string &filename,
-                          const extras::WhereAmI &ref) {
-      if (Directory(filename).filename().size() > 0)
-        if (!Directory(filename).fileExists())
-          throw PathNotFoundException(filename, ref);
-    }
-  };
-
 }  // namespace extras
 
 #endif  // _EXTRA_DIRECTORY_HPP
