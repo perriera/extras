@@ -42,6 +42,12 @@
  *
  */
 
+#include <deque>
+#include <iostream>
+#include <list>
+#include <string>
+#include <vector>
+
 namespace extras {
 
   /**
@@ -59,6 +65,24 @@ namespace extras {
 
   using byte = unsigned char;
   using bytes = byte *;
+
+  /**
+   * @brief common types
+   *
+   * " Of the same size as char, but guaranteed to be unsigned.
+   *   Contains at least the [0, 255] range.[5] ""
+   *    -- https://en.wikipedia.org/wiki/C_data_types
+   *    -- Wikipedia, August 6, 2021
+   *
+   * [5]  ISO/IEC 9899:1999 specification, TC3 (PDF). p. 37,
+   * § 6.2.6.1 Representations of types – General.
+   *
+   */
+  using Parameter = std::string;
+  using Parameters = std::deque<Parameter>;
+  using Filename = std::string;
+  using Filenames = std::vector<Filename>;
+  using Path = std::string;
 
 }  // namespace extras
 
