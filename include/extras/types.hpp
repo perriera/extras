@@ -1,7 +1,7 @@
 /**
  * @file types.hpp
  * @author Perry Anderson (perry@exparx.com)
- * @brief generic types used by the language
+ * @brief C++ defined type definitions specific to this package
  * @version 0.1
  * @date 2021-11-30
  *
