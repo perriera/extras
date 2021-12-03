@@ -87,12 +87,22 @@ SCENARIO("Mock ExtrasExceptionInterface: getline", "[exceptions_mock]") {
 SCENARIO("Mock ExtrasExceptionInterface: streams", "[exceptions_mock]") {
   try {
     NotADirectoryException::assertion("build/run-unittests-extras", __INFO__);
-  } catch (ExtrasExceptionInterface &ex) {
+    FAIL("exception not thrown");
+  } catch (extras::exception &ex) {
     std::cout << ex << std::endl;
+    SUCCEED("exception caught");
+  } catch (std::exception &ex) {
+    std::cout << ex.what() << std::endl;
+    FAIL("wrong exception caught");
   }
   try {
     NotAFileException::assertion("build/", __INFO__);
-  } catch (ExtrasExceptionInterface &ex) {
+    FAIL("exception not thrown");
+  } catch (extras::exception &ex) {
     std::cout << ex << std::endl;
+    SUCCEED("exception caught");
+  } catch (std::exception &ex) {
+    std::cout << ex.what() << std::endl;
+    FAIL("wrong exception caught");
   }
 }

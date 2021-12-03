@@ -189,6 +189,14 @@ namespace extras {
   };
 
   /**
+   * @brief class extras::exception
+   *
+   * This is just syntax candy ... and it's really nice!
+   *
+   */
+  abstract class exception extends ExtrasExceptionInterface {};
+
+  /**
    * @brief class AbstractCustomException
    *
    * While not an abstract class in this implementation, it is an
@@ -197,8 +205,7 @@ namespace extras {
    *
    * */
 
-  abstract class AbstractCustomException extends std::exception with
-      ExtrasExceptionInterface {
+  abstract class AbstractCustomException extends std::exception with exception {
     static std::string _lastThrownException;
 
    protected:

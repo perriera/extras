@@ -27,13 +27,11 @@ namespace extras {
   std::ostream &operator<<(std::ostream &os,
                            const ExtrasExceptionInterface &dt) {
     std::string file = dt.getfile();
-    long unsigned int cnt = file.size();
     std::string div1, div2;
-    for (int i = 0; i < file.size(); i++) {
+    for (long unsigned int i = 0; i < file.size(); i++) {
       div1 += "=";
       div2 += "-";
     }
-
     os << extras::green;
     os << div1 << std::endl;
     os << extras::yellow;
