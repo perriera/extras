@@ -16,6 +16,7 @@
  *
  */
 
+#include <extras/devices/ansi_colors.hpp>
 #include <extras/exceptions.hpp>
 #include <iostream>
 
@@ -23,4 +24,32 @@ namespace extras {
 
   std::string AbstractCustomException::_lastThrownException;
 
-}
+  std::ostream &operator<<(std::ostream &os,
+                           const ExtrasExceptionInterface &dt) {
+    std::string file = dt.getfile();
+    int cnt = file.size();
+    std::string div1, div2;
+    for (int i = 0; i < file.size(); i++) {
+      div1 += "=";
+      div2 += "-";
+    }
+
+    os << extras::green;
+    os << div1 << std::endl;
+    os << extras::yellow;
+    os << dt.demangle(dt.getwhat().c_str());
+    os << extras::cyan << ": ";
+    os << extras::white;
+    os << dt.what() << std::endl;
+    os << extras::green;
+    os << div2 << std::endl;
+    os << extras::blue << dt.getfile() << std::endl;
+    os << dt.getfunc();
+    os << extras::cyan << ": line ";
+    os << dt.getline() << std::endl;
+    os << extras::green;
+    os << div1 << std::endl;
+    return os;
+  }
+
+}  // namespace extras

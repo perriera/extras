@@ -1,8 +1,7 @@
 /**
  * @file exceptions.hpp
  * @author Perry Anderson (perry@exparx.com)
- * @brief struct WhereAmI, CustomExceptionInterface, AbstractCustomException
- *        SystemException, ScriptException
+ * @brief C++ defined custom exceptions specific to this package
  * @version 0.1
  * @date 2021-11-30
  *
@@ -36,7 +35,7 @@
  *
  * @author Matt Williams, (matt@dmgblockchain.com)
  *
- * @brief CustomExceptionInterface is needed for polymorphic reasons,
+ * @brief ExtrasExceptionInterface is needed for polymorphic reasons,
  * passing exact error subclasses into functions is cumberson, I will
  * either have to template the function, or overload it. This way I can
  * just make a a AbstractCustomException pointer to the subclass in
@@ -104,11 +103,20 @@ namespace extras {
                    __LINE__)
 
   /**
-   * @brief interface CustomExceptionInterface
+   * @brief interface ExtrasExceptionInterface
    *
    * */
 
-  interface CustomExceptionInterface {
+  interface ExtrasExceptionInterface {
+    std::string demangle(char const *mangled) const {
+      auto ptr = std::unique_ptr<char, decltype(&std::free)>{
+          abi::__cxa_demangle(mangled, nullptr, nullptr, nullptr), std::free};
+      return {ptr.get()};
+    }
+
+    friend std::ostream &operator<<(std::ostream &os,
+                                    const ExtrasExceptionInterface &dt);
+
     /**
      * @brief Return what() happened
      *
@@ -189,9 +197,7 @@ namespace extras {
    * */
 
   abstract class AbstractCustomException extends std::exception with
-      CustomExceptionInterface {
-    friend std::ostream &operator<<(std::ostream &os,
-                                    const AbstractCustomException &dt);
+      ExtrasExceptionInterface {
     static std::string _lastThrownException;
 
    protected:
