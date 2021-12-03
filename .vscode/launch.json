@@ -14,7 +14,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/run-unittests-extras",
-            "args": [],
+            "args": [
+                "[exceptions_mock]"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

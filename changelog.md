@@ -3,8 +3,8 @@
 > The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), </br>
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.10.4 -m "Added new exceptions"</br>
-> > git push origin v5.10.4
+> > git tag -a v5.11.0 -m "Added ExtrasExceptionInterface"</br>
+> > git push origin v5.11.0
 > >
 >
 > > POPULAR LINKS:
@@ -23,6 +23,11 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.11.0 (2021-12-02)
+### Improved
+- Added ExtrasExceptionInterface
+- Added ExtrasExceptionInterface stream
 
 #### 5.10.4 (2021-12-02)
 ### Improved
@@ -423,7 +428,7 @@ IMPORTANT:
 
 #### 3.4.0 (2021-08-11)
 ### Added 
-- CustomExceptionInterface
+- ExtrasExceptionInterface
   * [Exception handling syntax](https://en.wikipedia.org/wiki/Exception_handling_syntax)
 - AbstractCustomException
   * [Abstract factory pattern](https://en.wikipedia.org/wiki/Abstract_factory_pattern)

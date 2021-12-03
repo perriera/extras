@@ -44,42 +44,50 @@ using namespace fakeit;
  *
  */
 
-SCENARIO("Mock CustomExceptionInterface: what", "[exceptions_mock]") {
+SCENARIO("Mock ExtrasExceptionInterface: what", "[exceptions_mock]") {
   auto correct_answer = "some error message";
-  Mock<CustomExceptionInterface> mock;
+  Mock<ExtrasExceptionInterface> mock;
   When(Method(mock, what)).Return(correct_answer);
 
-  CustomExceptionInterface &i = mock.get();
+  ExtrasExceptionInterface &i = mock.get();
   REQUIRE(i.what() == correct_answer);
   Verify(Method(mock, what));
 }
 
-SCENARIO("Mock CustomExceptionInterface: getfile", "[exceptions_mock]") {
+SCENARIO("Mock ExtrasExceptionInterface: getfile", "[exceptions_mock]") {
   auto correct_answer = __FILE__;
-  Mock<CustomExceptionInterface> mock;
+  Mock<ExtrasExceptionInterface> mock;
   When(Method(mock, getfile)).Return(correct_answer);
 
-  CustomExceptionInterface &i = mock.get();
+  ExtrasExceptionInterface &i = mock.get();
   REQUIRE(i.getfile() == correct_answer);
   Verify(Method(mock, getfile));
 }
 
-SCENARIO("Mock CustomExceptionInterface: getfunc", "[exceptions_mock]") {
+SCENARIO("Mock ExtrasExceptionInterface: getfunc", "[exceptions_mock]") {
   auto correct_answer = __func__;
-  Mock<CustomExceptionInterface> mock;
+  Mock<ExtrasExceptionInterface> mock;
   When(Method(mock, getfunc)).Return(correct_answer);
 
-  CustomExceptionInterface &i = mock.get();
+  ExtrasExceptionInterface &i = mock.get();
   REQUIRE(i.getfunc() == correct_answer);
   Verify(Method(mock, getfunc));
 }
 
-SCENARIO("Mock CustomExceptionInterface: getline", "[exceptions_mock]") {
+SCENARIO("Mock ExtrasExceptionInterface: getline", "[exceptions_mock]") {
   auto correct_answer = __LINE__;
-  Mock<CustomExceptionInterface> mock;
+  Mock<ExtrasExceptionInterface> mock;
   When(Method(mock, getline)).Return(correct_answer);
 
-  CustomExceptionInterface &i = mock.get();
+  ExtrasExceptionInterface &i = mock.get();
   REQUIRE(i.getline() == correct_answer);
   Verify(Method(mock, getline));
+}
+
+SCENARIO("Mock ExtrasExceptionInterface: streams", "[exceptions_mock]") {
+  try {
+    NotADirectoryException::assertion("build/run-unittests-extras", __INFO__);
+  } catch (ExtrasExceptionInterface &ex) {
+    std::cout << ex << std::endl;
+  }
 }
