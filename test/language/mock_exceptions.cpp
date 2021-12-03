@@ -90,4 +90,9 @@ SCENARIO("Mock ExtrasExceptionInterface: streams", "[exceptions_mock]") {
   } catch (ExtrasExceptionInterface &ex) {
     std::cout << ex << std::endl;
   }
+  try {
+    NotAFileException::assertion("build/", __INFO__);
+  } catch (ExtrasExceptionInterface &ex) {
+    std::cout << ex << std::endl;
+  }
 }

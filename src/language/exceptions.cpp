@@ -27,7 +27,7 @@ namespace extras {
   std::ostream &operator<<(std::ostream &os,
                            const ExtrasExceptionInterface &dt) {
     std::string file = dt.getfile();
-    int cnt = file.size();
+    long unsigned int cnt = file.size();
     std::string div1, div2;
     for (int i = 0; i < file.size(); i++) {
       div1 += "=";
@@ -40,7 +40,7 @@ namespace extras {
     os << dt.demangle(dt.getwhat().c_str());
     os << extras::cyan << ": ";
     os << extras::white;
-    os << dt.what() << std::endl;
+    os << dt.msg() << std::endl;
     os << extras::green;
     os << div2 << std::endl;
     os << extras::blue << dt.getfile() << std::endl;

@@ -127,6 +127,7 @@ namespace extras {
      * @return const char*
      */
     virtual const char *what() const noexcept pure;
+    virtual const char *msg() const noexcept pure;
 
     /**
      * @brief Return __FILE__ information.
@@ -221,6 +222,8 @@ namespace extras {
         : extras::AbstractCustomException(msg, whereAmI._file.c_str(),
                                           whereAmI._func.c_str(),
                                           whereAmI._line) {}
+
+    virtual const char *msg() const noexcept override { return _msg.c_str(); }
 
     [[nodiscard]] const char *what() const noexcept override {
       _lastThrownException = getwhat();

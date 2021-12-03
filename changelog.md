@@ -3,8 +3,8 @@
 > The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), </br>
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.11.0 -m "Added ExtrasExceptionInterface"</br>
-> > git push origin v5.11.0
+> > git tag -a v5.11.1 -m "Added msg ... "</br>
+> > git push origin v5.11.1
 > >
 >
 > > POPULAR LINKS:
@@ -23,6 +23,10 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.11.1 (2021-12-02)
+### Improved
+- Added msg ...
 
 #### 5.11.0 (2021-12-02)
 ### Improved
@@ -617,8 +621,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.10.4..HEAD
-[5.9.4]: https://github.com/perriera/extras/compare/v5.9.2...v5.10.4
+[Unreleased]: https://github.com/perriera/extras/compare/v5.11.1..HEAD
+[5.10.4]: https://github.com/perriera/extras/compare/v5.10.4...v5.11.1
+[5.10.4]: https://github.com/perriera/extras/compare/v5.9.2...v5.10.4
 [5.9.2]: https://github.com/perriera/extras/compare/v5.9.1...v5.9.2
 [5.9.1]: https://github.com/perriera/extras/compare/v5.9.0...v5.9.1
 [5.9.0]: https://github.com/perriera/extras/compare/v5.8.0...v5.9.0
