@@ -1,16 +1,16 @@
 /**
- * @file version.hpp
- * @author Matt Williams (mattltf@protonmail.com)
- * @brief Adds version support for Cmake script
- * @version 3.2.0
- * @date 2021-08-08
+ * @file Help.hpp
+ * @author Perry Anderson (perry@exparx.com)
+ * @brief HelpInterface
+ * @version 0.1
+ * @date 2021-11-30
  *
- * @copyright (C) August 8, 2021 Matt Williams
+ * @copyright (C) November 22, 2021 EXPARX INCORPORATED
  *
  */
 
-#ifndef _EXTRA_VERSION_HPP
-#define _EXTRA_VERSION_HPP
+#ifndef _EXPARX_HELP_HPP
+#define _EXPARX_HELP_HPP
 
 /**
  * @brief the "MIT/X Consortium License", (adapted for EXPARX.COM)
@@ -30,11 +30,24 @@
  *
  */
 
-#define EXTRAS_VER_MAJOR 5
-#define EXTRAS_VER_MINOR 14
-#define EXTRAS_VER_PATCH 0
+#include <extras/exceptions.hpp>
+#include <extras/interfaces.hpp>
+#include <iostream>
 
-#define EXTRAS_VERSION \
-  (EXTRAS_VER_MAJOR * 10000 + EXTRAS_VER_MINOR * 100 + EXTRAS_VER_PATCH)
+namespace extras {
 
-#endif  // _EXTRA_VERSION_HPP
+  /**
+   * @brief HelpInterface
+   *
+   * This interface is intended for command line utilities
+   * that wish to add a help option.
+   * 
+   */
+
+  interface HelpInterface {
+    virtual void help() const pure;
+  };
+
+}  // namespace extras
+
+#endif  // _EXPARX_HELP_HPP
