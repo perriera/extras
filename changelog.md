@@ -3,8 +3,8 @@
 > The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), </br>
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
-> > git tag -a v5.16.0 -m "improved code "</br>
-> > git push origin v5.16.0
+> > git tag -a v5.17.0 -m "improved code "</br>
+> > git push origin v5.17.0
 > >
 >
 > > POPULAR LINKS:
@@ -23,6 +23,10 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.17.0 (2021-12-08)
+### Improved
+- improved code
 
 #### 5.16.0 (2021-12-08)
 ### Improved
@@ -641,7 +645,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[Unreleased]: https://github.com/perriera/extras/compare/v5.16.0..HEAD
+[Unreleased]: https://github.com/perriera/extras/compare/v5.17.0..HEAD
+[5.17.0]: https://github.com/perriera/extras/compare/v5.16.0...v5.17.0
 [5.16.0]: https://github.com/perriera/extras/compare/v5.15.0...v5.16.0
 [5.15.0]: https://github.com/perriera/extras/compare/v5.14.0...v5.15.0
 [5.14.0]: https://github.com/perriera/extras/compare/v5.13.0...v5.13.0

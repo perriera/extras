@@ -100,6 +100,8 @@ namespace extras {
 
     operator std::string() { return actualPath(_path); }
     operator const char *() { return _path.c_str(); }
+    const char *c_str() { return _path.c_str(); }
+    const std::string &str() { return _path; }
   };
 
   /**

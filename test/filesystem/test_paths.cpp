@@ -19,11 +19,13 @@
 #include <cstdint>
 #include <extras/filesystem/paths.hpp>
 #include <extras/strings.hpp>
+#include <filesystem>
 #include <fstream>
 
 #include "../vendor/catch.hpp"
 
 using namespace extras;
+namespace fs = std::filesystem;
 
 SCENARIO("Verify PathsInterface default", "[paths_support]") {
   std::string value = Paths::instance().actualPath("~/Downloads");
@@ -61,5 +63,11 @@ SCENARIO("Verify PathsInterface const char*", "[paths_support]") {
   REQUIRE(std::string(value) != "~/Downloads");
   REQUIRE(extras::contains(value, "/home/"));
   REQUIRE(!extras::contains(value, "~"));
+  // std::cout << value << std::endl;
+}
+
+SCENARIO("Verify fs::exists", "[paths_support]") {
+  Paths path("~/Downloads");
+  REQUIRE(fs::exists(path.c_str()));
   // std::cout << value << std::endl;
 }
