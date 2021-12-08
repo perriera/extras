@@ -90,7 +90,7 @@ namespace extras {
     }
 
     Paths(){};
-    Paths(const std::string &path) : _path(path){};
+    Paths(const std::string &path) : _path(path) { _path = actualPath(_path); };
 
     /**
      * @brief overloaded ~() operator to remove the ~ from the path
@@ -99,10 +99,7 @@ namespace extras {
     Paths &operator~() noexcept { return *this; }
 
     operator std::string() { return actualPath(_path); }
-    operator const char *() {
-      _path = actualPath(_path);
-      return _path.c_str();
-    }
+    operator const char *() { return _path.c_str(); }
   };
 
   /**
