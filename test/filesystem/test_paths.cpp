@@ -54,3 +54,12 @@ SCENARIO("Verify PathsInterface filename", "[paths_support]") {
   REQUIRE(!extras::contains(value, "~"));
   // std::cout << value << std::endl;
 }
+
+SCENARIO("Verify PathsInterface const char*", "[paths_support]") {
+  Paths path("~/Downloads");
+  const char* value = path;
+  REQUIRE(value != "~/Downloads");
+  REQUIRE(extras::contains(value, "/home/"));
+  REQUIRE(!extras::contains(value, "~"));
+  // std::cout << value << std::endl;
+}

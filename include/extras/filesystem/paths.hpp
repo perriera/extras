@@ -97,7 +97,12 @@ namespace extras {
      * @return the full path, (where the '~' is replaced with home path)
      */
     Paths &operator~() noexcept { return *this; }
+
     operator std::string() { return actualPath(_path); }
+    operator const char *() {
+      _path = actualPath(_path);
+      return _path.c_str();
+    }
   };
 
   /**
