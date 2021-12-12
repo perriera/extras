@@ -83,6 +83,8 @@ namespace extras {
   using Filename = std::string;
   using Filenames = std::vector<Filename>;
   using Path = std::string;
+  using Pathname = std::string;
+  using Pathnames = std::vector<Filename>;
 
 }  // namespace extras
 
