@@ -5,7 +5,7 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v5.18.1 -m "Added Pathname, Pathnames "</br>
+> > git tag -a v5.18.1 -m "Note on CPM/Shared Library debugging issue "</br>
 > > git push origin v5.18.1
 >
 > > POPULAR LINKS:
