@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v5.19.0 -m "Added replace_line & extras::filesystem "</br>
-> > git push origin v5.19.0
+> > git tag -a v5.19.1 -m "Improved replace_last() algorithm "</br>
+> > git push origin v5.19.1
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,11 +25,17 @@ IMPORTANT:
 
 ## [Unreleased]
 
+#### 5.19.1 (2021-12-16)
+
+### Added
+
+- Improved replace_last() algorithm
+
 #### 5.19.0 (2021-12-16)
 
 ### Added
 
-- Added replace_line & extras::filesystem
+- Added replace_last & extras::filesystem
 
 #### 5.18.1 (2021-12-15)
 
@@ -953,7 +959,8 @@ IMPORTANT:
 
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v5.19.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v5.19.1..HEAD
+[5.19.1]: https://github.com/perriera/extras/compare/v5.19.0...v5.19.1
 [5.19.0]: https://github.com/perriera/extras/compare/v5.18.1...v5.19.0
 [5.18.1]: https://github.com/perriera/extras/compare/v5.18.0...v5.18.1
 [5.18.0]: https://github.com/perriera/extras/compare/v5.17.0...v5.18.0

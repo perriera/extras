@@ -14,7 +14,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/run-unittests-extras",
-      "args": ["[FileSystemInterface]"],
+      "args": ["[string_support]"],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
