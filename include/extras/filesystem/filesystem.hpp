@@ -1,7 +1,7 @@
 /**
- * @file files.hpp
+ * @file filesystem.hpp
  * @author Perry Anderson (perry@exparx.com)
- * @brief DirectoryInterface, (deperacated in lue of C++11/std::filesystem)
+ * @brief extra's std::filesystem methods, (for use with std::filesystem)
  * @version 0.1
  * @date 2021-11-30
  *
@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef _EXTRA_DIRECTORY_HPP
-#define _EXTRA_DIRECTORY_HPP
+#ifndef _EXTRAS_FILESYSTEM_HPP
+#define _EXTRAS_FILESYSTEM_HPP
 
 /**
  * @brief the "MIT/X Consortium License", (adapted for EXPARX.COM)
@@ -32,44 +32,44 @@
 
 #include <extras/exceptions.hpp>
 #include <extras/language/interfaces.hpp>
+#include <extras/types.hpp>
 #include <iostream>
 #include <vector>
 
 namespace extras {
 
   /**
-   * @brief DirectoryInterface
+   * @brief FileSystemInterface
    *
    */
 
-  typedef std::string Path;
-  typedef std::vector<std::string> Listing;
-
-  interface DirectoryInterface {
-    virtual const Path &path() const pure;
-    virtual const Listing &listing() const pure;
-    virtual std::string filename() const pure;
-    virtual std::string pathname() const pure;
-    virtual bool fileExists() const pure;
+  interface FileSystemInterface {
+    virtual const Path& path() const pure;
+    virtual const Pathname& pathname() const pure;
+    virtual const Filename& filename() const pure;
+    virtual const Extension& extension() const pure;
   };
 
-  class Directory implements DirectoryInterface {
-   public:
-    Directory(const Path &path);
+  /**
+   * @brief FileSystem
+   *
+   */
 
-    virtual const Path &path() const { return _path; }
-    virtual const Listing &listing() const { return _listing; }
-    virtual std::string filename() const;
-    virtual std::string pathname() const;
-    virtual bool fileExists() const;
-    virtual void copyTo(const Directory &pathname) const;
-    virtual void remove() const;
+  class FileSystem implements FileSystemInterface {
+   public:
+    FileSystem(const Path& path);
+    virtual const Path& path() const override { return _path; };
+    virtual const Pathname& pathname() const override { return _pathname; };
+    virtual const Filename& filename() const override { return _filename; };
+    virtual const Extension& extension() const override { return _extension; };
 
    private:
     Path _path;
-    Listing _listing;
+    Pathname _pathname;
+    Filename _filename;
+    Extension _extension;
   };
 
 }  // namespace extras
 
-#endif  // _EXTRA_DIRECTORY_HPP
+#endif  // _EXTRAS_FILESYSTEM_HPP

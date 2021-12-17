@@ -515,6 +515,22 @@ namespace extras {
     }
   };
 
+  /**
+   * @brief PathNotFoundException
+   *
+   */
+  class StringContainsDelimException extends AbstractCustomException {
+    std::string _msg;
+
+   public:
+    StringContainsDelimException(const std::string &str, char delim,
+                                 const extras::WhereAmI &whereAmI)
+        : AbstractCustomException((str + ": " + delim).c_str(), whereAmI),
+          _msg(str) {}
+    virtual char const *what() const noexcept { return _msg.c_str(); }
+    static void assertion(const std::string &str, char delim,
+                          const extras::WhereAmI &ref);
+  };
 }  // namespace extras
 
 #endif  // _EXTRA_EXCEPTIONS
