@@ -87,8 +87,8 @@ namespace extras {
   std::string replace_all(std::string str, const std::string &from,
                           const std::string &to);
 
-  std::string replace_last(std::string str, const std::string &from,
-                           const std::string &to, char delim = '\r');
+  std::string replace_last(std::string str, std::string from, std::string to,
+                           char delim = '\r');
 
   inline bool ends_with(std::string const &value, std::string const &ending) {
     if (ending.size() > value.size()) return false;

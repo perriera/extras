@@ -39,7 +39,7 @@ namespace extras {
       e = parts[1];
     } else
       c = b;
-    d = extras::replace_last(a, b, "");
+    d = extras::replace_last(path, b, "");
     d = extras::replace_all(d, "//", "/");
     /////
     _path = path;

@@ -54,4 +54,8 @@ SCENARIO("Test ReplaceLast", "[string_support]") {
   auto e2 = "run-unittests-extras.exe";
   auto test7 = extras::replace_last(e, e2, "");
   REQUIRE(test7 == "build/run-unittests-extras/");
+  auto f = "build/run-unittests-extras/run-unittests-extras";
+  auto f2 = "run-unittests-extras";
+  auto test8 = extras::replace_last(f, f2, "");
+  REQUIRE(test8 == "build/run-unittests-extras/");
 }

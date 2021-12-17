@@ -16,6 +16,8 @@
  *
  */
 
+#include <string.h>
+
 #include <extras/exceptions.hpp>
 #include <extras/strings/string_support.hpp>
 
@@ -56,30 +58,41 @@ namespace extras {
     return str;
   }
 
-  std::string replace_last(std::string str, const std::string &from,
-                           const std::string &to, char delim) {
+  std::string replace_last(std::string str, std::string from, std::string to,
+                           char delim) {
     StringContainsDelimException::assertion(str, delim, __INFO__);
     if (!contains(str, from)) return str;
     if (from.size() == 0) return str;
-    std::string d;
-    d += delim;
-    auto a = replace_all(str, from, d);
-    auto parts = extras::split(a, delim);
-    if (parts.size() == 0) return str;
-    if (parts.size() == 1) return parts[0];
-    std::string reconstituted;
-    int cnt = 0;
-    auto theend = from;
-    int size = parts.size() - 1;
-    for (auto item : parts) {
-      reconstituted += item;
-      if (++cnt == size) {
-        reconstituted += to;
-        theend = "";
-      } else
-        reconstituted += theend;
+    std::string dup = str;
+    std::string fuckoff;
+    fuckoff += delim;
+    dup = replace_all(dup, from, fuckoff);
+    auto parts = split(dup, delim);
+    if (parts.size() == 1) {
+      return parts[0];
     }
-    return reconstituted;
+    if (parts.size() == 2) {
+      // lord belly smacking Jesus
+      auto dupa = str;
+      auto dupb = from;
+      reverse(dupa.begin(), dupa.end());
+      reverse(dupb.begin(), dupb.end());
+      if (strncmp(dupa.c_str(), dupb.c_str(), dupb.size()) == 0) {
+        dupa = dupa.substr(dupb.size());
+        reverse(dupa.begin(), dupa.end());
+        return dupa;
+      } else
+        return parts[0] + to + parts[1];
+    }
+    std::string rebuilt;
+    for (size_t i = 0; i < parts.size() - 2; i++) {
+      rebuilt += parts[i];
+      rebuilt += from;
+    }
+    rebuilt += parts[parts.size() - 2];
+    rebuilt += to;
+    rebuilt += parts[parts.size() - 1];
+    return rebuilt;
   }
 
   void StringContainsDelimException::assertion(const std::string &str,
