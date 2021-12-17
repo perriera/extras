@@ -27,8 +27,8 @@ namespace fs = std::filesystem;
 namespace extras {
 
   FileSystem::FileSystem(const Path& path) {
-    std::string a = path;
-    fs::path p = path;
+    std::string a = trim_copy(path);
+    fs::path p = a;
     std::string b = p.filename();
     auto parts = split(b, '.');
     std::string c;

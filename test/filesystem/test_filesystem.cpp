@@ -54,3 +54,63 @@ SCENARIO("Test FileSystem case #2", "[FileSystemInterface]") {
   REQUIRE(fs.filename() == filename);
   REQUIRE(fs.extension() == extension);
 }
+
+SCENARIO("Test FileSystem case #3", "[FileSystemInterface]") {
+  Pathname pathname = "";
+  Filename filename = "";
+  Extension extension = "";
+  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  FileSystem fs(path);
+  REQUIRE(fs.path() == path);
+  REQUIRE(fs.pathname() == pathname);
+  REQUIRE(fs.filename() == filename);
+  REQUIRE(fs.extension() == extension);
+}
+
+SCENARIO("Test FileSystem case #4", "[FileSystemInterface]") {
+  Pathname pathname = " ";
+  Filename filename = "";
+  Extension extension = "";
+  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  FileSystem fs(path);
+  REQUIRE(fs.path() == path);
+  REQUIRE(fs.pathname() == pathname);
+  REQUIRE(fs.filename() == filename);
+  REQUIRE(fs.extension() == extension);
+}
+
+SCENARIO("Test FileSystem case #5", "[FileSystemInterface]") {
+  Pathname pathname = " ";
+  Filename filename = "run-unittests-extras";
+  Extension extension = "";
+  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  FileSystem fs(path);
+  REQUIRE(fs.path() == path);
+  REQUIRE(fs.pathname() == pathname);
+  REQUIRE(fs.filename() == filename);
+  REQUIRE(fs.extension() == extension);
+}
+
+SCENARIO("Test FileSystem case #6", "[FileSystemInterface]") {
+  Pathname pathname = "";
+  Filename filename = "";
+  Extension extension = "exe";
+  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  FileSystem fs(path);
+  REQUIRE(fs.path() == path);
+  REQUIRE(fs.pathname() == pathname);
+  REQUIRE(fs.filename() == filename);
+  REQUIRE(fs.extension() == extension);
+}
+
+SCENARIO("Test FileSystem case #7", "[FileSystemInterface]") {
+  Pathname pathname = "build/run-unittests-extras/";
+  Filename filename = "";
+  Extension extension = "";
+  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  FileSystem fs(path);
+  REQUIRE(fs.path() == path);
+  REQUIRE(fs.pathname() == pathname);
+  REQUIRE(fs.filename() == filename);
+  REQUIRE(fs.extension() == extension);
+}
