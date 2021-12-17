@@ -132,6 +132,93 @@ namespace extras {
     oss << (t + 1);
     return oss.str();
   }
+
+  namespace str {
+
+    /**
+     * @brief left trim, right trim & trim
+     *
+     * @param s
+     * @return std::string
+     */
+    std::string ltrim(const std::string &s);
+    std::string rtrim(const std::string &s);
+    std::string trim(const std::string &s);
+
+    /**
+     * @brief split string
+     *
+     * @param s
+     * @param delim
+     * @return std::deque<std::string>
+     */
+    std::deque<std::string> split(const std::string &s, char delim);
+
+    /**
+     * @brief replace_all, remove_all
+     *
+     * @param s
+     * @param a
+     * @param b
+     * @return std::string
+     */
+    std::string replace_all(const std::string &s, char a, char b);
+    std::string replace_all(std::string str, const std::string &from,
+                            const std::string &to);
+    std::string remove_all(const std::string &s, char a);
+
+    /**
+     * @brief replace_last()
+     *
+     * This method replaces the last occurance of the 'from' string with the
+     * 'to' string. This method will need a character that is not in use by
+     * the original string, (in order to work).
+     *
+     * @param str
+     * @param from
+     * @param to
+     * @param delim
+     * @return std::string
+     */
+    std::string replace_last(const std::string &str, const std::string &from,
+                             const std::string &to, char delim);
+
+    /**
+     * @brief ends_with, starts_with, contains
+     *
+     * @param value
+     * @param ending
+     * @return true
+     * @return false
+     */
+    bool ends_with(std::string const &value, std::string const &ending);
+    bool starts_with(std::string const &value, std::string const &beginning);
+    bool contains(std::string const &s1, std::string const &s2);
+
+    /**
+     * @brief to_lower
+     *
+     * @param data
+     * @return std::string
+     */
+    std::string to_lower(const std::string &data);
+    std::string to_upper(const std::string &data);
+
+    /**
+     * @brief sample template
+     *
+     * @tparam T
+     * @param t
+     * @return std::string
+     */
+    template <typename T>
+    std::string plusone(T const &t) {
+      std::ostringstream oss;
+      oss << (t + 1);
+      return oss.str();
+    }
+  }  // namespace str
+
 }  // namespace extras
 
 #endif  // _EXTRA_STRING_SUPPORT_HPP

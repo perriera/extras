@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v5.20.1 -m "namespace extras::str, (for better string support) (link) "</br>
-> > git push origin v5.20.1
+> > git tag -a v5.21.0 -m "namespace extras::str, (for better string support) (link) "</br>
+> > git push origin v5.21.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -24,6 +24,12 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.21.0 (2021-12-17)
+
+### Added
+
+- Refactored string_support.hpp
 
 #### 5.20.1 (2021-12-16)
 
@@ -971,7 +977,8 @@ IMPORTANT:
 
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v5.20.1..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v5.21.0..HEAD
+[5.21.0]: https://github.com/perriera/extras/compare/v5.20.1...v5.21.0
 [5.20.1]: https://github.com/perriera/extras/compare/v5.19.1...v5.20.1
 [5.20.0]: https://github.com/perriera/extras/compare/v5.19.1...v5.20.0
 [5.19.1]: https://github.com/perriera/extras/compare/v5.19.0...v5.19.1
