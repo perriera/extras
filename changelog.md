@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v5.19.1 -m "Improved replace_last() algorithm "</br>
-> > git push origin v5.19.1
+> > git tag -a v5.20.0 -m "namespace extras::str, (for better string support) "</br>
+> > git push origin v5.20.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -24,6 +24,12 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.20.0 (2021-12-16)
+
+### Added
+
+- namespace extras::str, (for better string support)
 
 #### 5.19.1 (2021-12-16)
 

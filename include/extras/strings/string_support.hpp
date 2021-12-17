@@ -39,6 +39,7 @@
 #include <vector>
 
 namespace extras {
+
   // trim from start (in place)
   static inline void ltrim(std::string &s) {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
@@ -87,6 +88,19 @@ namespace extras {
   std::string replace_all(std::string str, const std::string &from,
                           const std::string &to);
 
+  /**
+   * @brief replace_last()
+   *
+   * This method replaces the last occurance of the 'from' string with the
+   * 'to' string. This method will need a character that is not in use by
+   * the original string, (in order to work).
+   *
+   * @param str
+   * @param from
+   * @param to
+   * @param delim
+   * @return std::string
+   */
   std::string replace_last(const std::string &str, const std::string &from,
                            const std::string &to, char delim = '\r');
 
