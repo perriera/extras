@@ -5,7 +5,7 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v5.18.1 -m "Note on CPM/Shared Library debugging issue "</br>
+> > git tag -a v5.18.1 -m "Added replace_line & extras::filesystem "</br>
 > > git push origin v5.18.1
 >
 > > POPULAR LINKS:
@@ -24,6 +24,12 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.19.0 (2021-12-16)
+
+### Added
+
+- Added replace_line & extras::filesystem
 
 #### 5.18.1 (2021-12-15)
 

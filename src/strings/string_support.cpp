@@ -16,6 +16,7 @@
  *
  */
 
+#include <extras/exceptions.hpp>
 #include <extras/strings/string_support.hpp>
 
 namespace extras {
@@ -53,6 +54,41 @@ namespace extras {
           to.length();  // Handles case where 'to' is a substring of 'from'
     }
     return str;
+  }
+
+  std::string replace_last(std::string str, const std::string &from,
+                           const std::string &to, char delim) {
+    StringContainsDelimException::assertion(str, delim, __INFO__);
+    if (!contains(str, from)) return str;
+    if (from.size() == 0) return str;
+    std::string d;
+    d += delim;
+    auto a = replace_all(str, from, d);
+    auto parts = extras::split(a, delim);
+    if (parts.size() == 0) return str;
+    if (parts.size() == 1) return parts[0];
+    std::string reconstituted;
+    int cnt = 0;
+    auto theend = from;
+    int size = parts.size() - 1;
+    for (auto item : parts) {
+      reconstituted += item;
+      if (++cnt == size) {
+        reconstituted += to;
+        theend = "";
+      } else
+        reconstituted += theend;
+    }
+    return reconstituted;
+  }
+
+  void StringContainsDelimException::assertion(const std::string &str,
+                                               char delim,
+                                               const extras::WhereAmI &ref) {
+    std::string test;
+    test += delim;
+    if (contains(str, test))
+      throw StringContainsDelimException(str, delim, ref);
   }
 
 }  // namespace extras
