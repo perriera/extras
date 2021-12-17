@@ -64,15 +64,15 @@ namespace extras {
     if (!contains(str, from)) return str;
     if (from.size() == 0) return str;
     std::string dup = str;
-    std::string fuckoff;
-    fuckoff += delim;
-    dup = replace_all(dup, from, fuckoff);
+    std::string s_delim;
+    s_delim += delim;
+    dup = replace_all(dup, from, s_delim);
     auto parts = split(dup, delim);
     if (parts.size() == 1) {
       return parts[0];
     }
     if (parts.size() == 2) {
-      // lord belly smacking Jesus
+      // sweet jesus ...
       auto dupa = str;
       auto dupb = from;
       reverse(dupa.begin(), dupa.end());
