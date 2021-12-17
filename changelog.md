@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v5.18.1 -m "Added replace_line & extras::filesystem "</br>
-> > git push origin v5.18.1
+> > git tag -a v5.19.0 -m "Added replace_line & extras::filesystem "</br>
+> > git push origin v5.19.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
