@@ -983,7 +983,8 @@ IMPORTANT:
 
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v5.21.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v5.22.0..HEAD
+[5.22.0]: https://github.com/perriera/extras/compare/v5.21.0...v5.22.0
 [5.21.0]: https://github.com/perriera/extras/compare/v5.20.1...v5.21.0
 [5.20.1]: https://github.com/perriera/extras/compare/v5.19.1...v5.20.1
 [5.20.0]: https://github.com/perriera/extras/compare/v5.19.1...v5.20.0
