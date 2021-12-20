@@ -114,3 +114,43 @@ SCENARIO("Test FileSystem case #7", "[FileSystemInterface]") {
   REQUIRE(fs.filename() == filename);
   REQUIRE(fs.extension() == extension);
 }
+
+SCENARIO("Test FileSystem prepend/append: #1", "[FileSystemInterface]") {
+  Pathname pathname = "build/run-unittests-extras/";
+  Filename filename = "src";
+  FileSystem fs(pathname);
+  REQUIRE(fs.prepend(filename) == "src/build/run-unittests-extras/");
+  REQUIRE(fs.append(filename) == "build/run-unittests-extras/src");
+}
+
+SCENARIO("Test FileSystem prepend/append: #2", "[FileSystemInterface]") {
+  Pathname pathname = "/build/run-unittests-extras/";
+  Filename filename = "/src/";
+  FileSystem fs(pathname);
+  REQUIRE(fs.prepend(filename) == "/src/build/run-unittests-extras/");
+  REQUIRE(fs.append(filename) == "/build/run-unittests-extras/src/");
+}
+
+SCENARIO("Test FileSystem prepend/append: #3", "[FileSystemInterface]") {
+  Pathname pathname = "build/run-unittests-extras";
+  Filename filename = "src";
+  FileSystem fs(pathname);
+  REQUIRE(fs.prepend(filename) == "src/build/run-unittests-extras");
+  REQUIRE(fs.append(filename) == "build/run-unittests-extras/src");
+}
+
+SCENARIO("Test FileSystem prepend/append: #4", "[FileSystemInterface]") {
+  Pathname pathname = "/build/run-unittests-extras";
+  Filename filename = "/src";
+  FileSystem fs(pathname);
+  REQUIRE(fs.prepend(filename) == "/src/build/run-unittests-extras");
+  REQUIRE(fs.append(filename) == "/build/run-unittests-extras/src");
+}
+
+SCENARIO("Test FileSystem prepend/append: #5", "[FileSystemInterface]") {
+  Pathname pathname = "build/run-unittests-extras/";
+  Filename filename = "src/";
+  FileSystem fs(pathname);
+  REQUIRE(fs.prepend(filename) == "src/build/run-unittests-extras/");
+  REQUIRE(fs.append(filename) == "build/run-unittests-extras/src/");
+}

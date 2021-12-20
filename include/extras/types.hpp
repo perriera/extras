@@ -87,6 +87,8 @@ namespace extras {
   using Pathnames = std::vector<Filename>;
   using Extension = std::string;
   using Extensions = std::vector<Extension>;
+  using Directoryname = std::string;
+  using Directorynames = std::vector<Directoryname>;
 
 }  // namespace extras
 

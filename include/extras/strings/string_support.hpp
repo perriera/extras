@@ -166,6 +166,9 @@ namespace extras {
     std::string replace_all(std::string str, const std::string &from,
                             const std::string &to);
     std::string remove_all(const std::string &s, char a);
+    inline std::string strip(const std::string &s, char a) {
+      return remove_all(s, a);
+    }
 
     /**
      * @brief replace_last()
@@ -181,7 +184,9 @@ namespace extras {
      * @return std::string
      */
     std::string replace_last(const std::string &str, const std::string &from,
-                             const std::string &to, char delim);
+                             const std::string &to, char delim = '\r');
+    std::string replace_first(const std::string &str, const std::string &from,
+                              const std::string &to, char delim = '\r');
 
     /**
      * @brief ends_with, starts_with, contains

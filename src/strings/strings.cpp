@@ -85,6 +85,19 @@ namespace extras {
       return extras::replace_last(str, from, to, delim);
     }
 
+    std::string replace_first(const std::string &str, const std::string &from,
+                              const std::string &to, char delim) {
+      auto dupa = str;
+      auto dupb = from;
+      auto dupc = to;
+      reverse(dupa.begin(), dupa.end());
+      reverse(dupb.begin(), dupb.end());
+      reverse(dupc.begin(), dupc.end());
+      auto answer = replace_last(dupa, dupb, dupc, delim);
+      reverse(answer.begin(), answer.end());
+      return answer;
+    }
+
     /**
      * @brief ends_with, starts_with, contains
      *

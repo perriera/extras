@@ -26,7 +26,7 @@ namespace fs = std::filesystem;
 
 namespace extras {
 
-  FileSystem::FileSystem(const Path& path) {
+  FileSystem::FileSystem(const Path &path) {
     std::string a = trim_copy(path);
     fs::path p = a;
     std::string b = p.filename();
@@ -46,6 +46,42 @@ namespace extras {
     _pathname = d;
     _filename = c;
     _extension = e;
+  }
+
+  /**
+   * @brief prepend/append a path to a directory name
+   *
+   * @param dir
+   * @return const Path&
+   */
+  Path FileSystem::strip_first(const Directoryname &dir) const {
+    auto dup = dir;
+    if (dup.size() > 0) {
+      if (dup[0] == '/') dup = dup.substr(1);
+    }
+    return dup;
+  }
+
+  Path FileSystem::strip_last(const Directoryname &dir) const {
+    auto dup = dir;
+    if (dup.size() > 0) {
+      if (dup[dup.size() - 1] == '/') dup = dup.substr(0, dup.size() - 1);
+    }
+    return dup;
+  }
+
+  Path FileSystem::prepend(const Directoryname &dir) const {
+    auto dup = strip_last(dir);
+    auto dup2 = strip_first(_path);
+    auto result = dup + "/" + dup2;
+    return result;
+  }
+
+  Path FileSystem::append(const Directoryname &dir) const {
+    auto dup = strip_first(dir);
+    auto dup2 = strip_last(_path);
+    auto result = dup2 + "/" + dup;
+    return result;
   }
 
 }  // namespace extras
