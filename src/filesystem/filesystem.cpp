@@ -54,7 +54,7 @@ namespace extras {
    * @param dir
    * @return const Path&
    */
-  Path FileSystem::strip_first(const Directoryname &dir) const {
+  Path FileSystem::strip_first(const Directory &dir) const {
     auto dup = dir;
     if (dup.size() > 0) {
       if (dup[0] == '/') dup = dup.substr(1);
@@ -62,7 +62,7 @@ namespace extras {
     return dup;
   }
 
-  Path FileSystem::strip_last(const Directoryname &dir) const {
+  Path FileSystem::strip_last(const Directory &dir) const {
     auto dup = dir;
     if (dup.size() > 0) {
       if (dup[dup.size() - 1] == '/') dup = dup.substr(0, dup.size() - 1);
@@ -70,14 +70,14 @@ namespace extras {
     return dup;
   }
 
-  Path FileSystem::prepend(const Directoryname &dir) const {
+  Path FileSystem::prepend(const Directory &dir) const {
     auto dup = strip_last(dir);
     auto dup2 = strip_first(_path);
     auto result = dup + "/" + dup2;
     return result;
   }
 
-  Path FileSystem::append(const Directoryname &dir) const {
+  Path FileSystem::append(const Directory &dir) const {
     auto dup = strip_first(dir);
     auto dup2 = strip_last(_path);
     auto result = dup2 + "/" + dup;

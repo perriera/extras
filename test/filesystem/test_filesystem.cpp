@@ -154,3 +154,12 @@ SCENARIO("Test FileSystem prepend/append: #5", "[FileSystemInterface]") {
   REQUIRE(fs.prepend(filename) == "src/build/run-unittests-extras/");
   REQUIRE(fs.append(filename) == "build/run-unittests-extras/src/");
 }
+
+SCENARIO("Test FileSystem prepend/append: #6", "[FileSystemInterface]") {
+  Pathname pathname = "build/run-unittests-extras/runtasks.exe";
+  Filename filename = "src/";
+  FileSystem fs1(filename);
+  Path x = FileSystem(pathname).append(fs1.path());
+  REQUIRE(x == "build/run-unittests-extras/runtasks.exe/src/");
+  // REQUIRE(fs2.append(filename) == "build/run-unittests-extras/src/");
+}

@@ -48,8 +48,8 @@ namespace extras {
     virtual const Pathname& pathname() const pure;
     virtual const Filename& filename() const pure;
     virtual const Extension& extension() const pure;
-    virtual Path prepend(const Directoryname& dir) const pure;
-    virtual Path append(const Directoryname& dir) const pure;
+    virtual Path prepend(const Directory& dir) const pure;
+    virtual Path append(const Directory& dir) const pure;
   };
 
   /**
@@ -58,8 +58,8 @@ namespace extras {
    */
 
   class FileSystem implements FileSystemInterface {
-    Path strip_first(const Directoryname& dir) const;
-    Path strip_last(const Directoryname& dir) const;
+    Path strip_first(const Directory& dir) const;
+    Path strip_last(const Directory& dir) const;
 
    public:
     FileSystem(const Path& path);
@@ -67,8 +67,8 @@ namespace extras {
     virtual const Pathname& pathname() const override { return _pathname; };
     virtual const Filename& filename() const override { return _filename; };
     virtual const Extension& extension() const override { return _extension; };
-    virtual Path prepend(const Directoryname& dir) const override;
-    virtual Path append(const Directoryname& dir) const override;
+    virtual Path prepend(const Directory& dir) const override;
+    virtual Path append(const Directory& dir) const override;
 
    private:
     Path _path;
