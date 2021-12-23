@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v5.22.2 -m "Fixed Directory, DirectoryListing"</br>
-> > git push origin v5.22.2
+> > git tag -a v5.23.0 -m "Added justthefilename(), justtheextension()"</br>
+> > git push origin v5.23.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,11 +25,15 @@ IMPORTANT:
 
 ## [Unreleased]
 
-#### 5.22.2 (2021-12-23)
+#### 5.23.0 (2021-12-23)
 
-### Fixed
+### Added
 
-- Directory, DirectoryListing, (removed header)
+- justthefilename(), justtheextension()
+
+### Changed
+
+- filename()
 
 #### 5.22.1 (2021-12-23)
 
@@ -995,7 +999,8 @@ IMPORTANT:
 
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v5.22.2..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v5.23.0..HEAD
+[5.23.0]: https://github.com/perriera/extras/compare/v5.22.2...v5.23.0
 [5.22.2]: https://github.com/perriera/extras/compare/v5.22.1...v5.22.2
 [5.22.1]: https://github.com/perriera/extras/compare/v5.22.0...v5.22.1
 [5.22.0]: https://github.com/perriera/extras/compare/v5.21.0...v5.22.0

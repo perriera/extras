@@ -44,8 +44,9 @@ namespace extras {
     /////
     _path = path;
     _pathname = d;
-    _filename = c;
-    _extension = e;
+    _justthefilename = c;
+    _justtheextension = e;
+    _filename = b;
   }
 
   /**

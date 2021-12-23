@@ -35,84 +35,98 @@ SCENARIO("Test FileSystem case #1", "[FileSystemInterface]") {
   Pathname pathname = "build/run-unittests-extras/";
   Filename filename = "run-unittests-extras";
   Extension extension = "exe";
-  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  Filename realFilename = filename + (extension != "" ? "." : "") + extension;
+  Path path = pathname + realFilename;
   FileSystem fs(path);
   REQUIRE(fs.path() == path);
   REQUIRE(fs.pathname() == pathname);
-  REQUIRE(fs.filename() == filename);
-  REQUIRE(fs.extension() == extension);
+  REQUIRE(fs.justthefilename() == filename);
+  REQUIRE(fs.justtheextension() == extension);
+  REQUIRE(fs.filename() == realFilename);
 }
 
 SCENARIO("Test FileSystem case #2", "[FileSystemInterface]") {
   Pathname pathname = "build/run-unittests-extras/";
   Filename filename = "run-unittests-extras";
   Extension extension = "";
-  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  Filename realFilename = filename + (extension != "" ? "." : "") + extension;
+  Path path = pathname + realFilename;
   FileSystem fs(path);
   REQUIRE(fs.path() == path);
   REQUIRE(fs.pathname() == pathname);
-  REQUIRE(fs.filename() == filename);
-  REQUIRE(fs.extension() == extension);
+  REQUIRE(fs.justthefilename() == filename);
+  REQUIRE(fs.justtheextension() == extension);
+  REQUIRE(fs.filename() == realFilename);
 }
 
 SCENARIO("Test FileSystem case #3", "[FileSystemInterface]") {
   Pathname pathname = "";
   Filename filename = "";
   Extension extension = "";
-  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  Filename realFilename = filename + (extension != "" ? "." : "") + extension;
+  Path path = pathname + realFilename;
   FileSystem fs(path);
   REQUIRE(fs.path() == path);
   REQUIRE(fs.pathname() == pathname);
-  REQUIRE(fs.filename() == filename);
-  REQUIRE(fs.extension() == extension);
+  REQUIRE(fs.justthefilename() == filename);
+  REQUIRE(fs.justtheextension() == extension);
+  REQUIRE(fs.filename() == realFilename);
 }
 
 SCENARIO("Test FileSystem case #4", "[FileSystemInterface]") {
   Pathname pathname = " ";
   Filename filename = "";
   Extension extension = "";
-  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  Filename realFilename = filename + (extension != "" ? "." : "") + extension;
+  Path path = pathname + realFilename;
   FileSystem fs(path);
   REQUIRE(fs.path() == path);
   REQUIRE(fs.pathname() == pathname);
-  REQUIRE(fs.filename() == filename);
-  REQUIRE(fs.extension() == extension);
+  REQUIRE(fs.justthefilename() == filename);
+  REQUIRE(fs.justtheextension() == extension);
+  REQUIRE(fs.filename() == realFilename);
 }
 
 SCENARIO("Test FileSystem case #5", "[FileSystemInterface]") {
   Pathname pathname = " ";
   Filename filename = "run-unittests-extras";
   Extension extension = "";
-  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  Filename realFilename = filename + (extension != "" ? "." : "") + extension;
+  Path path = pathname + realFilename;
   FileSystem fs(path);
   REQUIRE(fs.path() == path);
   REQUIRE(fs.pathname() == pathname);
-  REQUIRE(fs.filename() == filename);
-  REQUIRE(fs.extension() == extension);
+  REQUIRE(fs.justthefilename() == filename);
+  REQUIRE(fs.justtheextension() == extension);
+  REQUIRE(fs.filename() == realFilename);
 }
 
 SCENARIO("Test FileSystem case #6", "[FileSystemInterface]") {
   Pathname pathname = "";
   Filename filename = "";
   Extension extension = "exe";
-  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  Filename realFilename = filename + (extension != "" ? "." : "") + extension;
+  Path path = pathname + realFilename;
   FileSystem fs(path);
   REQUIRE(fs.path() == path);
   REQUIRE(fs.pathname() == pathname);
-  REQUIRE(fs.filename() == filename);
-  REQUIRE(fs.extension() == extension);
+  REQUIRE(fs.justthefilename() == filename);
+  REQUIRE(fs.justtheextension() == extension);
+  REQUIRE(fs.filename() == realFilename);
 }
 
 SCENARIO("Test FileSystem case #7", "[FileSystemInterface]") {
   Pathname pathname = "build/run-unittests-extras/";
   Filename filename = "";
   Extension extension = "";
-  Path path = pathname + filename + (extension != "" ? "." : "") + extension;
+  Filename realFilename = filename + (extension != "" ? "." : "") + extension;
+  Path path = pathname + realFilename;
   FileSystem fs(path);
   REQUIRE(fs.path() == path);
   REQUIRE(fs.pathname() == pathname);
-  REQUIRE(fs.filename() == filename);
-  REQUIRE(fs.extension() == extension);
+  REQUIRE(fs.justthefilename() == filename);
+  REQUIRE(fs.justtheextension() == extension);
+  REQUIRE(fs.filename() == realFilename);
 }
 
 SCENARIO("Test FileSystem prepend/append: #1", "[FileSystemInterface]") {
