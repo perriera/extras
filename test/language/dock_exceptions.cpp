@@ -21,6 +21,7 @@
 
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
+#include "extras/docking/DockIt.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
@@ -46,7 +47,7 @@ using namespace fakeit;
 
 SCENARIO("Mock ExtrasExceptionInterface: what", "[exceptions_mock]") {
   auto correct_answer = "some error message";
-  Mock<ExtrasExceptionInterface> mock;
+  Dock<ExtrasExceptionInterface> mock;
   When(Method(mock, what)).Return(correct_answer);
 
   ExtrasExceptionInterface &i = mock.get();
@@ -56,7 +57,7 @@ SCENARIO("Mock ExtrasExceptionInterface: what", "[exceptions_mock]") {
 
 SCENARIO("Mock ExtrasExceptionInterface: getfile", "[exceptions_mock]") {
   auto correct_answer = __FILE__;
-  Mock<ExtrasExceptionInterface> mock;
+  Dock<ExtrasExceptionInterface> mock;
   When(Method(mock, getfile)).Return(correct_answer);
 
   ExtrasExceptionInterface &i = mock.get();
@@ -66,7 +67,7 @@ SCENARIO("Mock ExtrasExceptionInterface: getfile", "[exceptions_mock]") {
 
 SCENARIO("Mock ExtrasExceptionInterface: getfunc", "[exceptions_mock]") {
   auto correct_answer = __func__;
-  Mock<ExtrasExceptionInterface> mock;
+  Dock<ExtrasExceptionInterface> mock;
   When(Method(mock, getfunc)).Return(correct_answer);
 
   ExtrasExceptionInterface &i = mock.get();
@@ -76,7 +77,7 @@ SCENARIO("Mock ExtrasExceptionInterface: getfunc", "[exceptions_mock]") {
 
 SCENARIO("Mock ExtrasExceptionInterface: getline", "[exceptions_mock]") {
   auto correct_answer = __LINE__;
-  Mock<ExtrasExceptionInterface> mock;
+  Dock<ExtrasExceptionInterface> mock;
   When(Method(mock, getline)).Return(correct_answer);
 
   ExtrasExceptionInterface &i = mock.get();

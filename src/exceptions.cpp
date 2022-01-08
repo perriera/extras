@@ -24,8 +24,18 @@
 
 namespace extras {
 
+  /**
+   * @brief _lastThrownException
+   *
+   */
   std::string AbstractCustomException::_lastThrownException;
 
+  /**
+   * @brief removeEscape()
+   *
+   * @param before
+   * @return std::string
+   */
   static std::string removeEscape(const std::string &before) {
     if (before.size() == 0) return before;
     std::string after;
@@ -40,6 +50,12 @@ namespace extras {
     return after;
   }
 
+  /**
+   * @brief longestLine()
+   *
+   * @param before
+   * @return int
+   */
   static int longestLine(const std::string &before) {
     long unsigned int longestLine = 0;
     auto parts = extras::split(before, '\n');
@@ -50,6 +66,12 @@ namespace extras {
     return (int)longestLine;
   }
 
+  /**
+   * @brief reformatted()
+   *
+   * @param before
+   * @return std::string
+   */
   static std::string reformatted(const std::string &before) {
     int size = longestLine(before);
     std::stringstream ss;
@@ -64,6 +86,13 @@ namespace extras {
     return after;
   }
 
+  /**
+   * @brief ExtrasExceptionInterface ostream
+   *
+   * @param os
+   * @param dt
+   * @return std::ostream&
+   */
   std::ostream &operator<<(std::ostream &os,
                            const ExtrasExceptionInterface &dt) {
     std::stringstream ss;
@@ -85,6 +114,49 @@ namespace extras {
     ss << div1 << std::endl;
     os << reformatted(ss.str());
     return os;
+  }
+
+  /**
+   * @brief NotEnoughParametersException
+   *
+   * @param argc
+   * @param minimum
+   * @param ref
+   */
+  void NotEnoughParametersException::assertion(int argc, int minimum,
+                                               const extras::WhereAmI &ref) {
+    if (argc < minimum) {
+      std::string msg;
+      msg += argc;
+      msg += " given, ";
+      msg += minimum;
+      msg += " expected, (at least) ";
+      throw NotEnoughParametersException(msg, ref);
+    }
+  }
+
+  /**
+   * @brief HelpParameterException
+   *
+   * @param argc
+   * @param argv
+   * @param ref
+   */
+  void HelpParameterException::assertion(int argc, char const *argv[],
+                                         const extras::WhereAmI &ref) {
+    if (argc < 2) return;
+    std::string helpParm;
+    helpParm += argv[1];
+    helpParm = extras::str::to_lower(helpParm);
+    if (extras::str::starts_with(helpParm, "-help")) {
+      throw HelpParameterException(helpParm, ref);
+    }
+  }
+
+  void HelpParameterException::getHelp(const Filename &howto_filename) {
+    FileNotFoundException::assertion(howto_filename, __INFO__);
+    std::string cmd = "cat " + howto_filename + " | less ";
+    SystemException::assertion(cmd.c_str(), __INFO__);
   }
 
 }  // namespace extras

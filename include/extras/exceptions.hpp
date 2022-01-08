@@ -531,6 +531,32 @@ namespace extras {
     static void assertion(const std::string &str, char delim,
                           const extras::WhereAmI &ref);
   };
+
+  /**
+   * @brief NotEnoughParametersException
+   *
+   */
+  concrete class NotEnoughParametersException extends AbstractCustomException {
+   public:
+    NotEnoughParametersException(std::string msg,
+                                 const extras::WhereAmI &whereAmI)
+        : AbstractCustomException(msg.c_str(), whereAmI) {}
+    static void assertion(int argc, int minimum, const extras::WhereAmI &ref);
+  };
+
+  /**
+   * @brief NotEnoughParametersException
+   *
+   */
+  concrete class HelpParameterException extends AbstractCustomException {
+   public:
+    HelpParameterException(std::string msg, const extras::WhereAmI &whereAmI)
+        : AbstractCustomException(msg.c_str(), whereAmI) {}
+    static void assertion(int argc, char const *argv[],
+                          const extras::WhereAmI &ref);
+    void getHelp(const Filename &howto_filename);
+  };
+
 }  // namespace extras
 
 #endif  // _EXTRA_EXCEPTIONS

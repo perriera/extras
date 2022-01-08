@@ -21,6 +21,7 @@
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
 #include "extras/crcs/octal_support.hpp"
+#include "extras/docking/DockIt.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
@@ -59,7 +60,7 @@ using namespace fakeit;
  */
 SCENARIO("Mock OctalInterface: toOctal", "[octal_support]") {
   auto correct_answer = 0;
-  Mock<OctalInterface> mock;
+  Dock<OctalInterface> mock;
   When(Method(mock, toOctal)).Return(correct_answer);
 
   OctalInterface &i = mock.get();
@@ -68,7 +69,7 @@ SCENARIO("Mock OctalInterface: toOctal", "[octal_support]") {
 }
 
 SCENARIO("Mock OctalInterface: fromOctal", "[octal_support]") {
-  Mock<OctalInterface> mock;
+  Dock<OctalInterface> mock;
   When(Method(mock, fromOctal)).Return();
 
   OctalInterface &i = mock.get();
@@ -89,7 +90,7 @@ SCENARIO("Mock OctalInterface", "[octal_support]") {
    */
   char _col = -1;
   char _row = -1;
-  Mock<OctalInterface> mock;
+  Dock<OctalInterface> mock;
   When(Method(mock, toOctal)).AlwaysDo([&_col, &_row]() {
     int octCol = _col - 'a';
     int octRow = _row - '1';

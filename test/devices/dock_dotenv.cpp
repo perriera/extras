@@ -21,6 +21,7 @@
 
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
+#include "extras/docking/DockIt.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
@@ -35,7 +36,7 @@ using namespace fakeit;
  */
 SCENARIO("Mock DotENVLineInterface: key", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableKey();
-  Mock<DotENVLineInterface> mock;
+  Dock<DotENVLineInterface> mock;
   When(Method(mock, key)).Return(correct_answer);
 
   DotENVLineInterface &i = mock.get();
@@ -49,7 +50,7 @@ SCENARIO("Mock DotENVLineInterface: key", "[mock_dotenv]") {
  */
 SCENARIO("Mock DotENVLineInterface: value", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableValue();
-  Mock<DotENVLineInterface> mock;
+  Dock<DotENVLineInterface> mock;
   When(Method(mock, value)).Return(correct_answer);
 
   DotENVLineInterface &i = mock.get();
@@ -63,7 +64,7 @@ SCENARIO("Mock DotENVLineInterface: value", "[mock_dotenv]") {
  */
 SCENARIO("Mock DotENVInterface: map", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableMap();
-  Mock<DotENVInterface> mock;
+  Dock<DotENVInterface> mock;
   When(Method(mock, map)).Return(correct_answer);
 
   DotENVInterface &i = mock.get();
@@ -72,7 +73,7 @@ SCENARIO("Mock DotENVInterface: map", "[mock_dotenv]") {
 }
 
 SCENARIO("Mock DotENVInterface: put", "[mock_dotenv]") {
-  Mock<DotENVInterface> mock;
+  Dock<DotENVInterface> mock;
   When(Method(mock, put)).Return();
 
   DotENVInterface &i = mock.get();
@@ -92,7 +93,7 @@ SCENARIO("Mock DotENVInterface: contains", "[mock_dotenv]") {
    *
    */
   EnvironmentVariableMap correct_answer = EnvironmentVariableMap();
-  Mock<DotENVInterface> mock;
+  Dock<DotENVInterface> mock;
   When(Method(mock, put))
       .AlwaysDo([&correct_answer](const DotENVLineInterface &entry) {
         correct_answer[entry.key()] = entry.value();

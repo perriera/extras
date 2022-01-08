@@ -26,6 +26,7 @@
 
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
+#include "extras/docking/DockIt.hpp"
 
 struct SomeInterface {
   virtual int foo(int) = 0;
@@ -40,7 +41,7 @@ using namespace std;
 using namespace fakeit;
 
 SCENARIO("Verify FakeIt: Stubbing", "[FakeIt]") {
-  Mock<SomeInterface> mock;
+  Dock<SomeInterface> mock;
   // Stub a method to return a value once
   When(Method(mock, foo)).Return(1);
 
@@ -61,7 +62,7 @@ SCENARIO("Verify FakeIt: Stubbing", "[FakeIt]") {
 }
 
 SCENARIO("Verify FakeIt: more specific", "[FakeIt]") {
-  Mock<SomeInterface> mock;
+  Dock<SomeInterface> mock;
   // Stub foo(1) to return the value '100' once (The next two lines do the same)
   When(Method(mock, foo).Using(1)).Return(100);
   When(Method(mock, foo)(1)).Return(100);
@@ -78,7 +79,7 @@ SCENARIO("Verify FakeIt: more specific", "[FakeIt]") {
 }
 
 SCENARIO("Verify FakeIt: exceptions", "[FakeIt]") {
-  Mock<SomeInterface> mock;
+  Dock<SomeInterface> mock;
   // Stub foo(1) to return the value '100' once (The next two lines do the same)
   // Throw once
   When(Method(mock, foo)).Throw(exception());

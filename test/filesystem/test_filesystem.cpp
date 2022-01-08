@@ -177,3 +177,27 @@ SCENARIO("Test FileSystem prepend/append: #6", "[FileSystemInterface]") {
   REQUIRE(x == "build/run-unittests-extras/runtasks.exe/src/");
   // REQUIRE(fs2.append(filename) == "build/run-unittests-extras/src/");
 }
+
+SCENARIO("Test FileSystem prepend/append: test this", "[FileSystemInterface]") {
+  // "vendor 137.184.218.130 9002 data/src.zip data/exparx.webflow.zip"
+  // "vendor 137.184.218.130 9002 /tmp/extras_rsi_PTduD4/src
+  // /tmp/extras_rsi_PTduD4/exparx.webflow.zip "
+
+  Pathname requestType =
+      "vendor 137.184.218.130 9002 data/src.zip data/exparx.webflow.zip";
+
+  Filename correct_answer =
+      "vendor 137.184.218.130 9002 /tmp/extras_rsi_PTduD4/src.zip "
+      "/tmp/extras_rsi_PTduD4/exparx.webflow.zip ";
+
+  auto parts = extras::str::split(requestType, ' ');
+  std::string sessionType;
+  std::string directory = "/tmp/extras_rsi_PTduD4/";
+  for (auto i = 0; i < 3; i++) sessionType += parts[i] + " ";
+  for (size_t i = 3; i < parts.size(); i++) {
+    auto fn1 = extras::FileSystem(parts[i]).filename();
+    auto fn2 = extras::FileSystem(directory).append(fn1);
+    sessionType += fn2 + " ";
+  }
+  REQUIRE(sessionType == correct_answer);
+}

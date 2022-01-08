@@ -1,4 +1,18 @@
 /**
+ * @file DockIt.hpp
+ * @author Perry Anderson (perry@exparx.com)
+ * @brief DockIt, (politically correct _ocking framework)
+ * @version 0.1
+ * @date 2021-11-30
+ *
+ * @copyright (C) November 22, 2021 EXPARX INCORPORATED
+ *
+ */
+
+#ifndef _EXTRA_DOCKIT_HPP
+#define _EXTRA_DOCKIT_HPP
+
+/**
  * @brief the "MIT/X Consortium License", (adapted for EXPARX.COM)
  *
  * Copyright (C) November 22, 2021 EXPARX INCORPORATED
@@ -16,29 +30,6 @@
  *
  */
 
-#include <iostream>
+#define Dock Mock
 
-#include "../vendor/catch.hpp"
-#include "../vendor/fakeit.hpp"
-#include "extras/filesystem/paths.hpp"
-
-//
-// https://github.com/eranpeer/FakeIt/wiki/Quickstart
-//
-
-using namespace extras;
-using namespace fakeit;
-
-/**
- * @brief Mock FakeIt AlwaysDo demonstration
- *
- */
-SCENARIO("Mock PathsInterface: toOctal", "[paths_support]") {
-  auto correct_answer = "/home/perry/Downloads";
-  Mock<PathsInterface> mock;
-  When(Method(mock, actualPath)).Return(correct_answer);
-
-  PathsInterface &i = mock.get();
-  REQUIRE(i.actualPath("~/Downloads") == correct_answer);
-  Verify(Method(mock, actualPath));
-}
+#endif  // _EXTRA_KEYWORDS_HPP
