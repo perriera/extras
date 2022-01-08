@@ -5,7 +5,7 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v5.24.0 -m "Added justthefilename(), justtheextension()"</br>
+> > git tag -a v5.24.0 -m "Added DockIt.hpp"</br>
 > > git push origin v5.24.0
 >
 > > POPULAR LINKS:
