@@ -47,42 +47,42 @@ using namespace fakeit;
 
 SCENARIO("Mock ExtrasExceptionInterface: what", "[exceptions_mock]") {
   auto correct_answer = "some error message";
-  Dock<ExtrasExceptionInterface> mock;
-  When(Method(mock, what)).Return(correct_answer);
+  Dock<ExtrasExceptionInterface> dock;
+  When(Method(dock, what)).Return(correct_answer);
 
-  ExtrasExceptionInterface &i = mock.get();
+  ExtrasExceptionInterface &i = dock.get();
   REQUIRE(i.what() == correct_answer);
-  Verify(Method(mock, what));
+  Verify(Method(dock, what));
 }
 
 SCENARIO("Mock ExtrasExceptionInterface: getfile", "[exceptions_mock]") {
   auto correct_answer = __FILE__;
-  Dock<ExtrasExceptionInterface> mock;
-  When(Method(mock, getfile)).Return(correct_answer);
+  Dock<ExtrasExceptionInterface> dock;
+  When(Method(dock, getfile)).Return(correct_answer);
 
-  ExtrasExceptionInterface &i = mock.get();
+  ExtrasExceptionInterface &i = dock.get();
   REQUIRE(i.getfile() == correct_answer);
-  Verify(Method(mock, getfile));
+  Verify(Method(dock, getfile));
 }
 
 SCENARIO("Mock ExtrasExceptionInterface: getfunc", "[exceptions_mock]") {
   auto correct_answer = __func__;
-  Dock<ExtrasExceptionInterface> mock;
-  When(Method(mock, getfunc)).Return(correct_answer);
+  Dock<ExtrasExceptionInterface> dock;
+  When(Method(dock, getfunc)).Return(correct_answer);
 
-  ExtrasExceptionInterface &i = mock.get();
+  ExtrasExceptionInterface &i = dock.get();
   REQUIRE(i.getfunc() == correct_answer);
-  Verify(Method(mock, getfunc));
+  Verify(Method(dock, getfunc));
 }
 
 SCENARIO("Mock ExtrasExceptionInterface: getline", "[exceptions_mock]") {
   auto correct_answer = __LINE__;
-  Dock<ExtrasExceptionInterface> mock;
-  When(Method(mock, getline)).Return(correct_answer);
+  Dock<ExtrasExceptionInterface> dock;
+  When(Method(dock, getline)).Return(correct_answer);
 
-  ExtrasExceptionInterface &i = mock.get();
+  ExtrasExceptionInterface &i = dock.get();
   REQUIRE(i.getline() == correct_answer);
-  Verify(Method(mock, getline));
+  Verify(Method(dock, getline));
 }
 
 SCENARIO("Mock ExtrasExceptionInterface: streams", "[exceptions_mock]") {

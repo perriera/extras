@@ -60,22 +60,22 @@ using namespace fakeit;
  */
 SCENARIO("Mock OctalInterface: toOctal", "[octal_support]") {
   auto correct_answer = 0;
-  Dock<OctalInterface> mock;
-  When(Method(mock, toOctal)).Return(correct_answer);
+  Dock<OctalInterface> dock;
+  When(Method(dock, toOctal)).Return(correct_answer);
 
-  OctalInterface &i = mock.get();
+  OctalInterface &i = dock.get();
   REQUIRE(i.toOctal() == correct_answer);
-  Verify(Method(mock, toOctal));
+  Verify(Method(dock, toOctal));
 }
 
 SCENARIO("Mock OctalInterface: fromOctal", "[octal_support]") {
-  Dock<OctalInterface> mock;
-  When(Method(mock, fromOctal)).Return();
+  Dock<OctalInterface> dock;
+  When(Method(dock, fromOctal)).Return();
 
-  OctalInterface &i = mock.get();
+  OctalInterface &i = dock.get();
   auto param = 0;
   i.fromOctal(param);
-  Verify(Method(mock, fromOctal));
+  Verify(Method(dock, fromOctal));
 }
 
 SCENARIO("Mock OctalInterface", "[octal_support]") {
@@ -90,20 +90,20 @@ SCENARIO("Mock OctalInterface", "[octal_support]") {
    */
   char _col = -1;
   char _row = -1;
-  Dock<OctalInterface> mock;
-  When(Method(mock, toOctal)).AlwaysDo([&_col, &_row]() {
+  Dock<OctalInterface> dock;
+  When(Method(dock, toOctal)).AlwaysDo([&_col, &_row]() {
     int octCol = _col - 'a';
     int octRow = _row - '1';
     int value = octCol * 10 + octRow;
     return value;
   });
-  When(Method(mock, fromOctal)).AlwaysDo([&_col, &_row](int &octal) {
+  When(Method(dock, fromOctal)).AlwaysDo([&_col, &_row](int &octal) {
     int upper = octal / 10;
     int lower = octal % 10;
     _col = upper + 'a';
     _row = lower + '1';
   });
-  OctalInterface &i = mock.get();
+  OctalInterface &i = dock.get();
 
   /**
    * @brief Test a value of a1 in octal
@@ -127,6 +127,6 @@ SCENARIO("Mock OctalInterface", "[octal_support]") {
    * @brief Make sure all methods were called
    *
    */
-  Verify(Method(mock, fromOctal));
-  Verify(Method(mock, toOctal));
+  Verify(Method(dock, fromOctal));
+  Verify(Method(dock, toOctal));
 }

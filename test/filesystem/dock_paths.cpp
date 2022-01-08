@@ -37,10 +37,10 @@ using namespace fakeit;
  */
 SCENARIO("Mock PathsInterface: toOctal", "[paths_support]") {
   auto correct_answer = "/home/perry/Downloads";
-  Dock<PathsInterface> mock;
-  When(Method(mock, actualPath)).Return(correct_answer);
+  Dock<PathsInterface> dock;
+  When(Method(dock, actualPath)).Return(correct_answer);
 
-  PathsInterface &i = mock.get();
+  PathsInterface &i = dock.get();
   REQUIRE(i.actualPath("~/Downloads") == correct_answer);
-  Verify(Method(mock, actualPath));
+  Verify(Method(dock, actualPath));
 }

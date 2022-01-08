@@ -30,6 +30,16 @@
  *
  */
 
+/**
+ * @brief Dock, (instead of Mock)
+ *
+ * It makes more sense to consider creating software in terms of
+ * a dock yard, (where great sailing vessels are pieced together)
+ * than the word 'Mock'. This appears to be easier on the mind as
+ * 'docking software' and 'writing docks for software' sounds so much
+ * more constructive than 'mocking software' or 'writing mocks'.
+ *
+ */
 #define Dock Mock
 
 #endif  // _EXTRA_KEYWORDS_HPP

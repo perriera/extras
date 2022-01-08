@@ -41,52 +41,52 @@ using namespace std;
 using namespace fakeit;
 
 SCENARIO("Verify FakeIt: Stubbing", "[FakeIt]") {
-  Dock<SomeInterface> mock;
+  Dock<SomeInterface> dock;
   // Stub a method to return a value once
-  When(Method(mock, foo)).Return(1);
+  When(Method(dock, foo)).Return(1);
 
   // Stub multiple return values (The next two lines do exactly the same)
-  When(Method(mock, foo)).Return(1, 2, 3);
-  When(Method(mock, foo)).Return(1).Return(2).Return(3);
+  When(Method(dock, foo)).Return(1, 2, 3);
+  When(Method(dock, foo)).Return(1).Return(2).Return(3);
 
   // Return the same value many times (56 in this example)
-  When(Method(mock, foo)).Return(56_Times(1));
+  When(Method(dock, foo)).Return(56_Times(1));
 
   // Return many values many times (First 100 calls will return 1, next 200
   // calls will return 2)
-  When(Method(mock, foo)).Return(100_Times(1), 200_Times(2));
+  When(Method(dock, foo)).Return(100_Times(1), 200_Times(2));
 
   // Always return a value (The next two lines do exactly the same)
-  When(Method(mock, foo)).AlwaysReturn(1);
-  Method(mock, foo) = 1;
+  When(Method(dock, foo)).AlwaysReturn(1);
+  Method(dock, foo) = 1;
 }
 
 SCENARIO("Verify FakeIt: more specific", "[FakeIt]") {
-  Dock<SomeInterface> mock;
+  Dock<SomeInterface> dock;
   // Stub foo(1) to return the value '100' once (The next two lines do the same)
-  When(Method(mock, foo).Using(1)).Return(100);
-  When(Method(mock, foo)(1)).Return(100);
+  When(Method(dock, foo).Using(1)).Return(100);
+  When(Method(dock, foo)(1)).Return(100);
 
   // Stub 'foo(1)' to always return '100'. For all other calls always return 0.
-  When(Method(mock, foo))
+  When(Method(dock, foo))
       .AlwaysReturn(0);  // Any invocation of foo will return 0
-  When(Method(mock, foo).Using(1))
+  When(Method(dock, foo).Using(1))
       .AlwaysReturn(100);  // override only for 'foo(1)'
 
   // The next two lines do exactly the same
-  When(Method(mock, foo).Using(1)).AlwaysReturn(0);
-  Method(mock, foo).Using(1) = 0;
+  When(Method(dock, foo).Using(1)).AlwaysReturn(0);
+  Method(dock, foo).Using(1) = 0;
 }
 
 SCENARIO("Verify FakeIt: exceptions", "[FakeIt]") {
-  Dock<SomeInterface> mock;
+  Dock<SomeInterface> dock;
   // Stub foo(1) to return the value '100' once (The next two lines do the same)
   // Throw once
-  When(Method(mock, foo)).Throw(exception());
+  When(Method(dock, foo)).Throw(exception());
   // Throw several times
-  When(Method(mock, foo)).Throw(exception(), exception());
+  When(Method(dock, foo)).Throw(exception(), exception());
   // Throw many times
-  When(Method(mock, foo)).Throw(23_Times(exception()));
+  When(Method(dock, foo)).Throw(23_Times(exception()));
   // Always throw
-  When(Method(mock, foo)).AlwaysThrow(exception());
+  When(Method(dock, foo)).AlwaysThrow(exception());
 }

@@ -36,12 +36,12 @@ using namespace fakeit;
  */
 SCENARIO("Mock DotENVLineInterface: key", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableKey();
-  Dock<DotENVLineInterface> mock;
-  When(Method(mock, key)).Return(correct_answer);
+  Dock<DotENVLineInterface> dock;
+  When(Method(dock, key)).Return(correct_answer);
 
-  DotENVLineInterface &i = mock.get();
+  DotENVLineInterface &i = dock.get();
   REQUIRE(i.key() == correct_answer);
-  Verify(Method(mock, key));
+  Verify(Method(dock, key));
 }
 
 /**
@@ -50,12 +50,12 @@ SCENARIO("Mock DotENVLineInterface: key", "[mock_dotenv]") {
  */
 SCENARIO("Mock DotENVLineInterface: value", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableValue();
-  Dock<DotENVLineInterface> mock;
-  When(Method(mock, value)).Return(correct_answer);
+  Dock<DotENVLineInterface> dock;
+  When(Method(dock, value)).Return(correct_answer);
 
-  DotENVLineInterface &i = mock.get();
+  DotENVLineInterface &i = dock.get();
   REQUIRE(i.value() == correct_answer);
-  Verify(Method(mock, value));
+  Verify(Method(dock, value));
 }
 
 /**
@@ -64,24 +64,24 @@ SCENARIO("Mock DotENVLineInterface: value", "[mock_dotenv]") {
  */
 SCENARIO("Mock DotENVInterface: map", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableMap();
-  Dock<DotENVInterface> mock;
-  When(Method(mock, map)).Return(correct_answer);
+  Dock<DotENVInterface> dock;
+  When(Method(dock, map)).Return(correct_answer);
 
-  DotENVInterface &i = mock.get();
+  DotENVInterface &i = dock.get();
   REQUIRE(i.map() == correct_answer);
-  Verify(Method(mock, map));
+  Verify(Method(dock, map));
 }
 
 SCENARIO("Mock DotENVInterface: put", "[mock_dotenv]") {
-  Dock<DotENVInterface> mock;
-  When(Method(mock, put)).Return();
+  Dock<DotENVInterface> dock;
+  When(Method(dock, put)).Return();
 
-  DotENVInterface &i = mock.get();
+  DotENVInterface &i = dock.get();
   EnvironmentVariableKey key;
   EnvironmentVariableValue value;
   DotENVLine line(key, value);
   i.put(line);
-  Verify(Method(mock, put));
+  Verify(Method(dock, put));
 }
 
 SCENARIO("Mock DotENVInterface: contains", "[mock_dotenv]") {
@@ -93,26 +93,26 @@ SCENARIO("Mock DotENVInterface: contains", "[mock_dotenv]") {
    *
    */
   EnvironmentVariableMap correct_answer = EnvironmentVariableMap();
-  Dock<DotENVInterface> mock;
-  When(Method(mock, put))
+  Dock<DotENVInterface> dock;
+  When(Method(dock, put))
       .AlwaysDo([&correct_answer](const DotENVLineInterface &entry) {
         correct_answer[entry.key()] = entry.value();
       });
-  When(Method(mock, map)).Return(correct_answer);
-  When(Method(mock, contains)).AlwaysDo([&correct_answer](auto key) {
+  When(Method(dock, map)).Return(correct_answer);
+  When(Method(dock, contains)).AlwaysDo([&correct_answer](auto key) {
     return correct_answer.find(key) != correct_answer.end();
   });
-  When(Method(mock, value)).AlwaysDo([&correct_answer](auto key) {
+  When(Method(dock, value)).AlwaysDo([&correct_answer](auto key) {
     return correct_answer[key];
   });
-  DotENVInterface &i = mock.get();
+  DotENVInterface &i = dock.get();
 
   /**
    * @brief Test map
    *
    */
   REQUIRE(i.map() == correct_answer);
-  Verify(Method(mock, map));
+  Verify(Method(dock, map));
 
   /**
    * @brief Test put
@@ -122,19 +122,19 @@ SCENARIO("Mock DotENVInterface: contains", "[mock_dotenv]") {
   EnvironmentVariableValue value;
   DotENVLine line(key, value);
   i.put(line);
-  Verify(Method(mock, put));
+  Verify(Method(dock, put));
 
   /**
    * @brief Test contains
    *
    */
   REQUIRE(i.contains(key));
-  Verify(Method(mock, contains));
+  Verify(Method(dock, contains));
 
   /**
    * @brief Test value
    *
    */
   REQUIRE(i.value(key) == value);
-  Verify(Method(mock, value));
+  Verify(Method(dock, value));
 }
