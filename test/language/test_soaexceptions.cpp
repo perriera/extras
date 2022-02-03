@@ -41,16 +41,12 @@ using namespace fakeit;
 
 class SOAException : public std::exception {
   std::string _msg;
+  extras::WhereAmI _whereAmI;
 
  public:
-  SOAException(const std::string& msg) : _msg(msg) {}
+  SOAException(const std::string& msg, const extras::WhereAmI& whereAmI)
+      : _msg(msg), _whereAmI(whereAmI) {}
   virtual const char* what() const noexcept { return _msg.c_str(); }
-  virtual std::string getwhat() const noexcept {
-    auto mangled = typeid(*this).name();
-    auto ptr = std::unique_ptr<char, decltype(&std::free)>{
-        abi::__cxa_demangle(mangled, nullptr, nullptr, nullptr), std::free};
-    return {ptr.get()};
-  };
 };
 
 // =============================================================
@@ -62,11 +58,11 @@ class SOAException : public std::exception {
 
 class SoaOnDemandClientInitializedException : public SOAException {
  public:
-  SoaOnDemandClientInitializedException()
-      : SOAException("SoaOnDemandClientInitializedException") {}
+  SoaOnDemandClientInitializedException(const extras::WhereAmI& ref)
+      : SOAException("SoaOnDemandClientInitializedException", ref) {}
 
-  static void assertion(bool alreadySetup) {
-    if (alreadySetup) throw SoaOnDemandClientInitializedException();
+  static void assertion(bool alreadySetup, const extras::WhereAmI& ref) {
+    if (alreadySetup) throw SoaOnDemandClientInitializedException(ref);
   }
 };
 
@@ -78,14 +74,14 @@ class SoaOnDemandClient {
 
  public:
   bool isInitialized() const noexcept { return _initialized; }
-  void initialize(const std::string& soaService) {
+  void initialize(const std::string&) {
     if (isInitialized()) return;
   }
 };
 
 SCENARIO("Test SOAException", "[soa_exceptions_testcases]") {
   try {
-    throw SOAException("this is a test");
+    throw SOAException("this is a test", __INFO__);
   } catch (SOAException& ex) {
     SUCCEED(ex.what());
   } catch (std::exception& ex) {
@@ -95,7 +91,7 @@ SCENARIO("Test SOAException", "[soa_exceptions_testcases]") {
 
 SCENARIO("Test SOAException2", "[soa_exceptions_testcases]") {
   try {
-    throw SoaOnDemandClientInitializedException();
+    throw SoaOnDemandClientInitializedException(__INFO__);
   } catch (SOAException& ex) {
     cout << ex.what() << endl;
     SUCCEED(ex.what());
