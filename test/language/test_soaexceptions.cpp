@@ -45,15 +45,48 @@ class SOAException : public std::exception {
  public:
   SOAException(const std::string& msg) : _msg(msg) {}
   virtual const char* what() const noexcept { return _msg.c_str(); }
+  virtual std::string getwhat() const noexcept {
+    auto mangled = typeid(*this).name();
+    auto ptr = std::unique_ptr<char, decltype(&std::free)>{
+        abi::__cxa_demangle(mangled, nullptr, nullptr, nullptr), std::free};
+    return {ptr.get()};
+  };
+};
+
+class SoaOnDemandClientInitializedException : public SOAException {
+ public:
+  SoaOnDemandClientInitializedException()
+      : SOAException("SoaOnDemandClientInitializedException") {}
 };
 
 using namespace std;
 using namespace extras;
 
+class SoaOnDemandClient {
+  bool _initialized = false;
+
+ public:
+  bool isInitialized() const noexcept { return _initialized; }
+  void initialize(const std::string& soaService) {
+    if (isInitialized()) return;
+  }
+};
+
 SCENARIO("Test SOAException", "[soa_exceptions_testcases]") {
   try {
     throw SOAException("this is a test");
   } catch (SOAException& ex) {
+    SUCCEED(ex.what());
+  } catch (std::exception& ex) {
+    FAIL(ex.what());
+  }
+}
+
+SCENARIO("Test SOAException2", "[soa_exceptions_testcases]") {
+  try {
+    throw SoaOnDemandClientInitializedException();
+  } catch (SOAException& ex) {
+    cout << ex.what() << endl;
     SUCCEED(ex.what());
   } catch (std::exception& ex) {
     FAIL(ex.what());
