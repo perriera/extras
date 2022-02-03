@@ -14,7 +14,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/run-unittests-extras",
-      "args": ["[soa_exceptions_testcases]"],
+      "args": ["[exceptions_testcases]"],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],

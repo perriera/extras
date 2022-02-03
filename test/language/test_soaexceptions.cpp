@@ -53,6 +53,13 @@ class SOAException : public std::exception {
   };
 };
 
+// =============================================================
+// extras::SpecificCustomException: Port: a<b wasn't found
+// -------------------------------------------------------------
+// /home/perry/Projects/extras/test/language/test_exceptions.cpp
+// void ____C_A_T_C_H____T_E_S_T____12(): line 140
+// =============================================================
+
 class SoaOnDemandClientInitializedException : public SOAException {
  public:
   SoaOnDemandClientInitializedException()

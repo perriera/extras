@@ -140,6 +140,7 @@ SCENARIO(
     SpecificCustomException::assertion(a, b, __INFO__);
     FAIL("SpecificCustomException not thrown");
   } catch (SpecificCustomException& ex) {
+    std::cout << ex << std::endl;
     SUCCEED("SpecificCustomException thrown");
   } catch (GroupCustomException& ex) {
     FAIL("GroupCustomException thrown, (instead)");
