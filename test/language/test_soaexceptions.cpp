@@ -38,16 +38,24 @@ using namespace fakeit;
  * for supported applications.
  *
  */
+
+class SOAException : public std::exception {
+  std::string _msg;
+
+ public:
+  SOAException(const std::string& msg) : _msg(msg) {}
+  virtual const char* what() const noexcept { return _msg.c_str(); }
+};
+
 using namespace std;
 using namespace extras;
 
-SCENARIO("Test ExceptionInterface: soa whereiam",
-         "[soa_exceptions_testcases]") {
-  auto test1 = __INFO__;
-  auto test2 = __INFO__;
-  auto line = __LINE__;
-  REQUIRE(test1._file == test2._file);
-  REQUIRE(test1._func == test2._func);
-  REQUIRE(test1._line == test2._line - 1);
-  REQUIRE(test1._line == line - 2);
+SCENARIO("Test SOAException", "[soa_exceptions_testcases]") {
+  try {
+    throw SOAException("this is a test");
+  } catch (SOAException& ex) {
+    SUCCEED(ex.what());
+  } catch (std::exception& ex) {
+    FAIL(ex.what());
+  }
 }
