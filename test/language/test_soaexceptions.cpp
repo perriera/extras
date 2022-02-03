@@ -57,6 +57,10 @@ class SoaOnDemandClientInitializedException : public SOAException {
  public:
   SoaOnDemandClientInitializedException()
       : SOAException("SoaOnDemandClientInitializedException") {}
+
+  static void assertion(bool alreadySetup) {
+    if (alreadySetup) throw SoaOnDemandClientInitializedException();
+  }
 };
 
 using namespace std;
