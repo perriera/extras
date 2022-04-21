@@ -2,10 +2,11 @@
 Recommended GCC environment:
 
 	sudo apt update
-	sudo apt install build-essential libtool autotools-dev automake 
-	sudo apt install pkg-config git clangd cppcheck clang-tidy 
+	sudo apt install -y build-essential libtool autotools-dev automake 
+	sudo apt install -y pkg-config git clangd cppcheck clang-tidy 
+    sudo apt install -y python3-pip
 
-Then [Install pip, (either pip 2 or pip 3)](https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/)
+[More information on pip here](https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/)
 
 	pip install clang-format
 	pip install cmake-format
@@ -18,8 +19,14 @@ Consider adding this directory to PATH or, if you prefer to suppress this warnin
 
 Add this to the end of `~/.bashrc `
 
-	PATH=/home/perry/.local/bin:${PATH}
-		
+	export PATH=$HOME/.local/bin:${PATH}
+    export CPM_SOURCE_CACHE=$HOME/.cache/CPM
+    export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
+
+Then source it ... 
+
+    source ~/.bashrc
+
 ## Visual Studio Code extensions
 When prompted be sure to add the recommended extensions for C++, CMake and other source code support. 
 
