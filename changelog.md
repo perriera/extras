@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v5.25.0 -m "Updated INSTALL.md"</br>
-> > git push origin v5.25.0
+> > git tag -a v5.26.0 -m "-pthread added"</br>
+> > git push origin v5.26.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -24,6 +24,12 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 5.26.0 (2022-04-20)
+
+### Changed
+
+- -pthread added
 
 #### 5.25.0 (2022-04-20)
 
@@ -1013,7 +1019,8 @@ IMPORTANT:
 
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v5.25.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v5.26.0..HEAD
+[5.26.0]: https://github.com/perriera/extras/compare/v5.25.0...v5.26.0
 [5.25.0]: https://github.com/perriera/extras/compare/v5.24.0...v5.25.0
 [5.24.0]: https://github.com/perriera/extras/compare/v5.23.0...v5.24.0
 [5.23.0]: https://github.com/perriera/extras/compare/v5.22.2...v5.23.0
