@@ -6,7 +6,7 @@
 > To add a tag to the git repository do:
 >
 > > git tag -a v5.25.0 -m "Updated INSTALL.md"</br>
-> > git push origin v5.24.0
+> > git push origin v5.25.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
