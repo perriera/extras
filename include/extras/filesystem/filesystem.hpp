@@ -30,6 +30,27 @@
  *
  */
 
+// #if __cplusplus >= 201703L
+// #include <filesystem>
+// #else
+// //
+// https://askubuntu.com/questions/1256440/how-to-get-libstdc-with-c17-filesystem-headers-on-ubuntu-18-bionic
+// #include <experimental/filesystem>
+// #endif
+
+// since C++ 20
+#include <version>
+
+#ifdef __cpp_lib_filesystem
+#define _HAS_CXX17 1
+#include <filesystem>
+#include <iostream>
+#elif __cpp_lib_experimental_filesystem
+#include <experimental/filesystem>
+#else
+#error "no filesystem support ='("
+#endif
+
 #include <extras/exceptions.hpp>
 #include <extras/language/interfaces.hpp>
 #include <extras/types.hpp>

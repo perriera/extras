@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v5.26.0 -m "-pthread added"</br>
-> > git push origin v5.26.0
+> > git tag -a v5.27.0 -m "__cpp_lib_filesystem support"</br>
+> > git push origin v5.27.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,294 +25,202 @@ IMPORTANT:
 
 ## [Unreleased]
 
+#### 5.27.0 (2022-04-20)
+### Added 
+- __cpp_lib_filesystem support
+
 #### 5.26.0 (2022-04-20)
-
 ### Changed
-
 - -pthread added
 
 #### 5.25.0 (2022-04-20)
-
 ### Changed
-
 - INSTALL.md
 
 #### 5.24.0 (2022-01-08)
-
 ### Added
-
 - DockIt.hpp
 - NotEnoughParametersException
 - HelpParameterException
 
 #### 5.23.0 (2021-12-23)
-
 ### Added
-
 - justthefilename(), justtheextension()
-
 ### Changed
-
 - filename()
 
 #### 5.22.1 (2021-12-23)
-
 ### Fixed
-
 - Directory, DirectoryListing
 
 #### 5.22.0 (2021-12-20)
-
 ### Added
-
 - replace_first
 
 #### 5.21.0 (2021-12-17)
-
 ### Added
-
 - Refactored string_support.hpp
 
 #### 5.20.1 (2021-12-16)
-
 ### Added
-
 - link
 
 #### 5.20.0 (2021-12-16)
-
 ### Added
-
 - namespace extras::str, (for better string support)
 
 #### 5.19.1 (2021-12-16)
-
 ### Added
-
 - Improved replace_last() algorithm
 
 #### 5.19.0 (2021-12-16)
-
 ### Added
-
 - Added replace_last & extras::filesystem
 
 #### 5.18.1 (2021-12-15)
-
 ### Added
-
 - Note on CPM/Shared Library debugging issue
 
 #### 5.18.0 (2021-12-11)
-
 ### Added
-
 - Pathname, Pathnames
 
 #### 5.17.0 (2021-12-08)
-
 ### Improved
-
 - improved code
 
 #### 5.16.0 (2021-12-08)
-
 ### Improved
-
 - improved code
 
 #### 5.15.0 (2021-12-08)
-
 ### Improved
-
 - added operator
 
 #### 5.14.0 (2021-12-04)
-
 ### Improved
-
 - exception handler
 
 #### 5.13.0 (2021-12-03)
-
 ### Improved
-
 - exception handler
 
 #### 5.12.0 (2021-12-02)
-
 ### Improved
-
 - Added extras::exception ...
 
 #### 5.11.1 (2021-12-02)
-
 ### Improved
-
 - Added msg ...
 
 #### 5.11.0 (2021-12-02)
-
 ### Improved
-
 - Added ExtrasExceptionInterface
 - Added ExtrasExceptionInterface stream
 
 #### 5.10.4 (2021-12-02)
-
 ### Improved
-
 - Added new exceptions
 
 #### 5.9.4 (2021-12-02)
-
 ### Improved
-
 - Fixed FileNotFound 'exception'
 
 #### 5.9.2 (2021-12-02)
-
 ### Improved
-
 - Refactored extras/types.hpp
 
 #### 5.9.1 (2021-12-01)
-
 ### Improved
-
 - Fixed issue with header files
 
 #### 5.9.0 (2021-12-01)
-
 ### Improved
-
 - Updated docs
 
 #### 5.8.0 (2021-12-01)
-
 ### Improved
-
 - Updated docs
 
 #### 5.7.0 2021-12-01)
-
 ### Improved
-
 - Updated docs
 
 #### 5.6.0 (2021-11-30)
-
 ### Improved
-
 - Refactired exceptions.hpp
 
 #### 5.5.1 (2021-11-30)
-
 ### Improved
-
 - Corrected directive
 
 #### 5.5.0 (2021-11-30)
-
 ### Improved
-
 - MIT/X LICENSE
 
 #### 5.4.0 (2021-11-29)
-
 ### Added
-
 - MIT/X LICENSE
 - Fixed formatting
 
 #### 5.3.6 (2021-11-24)
-
 ### Fixed
-
 - a technicality on ScriptException
 
 #### 5.3.5 (2021-11-20)
-
 ### Fixed
-
 - a technicality on ScriptException
 
 #### 5.3.4 (2021-11-20)
-
 ### Added
-
 - Removed a diagnostic
 
 #### 5.3.3 (2021-11-20)
-
 ### Added
-
 - FileNotFoundException added back
 
 #### 5.3.2 (2021-11-20)
-
 ### Added
-
 - FileNotFoundException depercated
 
 #### 5.3.1 (2021-11-19)
-
 ### Added
-
 - Updated version info
 
 #### 5.3.0 (2021-11-19)
-
 ### Added
-
 - Ported StatusLine
 
 #### 5.2.1 (2021-11-19)
-
 ### Added
-
 - Fixed ScriptException
 
 #### 5.2.0 (2021-11-16)
-
 ### Added
-
 - ScriptException
 
 #### 5.1.2 (2021-11-16)
-
 ### Added
-
 - ScriptException
 
 #### 5.1.1 (2021-11-15)
-
 ### Changed
-
 - Corrected missing parameter
 
 #### 5.1.0 (2021-11-14)
-
 ### Changed
-
 - Added SystemException
 
 #### 5.0.9 (2021-11-11)
-
 ### Changed
-
 - Added typeinfo to exception msg
 
 #### 5.0.8 (2021-11-10)
-
 ### Changed
-
 - Added docs on CPM CACHE optimization
 
 #### 5.0.7 (2021-11-10)
-
 ### Changed
-
 - Fixed issue
 
 #### 5.0.6 (2021-11-10)
@@ -1019,7 +927,8 @@ IMPORTANT:
 
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v5.26.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v5.27.0..HEAD
+[5.27.0]: https://github.com/perriera/extras/compare/v5.26.0...v5.27.0
 [5.26.0]: https://github.com/perriera/extras/compare/v5.25.0...v5.26.0
 [5.25.0]: https://github.com/perriera/extras/compare/v5.24.0...v5.25.0
 [5.24.0]: https://github.com/perriera/extras/compare/v5.23.0...v5.24.0

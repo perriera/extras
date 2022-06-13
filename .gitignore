@@ -44,3 +44,8 @@ compile_commands.json
 ./recv.txt
 Requested*.txt
 send_*.txt
+
+.vscode/configurationCache.log
+.vscode/dryrun.log
+.vscode/targets.log
+

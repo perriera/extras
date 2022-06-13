@@ -102,8 +102,14 @@ file(GLOB_RECURSE EXTRAS_HEADERS CONFIGURE_DEPENDS
 # glob extras src files
 file(GLOB_RECURSE EXTRAS_SOURCE CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
-add_library(${PROJECT_NAME} SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
+#
+# NOTE: declare libraries here all source should be placed into a single library, (whether they be
+# shared or static)
+#
 
+set(EXTRAS_LIBS_NEEDED stdc++fs std=c++17)
+
+add_library(${PROJECT_NAME} SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 # Create a target for executing the Catch2 unit tests.

@@ -17,9 +17,9 @@
  */
 
 #include <cstdint>
+#include <extras/filesystem/filesystem.hpp>
 #include <extras/filesystem/paths.hpp>
 #include <extras/strings.hpp>
-#include <filesystem>
 #include <fstream>
 
 #include "../vendor/catch.hpp"
