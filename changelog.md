@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v5.27.0 -m "__cpp_lib_filesystem support"</br>
-> > git push origin v5.27.0
+> > git tag -a v6.0.0 -m "gcc 7.5.0 support"</br>
+> > git push origin v6.0.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -24,6 +24,13 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+
+#### 6.0.0 (2022-07-25)
+### Added 
+- gcc 7.5.0 support
+- Ubuntu 18.04 support
+### Removed
+- __cpp_lib_filesystem support
 
 #### 5.27.0 (2022-04-20)
 ### Added 
@@ -927,7 +934,8 @@ IMPORTANT:
 
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v5.27.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v6.0.0..HEAD
+[6.0.0]: https://github.com/perriera/extras/compare/v5.26.0...v6.0.0
 [5.27.0]: https://github.com/perriera/extras/compare/v5.26.0...v5.27.0
 [5.26.0]: https://github.com/perriera/extras/compare/v5.25.0...v5.26.0
 [5.25.0]: https://github.com/perriera/extras/compare/v5.24.0...v5.25.0
