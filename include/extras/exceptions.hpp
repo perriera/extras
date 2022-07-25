@@ -426,11 +426,11 @@ namespace extras {
         std::string msg = "[" + script + "] failed with error code: ";
         throw ScriptException(msg + std::to_string(code), ref);
       } else {
-        std::filesystem::remove(script);
-        if (std::filesystem::exists(script)) {
-          std::string msg = "[" + script + "] rm failed with error code: ";
-          throw ScriptException(msg + std::to_string(code), ref);
-        }
+        // std::filesystem::remove(script);
+        // if (std::filesystem::exists(script)) {
+        //   std::string msg = "[" + script + "] rm failed with error code: ";
+        //   throw ScriptException(msg + std::to_string(code), ref);
+        // }
       }
     }
   };
@@ -447,11 +447,10 @@ namespace extras {
                       const extras::WhereAmI &whereAmI)
         : AbstractCustomException(filename.c_str(), whereAmI), _msg(filename) {}
     virtual char const *what() const noexcept { return _msg.c_str(); }
-    static void assertion(const Filename &pathname,
-                          const extras::WhereAmI &ref) {
-      if (std::filesystem::exists(pathname))
-        if (std::filesystem::is_directory(pathname))
-          throw NotAFileException(pathname, ref);
+    static void assertion(const Filename &, const extras::WhereAmI &) {
+      // if (std::filesystem::exists(pathname))
+      //   if (std::filesystem::is_directory(pathname))
+      //     throw NotAFileException(pathname, ref);
     }
   };
 
@@ -467,12 +466,11 @@ namespace extras {
                           const extras::WhereAmI &whereAmI)
         : AbstractCustomException(filename.c_str(), whereAmI), _msg(filename) {}
     virtual char const *what() const noexcept { return _msg.c_str(); }
-    static void assertion(const Filename &filename,
-                          const extras::WhereAmI &ref) {
-      if (!std::filesystem::exists(filename))
-        throw FileNotFoundException(filename, ref);
-      else
-        NotAFileException::assertion(filename, ref);
+    static void assertion(const Filename &, const extras::WhereAmI &) {
+      // if (!std::filesystem::exists(filename))
+      //   throw FileNotFoundException(filename, ref);
+      // else
+      //   NotAFileException::assertion(filename, ref);
     }
   };
 
@@ -488,11 +486,11 @@ namespace extras {
                            const extras::WhereAmI &whereAmI)
         : AbstractCustomException(pathname.c_str(), whereAmI), _msg(pathname) {}
     virtual char const *what() const noexcept { return _msg.c_str(); }
-    static void assertion(const Path &pathname, const extras::WhereAmI &ref) {
-      if (!std::filesystem::exists(pathname))
-        FileNotFoundException::assertion(pathname, ref);
-      if (!std::filesystem::is_directory(pathname))
-        throw NotADirectoryException(pathname, ref);
+    static void assertion(const Path &, const extras::WhereAmI &) {
+      // if (!std::filesystem::exists(pathname))
+      //   FileNotFoundException::assertion(pathname, ref);
+      // if (!std::filesystem::is_directory(pathname))
+      //   throw NotADirectoryException(pathname, ref);
     }
   };
 
@@ -508,10 +506,10 @@ namespace extras {
                           const extras::WhereAmI &whereAmI)
         : AbstractCustomException(pathname.c_str(), whereAmI), _msg(pathname) {}
     virtual char const *what() const noexcept { return _msg.c_str(); }
-    static void assertion(const Path &pathname, const extras::WhereAmI &ref) {
-      if (!std::filesystem::exists(pathname))
-        throw PathNotFoundException(pathname, ref);
-      NotADirectoryException::assertion(pathname, ref);
+    static void assertion(const Path &, const extras::WhereAmI &) {
+      // if (!std::filesystem::exists(pathname))
+      //   throw PathNotFoundException(pathname, ref);
+      // NotADirectoryException::assertion(pathname, ref);
     }
   };
 
