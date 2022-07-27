@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v6.0.0 -m "gcc 7.5.0 support"</br>
-> > git push origin v6.0.0
+> > git tag -a v6.1.0 -m "-m32 support"</br>
+> > git push origin v6.1.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -24,6 +24,12 @@ IMPORTANT:
 - MAKE SURE to tag and update the tag compare list below, (for quick code comparison purposes).<br>
 
 ## [Unreleased]
+- replacement for filesystem include file 
+
+#### 6.1.0 (2022-07-26)
+### Added 
+- -m32 support
+[We can now build and debug in 32bit, (and on a 64bit platform)](https://stackoverflow.com/questions/5665228/in-linux-determine-if-a-a-library-archive-32-bit-or-64-bit)
 
 #### 6.0.0 (2022-07-25)
 ### Added 
@@ -934,7 +940,8 @@ IMPORTANT:
 
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v6.0.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v6.1.0..HEAD
+[6.1.0]: https://github.com/perriera/extras/compare/v6.0.0...v6.1.0
 [6.0.0]: https://github.com/perriera/extras/compare/v5.26.0...v6.0.0
 [5.27.0]: https://github.com/perriera/extras/compare/v5.26.0...v5.27.0
 [5.26.0]: https://github.com/perriera/extras/compare/v5.25.0...v5.26.0
