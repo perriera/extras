@@ -27,4 +27,28 @@
 using namespace std;
 using namespace extras;
 
-bool system::File::exists() const { return true; };
+system::File::File(const Filename& fn) : _fn(fn) {
+  FilenameInvalidException::assertion(_fn, __INFO__);
+}
+
+bool system::File::exists() const {
+  auto name = filename().c_str();
+  ifstream f(filename().c_str());
+  return f.good();
+};
+
+namespace extras {
+  namespace system {
+
+    void FileNotFoundException::assertion(const Filename& filename,
+                                          const WhereAmI& ref) {
+      ifstream f(filename.c_str());
+      if (!f.good()) throw FileNotFoundException(filename, ref);
+    }
+    void FilenameInvalidException::assertion(const Filename& filename,
+                                             const WhereAmI& ref) {
+      if (filename.empty())
+        throw FilenameInvalidException("no filename specified", ref);
+    }
+  }  // namespace system
+}  // namespace extras

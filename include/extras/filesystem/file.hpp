@@ -31,7 +31,7 @@ namespace extras {
       Filename _fn;
 
      public:
-      File(const Filename& fn) : _fn(fn) {}
+      File(const Filename& fn);
       /**
        * @brief the name of the file
        *

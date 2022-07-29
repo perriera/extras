@@ -16,12 +16,14 @@
  *
  */
 
+#include <fstream>
 #include <iostream>
 
 #include "../vendor/catch.hpp"
 #include "extras/docking/DockIt.hpp"
 #include "extras/filesystem/file.hpp"
 
+using namespace std;
 using namespace extras;
 
 /**
@@ -29,7 +31,7 @@ using namespace extras;
  *
  */
 SCENARIO("Test FileInterface", "[PE-40]") {
-  auto correct_answer = "../etc/some_file.txt";
+  string correct_answer = "test/etc/some_file.txt";
 
   system::File file(correct_answer);
   system::FileInterface& i = file;

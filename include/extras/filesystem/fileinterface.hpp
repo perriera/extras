@@ -63,13 +63,27 @@ namespace extras {
     };
 
     /**
-     * @brief AccountNameOrPasswordAreBlankException
+     * @brief FileNotFoundException
      *
      */
     concrete class FileNotFoundException extends FileException {
      public:
       FileNotFoundException(const std::string& msg,
                             const extras::WhereAmI& whereAmI)
+          : FileException(msg, whereAmI) {}
+      virtual char const* what() const noexcept { return _msg.c_str(); }
+      static void assertion(const Filename& filename,
+                            const extras::WhereAmI& ref);
+    };
+
+    /**
+     * @brief FilenameInvalidException
+     *
+     */
+    concrete class FilenameInvalidException extends FileException {
+     public:
+      FilenameInvalidException(const std::string& msg,
+                               const extras::WhereAmI& whereAmI)
           : FileException(msg, whereAmI) {}
       virtual char const* what() const noexcept { return _msg.c_str(); }
       static void assertion(const Filename& filename,
