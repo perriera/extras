@@ -34,7 +34,7 @@ using namespace fakeit;
  * @brief Mock DotENVLineInterface
  *
  */
-SCENARIO("Mock DotENVLineInterface: key", "[mock_dotenv]") {
+SCENARIO("Dock DotENVLineInterface: key", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableKey();
   Dock<DotENVLineInterface> dock;
   When(Method(dock, key)).Return(correct_answer);
@@ -48,7 +48,7 @@ SCENARIO("Mock DotENVLineInterface: key", "[mock_dotenv]") {
  * @brief Mock DotENVLineInterface
  *
  */
-SCENARIO("Mock DotENVLineInterface: value", "[mock_dotenv]") {
+SCENARIO("Dock DotENVLineInterface: value", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableValue();
   Dock<DotENVLineInterface> dock;
   When(Method(dock, value)).Return(correct_answer);
@@ -62,7 +62,7 @@ SCENARIO("Mock DotENVLineInterface: value", "[mock_dotenv]") {
  * @brief Mock DotENVInterface
  *
  */
-SCENARIO("Mock DotENVInterface: map", "[mock_dotenv]") {
+SCENARIO("Dock DotENVInterface: map", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableMap();
   Dock<DotENVInterface> dock;
   When(Method(dock, map)).Return(correct_answer);
@@ -72,7 +72,7 @@ SCENARIO("Mock DotENVInterface: map", "[mock_dotenv]") {
   Verify(Method(dock, map));
 }
 
-SCENARIO("Mock DotENVInterface: put", "[mock_dotenv]") {
+SCENARIO("Dock DotENVInterface: put", "[mock_dotenv]") {
   Dock<DotENVInterface> dock;
   When(Method(dock, put)).Return();
 
@@ -84,7 +84,7 @@ SCENARIO("Mock DotENVInterface: put", "[mock_dotenv]") {
   Verify(Method(dock, put));
 }
 
-SCENARIO("Mock DotENVInterface: contains", "[mock_dotenv]") {
+SCENARIO("Dock DotENVInterface: contains", "[mock_dotenv]") {
   /**
    * @brief Simulate a class and class members here
    *

@@ -45,7 +45,7 @@
 //  *
 //  */
 
-// SCENARIO("Mock ExtrasExceptionInterface: what", "[exceptions_mock]") {
+// SCENARIO("Dock ExtrasExceptionInterface: what", "[exceptions_mock]") {
 //   auto correct_answer = "some error message";
 //   Dock<ExtrasExceptionInterface> dock;
 //   When(Method(dock, what)).Return(correct_answer);
@@ -55,7 +55,7 @@
 //   Verify(Method(dock, what));
 // }
 
-// SCENARIO("Mock ExtrasExceptionInterface: getfile", "[exceptions_mock]") {
+// SCENARIO("Dock ExtrasExceptionInterface: getfile", "[exceptions_mock]") {
 //   auto correct_answer = __FILE__;
 //   Dock<ExtrasExceptionInterface> dock;
 //   When(Method(dock, getfile)).Return(correct_answer);
@@ -65,7 +65,7 @@
 //   Verify(Method(dock, getfile));
 // }
 
-// SCENARIO("Mock ExtrasExceptionInterface: getfunc", "[exceptions_mock]") {
+// SCENARIO("Dock ExtrasExceptionInterface: getfunc", "[exceptions_mock]") {
 //   auto correct_answer = __func__;
 //   Dock<ExtrasExceptionInterface> dock;
 //   When(Method(dock, getfunc)).Return(correct_answer);
@@ -75,7 +75,7 @@
 //   Verify(Method(dock, getfunc));
 // }
 
-// SCENARIO("Mock ExtrasExceptionInterface: getline", "[exceptions_mock]") {
+// SCENARIO("Dock ExtrasExceptionInterface: getline", "[exceptions_mock]") {
 //   auto correct_answer = __LINE__;
 //   Dock<ExtrasExceptionInterface> dock;
 //   When(Method(dock, getline)).Return(correct_answer);
@@ -85,7 +85,7 @@
 //   Verify(Method(dock, getline));
 // }
 
-// SCENARIO("Mock ExtrasExceptionInterface: streams", "[exceptions_mock]") {
+// SCENARIO("Dock ExtrasExceptionInterface: streams", "[exceptions_mock]") {
 //   try {
 //     NotADirectoryException::assertion("build/run-unittests-extras",
 //     __INFO__); FAIL("exception not thrown");

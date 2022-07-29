@@ -14,7 +14,9 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/run-unittests-extras",
-      "args": [],
+      "args": [
+        "[PE-40]"
+      ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
@@ -35,7 +37,9 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/helloworld",
-      "args": ["data/pgn/kasparov_muratkuliev_1973.PGN"],
+      "args": [
+        "data/pgn/kasparov_muratkuliev_1973.PGN"
+      ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],

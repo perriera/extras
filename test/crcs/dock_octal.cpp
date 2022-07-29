@@ -58,7 +58,7 @@ using namespace fakeit;
  * before an single line of boilerplate code is required.
  *
  */
-SCENARIO("Mock OctalInterface: toOctal", "[octal_support]") {
+SCENARIO("Dock OctalInterface: toOctal", "[octal_support]") {
   auto correct_answer = 0;
   Dock<OctalInterface> dock;
   When(Method(dock, toOctal)).Return(correct_answer);
@@ -68,7 +68,7 @@ SCENARIO("Mock OctalInterface: toOctal", "[octal_support]") {
   Verify(Method(dock, toOctal));
 }
 
-SCENARIO("Mock OctalInterface: fromOctal", "[octal_support]") {
+SCENARIO("Dock OctalInterface: fromOctal", "[octal_support]") {
   Dock<OctalInterface> dock;
   When(Method(dock, fromOctal)).Return();
 
@@ -78,7 +78,7 @@ SCENARIO("Mock OctalInterface: fromOctal", "[octal_support]") {
   Verify(Method(dock, fromOctal));
 }
 
-SCENARIO("Mock OctalInterface", "[octal_support]") {
+SCENARIO("Dock OctalInterface", "[octal_support]") {
   /**
    * @brief Simulate a class and class members here
    *
