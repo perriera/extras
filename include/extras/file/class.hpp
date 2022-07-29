@@ -9,11 +9,11 @@
  *
  */
 
-#ifndef _FILE_HPP
-#define _FILE_HPP
+#ifndef _EXTRAS_FILE_CLASS_HPP
+#define _EXTRAS_FILE_CLASS_HPP
 
 #include <algorithm>
-#include <extras/filesystem/fileinterface.hpp>
+#include <extras/file/interface.hpp>
 #include <iostream>
 #include <list>
 
@@ -50,4 +50,4 @@ namespace extras {
   }  // namespace system
 }  // namespace extras
 
-#endif  // _FILE_HPP
+#endif  // _EXTRAS_FILE_CLASS_HPP

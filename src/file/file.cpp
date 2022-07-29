@@ -16,39 +16,32 @@
  *
  */
 
-#include "extras/filesystem/file.hpp"
-
 #include <fstream>
 #include <iostream>
 
+#include "extras/file/class.hpp"
 #include "extras/filesystem/files.hpp"
 #include "extras/strings/string_support.hpp"
 
 using namespace std;
 using namespace extras;
 
+/**
+ * @brief Construct a new system::File::File object
+ *
+ * @param fn
+ */
 system::File::File(const Filename& fn) : _fn(fn) {
   FilenameInvalidException::assertion(_fn, __INFO__);
 }
 
+/**
+ * @brief exists()
+ *
+ * @return true
+ * @return false
+ */
 bool system::File::exists() const {
-  auto name = filename().c_str();
   ifstream f(filename().c_str());
   return f.good();
-};
-
-namespace extras {
-  namespace system {
-
-    void FileNotFoundException::assertion(const Filename& filename,
-                                          const WhereAmI& ref) {
-      ifstream f(filename.c_str());
-      if (!f.good()) throw FileNotFoundException(filename, ref);
-    }
-    void FilenameInvalidException::assertion(const Filename& filename,
-                                             const WhereAmI& ref) {
-      if (filename.empty())
-        throw FilenameInvalidException("no filename specified", ref);
-    }
-  }  // namespace system
-}  // namespace extras
+}

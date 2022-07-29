@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef _FILEINTERFACE_HPP
-#define _FILEINTERFACE_HPP
+#ifndef _EXTRAS_FILE_INTERFACE_HPP
+#define _EXTRAS_FILE_INTERFACE_HPP
 
 #include <algorithm>
 #include <extras/interfaces.hpp>
@@ -51,10 +51,9 @@ namespace extras {
     };
 
     /**
-     * @brief LoginException
+     * @brief FileException
      *
      */
-
     concrete class FileException extends extras::AbstractCustomException {
      public:
       FileException(const std::string& msg, const extras::WhereAmI& whereAmI)
@@ -93,4 +92,4 @@ namespace extras {
   }  // namespace system
 }  // namespace extras
 
-#endif  // _FILEINTERFACE_HPP
+#endif  // _EXTRAS_FILE_INTERFACE_HPP

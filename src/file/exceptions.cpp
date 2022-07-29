@@ -19,23 +19,27 @@
 #include <fstream>
 #include <iostream>
 
-#include "../vendor/catch.hpp"
-#include "extras/docking/DockIt.hpp"
 #include "extras/file/class.hpp"
+#include "extras/filesystem/files.hpp"
+#include "extras/strings/string_support.hpp"
 
 using namespace std;
 using namespace extras;
 
-/**
- * @brief Dock FileInterface
- *
- */
-SCENARIO("Test FileInterface", "[PE-40]") {
-  string correct_answer = "test/etc/some_file.txt";
+namespace extras {
+  namespace system {
 
-  system::File file(correct_answer);
-  system::FileInterface& i = file;
+    void FileNotFoundException::assertion(const Filename& filename,
+                                          const WhereAmI& ref) {
+      ifstream f(filename.c_str());
+      if (!f.good()) throw FileNotFoundException(filename, ref);
+    }
 
-  REQUIRE(i.filename() == correct_answer);
-  REQUIRE(i.exists() == true);
-}
+    void FilenameInvalidException::assertion(const Filename& filename,
+                                             const WhereAmI& ref) {
+      if (filename.empty())
+        throw FilenameInvalidException("no filename specified", ref);
+    }
+
+  }  // namespace system
+}  // namespace extras

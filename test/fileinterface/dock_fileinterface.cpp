@@ -21,7 +21,7 @@
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
 #include "extras/docking/DockIt.hpp"
-#include "extras/filesystem/fileinterface.hpp"
+#include "extras/file/interface.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
