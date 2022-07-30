@@ -30,7 +30,7 @@ using namespace extras;
  * @brief Dock FileInterface
  *
  */
-SCENARIO("Test FileInterface", "[PE-40]") {
+SCENARIO("Test FileInterface: found", "[PE-40]") {
   string correct_answer = "test/etc/some_file.txt";
 
   system::File file(correct_answer);
@@ -38,4 +38,14 @@ SCENARIO("Test FileInterface", "[PE-40]") {
 
   REQUIRE(i.filename() == correct_answer);
   REQUIRE(i.exists() == true);
+}
+
+SCENARIO("Test FileInterface: not found", "[PE-40]") {
+  string correct_answer = "test/etc/some_fileX.txt";
+
+  system::File file(correct_answer);
+  system::FileInterface& i = file;
+
+  REQUIRE(i.filename() == correct_answer);
+  REQUIRE(i.exists() == false);
 }

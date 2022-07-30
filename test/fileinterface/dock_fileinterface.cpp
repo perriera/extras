@@ -27,6 +27,7 @@
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
 //
 
+using namespace std;
 using namespace extras;
 using namespace fakeit;
 
@@ -35,7 +36,7 @@ using namespace fakeit;
  *
  */
 SCENARIO("Dock FileInterface", "[PE-40]") {
-  auto correct_answer = "../etc/some_file.txt";
+  auto correct_answer = "test/etc/some_file.txt";
 
   Dock<system::FileInterface> dock;
   When(Method(dock, filename)).Return(correct_answer);
@@ -48,3 +49,40 @@ SCENARIO("Dock FileInterface", "[PE-40]") {
   Verify(Method(dock, filename));
   Verify(Method(dock, exists));
 }
+
+/**
+ * @brief Dock FileInterface
+ *
+ */
+
+// mkcp() {
+//     test -d "$2" || mkdir -p "$2"
+//     cp -r "$1" "$2"
+// }
+
+// SCENARIO("Dock FileInterface: copy", "[PE-40]") {
+//   auto src = "test/etc/some_file.txt";
+//   auto des = "test/etc2/some_file.txt";
+
+//   Dock<system::FileInterface> dock;
+//   When(Method(dock, filename)).Return(src);
+//   When(Method(dock, exists)).AlwaysDo([]() { return true; });
+//   When(Method(dock, copy))
+//       .AlwaysDo([&src](const system::FileInterface& destination) {
+//         system::FileNotFoundException::assertion(src, __INFO__);
+//         stringstream ss;
+//         ss << "test -d " << destination.filename() << " || ";
+//         ss << "mkdir -p " << destination.filename() << endl;
+//         ss << "cp -r " << src << " " << destination.filename() << endl;
+//         string cmd = ss.str();
+//         ::system(cmd.c_str());
+//         system::FileNotCopiedException::assertion(destination, __INFO__);
+//       });
+
+//   system::FileInterface& i = dock.get();
+//   REQUIRE(i.filename() == src);
+//   REQUIRE(i.exists() == true);
+
+//   Verify(Method(dock, filename));
+//   Verify(Method(dock, exists));
+// }

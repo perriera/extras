@@ -35,6 +35,12 @@ namespace extras {
       if (!f.good()) throw FileNotFoundException(filename, ref);
     }
 
+    void FileNotCopiedException::assertion(const FileInterface& fi,
+                                           const WhereAmI& ref) {
+      ifstream f(fi.filename().c_str());
+      if (!f.good()) throw FileNotCopiedException(fi.filename(), ref);
+    }
+
     void FilenameInvalidException::assertion(const Filename& filename,
                                              const WhereAmI& ref) {
       if (filename.empty())

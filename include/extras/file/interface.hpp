@@ -48,6 +48,12 @@ namespace extras {
        * @return false otherwise
        */
       virtual bool exists() const pure;
+      /**
+       * @brief copy a file
+       *
+       * @param destination
+       */
+      virtual void copy(const FileInterface& destination) const pure;
     };
 
     /**
@@ -73,6 +79,20 @@ namespace extras {
       virtual char const* what() const noexcept { return _msg.c_str(); }
       static void assertion(const Filename& filename,
                             const extras::WhereAmI& ref);
+    };
+
+    /**
+     * @brief FileNotCopiedException
+     *
+     */
+    concrete class FileNotCopiedException extends FileException {
+     public:
+      FileNotCopiedException(const std::string& msg,
+                             const extras::WhereAmI& whereAmI)
+          : FileException(msg, whereAmI) {}
+      virtual char const* what() const noexcept { return _msg.c_str(); }
+      static void assertion(const system::FileInterface&,
+                            const extras::WhereAmI&);
     };
 
     /**

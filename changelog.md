@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v6.1.0 -m "-m32 support"</br>
-> > git push origin v6.1.0
+> > git tag -a v6.2.0 -m "FileInterface added"</br>
+> > git push origin v6.2.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,13 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 6.2.0 (2022-07-29)
+### Added 
+- FileInterface added
+- File class
+- FileNotFoundException added (back)
+- FeatureInterface added
 
 #### 6.1.0 (2022-07-26)
 ### Added 
@@ -940,7 +947,8 @@ IMPORTANT:
 
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v6.1.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v6.2.0..HEAD
+[6.2.0]: https://github.com/perriera/extras/compare/v6.1.0...v6.2.0
 [6.1.0]: https://github.com/perriera/extras/compare/v6.0.0...v6.1.0
 [6.0.0]: https://github.com/perriera/extras/compare/v5.26.0...v6.0.0
 [5.27.0]: https://github.com/perriera/extras/compare/v5.26.0...v5.27.0

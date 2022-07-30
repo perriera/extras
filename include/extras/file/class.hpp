@@ -13,6 +13,7 @@
 #define _EXTRAS_FILE_CLASS_HPP
 
 #include <algorithm>
+#include <extras/feature/interface.hpp>
 #include <extras/file/interface.hpp>
 #include <iostream>
 #include <list>
@@ -32,19 +33,16 @@ namespace extras {
 
      public:
       File(const Filename& fn);
+
       /**
-       * @brief the name of the file
+       * @brief FileInterface
        *
-       * @return Filename
        */
       virtual Filename filename() const { return _fn; };
-      /**
-       * @brief test that file exists
-       *
-       * @return true the file exists
-       * @return false otherwise
-       */
       virtual bool exists() const;
+      virtual void copy(const FileInterface&) const {
+        throw extras::feature::NotImplementedException("copy", __INFO__);
+      };
     };
 
   }  // namespace system
