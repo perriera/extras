@@ -16,31 +16,32 @@
  *
  */
 
+#include <fstream>
 #include <iostream>
 
-#include "../vendor/catch.hpp"
-#include "../vendor/fakeit.hpp"
-#include "extras/docking/DockIt.hpp"
-#include "extras/filesystem/paths.hpp"
+#include "extras/file/class.hpp"
+#include "extras/filesystem/files.hpp"
+#include "extras/strings/string_support.hpp"
 
-//
-// https://github.com/eranpeer/FakeIt/wiki/Quickstart
-//
-
+using namespace std;
 using namespace extras;
-using namespace fakeit;
 
 /**
+ * @brief Construct a new system::File::File object
  *
- * @brief Mock FakeIt AlwaysDo demonstration
- *
+ * @param fn
  */
-SCENARIO("Dock PathsInterface: toOctal", "[paths_support]") {
-  auto correct_answer = "/home/perry/Downloads";
-  Dock<PathsInterface> dock;
-  When(Method(dock, actualPath)).Return(correct_answer);
+system::File::File(const Filename& fn) : _fn(fn) {
+  FilenameInvalidException::assertion(_fn, __INFO__);
+}
 
-  PathsInterface &i = dock.get();
-  REQUIRE(i.actualPath("~/Downloads") == correct_answer);
-  Verify(Method(dock, actualPath));
+/**
+ * @brief exists()
+ *
+ * @return true
+ * @return false
+ */
+bool system::File::exists() const {
+  ifstream f(filename().c_str());
+  return f.good();
 }

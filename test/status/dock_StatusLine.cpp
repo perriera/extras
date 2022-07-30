@@ -31,7 +31,7 @@ using namespace fakeit;
 // printf("[+]File data downloaded successfully.\n");
 //
 
-SCENARIO("Mock StatusLineInterface", "[StatusLineInterface]") {
+SCENARIO("Dock StatusLineInterface", "[StatusLineInterface]") {
   extras::StatusLineMsg in1 = "File data downloaded successfully";
   extras::StatusLineMsg in2 = "Error in socket";
   extras::StatusLineMsg good = "[+] File data downloaded successfully.\n";

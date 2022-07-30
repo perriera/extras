@@ -16,31 +16,36 @@
  *
  */
 
+#include <fstream>
 #include <iostream>
 
 #include "../vendor/catch.hpp"
-#include "../vendor/fakeit.hpp"
 #include "extras/docking/DockIt.hpp"
-#include "extras/filesystem/paths.hpp"
+#include "extras/file/class.hpp"
 
-//
-// https://github.com/eranpeer/FakeIt/wiki/Quickstart
-//
-
+using namespace std;
 using namespace extras;
-using namespace fakeit;
 
 /**
- *
- * @brief Mock FakeIt AlwaysDo demonstration
+ * @brief Dock FileInterface
  *
  */
-SCENARIO("Dock PathsInterface: toOctal", "[paths_support]") {
-  auto correct_answer = "/home/perry/Downloads";
-  Dock<PathsInterface> dock;
-  When(Method(dock, actualPath)).Return(correct_answer);
+SCENARIO("Test FileInterface: found", "[PE-40]") {
+  string correct_answer = "test/etc/some_file.txt";
 
-  PathsInterface &i = dock.get();
-  REQUIRE(i.actualPath("~/Downloads") == correct_answer);
-  Verify(Method(dock, actualPath));
+  system::File file(correct_answer);
+  system::FileInterface& i = file;
+
+  REQUIRE(i.filename() == correct_answer);
+  REQUIRE(i.exists() == true);
+}
+
+SCENARIO("Test FileInterface: not found", "[PE-40]") {
+  string correct_answer = "test/etc/some_fileX.txt";
+
+  system::File file(correct_answer);
+  system::FileInterface& i = file;
+
+  REQUIRE(i.filename() == correct_answer);
+  REQUIRE(i.exists() == false);
 }
