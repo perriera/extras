@@ -12,6 +12,7 @@ cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 # include CPM.cmake https://github.com/cpm-cmake/CPM.cmake
 include(cmake/CPM.cmake)
 include(cmake/utils.cmake)
+include(cmake/32_64.cmake)
 include(CMakeDependentOption)
 include(CheckIPOSupported)
 
@@ -43,8 +44,8 @@ if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
 endif()
 
 # Set C/C++ parameters for all targets in this CMakeLists.txt
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32 -Wall -Wextra -pedantic --std=c++17 -fPIC -pthread")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -Wall -Wextra -pedantic -fPIC -pthread")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic --std=c++17 -fPIC -pthread")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -pedantic -fPIC -pthread")
 
 # add additional project options
 message(STATUS "MAKE_EXTRAS_LIBRARY_ONLY is ${MAKE_EXTRAS_LIBRARY_ONLY}")
@@ -109,38 +110,58 @@ file(GLOB_RECURSE EXTRAS_SOURCE CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/s
 
 set(EXTRAS_LIBS_NEEDED stdc++fs std=c++17)
 
-add_library(${PROJECT_NAME} SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
-target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+add_library(${PROJECT_NAME}_32 SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
+target_include_directories(${PROJECT_NAME}_32 PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_compile_options(${PROJECT_NAME}_32 PUBLIC -m32)
+target_link_options(${PROJECT_NAME}_32 PRIVATE -m32)
+
+add_library(${PROJECT_NAME}_64 SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
+target_include_directories(${PROJECT_NAME}_64 PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 # Create a target for executing the Catch2 unit tests.
 if (NOT MAKE_EXTRAS_LIBRARY_ONLY)
   if(BUILD_TESTS)
     message(STATUS "Building tests")
     file(GLOB_RECURSE TESTS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
-    add_executable(run-unittests-extras ${TESTS})
-    target_include_directories(run-unittests-extras PUBLIC test/)
-    target_link_libraries(run-unittests-extras ${PROJECT_NAME} stdc++fs  ${CMAKE_THREAD_LIBS_INIT})
+    add_executable(run-unittests-extras_32 ${TESTS})
+    target_include_directories(run-unittests-extras_32 PUBLIC test/)
+    target_link_libraries(run-unittests-extras_32 ${PROJECT_NAME}_32 stdc++fs  ${CMAKE_THREAD_LIBS_INIT})
+    target_compile_options(run-unittests-extras_32 PUBLIC -m32)
+    target_link_options(run-unittests-extras_32 PRIVATE -m32)
+    add_executable(run-unittests-extras_64 ${TESTS})
+    target_include_directories(run-unittests-extras_64 PUBLIC test/)
+    target_link_libraries(run-unittests-extras_64 ${PROJECT_NAME}_64 stdc++fs  ${CMAKE_THREAD_LIBS_INIT})
   endif()
 endif()
 
 # Library Note: may not work on windows
-install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib)
+install(TARGETS ${PROJECT_NAME}_32 LIBRARY DESTINATION lib)
+install(TARGETS ${PROJECT_NAME}_64 LIBRARY DESTINATION lib)
 
 # Header files
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
 
-export(TARGETS ${PROJECT_NAME} FILE extrasConfig.cmake)
+export(TARGETS ${PROJECT_NAME}_32 FILE extrasConfig_32.cmake)
+export(TARGETS ${PROJECT_NAME}_64 FILE extrasConfig_64.cmake)
 
 # if the compiler supports iter-procedural optimization, turn it on
 check_ipo_supported(RESULT result OUTPUT output)
 if(result)
-  set_target_properties(${PROJECT_NAME} PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
+  set_target_properties(${PROJECT_NAME}_32 PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
+  set_target_properties(${PROJECT_NAME}_64 PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
 else()
   message(STATUS "IPO is not supported: ${output}")
 endif()
 
 # Set version for shared libraries.
 set_target_properties(
-  ${PROJECT_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} SOVERSION
-                                                                ${${PROJECT_NAME}_VERSION_MAJOR}
+  ${PROJECT_NAME}_32 
+    PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} 
+    SOVERSION ${${PROJECT_NAME}_VERSION_MAJOR}
+)
+
+set_target_properties(
+  ${PROJECT_NAME}_64 
+    PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} 
+    SOVERSION ${${PROJECT_NAME}_VERSION_MAJOR}
 )
