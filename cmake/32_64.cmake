@@ -1,0 +1,1 @@
+set(CPM_32BIT_FLAG "-m32")

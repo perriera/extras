@@ -10,13 +10,32 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "run-unittests",
+      "name": "run-unittests_32",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/run-unittests-extras",
-      "args": [
-        "[PE-40]"
+      "program": "${workspaceFolder}/build/run-unittests-extras_32",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
       ],
+      "preLaunchTask": "Build C++ project",
+      "miDebuggerPath": "/usr/bin/gdb"
+    },
+    {
+      "name": "run-unittests_64",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/run-unittests-extras_64",
+      "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
