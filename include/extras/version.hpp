@@ -30,8 +30,8 @@
  *
  */
 
-#define EXTRAS_VER_MAJOR 6
-#define EXTRAS_VER_MINOR 2
+#define EXTRAS_VER_MAJOR 7
+#define EXTRAS_VER_MINOR 0
 #define EXTRAS_VER_PATCH 0
 
 #define EXTRAS_VERSION \

@@ -38,11 +38,11 @@ using namespace fakeit;
 SCENARIO("Dock FileInterface", "[PE-40]") {
   auto correct_answer = "test/etc/some_file.txt";
 
-  Dock<system::FileInterface> dock;
+  Dock<file::Interface> dock;
   When(Method(dock, filename)).Return(correct_answer);
   When(Method(dock, exists)).AlwaysDo([]() { return true; });
 
-  system::FileInterface& i = dock.get();
+  file::Interface& i = dock.get();
   REQUIRE(i.filename() == correct_answer);
   REQUIRE(i.exists() == true);
 

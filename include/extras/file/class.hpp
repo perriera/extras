@@ -22,13 +22,13 @@ struct user_id;
 struct ldap;
 
 namespace extras {
-  namespace system {
+  namespace file {
 
     /**
      * @brief File class
      *
      */
-    concrete class File implements FileInterface {
+    concrete class File implements Interface {
       Filename _fn;
 
      public:
@@ -40,12 +40,12 @@ namespace extras {
        */
       virtual Filename filename() const { return _fn; };
       virtual bool exists() const;
-      virtual void copy(const FileInterface&) const {
+      virtual void copy(const Interface&) const {
         throw extras::feature::NotImplementedException("copy", __INFO__);
       };
     };
 
-  }  // namespace system
+  }  // namespace file
 }  // namespace extras
 
 #endif  // _EXTRAS_FILE_CLASS_HPP

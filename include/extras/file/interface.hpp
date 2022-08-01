@@ -21,7 +21,7 @@ struct user_id;
 struct ldap;
 
 namespace extras {
-  namespace system {
+  namespace file {
 
     /**
      * @brief
@@ -34,7 +34,7 @@ namespace extras {
      * @brief LoginInterface
      *
      */
-    interface FileInterface {
+    interface Interface {
       /**
        * @brief the name of the file
        *
@@ -53,7 +53,7 @@ namespace extras {
        *
        * @param destination
        */
-      virtual void copy(const FileInterface& destination) const pure;
+      virtual void copy(const Interface& destination) const pure;
     };
 
     /**
@@ -91,7 +91,7 @@ namespace extras {
                              const extras::WhereAmI& whereAmI)
           : FileException(msg, whereAmI) {}
       virtual char const* what() const noexcept { return _msg.c_str(); }
-      static void assertion(const system::FileInterface&,
+      static void assertion(const file::Interface&,
                             const extras::WhereAmI&);
     };
 
@@ -109,7 +109,7 @@ namespace extras {
                             const extras::WhereAmI& ref);
     };
 
-  }  // namespace system
+  }  // namespace file
 }  // namespace extras
 
 #endif  // _EXTRAS_FILE_INTERFACE_HPP

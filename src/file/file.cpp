@@ -31,7 +31,7 @@ using namespace extras;
  *
  * @param fn
  */
-system::File::File(const Filename& fn) : _fn(fn) {
+file::File::File(const Filename& fn) : _fn(fn) {
   FilenameInvalidException::assertion(_fn, __INFO__);
 }
 
@@ -41,7 +41,7 @@ system::File::File(const Filename& fn) : _fn(fn) {
  * @return true
  * @return false
  */
-bool system::File::exists() const {
+bool file::File::exists() const {
   ifstream f(filename().c_str());
   return f.good();
 }

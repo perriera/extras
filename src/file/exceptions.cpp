@@ -27,7 +27,7 @@ using namespace std;
 using namespace extras;
 
 namespace extras {
-  namespace system {
+  namespace file {
 
     void FileNotFoundException::assertion(const Filename& filename,
                                           const WhereAmI& ref) {
@@ -35,7 +35,7 @@ namespace extras {
       if (!f.good()) throw FileNotFoundException(filename, ref);
     }
 
-    void FileNotCopiedException::assertion(const FileInterface& fi,
+    void FileNotCopiedException::assertion(const Interface& fi,
                                            const WhereAmI& ref) {
       ifstream f(fi.filename().c_str());
       if (!f.good()) throw FileNotCopiedException(fi.filename(), ref);
@@ -47,5 +47,5 @@ namespace extras {
         throw FilenameInvalidException("no filename specified", ref);
     }
 
-  }  // namespace system
+  }  // namespace file
 }  // namespace extras
