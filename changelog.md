@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v7.1.0 -m "targets both 32/64 formats"</br>
-> > git push origin v7.1.0
+> > git tag -a v7.2.0 -m "applied _i386"</br>
+> > git push origin v7.2.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,10 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 7.2.0 (2022-08-01)
+### Added 
+- applied _i386
 
 #### 7.1.0 (2022-08-01)
 ### Added 
@@ -734,7 +738,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v7.1.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v7.2.0..HEAD
+[7.2.0]: https://github.com/perriera/extras/compare/v7.1.0...v7.2.0
 [7.1.0]: https://github.com/perriera/extras/compare/v7.0.0...v7.1.0
 [7.0.0]: https://github.com/perriera/extras/compare/v6.2.0...v7.0.0
 [6.2.0]: https://github.com/perriera/extras/compare/v6.1.0...v6.2.0

@@ -10,10 +10,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "run-unittests_32",
+      "name": "run-unittests",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/run-unittests-extras_32",
+      "program": "${workspaceFolder}/build/run-unittests-extras",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
@@ -31,10 +31,10 @@
       "miDebuggerPath": "/usr/bin/gdb"
     },
     {
-      "name": "run-unittests_64",
+      "name": "run-unittests_i386",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/run-unittests-extras_64",
+      "program": "${workspaceFolder}/build/run-unittests-extras_i386",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
