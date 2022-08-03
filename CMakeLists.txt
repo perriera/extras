@@ -12,6 +12,8 @@ cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 # include CPM.cmake https://github.com/cpm-cmake/CPM.cmake
 include(cmake/CPM.cmake)
 include(cmake/utils.cmake)
+include(cmake/print.cmake)
+include(cmake/Find32or64bit.cmake)
 include(CMakeDependentOption)
 include(CheckIPOSupported)
 
@@ -109,58 +111,82 @@ file(GLOB_RECURSE EXTRAS_SOURCE CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/s
 
 set(EXTRAS_LIBS_NEEDED stdc++fs std=c++17)
 
-add_library(${PROJECT_NAME}_i386 SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
-target_include_directories(${PROJECT_NAME}_i386 PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_compile_options(${PROJECT_NAME}_i386 PUBLIC -m32)
-target_link_options(${PROJECT_NAME}_i386 PRIVATE -m32)
+if(MAKE32BIT)
+  add_library(${PROJECT_NAME}_i386 SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
+  target_include_directories(${PROJECT_NAME}_i386 PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+  target_compile_options(${PROJECT_NAME}_i386 PUBLIC -m32)
+  target_link_options(${PROJECT_NAME}_i386 PRIVATE -m32)
+endif()
 
-add_library(${PROJECT_NAME} SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
-target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+if(MAKE64BIT)
+  add_library(${PROJECT_NAME} SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
+  target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+endif()
 
 # Create a target for executing the Catch2 unit tests.
 if (NOT MAKE_EXTRAS_LIBRARY_ONLY)
   if(BUILD_TESTS)
     message(STATUS "Building tests")
     file(GLOB_RECURSE TESTS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
-    add_executable(run-unittests-extras_i386 ${TESTS})
-    target_include_directories(run-unittests-extras_i386 PUBLIC test/)
-    target_link_libraries(run-unittests-extras_i386 ${PROJECT_NAME}_i386 stdc++fs  ${CMAKE_THREAD_LIBS_INIT})
-    target_compile_options(run-unittests-extras_i386 PUBLIC -m32)
-    target_link_options(run-unittests-extras_i386 PRIVATE -m32)
-    add_executable(run-unittests-extras ${TESTS})
-    target_include_directories(run-unittests-extras PUBLIC test/)
-    target_link_libraries(run-unittests-extras ${PROJECT_NAME} stdc++fs  ${CMAKE_THREAD_LIBS_INIT})
+    if(MAKE32BIT)
+      add_executable(run-unittests-extras_i386 ${TESTS})
+      target_include_directories(run-unittests-extras_i386 PUBLIC test/)
+      target_link_libraries(run-unittests-extras_i386 ${PROJECT_NAME}_i386 stdc++fs  ${CMAKE_THREAD_LIBS_INIT})
+      target_compile_options(run-unittests-extras_i386 PUBLIC -m32)
+      target_link_options(run-unittests-extras_i386 PRIVATE -m32)
+    endif()
+    if(MAKE64BIT)
+      add_executable(run-unittests-extras ${TESTS})
+      target_include_directories(run-unittests-extras PUBLIC test/)
+      target_link_libraries(run-unittests-extras ${PROJECT_NAME} stdc++fs  ${CMAKE_THREAD_LIBS_INIT})
+    endif()
   endif()
 endif()
 
 # Library Note: may not work on windows
-install(TARGETS ${PROJECT_NAME}_i386 LIBRARY DESTINATION lib)
-install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib)
+if(MAKE32BIT)
+  install(TARGETS ${PROJECT_NAME}_i386 LIBRARY DESTINATION lib)
+endif()
+if(MAKE64BIT)
+  install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib)
+endif()
 
 # Header files
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
 
-export(TARGETS ${PROJECT_NAME}_i386 FILE extrasConfig_i386.cmake)
-export(TARGETS ${PROJECT_NAME} FILE extrasConfig.cmake)
+if(MAKE32BIT)
+  export(TARGETS ${PROJECT_NAME}_i386 FILE extrasConfig_i386.cmake)
+endif()
+if(MAKE64BIT)
+  export(TARGETS ${PROJECT_NAME} FILE extrasConfig.cmake)
+endif()
 
 # if the compiler supports iter-procedural optimization, turn it on
 check_ipo_supported(RESULT result OUTPUT output)
 if(result)
-  set_target_properties(${PROJECT_NAME}_i386 PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
-  set_target_properties(${PROJECT_NAME} PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
-else()
+  if(MAKE32BIT)
+    set_target_properties(${PROJECT_NAME}_i386 PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
+  endif()
+  if(MAKE64BIT)
+    set_target_properties(${PROJECT_NAME} PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
+  endif()
+  else()
   message(STATUS "IPO is not supported: ${output}")
 endif()
 
-# Set version for shared libraries.
-set_target_properties(
-  ${PROJECT_NAME}_i386 
-    PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} 
-    SOVERSION ${${PROJECT_NAME}_VERSION_MAJOR}
-)
+if(MAKE32BIT)
+  # Set version for shared libraries.
+  set_target_properties(
+    ${PROJECT_NAME}_i386 
+      PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} 
+      SOVERSION ${${PROJECT_NAME}_VERSION_MAJOR}
+  )
+endif()
 
-set_target_properties(
-  ${PROJECT_NAME} 
-    PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} 
-    SOVERSION ${${PROJECT_NAME}_VERSION_MAJOR}
-)
+if(MAKE64BIT)
+  set_target_properties(
+    ${PROJECT_NAME} 
+      PROPERTIES VERSION ${${PROJECT_NAME}_VERSION} 
+      SOVERSION ${${PROJECT_NAME}_VERSION_MAJOR}
+  )
+endif()

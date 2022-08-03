@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v7.2.0 -m "applied _i386"</br>
-> > git push origin v7.2.0
+> > git tag -a v7.3.0 -m "added Find32or64bit.cmake"</br>
+> > git push origin v7.3.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,12 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 7.3.0 (2022-08-02)
+### Added 
+- added Find32or64bit.cmake
+- added MAKE32BITONLY environment variable
+- added MAKE64BITONLY environment variable
 
 #### 7.2.0 (2022-08-01)
 ### Added 
@@ -738,7 +744,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v7.2.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v7.3.0..HEAD
+[7.3.0]: https://github.com/perriera/extras/compare/v7.2.0...v7.3.0
 [7.2.0]: https://github.com/perriera/extras/compare/v7.1.0...v7.2.0
 [7.1.0]: https://github.com/perriera/extras/compare/v7.0.0...v7.1.0
 [7.0.0]: https://github.com/perriera/extras/compare/v6.2.0...v7.0.0
