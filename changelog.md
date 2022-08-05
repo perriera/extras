@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v7.3.0 -m "added Find32or64bit.cmake"</br>
-> > git push origin v7.3.0
+> > git tag -a v7.4.0 -m "added test/READMD.md"</br>
+> > git push origin v7.4.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,11 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 7.4.0 (2022-08-04)
+### Added 
+- added test/vendor/README.md
+- added cmake/README.md
 
 #### 7.3.0 (2022-08-02)
 ### Added 
