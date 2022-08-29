@@ -71,4 +71,11 @@ SCENARIO("test assertions for file::Interface: found", "[PE-40]") {
   REQUIRE_THROWS_AS(
       file::FileExistsException::assertion(file::File(".."), __INFO__),
       file::FileExistsException);
+  /**
+   * @brief FolderExistsException
+   *
+   */
+  REQUIRE_THROWS_AS(
+      file::FolderExistsException::assertion(file::File("/usr"), __INFO__),
+      file::FolderExistsException);
 }

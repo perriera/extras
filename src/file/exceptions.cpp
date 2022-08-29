@@ -16,6 +16,10 @@
  *
  */
 
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+
 #include <extras/file/clazz.hpp>
 #include <extras/filesystem/files.hpp>
 #include <extras/strings/string_support.hpp>
@@ -93,8 +97,11 @@ void FileExistsException::assertion(const Interface& fi, const WhereAmI& ref) {
  */
 void FolderExistsException::assertion(const Interface& fi,
                                       const WhereAmI& ref) {
-  ifstream f(fi.filename().c_str());
-  if (!f.good()) throw FolderExistsException(fi.filename(), ref);
+  struct stat statbuf;
+  string name = fi.filename();
+  if (stat(name.c_str(), &statbuf) != 0)
+    throw NotaFolderException(fi.filename(), ref);
+  if (S_ISDIR(statbuf.st_mode)) throw FolderExistsException(fi.filename(), ref);
 }
 
 /**
@@ -116,8 +123,10 @@ void FolderNotFoundException::assertion(const Interface& fi,
  * @param ref
  */
 void NotaFolderException::assertion(const Interface& fi, const WhereAmI& ref) {
-  ifstream f(fi.filename().c_str());
-  if (!f.good()) throw NotaFolderException(fi.filename(), ref);
+  struct stat statbuf;
+  if (stat(fi.filename().c_str(), &statbuf) != 0)
+    throw NotaFolderException(fi.filename(), ref);
+  if (!S_ISDIR(statbuf.st_mode)) throw NotaFolderException(fi.filename(), ref);
 }
 
 /**
