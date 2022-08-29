@@ -30,6 +30,9 @@ using namespace extras;
  *
  * @param fn
  */
-// file::FileX::FileX() {
+
+// CAUSES CORE DUMP
+
+// file::File::File() {
 //   // FilenameInvalidException::assertion(_fn, __INFO__);
 // }

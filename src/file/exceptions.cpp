@@ -21,6 +21,7 @@
 #include <extras/strings/string_support.hpp>
 #include <fstream>
 #include <iostream>
+#include <regex>
 
 using namespace std;
 using namespace extras;
@@ -46,8 +47,15 @@ void file::FileNotFoundException::assertion(const Filename& filename,
  */
 void file::FilenameInvalidException::assertion(const Filename& filename,
                                                const WhereAmI& ref) {
-  ifstream f(filename.c_str());
-  if (!f.good()) throw file::FilenameInvalidException(filename, ref);
+  if (filename.length() == 0)
+    throw file::FilenameInvalidException("no filename specified", ref);
+  string valid_filename = "^[^<>:;,?\"*|/]+$";
+  auto parts = extras::str::split(filename, '/');
+  regex valid_filename_expr(valid_filename);
+  for (auto part : parts) {
+    if (!regex_match(part, valid_filename_expr))
+      throw file::FilenameInvalidException(filename, ref);
+  }
 }
 
 /**

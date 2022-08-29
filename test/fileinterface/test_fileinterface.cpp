@@ -31,21 +31,14 @@ using namespace extras;
  *
  */
 SCENARIO("Test file::Interface: found", "[PE-40]") {
+  /**
+   * @brief test valid path name
+   *
+   */
   string correct_answer = "test/etc/some_file.txt";
-
   file::File file(correct_answer);
   file::Interface& i = file;
 
   REQUIRE(i.filename() == correct_answer);
   REQUIRE(i.exists() == true);
-}
-
-SCENARIO("Test FileInterface: not found", "[PE-40]") {
-  string correct_answer = "test/etc/some_fileX.txt";
-
-  file::File file(correct_answer);
-  file::Interface& i = file;
-
-  REQUIRE(i.filename() == correct_answer);
-  REQUIRE(i.exists() == false);
 }
