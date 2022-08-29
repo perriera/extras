@@ -3,13 +3,11 @@ Recommended GCC environment:
 
 	sudo apt update
 	sudo apt install -y build-essential libtool autotools-dev automake 
-    sudo apt install -y gcc-multilib g++-multilib
 	sudo apt install -y pkg-config git clangd cppcheck clang-tidy 
     sudo apt install -y python3-pip
 
 [More information on pip here](https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/)
-[More information on cmake here](https://askubuntu.com/questions/355565/how-do-i-install-the-latest-version-of-cmake-from-the-command-line)
-[More informaitn on MINSIGSTKSZ here](https://stackoverflow.com/questions/71454588/minsigstksz-error-after-update-in-my-manjaro-linux)
+
 	pip install clang-format
 	pip install cmake-format
 	pip install cmake
