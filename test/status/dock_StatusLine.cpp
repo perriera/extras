@@ -16,13 +16,13 @@
  *
  */
 
+#include <extras/docking/DockIt.hpp>
 #include <extras/status/StatusLine.hpp>
 #include <iostream>
 #include <sstream>
 
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
-#include "extras/docking/DockIt.hpp"
 
 using namespace extras;
 using namespace fakeit;

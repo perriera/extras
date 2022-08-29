@@ -18,6 +18,7 @@
 
 #include <extras/crcs/crc32_support.hpp>
 #include <extras/crcs/crc64_support.hpp>
+#include <extras/docking/DockIt.hpp>
 #include <extras/strings/string_support.hpp>
 #include <fstream>
 #include <iostream>  // std::cout
@@ -26,7 +27,6 @@
 
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
-#include "extras/docking/DockIt.hpp"
 
 struct SomeInterface {
   virtual int foo(int) = 0;

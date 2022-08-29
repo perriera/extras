@@ -16,24 +16,14 @@
  *
  */
 
+#include <extras/file/clazz.hpp>
+#include <extras/filesystem/files.hpp>
+#include <extras/strings/string_support.hpp>
 #include <fstream>
 #include <iostream>
 
-#include "extras/file/class.hpp"
-#include "extras/filesystem/files.hpp"
-#include "extras/strings/string_support.hpp"
-
 using namespace std;
 using namespace extras;
-
-/**
- * @brief Construct a new system::File::File object
- *
- * @param fn
- */
-file::File::File(const Filename& fn) : _fn(fn) {
-  FilenameInvalidException::assertion(_fn, __INFO__);
-}
 
 /**
  * @brief exists()

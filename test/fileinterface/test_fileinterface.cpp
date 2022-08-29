@@ -16,12 +16,12 @@
  *
  */
 
+#include <extras/docking/DockIt.hpp>
+#include <extras/file/clazz.hpp>
 #include <fstream>
 #include <iostream>
 
 #include "../vendor/catch.hpp"
-#include "extras/docking/DockIt.hpp"
-#include "extras/file/class.hpp"
 
 using namespace std;
 using namespace extras;

@@ -32,7 +32,7 @@ namespace extras {
       Filename _fn;
 
      public:
-      File(const Filename& fn);
+      File(const Filename& fn) : _fn(fn){};
 
       /**
        * @brief FileInterface

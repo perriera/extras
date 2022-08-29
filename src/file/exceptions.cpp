@@ -16,36 +16,105 @@
  *
  */
 
+#include <extras/file/clazz.hpp>
+#include <extras/filesystem/files.hpp>
+#include <extras/strings/string_support.hpp>
 #include <fstream>
 #include <iostream>
 
-#include "extras/file/class.hpp"
-#include "extras/filesystem/files.hpp"
-#include "extras/strings/string_support.hpp"
-
 using namespace std;
 using namespace extras;
+using namespace extras::file;
 
-namespace extras {
-  namespace file {
+/**
+ * @brief FileNotFoundException::assertion
+ *
+ * @param filename
+ * @param ref
+ */
+void file::FileNotFoundException::assertion(const Filename& filename,
+                                            const WhereAmI& ref) {
+  ifstream f(filename.c_str());
+  if (!f.good()) throw file::FileNotFoundException(filename, ref);
+}
 
-    void FileNotFoundException::assertion(const Filename& filename,
-                                          const WhereAmI& ref) {
-      ifstream f(filename.c_str());
-      if (!f.good()) throw FileNotFoundException(filename, ref);
-    }
+/**
+ * @brief FilenameInvalidException::assertion
+ *
+ * @param filename
+ * @param ref
+ */
+void file::FilenameInvalidException::assertion(const Filename& filename,
+                                               const WhereAmI& ref) {
+  ifstream f(filename.c_str());
+  if (!f.good()) throw file::FilenameInvalidException(filename, ref);
+}
 
-    void FileNotCopiedException::assertion(const Interface& fi,
-                                           const WhereAmI& ref) {
-      ifstream f(fi.filename().c_str());
-      if (!f.good()) throw FileNotCopiedException(fi.filename(), ref);
-    }
+/**
+ * @brief FileNotCopiedException::assertion
+ *
+ * @param fi
+ * @param ref
+ */
+void FileNotCopiedException::assertion(const Interface& fi,
+                                       const WhereAmI& ref) {
+  ifstream f(fi.filename().c_str());
+  if (!f.good()) throw FileNotCopiedException(fi.filename(), ref);
+}
 
-    void FilenameInvalidException::assertion(const Filename& filename,
-                                             const WhereAmI& ref) {
-      if (filename.empty())
-        throw FilenameInvalidException("no filename specified", ref);
-    }
+/**
+ * @brief FileExistsException::assertion
+ *
+ * @param filename
+ * @param ref
+ */
+void FileExistsException::assertion(const Interface& fi, const WhereAmI& ref) {
+  ifstream f(fi.filename().c_str());
+  if (!f.good()) throw FileExistsException(fi.filename(), ref);
+}
 
-  }  // namespace file
-}  // namespace extras
+/**
+ * @brief FolderExistsException::assertion
+ *
+ * @param filename
+ * @param ref
+ */
+void FolderExistsException::assertion(const Interface& fi,
+                                      const WhereAmI& ref) {
+  ifstream f(fi.filename().c_str());
+  if (!f.good()) throw FolderExistsException(fi.filename(), ref);
+}
+
+/**
+ * @brief FolderNotFoundException::assertion
+ *
+ * @param filename
+ * @param ref
+ */
+void FolderNotFoundException::assertion(const Interface& fi,
+                                        const WhereAmI& ref) {
+  ifstream f(fi.filename().c_str());
+  if (!f.good()) throw FolderNotFoundException(fi.filename(), ref);
+}
+
+/**
+ * @brief NotaFolderException::assertion
+ *
+ * @param filename
+ * @param ref
+ */
+void NotaFolderException::assertion(const Interface& fi, const WhereAmI& ref) {
+  ifstream f(fi.filename().c_str());
+  if (!f.good()) throw NotaFolderException(fi.filename(), ref);
+}
+
+/**
+ * @brief NotaFileException::assertion
+ *
+ * @param filename
+ * @param ref
+ */
+void NotaFileException::assertion(const Interface& fi, const WhereAmI& ref) {
+  ifstream f(fi.filename().c_str());
+  if (!f.good()) throw NotaFileException(fi.filename(), ref);
+}
