@@ -27,10 +27,10 @@ using namespace std;
 using namespace extras;
 
 /**
- * @brief Dock FileInterface
+ * @brief file::Interface
  *
  */
-SCENARIO("Test file::Interface: found", "[PE-40]") {
+SCENARIO("dock/mold for file::Interface: found", "[PE-40]") {
   /**
    * @brief test valid path name
    *
