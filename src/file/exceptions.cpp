@@ -84,9 +84,10 @@ void FileNotCopiedException::assertion(const Interface& fi,
  * @param filename
  * @param ref
  */
-void FileExistsException::assertion(const Interface& fi, const WhereAmI& ref) {
-  ifstream f(fi.filename().c_str());
-  if (f.good()) throw FileExistsException(fi.filename(), ref);
+void FileExistsException::assertion(const Filename& filename,
+                                    const WhereAmI& ref) {
+  ifstream f(filename);
+  if (f.good()) throw FileExistsException(filename, ref);
 }
 
 /**
@@ -95,13 +96,16 @@ void FileExistsException::assertion(const Interface& fi, const WhereAmI& ref) {
  * @param filename
  * @param ref
  */
-void FolderExistsException::assertion(const Interface& fi,
-                                      const WhereAmI& ref) {
-  struct stat statbuf;
-  string name = fi.filename();
-  if (stat(name.c_str(), &statbuf) != 0)
-    throw NotaFolderException(fi.filename(), ref);
-  if (S_ISDIR(statbuf.st_mode)) throw FolderExistsException(fi.filename(), ref);
+void FolderExistsException::assertion(const Interface&, const WhereAmI&) {
+  // struct stat statbuf;
+  // string name = fi.filename();
+  // if (stat(name.c_str(), &statbuf) != 0) {
+  //   throw FileNotFoundException(name, ref);
+  // }
+  // if (S_ISDIR(statbuf.st_mode)) throw FolderExistsException(fi.filename(),
+  // ref);
+  throw extras::feature::NotImplementedException(
+      "FolderExistsException::assertion()", __INFO__);
 }
 
 /**
@@ -110,10 +114,11 @@ void FolderExistsException::assertion(const Interface& fi,
  * @param filename
  * @param ref
  */
-void FolderNotFoundException::assertion(const Interface& fi,
-                                        const WhereAmI& ref) {
-  ifstream f(fi.filename().c_str());
-  if (!f.good()) throw FolderNotFoundException(fi.filename(), ref);
+void FolderNotFoundException::assertion(const Interface&, const WhereAmI&) {
+  // ifstream f(fi.filename().c_str());
+  // if (!f.good()) throw FolderNotFoundException(fi.filename(), ref);
+  throw extras::feature::NotImplementedException(
+      "FolderNotFoundException::assertion()", __INFO__);
 }
 
 /**
@@ -122,11 +127,14 @@ void FolderNotFoundException::assertion(const Interface& fi,
  * @param filename
  * @param ref
  */
-void NotaFolderException::assertion(const Interface& fi, const WhereAmI& ref) {
-  struct stat statbuf;
-  if (stat(fi.filename().c_str(), &statbuf) != 0)
-    throw NotaFolderException(fi.filename(), ref);
-  if (!S_ISDIR(statbuf.st_mode)) throw NotaFolderException(fi.filename(), ref);
+void NotaFolderException::assertion(const Interface&, const WhereAmI&) {
+  // struct stat statbuf;
+  // if (stat(fi.filename().c_str(), &statbuf) != 0)
+  //   throw NotaFolderException(fi.filename(), ref);
+  // if (!S_ISDIR(statbuf.st_mode)) throw NotaFolderException(fi.filename(),
+  // ref);
+  throw extras::feature::NotImplementedException(
+      "NotaFolderException::assertion()", __INFO__);
 }
 
 /**
@@ -135,7 +143,9 @@ void NotaFolderException::assertion(const Interface& fi, const WhereAmI& ref) {
  * @param filename
  * @param ref
  */
-void NotaFileException::assertion(const Interface& fi, const WhereAmI& ref) {
-  ifstream f(fi.filename().c_str());
-  if (!f.good()) throw NotaFileException(fi.filename(), ref);
+void NotaFileException::assertion(const Interface&, const WhereAmI&) {
+  // ifstream f(fi.filename().c_str());
+  // if (!f.good()) throw NotaFileException(fi.filename(), ref);
+  throw extras::feature::NotImplementedException(
+      "NotaFileException::assertion()", __INFO__);
 }

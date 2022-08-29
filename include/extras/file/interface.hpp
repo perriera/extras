@@ -118,7 +118,7 @@ namespace extras {
                           const extras::WhereAmI& whereAmI)
           : FileException(msg, whereAmI) {}
       virtual char const* what() const noexcept { return _msg.c_str(); }
-      static void assertion(const file::Interface&,
+      static void assertion(const Filename& filename,
                             const extras::WhereAmI& ref);
     };
 

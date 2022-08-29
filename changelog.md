@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v7.4.0 -m "added test/READMD.md"</br>
-> > git push origin v7.4.0
+> > git tag -a v7.5.0 -m "added new file::Interface exceptions"</br>
+> > git push origin v7.5.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,13 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 7.5.0 (2022-08-28)
+### Added 
+- FileNotFoundException
+- FileNotCopiedException
+- FilenameInvalidException
+- FileExistsException
 
 #### 7.4.0 (2022-08-04)
 ### Added 
@@ -749,7 +756,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v7.3.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v7.5.0..HEAD
+[7.5.0]: https://github.com/perriera/extras/compare/v7.4.0...v7.5.0
+[7.4.0]: https://github.com/perriera/extras/compare/v7.3.0...v7.4.0
 [7.3.0]: https://github.com/perriera/extras/compare/v7.2.0...v7.3.0
 [7.2.0]: https://github.com/perriera/extras/compare/v7.1.0...v7.2.0
 [7.1.0]: https://github.com/perriera/extras/compare/v7.0.0...v7.1.0
