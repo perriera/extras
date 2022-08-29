@@ -61,7 +61,7 @@ namespace extras {
      *
      */
     concrete class FileException extends extras::AbstractCustomException {
-     public:
+     protected:
       FileException(const std::string& msg, const extras::WhereAmI& whereAmI)
           : AbstractCustomException(msg.c_str(), whereAmI._file.c_str(),
                                     whereAmI._func.c_str(), whereAmI._line) {}

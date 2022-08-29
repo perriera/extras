@@ -41,9 +41,4 @@ SCENARIO("dock/mold for file::Interface: found", "[PE-40]") {
 
   REQUIRE(i.filename() == correct_answer);
   REQUIRE(i.exists() == true);
-
-  REQUIRE_THROWS_AS(file::File(""), file::FilenameInvalidException);
-  REQUIRE_THROWS_AS(file::File("?"), file::FilenameInvalidException);
-  REQUIRE_THROWS_AS(file::File("*"), file::FilenameInvalidException);
-  REQUIRE_THROWS_AS(file::File("//"), file::FilenameInvalidException);
 }

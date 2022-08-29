@@ -53,7 +53,9 @@ void file::FilenameInvalidException::assertion(const Filename& filename,
   auto parts = extras::str::split(filename, '/');
   regex valid_filename_expr(valid_filename);
   for (auto part : parts) {
-    if (!regex_match(part, valid_filename_expr))
+    if (part.length() == 0)
+      throw file::FilenameInvalidException("no folder name specified", ref);
+    if (!regex_match(part, valid_filename_expr) || part == "\\")
       throw file::FilenameInvalidException(filename, ref);
   }
 }
@@ -67,7 +69,9 @@ void file::FilenameInvalidException::assertion(const Filename& filename,
 void FileNotCopiedException::assertion(const Interface& fi,
                                        const WhereAmI& ref) {
   ifstream f(fi.filename().c_str());
-  if (!f.good()) throw FileNotCopiedException(fi.filename(), ref);
+  if (!f.good()) {
+    throw FileNotCopiedException(fi.filename(), ref);
+  }
 }
 
 /**

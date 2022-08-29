@@ -32,9 +32,7 @@ namespace extras {
       Filename _fn;
 
      public:
-      File(const Filename& fn) : _fn(fn) {
-        FilenameInvalidException::assertion(_fn, __INFO__);
-      };
+      File(const Filename& fn) : _fn(fn){};
 
       /**
        * @brief FileInterface
