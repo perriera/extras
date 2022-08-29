@@ -82,7 +82,7 @@ void FileNotCopiedException::assertion(const Interface& fi,
  */
 void FileExistsException::assertion(const Interface& fi, const WhereAmI& ref) {
   ifstream f(fi.filename().c_str());
-  if (!f.good()) throw FileExistsException(fi.filename(), ref);
+  if (f.good()) throw FileExistsException(fi.filename(), ref);
 }
 
 /**

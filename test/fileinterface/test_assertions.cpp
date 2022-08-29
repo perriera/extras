@@ -61,9 +61,14 @@ SCENARIO("test assertions for file::Interface: found", "[PE-40]") {
                     file::FilenameInvalidException);
   REQUIRE_THROWS_AS(file::FilenameInvalidException::assertion("/", __INFO__),
                     file::FilenameInvalidException);
-
-  // REQUIRE_THROWS_AS(file::File(""), file::FilenameInvalidException);
-  // REQUIRE_THROWS_AS(file::File("?"), file::FilenameInvalidException);
-  // REQUIRE_THROWS_AS(file::File("*"), file::FilenameInvalidException);
-  // REQUIRE_THROWS_AS(file::File("//"), file::FilenameInvalidException);
+  /**
+   * @brief FileExistsException
+   *
+   */
+  REQUIRE_THROWS_AS(
+      file::FileExistsException::assertion(file::File("."), __INFO__),
+      file::FileExistsException);
+  REQUIRE_THROWS_AS(
+      file::FileExistsException::assertion(file::File(".."), __INFO__),
+      file::FileExistsException);
 }
