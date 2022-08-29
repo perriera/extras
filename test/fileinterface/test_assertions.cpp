@@ -35,41 +35,40 @@ SCENARIO("test assertions for file::Interface: found", "[PE-40]") {
    * @brief FileNotFoundException
    *
    */
-  REQUIRE_THROWS_AS(
-      file::FileNotFoundException::assertion("/usr/abc", __INFO__),
-      file::FileNotFoundException);
+  REQUIRE_THROWS_AS(file::NotFoundException::assertion("/usr/abc", __INFO__),
+                    file::NotFoundException);
   /**
    * @brief FileNotCopiedException
    *
    */
   REQUIRE_THROWS_AS(
-      file::FileNotCopiedException::assertion(file::File("/usr/abc"), __INFO__),
-      file::FileNotCopiedException);
+      file::NotCopiedException::assertion(file::File("/usr/abc"), __INFO__),
+      file::NotCopiedException);
   /**
    * @brief FilenameInvalidException
    *
    */
-  REQUIRE_THROWS_AS(file::FilenameInvalidException::assertion("", __INFO__),
-                    file::FilenameInvalidException);
-  REQUIRE_THROWS_AS(file::FilenameInvalidException::assertion("?", __INFO__),
-                    file::FilenameInvalidException);
-  REQUIRE_THROWS_AS(file::FilenameInvalidException::assertion("*", __INFO__),
-                    file::FilenameInvalidException);
-  REQUIRE_THROWS_AS(file::FilenameInvalidException::assertion("\\", __INFO__),
-                    file::FilenameInvalidException);
-  REQUIRE_THROWS_AS(file::FilenameInvalidException::assertion("//", __INFO__),
-                    file::FilenameInvalidException);
-  REQUIRE_THROWS_AS(file::FilenameInvalidException::assertion("/", __INFO__),
-                    file::FilenameInvalidException);
+  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("", __INFO__),
+                    file::InvalidNameException);
+  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("?", __INFO__),
+                    file::InvalidNameException);
+  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("*", __INFO__),
+                    file::InvalidNameException);
+  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("\\", __INFO__),
+                    file::InvalidNameException);
+  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("//", __INFO__),
+                    file::InvalidNameException);
+  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("/", __INFO__),
+                    file::InvalidNameException);
   /**
    * @brief FileExistsException
    *
    */
-  REQUIRE_THROWS_AS(file::FileExistsException::assertion(".", __INFO__),
-                    file::FileExistsException);
-  REQUIRE_THROWS_AS(file::FileExistsException::assertion("..", __INFO__),
-                    file::FileExistsException);
-  file::FileExistsException::assertion("/>?/", __INFO__);
+  REQUIRE_THROWS_AS(file::ExistsException::assertion(".", __INFO__),
+                    file::ExistsException);
+  REQUIRE_THROWS_AS(file::ExistsException::assertion("..", __INFO__),
+                    file::ExistsException);
+  file::ExistsException::assertion("/>?/", __INFO__);
   // /**
   //  * @brief FolderExistsException
   //  *

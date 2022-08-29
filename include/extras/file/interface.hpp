@@ -60,9 +60,9 @@ namespace extras {
      * @brief FileException
      *
      */
-    concrete class FileException extends extras::AbstractCustomException {
+    concrete class Exception extends extras::AbstractCustomException {
      protected:
-      FileException(const std::string& msg, const extras::WhereAmI& whereAmI)
+      Exception(const std::string& msg, const extras::WhereAmI& whereAmI)
           : AbstractCustomException(msg.c_str(), whereAmI._file.c_str(),
                                     whereAmI._func.c_str(), whereAmI._line) {}
     };
@@ -71,11 +71,11 @@ namespace extras {
      * @brief FileNotFoundException
      *
      */
-    concrete class FileNotFoundException extends FileException {
+    concrete class NotFoundException extends Exception {
      public:
-      FileNotFoundException(const std::string& msg,
-                            const extras::WhereAmI& whereAmI)
-          : FileException(msg, whereAmI) {}
+      NotFoundException(const std::string& msg,
+                        const extras::WhereAmI& whereAmI)
+          : Exception(msg, whereAmI) {}
       virtual char const* what() const noexcept { return _msg.c_str(); }
       static void assertion(const Filename& filename,
                             const extras::WhereAmI& ref);
@@ -85,11 +85,11 @@ namespace extras {
      * @brief FileNotCopiedException
      *
      */
-    concrete class FileNotCopiedException extends FileException {
+    concrete class NotCopiedException extends Exception {
      public:
-      FileNotCopiedException(const std::string& msg,
-                             const extras::WhereAmI& whereAmI)
-          : FileException(msg, whereAmI) {}
+      NotCopiedException(const std::string& msg,
+                         const extras::WhereAmI& whereAmI)
+          : Exception(msg, whereAmI) {}
       virtual char const* what() const noexcept { return _msg.c_str(); }
       static void assertion(const file::Interface&, const extras::WhereAmI&);
     };
@@ -98,11 +98,11 @@ namespace extras {
      * @brief FilenameInvalidException
      *
      */
-    concrete class FilenameInvalidException extends FileException {
+    concrete class InvalidNameException extends Exception {
      public:
-      FilenameInvalidException(const std::string& msg,
-                               const extras::WhereAmI& whereAmI)
-          : FileException(msg, whereAmI) {}
+      InvalidNameException(const std::string& msg,
+                           const extras::WhereAmI& whereAmI)
+          : Exception(msg, whereAmI) {}
       virtual char const* what() const noexcept { return _msg.c_str(); }
       static void assertion(const Filename& filename,
                             const extras::WhereAmI& ref);
@@ -112,11 +112,10 @@ namespace extras {
      * @brief FileExistsException
      *
      */
-    concrete class FileExistsException extends FileException {
+    concrete class ExistsException extends Exception {
      public:
-      FileExistsException(const std::string& msg,
-                          const extras::WhereAmI& whereAmI)
-          : FileException(msg, whereAmI) {}
+      ExistsException(const std::string& msg, const extras::WhereAmI& whereAmI)
+          : Exception(msg, whereAmI) {}
       virtual char const* what() const noexcept { return _msg.c_str(); }
       static void assertion(const Filename& filename,
                             const extras::WhereAmI& ref);
@@ -126,11 +125,11 @@ namespace extras {
      * @brief FolderExistsException
      *
      */
-    concrete class FolderExistsException extends FileException {
+    concrete class FolderExistsException extends Exception {
      public:
       FolderExistsException(const std::string& msg,
                             const extras::WhereAmI& whereAmI)
-          : FileException(msg, whereAmI) {}
+          : Exception(msg, whereAmI) {}
       virtual char const* what() const noexcept { return _msg.c_str(); }
       static void assertion(const file::Interface&,
                             const extras::WhereAmI& ref);
@@ -140,11 +139,11 @@ namespace extras {
      * @brief FolderNotFoundException
      *
      */
-    concrete class FolderNotFoundException extends FileException {
+    concrete class FolderNotFoundException extends Exception {
      public:
       FolderNotFoundException(const std::string& msg,
                               const extras::WhereAmI& whereAmI)
-          : FileException(msg, whereAmI) {}
+          : Exception(msg, whereAmI) {}
       virtual char const* what() const noexcept { return _msg.c_str(); }
       static void assertion(const file::Interface&,
                             const extras::WhereAmI& ref);
@@ -154,11 +153,11 @@ namespace extras {
      * @brief NotaFolderException
      *
      */
-    concrete class NotaFolderException extends FileException {
+    concrete class NotaFolderException extends Exception {
      public:
       NotaFolderException(const std::string& msg,
                           const extras::WhereAmI& whereAmI)
-          : FileException(msg, whereAmI) {}
+          : Exception(msg, whereAmI) {}
       virtual char const* what() const noexcept { return _msg.c_str(); }
       static void assertion(const file::Interface&,
                             const extras::WhereAmI& ref);
@@ -168,11 +167,11 @@ namespace extras {
      * @brief NotaFileException
      *
      */
-    concrete class NotaFileException extends FileException {
+    concrete class NotaFileException extends Exception {
      public:
       NotaFileException(const std::string& msg,
                         const extras::WhereAmI& whereAmI)
-          : FileException(msg, whereAmI) {}
+          : Exception(msg, whereAmI) {}
       virtual char const* what() const noexcept { return _msg.c_str(); }
       static void assertion(const file::Interface&,
                             const extras::WhereAmI& ref);

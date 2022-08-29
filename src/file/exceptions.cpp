@@ -37,10 +37,10 @@ using namespace extras::file;
  * @param filename
  * @param ref
  */
-void file::FileNotFoundException::assertion(const Filename& filename,
-                                            const WhereAmI& ref) {
+void file::NotFoundException::assertion(const Filename& filename,
+                                        const WhereAmI& ref) {
   ifstream f(filename.c_str());
-  if (!f.good()) throw file::FileNotFoundException(filename, ref);
+  if (!f.good()) throw file::NotFoundException(filename, ref);
 }
 
 /**
@@ -49,18 +49,18 @@ void file::FileNotFoundException::assertion(const Filename& filename,
  * @param filename
  * @param ref
  */
-void file::FilenameInvalidException::assertion(const Filename& filename,
-                                               const WhereAmI& ref) {
+void file::InvalidNameException::assertion(const Filename& filename,
+                                           const WhereAmI& ref) {
   if (filename.length() == 0)
-    throw file::FilenameInvalidException("no filename specified", ref);
+    throw file::InvalidNameException("no filename specified", ref);
   string valid_filename = "^[^<>:;,?\"*|/]+$";
   auto parts = extras::str::split(filename, '/');
   regex valid_filename_expr(valid_filename);
   for (auto part : parts) {
     if (part.length() == 0)
-      throw file::FilenameInvalidException("no folder name specified", ref);
+      throw file::InvalidNameException("no folder name specified", ref);
     if (!regex_match(part, valid_filename_expr) || part == "\\")
-      throw file::FilenameInvalidException(filename, ref);
+      throw file::InvalidNameException(filename, ref);
   }
 }
 
@@ -70,11 +70,10 @@ void file::FilenameInvalidException::assertion(const Filename& filename,
  * @param fi
  * @param ref
  */
-void FileNotCopiedException::assertion(const Interface& fi,
-                                       const WhereAmI& ref) {
+void NotCopiedException::assertion(const Interface& fi, const WhereAmI& ref) {
   ifstream f(fi.filename().c_str());
   if (!f.good()) {
-    throw FileNotCopiedException(fi.filename(), ref);
+    throw NotCopiedException(fi.filename(), ref);
   }
 }
 
@@ -84,10 +83,9 @@ void FileNotCopiedException::assertion(const Interface& fi,
  * @param filename
  * @param ref
  */
-void FileExistsException::assertion(const Filename& filename,
-                                    const WhereAmI& ref) {
+void ExistsException::assertion(const Filename& filename, const WhereAmI& ref) {
   ifstream f(filename);
-  if (f.good()) throw FileExistsException(filename, ref);
+  if (f.good()) throw ExistsException(filename, ref);
 }
 
 /**
