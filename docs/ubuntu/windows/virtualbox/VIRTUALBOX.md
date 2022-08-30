@@ -20,6 +20,8 @@
 1. [Download Ubuntu 20.04.4 LTS](https://releases.ubuntu.com/20.04/) <br/>
 2. [VDI Vs VHD Vs VMDK: Learn the Different Virtual Disk Formats](https://www.parallels.com/blogs/ras/vdi-vs-vhd-vs-vmdk/)<br/>
 3. [Index of /virtualbox/6.1.32](http://download.virtualbox.org/virtualbox/6.1.32/)<br/>
+4. [Index of /virtualbox/6.1.34](http://download.virtualbox.org/virtualbox/6.1.34/)<br/>
+5. [Index of /virtualbox/6.1.36](http://download.virtualbox.org/virtualbox/6.1.36/)<br/>
 
 ### Wish Case ([Download Ubuntu 20.04.4 LTS](https://releases.ubuntu.com/20.04/))
 	•	On Windows Download Ubuntu 20.04.4 LTS to Downloads folder

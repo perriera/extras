@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.0.0 -m "refactored file::Interface exceptions"</br>
-> > git push origin v8.0.0
+> > git tag -a v8.1.0 -m "updated latest virtual box urls"</br>
+> > git push origin v8.1.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,13 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.1.0 (2022-08-30)
+### Updated 
+- latest virtual box urls
+* [Index of /virtualbox/6.1.32](http://download.virtualbox.org/virtualbox/6.1.32/)<br/>
+* [Index of /virtualbox/6.1.34](http://download.virtualbox.org/virtualbox/6.1.34/)<br/>
+* [Index of /virtualbox/6.1.36](http://download.virtualbox.org/virtualbox/6.1.36/)<br/>
 
 #### 8.0.0 (2022-08-28)
 ### Refactored 
@@ -764,7 +771,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.0.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.1.0..HEAD
+[8.1.0]: https://github.com/perriera/extras/compare/v8.0.0...v8.1.0
 [8.0.0]: https://github.com/perriera/extras/compare/v7.5.0...v8.0.0
 [7.5.0]: https://github.com/perriera/extras/compare/v7.4.0...v7.5.0
 [7.4.0]: https://github.com/perriera/extras/compare/v7.3.0...v7.4.0
