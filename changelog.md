@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.1.0 -m "updated latest virtual box urls"</br>
-> > git push origin v8.1.0
+> > git tag -a v8.2.0 -m "updated latest ubuntu vm urls"</br>
+> > git push origin v8.2.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,13 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.2.0 (2022-08-30)
+### Updated 
+- latest ubuntu vm urls
+* [Download Ubuntu 20.04.4 LTS](https://releases.ubuntu.com/20.04/) <br/>
+* [Download Ubuntu 21.04.1 LTS](https://releases.ubuntu.com/21.04/) <br/>
+* [Download Ubuntu 22.04.1 LTS](https://releases.ubuntu.com/22.04/) <br/>
 
 #### 8.1.0 (2022-08-30)
 ### Updated 
@@ -771,7 +778,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.1.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.2.0..HEAD
+[8.2.0]: https://github.com/perriera/extras/compare/v8.1.0...v8.2.0
 [8.1.0]: https://github.com/perriera/extras/compare/v8.0.0...v8.1.0
 [8.0.0]: https://github.com/perriera/extras/compare/v7.5.0...v8.0.0
 [7.5.0]: https://github.com/perriera/extras/compare/v7.4.0...v7.5.0

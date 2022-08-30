@@ -18,10 +18,12 @@
 
 #### External Resources
 1. [Download Ubuntu 20.04.4 LTS](https://releases.ubuntu.com/20.04/) <br/>
-2. [VDI Vs VHD Vs VMDK: Learn the Different Virtual Disk Formats](https://www.parallels.com/blogs/ras/vdi-vs-vhd-vs-vmdk/)<br/>
-3. [Index of /virtualbox/6.1.32](http://download.virtualbox.org/virtualbox/6.1.32/)<br/>
-4. [Index of /virtualbox/6.1.34](http://download.virtualbox.org/virtualbox/6.1.34/)<br/>
-5. [Index of /virtualbox/6.1.36](http://download.virtualbox.org/virtualbox/6.1.36/)<br/>
+2. [Download Ubuntu 21.04.1 LTS](https://releases.ubuntu.com/21.04/) <br/>
+3. [Download Ubuntu 22.04.1 LTS](https://releases.ubuntu.com/22.04/) <br/>
+4. [VDI Vs VHD Vs VMDK: Learn the Different Virtual Disk Formats](https://www.parallels.com/blogs/ras/vdi-vs-vhd-vs-vmdk/)<br/>
+5. [Index of /virtualbox/6.1.32](http://download.virtualbox.org/virtualbox/6.1.32/)<br/>
+6. [Index of /virtualbox/6.1.34](http://download.virtualbox.org/virtualbox/6.1.34/)<br/>
+7. [Index of /virtualbox/6.1.36](http://download.virtualbox.org/virtualbox/6.1.36/)<br/>
 
 ### Wish Case ([Download Ubuntu 20.04.4 LTS](https://releases.ubuntu.com/20.04/))
 	•	On Windows Download Ubuntu 20.04.4 LTS to Downloads folder
