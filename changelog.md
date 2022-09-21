@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.3.0 -m "updated latest ubuntu vm urls"</br>
-> > git push origin v8.3.0
+> > git tag -a v8.3.1 -m "MINSIGSTKSZ in catch2.hpp"</br>
+> > git push origin v8.3.1
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,11 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.4.0 (2022-09-20)
+### Fixed 
+- MINSIGSTKSZ in catch2.hpp
+* [MINSIGSTKSZ error](https://stackoverflow.com/questions/71454588/minsigstksz-error-after-update-in-my-manjaro-linux)
 
 #### 8.3.0 (2022-09-20)
 ### Updated 
@@ -782,7 +787,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.3.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.3.1..HEAD
+[8.3.1]: https://github.com/perriera/extras/compare/v8.3.0...v8.3.1
 [8.3.0]: https://github.com/perriera/extras/compare/v8.2.0...v8.3.0
 [8.2.0]: https://github.com/perriera/extras/compare/v8.1.0...v8.2.0
 [8.1.0]: https://github.com/perriera/extras/compare/v8.0.0...v8.1.0

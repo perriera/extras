@@ -8165,6 +8165,10 @@ namespace Catch {
 
 #elif defined(CATCH_CONFIG_POSIX_SIGNALS)
 
+//
+// https://stackoverflow.com/questions/71454588/minsigstksz-error-after-update-in-my-manjaro-linux
+//
+
 #undef MINSIGSTKSZ
 #define MINSIGSTKSZ 16384
 
