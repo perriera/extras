@@ -41,7 +41,7 @@ using namespace std;
 using namespace fakeit;
 
 SCENARIO("Verify FakeIt: Stubbing", "[FakeIt]") {
-  Dock<SomeInterface> dock;
+  Mold<SomeInterface> dock;
   // Stub a method to return a value once
   When(Method(dock, foo)).Return(1);
 
@@ -62,7 +62,7 @@ SCENARIO("Verify FakeIt: Stubbing", "[FakeIt]") {
 }
 
 SCENARIO("Verify FakeIt: more specific", "[FakeIt]") {
-  Dock<SomeInterface> dock;
+  Mold<SomeInterface> dock;
   // Stub foo(1) to return the value '100' once (The next two lines do the same)
   When(Method(dock, foo).Using(1)).Return(100);
   When(Method(dock, foo)(1)).Return(100);
@@ -79,7 +79,7 @@ SCENARIO("Verify FakeIt: more specific", "[FakeIt]") {
 }
 
 SCENARIO("Verify FakeIt: exceptions", "[FakeIt]") {
-  Dock<SomeInterface> dock;
+  Mold<SomeInterface> dock;
   // Stub foo(1) to return the value '100' once (The next two lines do the same)
   // Throw once
   When(Method(dock, foo)).Throw(exception());

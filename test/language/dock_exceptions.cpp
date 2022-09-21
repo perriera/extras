@@ -47,7 +47,7 @@
 
 // SCENARIO("Dock ExtrasExceptionInterface: what", "[exceptions_mock]") {
 //   auto correct_answer = "some error message";
-//   Dock<ExtrasExceptionInterface> dock;
+//   Mold<ExtrasExceptionInterface> dock;
 //   When(Method(dock, what)).Return(correct_answer);
 
 //   ExtrasExceptionInterface &i = dock.get();
@@ -57,7 +57,7 @@
 
 // SCENARIO("Dock ExtrasExceptionInterface: getfile", "[exceptions_mock]") {
 //   auto correct_answer = __FILE__;
-//   Dock<ExtrasExceptionInterface> dock;
+//   Mold<ExtrasExceptionInterface> dock;
 //   When(Method(dock, getfile)).Return(correct_answer);
 
 //   ExtrasExceptionInterface &i = dock.get();
@@ -67,7 +67,7 @@
 
 // SCENARIO("Dock ExtrasExceptionInterface: getfunc", "[exceptions_mock]") {
 //   auto correct_answer = __func__;
-//   Dock<ExtrasExceptionInterface> dock;
+//   Mold<ExtrasExceptionInterface> dock;
 //   When(Method(dock, getfunc)).Return(correct_answer);
 
 //   ExtrasExceptionInterface &i = dock.get();
@@ -77,7 +77,7 @@
 
 // SCENARIO("Dock ExtrasExceptionInterface: getline", "[exceptions_mock]") {
 //   auto correct_answer = __LINE__;
-//   Dock<ExtrasExceptionInterface> dock;
+//   Mold<ExtrasExceptionInterface> dock;
 //   When(Method(dock, getline)).Return(correct_answer);
 
 //   ExtrasExceptionInterface &i = dock.get();

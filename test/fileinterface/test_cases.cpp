@@ -30,7 +30,7 @@ using namespace extras;
  * @brief file::Interface
  *
  */
-SCENARIO("dock/mold for file::Interface: found", "[PE-40]") {
+SCENARIO("dock/dock for file::Interface: found", "[PE-40]") {
   /**
    * @brief test valid path name
    *

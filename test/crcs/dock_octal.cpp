@@ -60,7 +60,7 @@ using namespace fakeit;
  */
 SCENARIO("Dock OctalInterface: toOctal", "[octal_support]") {
   auto correct_answer = 0;
-  Dock<OctalInterface> dock;
+  Mold<OctalInterface> dock;
   When(Method(dock, toOctal)).Return(correct_answer);
 
   OctalInterface &i = dock.get();
@@ -69,7 +69,7 @@ SCENARIO("Dock OctalInterface: toOctal", "[octal_support]") {
 }
 
 SCENARIO("Dock OctalInterface: fromOctal", "[octal_support]") {
-  Dock<OctalInterface> dock;
+  Mold<OctalInterface> dock;
   When(Method(dock, fromOctal)).Return();
 
   OctalInterface &i = dock.get();
@@ -90,7 +90,7 @@ SCENARIO("Dock OctalInterface", "[octal_support]") {
    */
   char _col = -1;
   char _row = -1;
-  Dock<OctalInterface> dock;
+  Mold<OctalInterface> dock;
   When(Method(dock, toOctal)).AlwaysDo([&_col, &_row]() {
     int octCol = _col - 'a';
     int octRow = _row - '1';

@@ -36,7 +36,7 @@ SCENARIO("Dock StatusLineInterface", "[StatusLineInterface]") {
   extras::StatusLineMsg in2 = "Error in socket";
   extras::StatusLineMsg good = "[+] File data downloaded successfully.\n";
   extras::StatusLineMsg bad = "[-] Error in socket.\n";
-  Dock<extras::StatusLineInterface> dock;
+  Mold<extras::StatusLineInterface> dock;
   When(Method(dock, pass)).AlwaysDo([](const extras::StatusLineMsg& msg) {
     std::stringstream ss;
     ss << "[+] " << msg << "." << std::endl;

@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.3.1 -m "MINSIGSTKSZ in catch2.hpp"</br>
-> > git push origin v8.3.1
+> > git tag -a v8.4.0 -m "Dock/Molds Interfaces Framework"</br>
+> > git push origin v8.4.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -27,6 +27,10 @@ IMPORTANT:
 - replacement for filesystem include file 
 
 #### 8.4.0 (2022-09-20)
+### Added 
+- Dock/Molds Interfaces Framework
+
+#### 8.3.1 (2022-09-20)
 ### Fixed 
 - MINSIGSTKSZ in catch2.hpp
 * [MINSIGSTKSZ error](https://stackoverflow.com/questions/71454588/minsigstksz-error-after-update-in-my-manjaro-linux)
@@ -787,7 +791,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.3.1..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.4.0..HEAD
+[8.4.0]: https://github.com/perriera/extras/compare/v8.3.1...v8.4.0
 [8.3.1]: https://github.com/perriera/extras/compare/v8.3.0...v8.3.1
 [8.3.0]: https://github.com/perriera/extras/compare/v8.2.0...v8.3.0
 [8.2.0]: https://github.com/perriera/extras/compare/v8.1.0...v8.2.0

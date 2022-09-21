@@ -36,7 +36,7 @@ using namespace fakeit;
  */
 SCENARIO("Dock DotENVLineInterface: key", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableKey();
-  Dock<DotENVLineInterface> dock;
+  Mold<DotENVLineInterface> dock;
   When(Method(dock, key)).Return(correct_answer);
 
   DotENVLineInterface &i = dock.get();
@@ -50,7 +50,7 @@ SCENARIO("Dock DotENVLineInterface: key", "[mock_dotenv]") {
  */
 SCENARIO("Dock DotENVLineInterface: value", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableValue();
-  Dock<DotENVLineInterface> dock;
+  Mold<DotENVLineInterface> dock;
   When(Method(dock, value)).Return(correct_answer);
 
   DotENVLineInterface &i = dock.get();
@@ -64,7 +64,7 @@ SCENARIO("Dock DotENVLineInterface: value", "[mock_dotenv]") {
  */
 SCENARIO("Dock DotENVInterface: map", "[mock_dotenv]") {
   auto correct_answer = EnvironmentVariableMap();
-  Dock<DotENVInterface> dock;
+  Mold<DotENVInterface> dock;
   When(Method(dock, map)).Return(correct_answer);
 
   DotENVInterface &i = dock.get();
@@ -73,7 +73,7 @@ SCENARIO("Dock DotENVInterface: map", "[mock_dotenv]") {
 }
 
 SCENARIO("Dock DotENVInterface: put", "[mock_dotenv]") {
-  Dock<DotENVInterface> dock;
+  Mold<DotENVInterface> dock;
   When(Method(dock, put)).Return();
 
   DotENVInterface &i = dock.get();
@@ -93,7 +93,7 @@ SCENARIO("Dock DotENVInterface: contains", "[mock_dotenv]") {
    *
    */
   EnvironmentVariableMap correct_answer = EnvironmentVariableMap();
-  Dock<DotENVInterface> dock;
+  Mold<DotENVInterface> dock;
   When(Method(dock, put))
       .AlwaysDo([&correct_answer](const DotENVLineInterface &entry) {
         correct_answer[entry.key()] = entry.value();
