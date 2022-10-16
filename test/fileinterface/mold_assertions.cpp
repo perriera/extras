@@ -27,27 +27,29 @@ using namespace std;
 using namespace extras;
 
 /**
- * @brief file::Interface
+ * @brief file::Interface NotFoundException
  *
  */
-SCENARIO("test assertions for file::Interface: found", "[PE-40]") {
-  /**
-   * @brief FileNotFoundException
-   *
-   */
+SCENARIO("mold file::Interface NotFoundException", "[PE-40]") {
   REQUIRE_THROWS_AS(file::NotFoundException::assertion("/usr/abc", __INFO__),
                     file::NotFoundException);
-  /**
-   * @brief FileNotCopiedException
-   *
-   */
+}
+
+/**
+ * @brief file::Interface NotCopiedException
+ *
+ */
+SCENARIO("mold file::Interface NotCopiedException", "[PE-40]") {
   REQUIRE_THROWS_AS(
       file::NotCopiedException::assertion(file::File("/usr/abc"), __INFO__),
       file::NotCopiedException);
-  /**
-   * @brief FilenameInvalidException
-   *
-   */
+}
+
+/**
+ * @brief file::Interface InvalidNameException
+ *
+ */
+SCENARIO("mold file::Interface InvalidNameException", "[PE-40]") {
   REQUIRE_THROWS_AS(file::InvalidNameException::assertion("", __INFO__),
                     file::InvalidNameException);
   REQUIRE_THROWS_AS(file::InvalidNameException::assertion("?", __INFO__),
@@ -60,28 +62,28 @@ SCENARIO("test assertions for file::Interface: found", "[PE-40]") {
                     file::InvalidNameException);
   REQUIRE_THROWS_AS(file::InvalidNameException::assertion("/", __INFO__),
                     file::InvalidNameException);
-  /**
-   * @brief FileExistsException
-   *
-   */
+}
+
+/**
+ * @brief file::Interface ExistsException
+ *
+ */
+SCENARIO("mold file::Interface ExistsException", "[PE-40]") {
   REQUIRE_THROWS_AS(file::ExistsException::assertion(".", __INFO__),
                     file::ExistsException);
   REQUIRE_THROWS_AS(file::ExistsException::assertion("..", __INFO__),
                     file::ExistsException);
   file::ExistsException::assertion("/>?/", __INFO__);
-  // /**
-  //  * @brief FolderExistsException
-  //  *
-  //  */
-  // REQUIRE_THROWS_AS(
-  //     file::FolderExistsException::assertion(file::File("/usr"), __INFO__),
-  //     file::FolderExistsException);
-  // file::FolderExistsException::assertion(file::File("/usrX"), __INFO__);
-  // /**
-  //  * @brief FolderExistsException
-  //  *
-  //  */
-  // REQUIRE_THROWS_AS(
-  //     file::FolderExistsException::assertion(file::File("/usr"), __INFO__),
-  //     file::FolderExistsException);
+}
+
+/**
+ * @brief file::Interface FolderExistsException
+ *
+ */
+SCENARIO("mold file::Interface FolderExistsException", "[PE-40]") {
+  REQUIRE_THROWS_AS(file::ExistsException::assertion(".", __INFO__),
+                    file::ExistsException);
+  REQUIRE_THROWS_AS(file::ExistsException::assertion("..", __INFO__),
+                    file::ExistsException);
+  file::ExistsException::assertion("/>?/", __INFO__);
 }

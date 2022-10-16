@@ -17,37 +17,56 @@
  */
 
 #include <extras/docking/DockIt.hpp>
+#include <extras/file/interface.hpp>
 #include <iostream>
 
 #include "../vendor/catch.hpp"
 #include "../vendor/fakeit.hpp"
-#include "extras/file/interface.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
 //
 
 using namespace std;
-using namespace extras;
+using namespace extras::file;
 using namespace fakeit;
 
 /**
- * @brief Dock FileInterface
+ * @brief dock file::Interface
  *
  */
-SCENARIO("Dock FileInterface", "[PE-40]") {
+SCENARIO("Dock file::Interface", "[PE-40]") {
   auto correct_answer = "test/etc/some_file.txt";
 
-  Mold<file::Interface> dock;
-  When(Method(dock, filename)).Return(correct_answer);
-  When(Method(dock, exists)).AlwaysDo([]() { return true; });
+  Dock<Interface> mold;
+  When(Method(mold, filename)).Return(correct_answer);
+  When(Method(mold, exists)).AlwaysDo([]() { return true; });
 
-  file::Interface& i = dock.get();
+  Interface& i = mold.get();
   REQUIRE(i.filename() == correct_answer);
   REQUIRE(i.exists() == true);
 
-  Verify(Method(dock, filename));
-  Verify(Method(dock, exists));
+  Verify(Method(mold, filename));
+  Verify(Method(mold, exists));
+}
+
+/**
+ * @brief dock FolderNotFoundException
+ *
+ */
+SCENARIO("Dock FolderNotFoundException", "[PE-40]") {
+  auto correct_answer = "test/etc/some_file.txt";
+
+  Dock<Interface> mold;
+  When(Method(mold, filename)).Return(correct_answer);
+  When(Method(mold, exists)).AlwaysDo([]() { return true; });
+
+  Interface& i = mold.get();
+  REQUIRE(i.filename() == correct_answer);
+  REQUIRE(i.exists() == true);
+
+  Verify(Method(mold, filename));
+  Verify(Method(mold, exists));
 }
 
 /**
@@ -64,10 +83,10 @@ SCENARIO("Dock FileInterface", "[PE-40]") {
 //   auto src = "test/etc/some_file.txt";
 //   auto des = "test/etc2/some_file.txt";
 
-//   Mold<system::FileInterface> dock;
-//   When(Method(dock, filename)).Return(src);
-//   When(Method(dock, exists)).AlwaysDo([]() { return true; });
-//   When(Method(dock, copy))
+//   Mold<system::FileInterface> mold;
+//   When(Method(mold, filename)).Return(src);
+//   When(Method(mold, exists)).AlwaysDo([]() { return true; });
+//   When(Method(mold, copy))
 //       .AlwaysDo([&src](const system::FileInterface& destination) {
 //         system::FileNotFoundException::assertion(src, __INFO__);
 //         stringstream ss;
@@ -79,10 +98,10 @@ SCENARIO("Dock FileInterface", "[PE-40]") {
 //         system::FileNotCopiedException::assertion(destination, __INFO__);
 //       });
 
-//   system::FileInterface& i = dock.get();
+//   system::FileInterface& i = mold.get();
 //   REQUIRE(i.filename() == src);
 //   REQUIRE(i.exists() == true);
 
-//   Verify(Method(dock, filename));
-//   Verify(Method(dock, exists));
+//   Verify(Method(mold, filename));
+//   Verify(Method(mold, exists));
 // }
