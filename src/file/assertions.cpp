@@ -16,6 +16,7 @@
  *
  */
 
+#include <ctype.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -26,6 +27,7 @@
 #include <fstream>
 #include <iostream>
 #include <regex>
+#include <string>
 
 using namespace std;
 using namespace extras;
@@ -94,16 +96,20 @@ void ExistsException::assertion(const Filename& filename, const WhereAmI& ref) {
  * @param filename
  * @param ref
  */
-void FolderExistsException::assertion(const Interface&, const WhereAmI&) {
-  // struct stat statbuf;
-  // string name = fi.filename();
-  // if (stat(name.c_str(), &statbuf) != 0) {
-  //   throw FileNotFoundException(name, ref);
-  // }
-  // if (S_ISDIR(statbuf.st_mode)) throw FolderExistsException(fi.filename(),
-  // ref);
-  throw extras::feature::NotImplementedException(
-      "FolderExistsException::assertion()", __INFO__);
+void FolderExistsException::assertion(const Interface& file,
+                                      const WhereAmI& ref) {
+  ensure(file.filename().length() == 0)
+      otherwise throw FolderNotSpecifiedException(ref);
+  auto fn = file.filename();
+  auto lastChar = fn[fn.length() - 1];
+  ensure(!isalnum(lastChar) && lastChar != '/')
+      otherwise throw NotAFolderNameException(fn, ref);
+  struct stat statbuf;
+  string name = file.filename();
+  ensure(stat(name.c_str(), &statbuf) != 0)
+      otherwise throw NotFoundException(name, ref);
+  ensure(!S_ISDIR(statbuf.st_mode))
+      otherwise throw NotAFolderException(file.filename(), ref);
 }
 
 /**

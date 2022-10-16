@@ -175,6 +175,15 @@ namespace extras {
  */
 #define with , public
 
+/**
+ * @brief ensure (glorified 'assert')
+ *
+ *     ensure (the condition does NOT exist)
+ *        otherwise throw an exception
+ */
+#define ensure if
+#define otherwise
+
 }  // namespace extras
 
 #endif  // _EXTRA_LANGUAGE_INTERFACES_HPP

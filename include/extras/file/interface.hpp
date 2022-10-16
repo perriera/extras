@@ -135,6 +135,28 @@ namespace extras {
                             const extras::WhereAmI& ref);
     };
 
+    concrete class FolderNotSpecifiedException extends FolderExistsException {
+     public:
+      FolderNotSpecifiedException(const extras::WhereAmI& whereAmI)
+          : FolderExistsException("no filename specified", whereAmI) {}
+      virtual char const* what() const noexcept { return _msg.c_str(); }
+    };
+
+    concrete class NotAFolderException extends FolderExistsException {
+     public:
+      NotAFolderException(const Filename& msg, const extras::WhereAmI& whereAmI)
+          : FolderExistsException(msg, whereAmI) {}
+      virtual char const* what() const noexcept { return _msg.c_str(); }
+    };
+
+    concrete class NotAFolderNameException extends FolderExistsException {
+     public:
+      NotAFolderNameException(const Filename& msg,
+                              const extras::WhereAmI& whereAmI)
+          : FolderExistsException(msg, whereAmI) {}
+      virtual char const* what() const noexcept { return _msg.c_str(); }
+    };
+
     /**
      * @brief FolderNotFoundException
      *

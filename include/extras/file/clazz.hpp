@@ -43,6 +43,8 @@ namespace extras {
       virtual void copy(const Interface&) const {
         throw extras::feature::NotImplementedException("copy", __INFO__);
       };
+
+      operator const Filename&() const { return _fn; }
     };
 
   }  // namespace file
