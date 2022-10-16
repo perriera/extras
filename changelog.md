@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.5.0 -m "Added file::FolderExistsException exception"</br>
-> > git push origin v8.5.0
+> > git tag -a v8.5.1 -m "Added convenience method"</br>
+> > git push origin v8.5.1
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,14 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.5.1 (2022-10-16)
+### Added convenience method
+### Modified 
+- include/extras/file/interfaces.hpp
+- src/file/interfaces.hpp
+- test/file/mold_assertions.hpp
+- changelog.md
 
 #### 8.5.0 (2022-10-16)
 ### Added file::FolderExistsException exception 

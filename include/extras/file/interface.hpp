@@ -133,6 +133,7 @@ namespace extras {
       virtual char const* what() const noexcept { return _msg.c_str(); }
       static void assertion(const file::Interface&,
                             const extras::WhereAmI& ref);
+      static void assertion(const Filename&, const extras::WhereAmI& ref);
     };
 
     concrete class FolderNotSpecifiedException extends FolderExistsException {

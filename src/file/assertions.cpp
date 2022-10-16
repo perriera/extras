@@ -112,6 +112,12 @@ void FolderExistsException::assertion(const Interface& file,
       otherwise throw NotAFolderException(file.filename(), ref);
 }
 
+void FolderExistsException::assertion(const Filename& fn, const WhereAmI& ref) {
+  file::File file(fn);
+  Interface& i = file;
+  assertion(i, ref);
+}
+
 /**
  * @brief FolderNotFoundException::assertion
  *

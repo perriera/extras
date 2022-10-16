@@ -94,4 +94,5 @@ SCENARIO("mold file::Interface FolderExistsException", "[PE-40]") {
                         file::File("/etc/hosts"), __INFO__),
                     file::NotAFolderException);
   file::FolderExistsException::assertion(file::File("/usr"), __INFO__);
+  file::FolderExistsException::assertion("/usr", __INFO__);
 }
