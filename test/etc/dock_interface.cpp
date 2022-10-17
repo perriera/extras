@@ -17,28 +17,41 @@
  */
 
 #include <extras/docking/DockIt.hpp>
-#include <extras/file/clazz.hpp>
-#include <fstream>
+#include <extras/etc/interface.hpp>
+#include <extras/file/interface.hpp>
 #include <iostream>
 
 #include "../vendor/catch.hpp"
+#include "../vendor/fakeit.hpp"
+
+//
+// https://github.com/eranpeer/FakeIt/wiki/Quickstart
+//
 
 using namespace std;
 using namespace extras;
+using namespace extras::etc;
+using namespace fakeit;
 
 /**
- * @brief file::Interface
+ * @brief dock file::Interface
  *
  */
-SCENARIO("dock/dock for file::Interface: found", "[PE-40]") {
+SCENARIO("Dock etc::Interface", "[PE-40]") {
   /**
-   * @brief test valid path name
+   * @brief Given we need
    *
    */
-  string correct_answer = "test/file/etc/some_file.txt";
-  file::File file(correct_answer);
-  file::Interface& i = file;
+  auto correct_answer = "test/file/etc/some_file.txt";
 
-  REQUIRE(i.filename() == correct_answer);
-  REQUIRE(i.exists() == true);
+  // Dock<Interface> mold;
+  // When(Method(mold, filename)).Return(correct_answer);
+  // When(Method(mold, exists)).AlwaysDo([]() { return true; });
+
+  // Interface& i = mold.get();
+  // REQUIRE(i.filename() == correct_answer);
+  // REQUIRE(i.exists() == true);
+
+  // Verify(Method(mold, filename));
+  // Verify(Method(mold, exists));
 }

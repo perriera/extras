@@ -36,7 +36,7 @@ using namespace fakeit;
  *
  */
 SCENARIO("Dock file::Interface", "[PE-40]") {
-  auto correct_answer = "test/etc/some_file.txt";
+  auto correct_answer = "test/file/etc/some_file.txt";
 
   Dock<Interface> mold;
   When(Method(mold, filename)).Return(correct_answer);
@@ -55,7 +55,7 @@ SCENARIO("Dock file::Interface", "[PE-40]") {
  *
  */
 SCENARIO("Dock FolderNotFoundException", "[PE-40]") {
-  auto correct_answer = "test/etc/some_file.txt";
+  auto correct_answer = "test/file/etc/some_file.txt";
 
   Dock<Interface> mold;
   When(Method(mold, filename)).Return(correct_answer);
@@ -68,40 +68,3 @@ SCENARIO("Dock FolderNotFoundException", "[PE-40]") {
   Verify(Method(mold, filename));
   Verify(Method(mold, exists));
 }
-
-/**
- * @brief Dock FileInterface
- *
- */
-
-// mkcp() {
-//     test -d "$2" || mkdir -p "$2"
-//     cp -r "$1" "$2"
-// }
-
-// SCENARIO("Dock FileInterface: copy", "[PE-40]") {
-//   auto src = "test/etc/some_file.txt";
-//   auto des = "test/etc2/some_file.txt";
-
-//   Mold<system::FileInterface> mold;
-//   When(Method(mold, filename)).Return(src);
-//   When(Method(mold, exists)).AlwaysDo([]() { return true; });
-//   When(Method(mold, copy))
-//       .AlwaysDo([&src](const system::FileInterface& destination) {
-//         system::FileNotFoundException::assertion(src, __INFO__);
-//         stringstream ss;
-//         ss << "test -d " << destination.filename() << " || ";
-//         ss << "mkdir -p " << destination.filename() << endl;
-//         ss << "cp -r " << src << " " << destination.filename() << endl;
-//         string cmd = ss.str();
-//         ::system(cmd.c_str());
-//         system::FileNotCopiedException::assertion(destination, __INFO__);
-//       });
-
-//   system::FileInterface& i = mold.get();
-//   REQUIRE(i.filename() == src);
-//   REQUIRE(i.exists() == true);
-
-//   Verify(Method(mold, filename));
-//   Verify(Method(mold, exists));
-// }
