@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.5.2 -m "Fixed version number"</br>
-> > git push origin v8.5.2
+> > git tag -a v8.6.0 -m "added new split method"</br>
+> > git push origin v8.6.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,11 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.6.0 (2022-12-07)
+### Added 
+- added new split method
+- changelog.md
 
 #### 8.5.2 (2022-10-16)
 ### Fixed version number
@@ -816,7 +821,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.5.2..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.5.0..HEAD
+[8.6.0]: https://github.com/perriera/extras/compare/v8.5.2...v8.6.0
 [8.5.2]: https://github.com/perriera/extras/compare/v8.5.0...v8.5.2
 [8.5.1]: https://github.com/perriera/extras/compare/v8.5.0...v8.5.1
 [8.5.0]: https://github.com/perriera/extras/compare/v8.4.0...v8.5.0

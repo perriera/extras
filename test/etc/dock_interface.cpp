@@ -42,7 +42,7 @@ SCENARIO("Dock etc::Interface", "[PE-40]") {
    * @brief Given we need
    *
    */
-  auto correct_answer = "test/file/etc/some_file.txt";
+  // auto correct_answer = "test/file/etc/some_file.txt";
 
   // Dock<Interface> mold;
   // When(Method(mold, filename)).Return(correct_answer);
