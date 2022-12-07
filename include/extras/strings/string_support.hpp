@@ -155,6 +155,15 @@ namespace extras {
     std::deque<std::string> split(const std::string &s, char delim);
 
     /**
+     * @brief split
+     *
+     * @param s
+     * @param delimiter
+     * @return std::vector<std::string>
+     */
+    std::vector<std::string> split(std::string s, const std::string &delimiter);
+
+    /**
      * @brief replace_all, remove_all
      *
      * @param s

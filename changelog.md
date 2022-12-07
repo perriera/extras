@@ -26,6 +26,11 @@ IMPORTANT:
 ## [Unreleased]
 - replacement for filesystem include file 
 
+#### 8.6.1 (2022-12-07)
+### Added 
+- added new split method to header file
+- changelog.md
+
 #### 8.6.0 (2022-12-07)
 ### Added 
 - added new split method
@@ -821,7 +826,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.5.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.6.1..HEAD
+[8.6.1]: https://github.com/perriera/extras/compare/v8.6.0...v8.6.1
 [8.6.0]: https://github.com/perriera/extras/compare/v8.5.2...v8.6.0
 [8.5.2]: https://github.com/perriera/extras/compare/v8.5.0...v8.5.2
 [8.5.1]: https://github.com/perriera/extras/compare/v8.5.0...v8.5.1
