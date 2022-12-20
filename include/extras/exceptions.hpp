@@ -46,6 +46,13 @@
  *
  * @see test/mock_exceptions.cpp & test/test_exceptions.cpp
  *
+ * @ref
+ * https://stackoverflow.com/questions/348833/how-to-know-the-exact-line-of-code-where-an-exception-has-been-caused/348862#348862
+ * @ref
+ * https://stackoverflow.com/questions/37227300/why-doesnt-c-use-stdnested-exception-to-allow-throwing-from-destructor/37227893#37227893
+ * @ref
+ * https://stackoverflow.com/questions/691719/c-display-stack-trace-on-exception
+ *
  * @version 1.0.0
  * @date 2021-08-11
  *
@@ -86,18 +93,28 @@ namespace extras {
   };
   // namespace extras
 
-/**
- * @brief __INFO__
- *
- * The actual macro that does all the dancing when it comes to capturing
- * compiler generated information as to the file, function and line of
- * source where the exception happened. Must be compiled at runtime where
- * the exception is actually used so that the MACRO can be resolved properly.
- *
- * Given the general nature of the name chosen '__INFO__' alternative names
- * can be used, (send us an email as indicated in the README.md)
- *
- */
+  /**
+   * @brief __INFO__
+   *
+   * The actual macro that does all the dancing when it comes to capturing
+   * compiler generated information as to the file, function and line of
+   * source where the exception happened. Must be compiled at runtime where
+   * the exception is actually used so that the MACRO can be resolved properly.
+   *
+   * Given the general nature of the name chosen '__INFO__' alternative names
+   * can be used, (send us an email as indicated in the README.md)
+   *
+   */
+
+  // #define __FILENAME__ (__builtin_strrchr(__FILE__, '/') ?
+  // __builtin_strrchr(__FILE__, '/') + 1 : __FILE__)    // only show filename
+  // and not it's path (less clutter) #define INFO std::cout <<
+  // std::put_time(std::localtime(&time_now), "%y-%m-%d %OH:%OM:%OS") << "
+  // [INFO] " << __FILENAME__ << "(" << __FUNCTION__ << ":" << __LINE__ << ") >>
+  // " #define ERROR std::cout << std::put_time(std::localtime(&time_now),
+  // "%y-%m-%d %OH:%OM:%OS") << " [ERROR] " << __FILENAME__ << "(" <<
+  // __FUNCTION__ << ":" << __LINE__ << ") >> "
+
 #define __INFO__                                                             \
   extras::WhereAmI(__FILE__, static_cast<const char *>(__PRETTY_FUNCTION__), \
                    __LINE__)
@@ -454,64 +471,67 @@ namespace extras {
     }
   };
 
-  /**
-   * @brief FileNotFoundException
-   *
-   */
-  class FileNotFoundException extends AbstractCustomException {
-    std::string _msg;
+  // /**
+  //  * @brief FileNotFoundException
+  //  *
+  //  */
+  // class FileNotFoundException extends AbstractCustomException {
+  //   std::string _msg;
 
-   public:
-    FileNotFoundException(const Filename &filename,
-                          const extras::WhereAmI &whereAmI)
-        : AbstractCustomException(filename.c_str(), whereAmI), _msg(filename) {}
-    virtual char const *what() const noexcept { return _msg.c_str(); }
-    static void assertion(const Filename &, const extras::WhereAmI &) {
-      // if (!std::filesystem::exists(filename))
-      //   throw FileNotFoundException(filename, ref);
-      // else
-      //   NotAFileException::assertion(filename, ref);
-    }
-  };
+  //  public:
+  //   FileNotFoundException(const Filename &filename,
+  //                         const extras::WhereAmI &whereAmI)
+  //       : AbstractCustomException(filename.c_str(), whereAmI), _msg(filename)
+  //       {}
+  //   virtual char const *what() const noexcept { return _msg.c_str(); }
+  //   static void assertion(const Filename &, const extras::WhereAmI &) {
+  //     // if (!std::filesystem::exists(filename))
+  //     //   throw FileNotFoundException(filename, ref);
+  //     // else
+  //     //   NotAFileException::assertion(filename, ref);
+  //   }
+  // };
 
-  /**
-   * @brief NotADirectoryException
-   *
-   */
-  class NotADirectoryException extends AbstractCustomException {
-    std::string _msg;
+  // /**
+  //  * @brief NotADirectoryException
+  //  *
+  //  */
+  // class NotADirectoryException extends AbstractCustomException {
+  //   std::string _msg;
 
-   public:
-    NotADirectoryException(const Path &pathname,
-                           const extras::WhereAmI &whereAmI)
-        : AbstractCustomException(pathname.c_str(), whereAmI), _msg(pathname) {}
-    virtual char const *what() const noexcept { return _msg.c_str(); }
-    static void assertion(const Path &, const extras::WhereAmI &) {
-      // if (!std::filesystem::exists(pathname))
-      //   FileNotFoundException::assertion(pathname, ref);
-      // if (!std::filesystem::is_directory(pathname))
-      //   throw NotADirectoryException(pathname, ref);
-    }
-  };
+  //  public:
+  //   NotADirectoryException(const Path &pathname,
+  //                          const extras::WhereAmI &whereAmI)
+  //       : AbstractCustomException(pathname.c_str(), whereAmI), _msg(pathname)
+  //       {}
+  //   virtual char const *what() const noexcept { return _msg.c_str(); }
+  //   static void assertion(const Path &, const extras::WhereAmI &) {
+  //     // if (!std::filesystem::exists(pathname))
+  //     //   FileNotFoundException::assertion(pathname, ref);
+  //     // if (!std::filesystem::is_directory(pathname))
+  //     //   throw NotADirectoryException(pathname, ref);
+  //   }
+  // };
 
   /**
    * @brief PathNotFoundException
    *
    */
-  class PathNotFoundException extends AbstractCustomException {
-    std::string _msg;
+  // class PathNotFoundException extends AbstractCustomException {
+  //   std::string _msg;
 
-   public:
-    PathNotFoundException(const Path &pathname,
-                          const extras::WhereAmI &whereAmI)
-        : AbstractCustomException(pathname.c_str(), whereAmI), _msg(pathname) {}
-    virtual char const *what() const noexcept { return _msg.c_str(); }
-    static void assertion(const Path &, const extras::WhereAmI &) {
-      // if (!std::filesystem::exists(pathname))
-      //   throw PathNotFoundException(pathname, ref);
-      // NotADirectoryException::assertion(pathname, ref);
-    }
-  };
+  //  public:
+  //   PathNotFoundException(const Path &pathname,
+  //                         const extras::WhereAmI &whereAmI)
+  //       : AbstractCustomException(pathname.c_str(), whereAmI), _msg(pathname)
+  //       {}
+  //   virtual char const *what() const noexcept { return _msg.c_str(); }
+  //   static void assertion(const Path &, const extras::WhereAmI &) {
+  //     // if (!std::filesystem::exists(pathname))
+  //     //   throw PathNotFoundException(pathname, ref);
+  //     // NotADirectoryException::assertion(pathname, ref);
+  //   }
+  // };
 
   /**
    * @brief PathNotFoundException

@@ -18,6 +18,7 @@
 
 #include <extras/devices/ansi_colors.hpp>
 #include <extras/exceptions.hpp>
+#include <extras/file/interface.hpp>
 #include <extras/strings.hpp>
 #include <iostream>
 #include <sstream>
@@ -154,7 +155,7 @@ namespace extras {
   }
 
   void HelpParameterException::getHelp(const Filename &howto_filename) {
-    FileNotFoundException::assertion(howto_filename, __INFO__);
+    file::NotFoundException::assertion(howto_filename, __INFO__);
     std::string cmd = "cat " + howto_filename + " | less ";
     SystemException::assertion(cmd.c_str(), __INFO__);
   }
