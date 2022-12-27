@@ -83,6 +83,15 @@ message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 # https://gitlab.kitware.com/cmake/cmake/-/tree/a9affa07cdeea6b66c920e4826abfe59854f7ffa/
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
+# CPMAddPackage("gh:catchorg/Catch2@2.5.0")
+
+# CPMAddPackage(
+#   NAME catch2
+#   GITHUB_REPO catchorg/Catch2
+#   VERSION 2.5.0
+#   EXCLUDE_FROM_ALL YES
+# )
+
 # # Add spdlog which includes fmt library as well (two for one) This should install on the system when
 # # extras in included in another project
 # CPMAddPackage(

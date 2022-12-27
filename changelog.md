@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.6.3 -m "removed unused exceptions"</br>
-> > git push origin v8.6.3
+> > git tag -a v8.6.4 -m "added docs/CPM.md"</br>
+> > git push origin v8.6.4
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,15 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.6.4 (2022-12-26)
+### Upraded 
+- Using CPM_DOWNLOAD_VERSION 0.36.0
+### Added 
+- added docs/CPM.md
+* [CPM: An Awesome Dependency Manager for C++ with CMake](https://medium.com/swlh/cpm-an-awesome-dependency-manager-for-c-with-cmake-3c53f4376766)
+* [CMake's missing package manager](https://github.com/cpm-cmake/CPM.cmake)
+* wget -O cmake/CPM.cmake https://github.com/cpm-cmake/CPM.cmake/releases/latest/download/get_cpm.cmake
 
 #### 8.6.3 (2022-12-20)
 ### Added 
@@ -836,7 +845,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.6.3..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.6.4..HEAD
+[8.6.4]: https://github.com/perriera/extras/compare/v8.6.3...v8.6.4
 [8.6.3]: https://github.com/perriera/extras/compare/v8.6.2...v8.6.3
 [8.6.2]: https://github.com/perriera/extras/compare/v8.6.1...v8.6.2
 [8.6.1]: https://github.com/perriera/extras/compare/v8.6.0...v8.6.1
