@@ -124,11 +124,9 @@ void FolderExistsException::assertion(const Filename& fn, const WhereAmI& ref) {
  * @param filename
  * @param ref
  */
-void FolderNotFoundException::assertion(const Interface&, const WhereAmI&) {
-  // ifstream f(fi.filename().c_str());
-  // if (!f.good()) throw FolderNotFoundException(fi.filename(), ref);
-  throw extras::feature::NotImplementedException(
-      "FolderNotFoundException::assertion()", __INFO__);
+void FolderNotFoundException::assertion(const Interface& i,
+                                        const WhereAmI& ref) {
+  FolderExistsException::assertion(i, ref);
 }
 
 /**

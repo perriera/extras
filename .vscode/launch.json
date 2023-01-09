@@ -15,7 +15,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/build/run-unittests-extras",
       "args": [
-        "[exceptions_testcases]"
+        "[PE-40]"
       ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
