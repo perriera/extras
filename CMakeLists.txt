@@ -83,6 +83,24 @@ message(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
 # https://gitlab.kitware.com/cmake/cmake/-/tree/a9affa07cdeea6b66c920e4826abfe59854f7ffa/
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
 
+# CPMAddPackage(
+#   NAME gcc-multilib
+#   GIT_REPOSITORY http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-defaults/gcc-defaults_1.185.1ubuntu2.tar.gz
+#   VERSION 0.22.3
+#   OPTIONS "MAKE_SPDLOG_SHARED OFF"
+#   OPTIONS "MAKE_EXTRAS_LIBRARY_ONLY ON"
+#   OPTIONS "MAKE_SQLUTIL_LIBRARY_ONLY ON"
+# )
+# if(sqlutil_ADDED)
+#   #
+#   # NOTE:  enable c++11 to avoid compilation errors, and force spdlog into release build
+#   #
+#   print(STATUS "Configuring sqlutil build properties")
+#   # set_target_properties(sqlutil PROPERTIES CMAKE_BUILD_TYPE Release)
+# else()
+#   print(WARNING "sqlutil was not configured properly")
+# endif()
+
 # CPMAddPackage("gh:catchorg/Catch2@2.5.0")
 
 # CPMAddPackage(

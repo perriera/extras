@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.6.4 -m "added docs/CPM.md"</br>
-> > git push origin v8.6.4
+> > git tag -a v8.6.5 -m "disabled cmake.yml"</br>
+> > git push origin v8.6.5
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,10 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.6.5 (2023-01-08)
+### Upraded 
+- disabled cmake.yml
 
 #### 8.6.4 (2022-12-26)
 ### Upraded 
@@ -845,7 +849,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.6.4..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.6.5..HEAD
+[8.6.5]: https://github.com/perriera/extras/compare/v8.6.4...v8.6.5
 [8.6.4]: https://github.com/perriera/extras/compare/v8.6.3...v8.6.4
 [8.6.3]: https://github.com/perriera/extras/compare/v8.6.2...v8.6.3
 [8.6.2]: https://github.com/perriera/extras/compare/v8.6.1...v8.6.2
