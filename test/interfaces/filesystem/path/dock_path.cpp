@@ -67,8 +67,32 @@ SCENARIO("Dock extras::fs::path::Interface", "[extras::fs::path::Interface]")
 	auto correct_answer = "/home/perry/Downloads";
 	Mold<fs::path::Interface> dock;
 	fs::path::Interface &i = dock.get();
+	When(Method(dock, path))
+		.AlwaysDo([&correct_answer](const Filename& before) {{ 
+			system("pwd > /tmp/output.txt");
+			std::ifstream in("/tmp/output.txt");
+			std::string line;
+			std::getline(in,line);
+			return correct_answer; 
+		} });
 	When(Method(dock, current_path_filename))
 		.AlwaysDo([&correct_answer]() {{ 
+			system("pwd > /tmp/output.txt");
+			std::ifstream in("/tmp/output.txt");
+			std::string line;
+			std::getline(in,line);
+			return correct_answer; 
+		} });
+	When(Method(dock, path_filename))
+		.AlwaysDo([&correct_answer](const Filename& before) {{ 
+			system("pwd > /tmp/output.txt");
+			std::ifstream in("/tmp/output.txt");
+			std::string line;
+			std::getline(in,line);
+			return correct_answer; 
+		} });
+	When(Method(dock, directory_iterator))
+		.AlwaysDo([&correct_answer](const Filename& before) {{ 
 			system("pwd > /tmp/output.txt");
 			std::ifstream in("/tmp/output.txt");
 			std::string line;
@@ -84,7 +108,11 @@ SCENARIO("Dock extras::fs::path::Interface", "[extras::fs::path::Interface]")
 	 * @brief 
 	 * 
 	 */
+
+	REQUIRE(i.path("filename") == correct_answer);
+	REQUIRE(i.path_filename("filename") == correct_answer);
 	REQUIRE(i.current_path_filename() == correct_answer);
+	REQUIRE(i.directory_iterator("filename") == correct_answer);
 	REQUIRE(i.actualPath("~/Downloads") == correct_answer);
 
 	/**

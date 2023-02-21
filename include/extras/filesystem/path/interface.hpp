@@ -37,12 +37,36 @@ namespace extras {
 		 */
 		virtual Path current_path_filename() const pure;
 
+		/**
+		 * @brief 
+		 * 
+		 * @param before 
+		 * @return Filename 
+		 */
+		virtual Path path(const Filename& before) const pure;
+
+		/**
+		 * @brief 
+		 * 
+		 * @param before 
+		 * @return Filename 
+		 */
+		virtual Filename path_filename(const Filename& before) const pure;
+
         /**
          * @brief actualPath
          * @return replace the '~' with the value gained from getenv('home')
          * @exception invalid path supplied
          */
         virtual Path actualPath(const Path& path) const pure;
+
+		/**
+		 * @brief 
+		 * 
+		 * @param src 
+		 * @return Filename 
+		 */
+		virtual Filename directory_iterator(const Directory& src) const pure;
 
         /**
          * @brief find
