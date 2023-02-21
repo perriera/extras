@@ -16,25 +16,29 @@
  *
  */
 
-#include <extras/status/StatusLine.hpp>
-#include <extras/strings.hpp>
+#include <extras/docking/DockIt.hpp>
+#include <extras/file/clazz.hpp>
+#include <fstream>
 #include <iostream>
-#include <sstream>
 
-#include "../vendor/catch.hpp"
+#include "../../vendor/catch.hpp"
 
+using namespace std;
 using namespace extras;
 
-//
-// printf("[+]File data downloaded successfully.\n");
-//
+/**
+ * @brief file::Interface
+ *
+ */
+SCENARIO("dock/dock for file::Interface: found", "[PE-40]") {
+  /**
+   * @brief test valid path name
+   *
+   */
+  string correct_answer = "test/etc/some_file.txt";
+  file::File file(correct_answer);
+  file::Interface& i = file;
 
-SCENARIO("Test StatusLineInterface", "[StatusLineInterface]") {
-  extras::StatusLineMsg good = "File data downloaded successfully";
-  extras::StatusLineMsg bad = "Error in socket";
-  extras::StatusLine testcase;
-
-  extras::StatusLineInterface& i = testcase;
-  REQUIRE(extras::contains(i.pass(good), good));
-  REQUIRE(extras::contains(i.fail(bad), bad));
+  REQUIRE(i.filename() == correct_answer);
+  REQUIRE(i.exists() == true);
 }

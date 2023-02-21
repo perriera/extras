@@ -16,29 +16,26 @@
  *
  */
 
-#include <extras/docking/DockIt.hpp>
-#include <extras/file/clazz.hpp>
-#include <fstream>
-#include <iostream>
+#include <string.h>  // std::string
 
-#include "../vendor/catch.hpp"
+#include <fstream>
+#include <iostream>  // std::cout
+#include <sstream>   // std::stringstream
+#include <string>    // std::string
+
+#include "../../vendor/catch.hpp"
+#include "extras/crcs.hpp"
 
 using namespace std;
 using namespace extras;
 
-/**
- * @brief file::Interface
- *
- */
-SCENARIO("dock/dock for file::Interface: found", "[PE-40]") {
-  /**
-   * @brief test valid path name
-   *
-   */
-  string correct_answer = "test/file/etc/some_file.txt";
-  file::File file(correct_answer);
-  file::Interface& i = file;
-
-  REQUIRE(i.filename() == correct_answer);
-  REQUIRE(i.exists() == true);
+SCENARIO("Verify CRC instance", "[crcs]") {
+  std::string data = "data_piece2;";
+  auto& crc = CRC::instance().calculate(data);
+  uint16_t result16 = crc;
+  REQUIRE(result16 == 0x48C);
+  uint32_t result32 = crc;
+  REQUIRE(result32 == 0xAB5406BC);
+  uint64_t result64 = crc;
+  REQUIRE(result64 == 0xE37932611E9B4556);
 }

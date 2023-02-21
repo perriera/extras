@@ -21,7 +21,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "../vendor/catch.hpp"
+#include "../../vendor/catch.hpp"
 
 using namespace std;
 using namespace extras;

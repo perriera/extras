@@ -19,8 +19,8 @@
 #include <extras/exceptions.hpp>
 #include <iostream>
 
-#include "../vendor/catch.hpp"
-#include "../vendor/fakeit.hpp"
+#include "../../vendor/catch.hpp"
+#include "../../vendor/fakeit.hpp"
 #include "extras/strings.hpp"
 
 //

@@ -19,8 +19,8 @@
 #include <extras/docking/DockIt.hpp>
 #include <iostream>
 
-#include "../vendor/catch.hpp"
-#include "../vendor/fakeit.hpp"
+#include "../../vendor/catch.hpp"
+#include "../../vendor/fakeit.hpp"
 #include "extras/filesystem/paths.hpp"
 
 //
@@ -29,6 +29,26 @@
 
 using namespace extras;
 using namespace fakeit;
+
+Filename _current_path_filename() /*const*/ {
+  // fs::current_path().filename();
+  throw "not implelmented yet";
+}
+
+Filename _path(const Filename& before) /*const*/ {
+  // fs::current_path().filename();
+  throw "not implelmented yet";
+}
+
+Filename _path_filename(const Filename& before) /*const*/ {
+  // fs::path(item).filename();
+  throw "not implelmented yet";
+}
+
+Filename _directory_iterator(const Directory& src) /*const*/ {
+  // fs::directory_iterator(_src)
+  throw "not implelmented yet";
+}
 
 /**
  *
@@ -40,7 +60,7 @@ SCENARIO("Dock PathsInterface: toOctal", "[paths_support]") {
   Mold<PathsInterface> dock;
   When(Method(dock, actualPath)).Return(correct_answer);
 
-  PathsInterface &i = dock.get();
+  PathsInterface& i = dock.get();
   REQUIRE(i.actualPath("~/Downloads") == correct_answer);
   Verify(Method(dock, actualPath));
 }

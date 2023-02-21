@@ -20,7 +20,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "../vendor/catch.hpp"
+#include "../../vendor/catch.hpp"
 #include "extras/devices/dotenv.hpp"
 
 using namespace extras;

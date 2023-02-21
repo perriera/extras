@@ -16,26 +16,25 @@
  *
  */
 
-#include <string.h>  // std::string
+#include <extras/status/StatusLine.hpp>
+#include <extras/strings.hpp>
+#include <iostream>
+#include <sstream>
 
-#include <fstream>
-#include <iostream>  // std::cout
-#include <sstream>   // std::stringstream
-#include <string>    // std::string
+#include "../../vendor/catch.hpp"
 
-#include "../vendor/catch.hpp"
-#include "extras/crcs.hpp"
-
-using namespace std;
 using namespace extras;
 
-SCENARIO("Verify CRC instance", "[crcs]") {
-  std::string data = "data_piece2;";
-  auto& crc = CRC::instance().calculate(data);
-  uint16_t result16 = crc;
-  REQUIRE(result16 == 0x48C);
-  uint32_t result32 = crc;
-  REQUIRE(result32 == 0xAB5406BC);
-  uint64_t result64 = crc;
-  REQUIRE(result64 == 0xE37932611E9B4556);
+//
+// printf("[+]File data downloaded successfully.\n");
+//
+
+SCENARIO("Test StatusLineInterface", "[StatusLineInterface]") {
+  extras::StatusLineMsg good = "File data downloaded successfully";
+  extras::StatusLineMsg bad = "Error in socket";
+  extras::StatusLine testcase;
+
+  extras::StatusLineInterface& i = testcase;
+  REQUIRE(extras::contains(i.pass(good), good));
+  REQUIRE(extras::contains(i.fail(bad), bad));
 }

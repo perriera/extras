@@ -11,7 +11,7 @@ Use of this library will give your application quick access to either crc16, crc
 
     #include  <iostream>
     #include  <extras/crcs.hpp>
-    #include "../vendor/catch.hpp"
+    #include "../../vendor/catch.hpp"
 
     using namespace extras;
 
@@ -34,7 +34,7 @@ Use of this class will give you a simpler means of managing environment variable
 
     #include  <iostream>
     #include  <extras/devices/dotenv.hpp>
-    #include "../vendor/catch.hpp"
+    #include "../../vendor/catch.hpp"
 
     using namespace extras;
 
@@ -78,7 +78,7 @@ Copyright (c) 2014 Jarryd Beck
 
     #include  <iostream>
     #include  <extras/vendor/cxxopts.hpp>
-    #include "../vendor/catch.hpp"
+    #include "../../vendor/catch.hpp"
 
     using namespace extras;
 
@@ -104,7 +104,7 @@ https://github.com/perriera/extras/blob/main/include/extras/language/exceptions.
 
     #include  <iostream>
     #include  <extras/language/exceptions.hpp>
-    #include "../vendor/catch.hpp"
+    #include "../../vendor/catch.hpp"
 
     using namespace extras;
 
@@ -290,7 +290,7 @@ For sublties such as replacing the '~' character in a path to it's home value we
     #include <extras/filesystem/paths.hpp>
     #include <extras/strings.hpp>
 
-    #include "../vendor/catch.hpp"
+    #include "../../vendor/catch.hpp"
 
     using namespace extras;
 

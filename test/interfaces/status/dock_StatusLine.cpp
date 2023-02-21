@@ -21,8 +21,8 @@
 #include <iostream>
 #include <sstream>
 
-#include "../vendor/catch.hpp"
-#include "../vendor/fakeit.hpp"
+#include "../../vendor/catch.hpp"
+#include "../../vendor/fakeit.hpp"
 
 using namespace extras;
 using namespace fakeit;
