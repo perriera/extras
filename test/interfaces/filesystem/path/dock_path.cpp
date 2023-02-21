@@ -50,54 +50,6 @@ using namespace fakeit;
 //   throw "not implelmented yet";
 // }
 
-/**
- *
- * @brief Mock FakeIt AlwaysDo demonstration
- *
- */
-class WTF
-{
-	// status value 0 is always "success"
-
-	/**
-	 * @brief isSuccess()
-	 * @note value 0 is always "success"
-	 * @return int
-	 */
-public:
-	virtual int isSuccess() const = 0;
-};
-
-// SCENARIO("Mold extras::fs::path::Interface", "[extras::fs::path::Interface]")
-// {
-//   /**
-//    * @brief
-//    *
-//    */
-//   auto correct_answer = "/home/perry/Downloads";
-//   Mold<WTF> dock;
-//   //   When(Method(dock, isSuccess)).Return(1);
-//   //   Dock(Method(dock, isSuccess)).AlwaysDo([]() {
-//   //     { return 1; }
-//   //   });
-
-//   //   Dock(Method(dock, isSuccess))..AlwaysDo([]() {
-
-//   //   });
-
-//   /**
-//    * @brief
-//    *
-//    */
-//   fs::path::Interface& i = dock.get();
-//   //   REQUIRE(i.isSuccess());
-
-//   /**
-//    * @brief Construct a new Verify object
-//    *
-//    */
-//   Verify(Method(dock, isSuccess));
-// }
 
 /**
  *
@@ -106,14 +58,33 @@ public:
  */
 SCENARIO("Dock extras::fs::path::Interface", "[extras::fs::path::Interface]")
 {
+
+	/**
+	 * @brief 
+	 * 
+	 */
 	auto correct_answer = "/home/perry/Downloads";
 	Mold<fs::path::PathsInterface> dock;
+	fs::path::PathsInterface &i = dock.get();
+	When(Method(dock, current_path_filename))
+		.AlwaysDo([&correct_answer]() {{ 
+					return correct_answer; 
+		} });
 	When(Method(dock, actualPath))
 		.AlwaysDo([&correct_answer](const Path &path) {{ 
 					return correct_answer; 
 		} });
 
-	fs::path::PathsInterface &i = dock.get();
+	/**
+	 * @brief 
+	 * 
+	 */
+	REQUIRE(i.current_path_filename() == correct_answer);
 	REQUIRE(i.actualPath("~/Downloads") == correct_answer);
+
+	/**
+	 * @brief Construct a new Verify object
+	 * 
+	 */
 	Verify(Method(dock, actualPath));
 }

@@ -29,6 +29,14 @@ namespace extras {
       using Path = std::string;
 
       interface PathsInterface {
+
+		/**
+		 * @brief 
+		 * 
+		 * @return Path 
+		 */
+		virtual Path current_path_filename() const pure;
+
         /**
          * @brief actualPath
          * @return replace the '~' with the value gained from getenv('home')
