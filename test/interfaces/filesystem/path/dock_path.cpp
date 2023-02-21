@@ -19,6 +19,7 @@
 #include <extras/docking/DockIt.hpp>
 #include <extras/filesystem/path/interface.hpp>
 #include <iostream>
+#include <fstream>
 
 #include "../../../vendor/catch.hpp"
 #include "../../../vendor/fakeit.hpp"
@@ -68,7 +69,11 @@ SCENARIO("Dock extras::fs::path::Interface", "[extras::fs::path::Interface]")
 	fs::path::PathsInterface &i = dock.get();
 	When(Method(dock, current_path_filename))
 		.AlwaysDo([&correct_answer]() {{ 
-					return correct_answer; 
+			system("pwd > /tmp/output.txt");
+			std::ifstream in("/tmp/output.txt");
+			std::string line;
+			std::getline(in,line);
+			return correct_answer; 
 		} });
 	When(Method(dock, actualPath))
 		.AlwaysDo([&correct_answer](const Path &path) {{ 
