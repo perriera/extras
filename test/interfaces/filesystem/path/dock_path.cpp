@@ -19,8 +19,8 @@
 #include <extras/docking/DockIt.hpp>
 #include <iostream>
 
-#include "../../vendor/catch.hpp"
-#include "../../vendor/fakeit.hpp"
+#include "../../../vendor/catch.hpp"
+#include "../../../vendor/fakeit.hpp"
 #include "extras/filesystem/paths.hpp"
 
 //
@@ -30,12 +30,32 @@
 using namespace extras;
 using namespace fakeit;
 
+Filename _current_path_filename() /*const*/ {
+  // fs::current_path().filename();
+  throw "not implelmented yet";
+}
+
+Filename _path(const Filename& before) /*const*/ {
+  // fs::current_path().filename();
+  throw "not implelmented yet";
+}
+
+Filename _path_filename(const Filename& before) /*const*/ {
+  // fs::path(item).filename();
+  throw "not implelmented yet";
+}
+
+Filename _directory_iterator(const Directory& src) /*const*/ {
+  // fs::directory_iterator(_src)
+  throw "not implelmented yet";
+}
+
 /**
  *
  * @brief Mock FakeIt AlwaysDo demonstration
  *
  */
-SCENARIO("Dock PathsInterface: toOctal", "[paths_support]") {
+SCENARIO("Mold extras::fs::path::Interface", "[extras::fs::path::Interface]") {
   auto correct_answer = "/home/perry/Downloads";
   Mold<PathsInterface> dock;
   When(Method(dock, actualPath)).Return(correct_answer);
