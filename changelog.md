@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.7.2 -m "refactored interfaces folder"</br>
-> > git push origin v8.7.2
+> > git tag -a v8.7.3 -m "refactored interfaces folder"</br>
+> > git push origin v8.7.3
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -857,7 +857,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.7.1..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.7.3..HEAD
+[8.7.3]: https://github.com/perriera/extras/compare/v8.7.2...v8.7.3
+[8.7.2]: https://github.com/perriera/extras/compare/v8.7.1...v8.7.2
 [8.7.1]: https://github.com/perriera/extras/compare/v8.7.0...v8.7.1
 [8.7.0]: https://github.com/perriera/extras/compare/v8.6.5...v8.7.0
 [8.6.5]: https://github.com/perriera/extras/compare/v8.6.4...v8.6.5

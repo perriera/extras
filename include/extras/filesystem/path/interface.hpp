@@ -18,7 +18,7 @@
 
 namespace extras {
 
-  namespace fs1 {
+  namespace fs {
     namespace path {
 
       /**
@@ -26,15 +26,29 @@ namespace extras {
        *
        */
 
-      interface Interface {
-        // status value 0 is always "success"
+      using Path = std::string;
+
+      interface PathsInterface {
+        /**
+         * @brief actualPath
+         * @return replace the '~' with the value gained from getenv('home')
+         * @exception invalid path supplied
+         */
+        virtual Path actualPath(const Path& path) const pure;
 
         /**
-         * @brief isSuccess()
-         * @note value 0 is always "success"
-         * @return int
+         * @brief find
+         * @param path to be found
+         * @return the full path to the actual file being requested
+         * @exception invalid path supplied
+         *
+         * In the case of running the test scripts the build/ directory is
+         * not always the place where run-unittests is executed from. In order
+         * to make sure that the test scripts run properly, we need to make
+         * an educated guess as to where the actual path, (of the file) is.
+         *
          */
-        virtual void isSuccess() const pure;
+        virtual Path find(const Path& path) const pure;
       };
 
       /**
@@ -50,7 +64,7 @@ namespace extras {
       };
 
     }  // namespace path
-  }    // namespace fs1
+  }    // namespace fs
 }  // namespace extras
 
 #endif  // _EXTRA_PATH_INTERFACE_HPP_
