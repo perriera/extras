@@ -65,8 +65,8 @@ SCENARIO("Dock extras::fs::path::Interface", "[extras::fs::path::Interface]")
 	 * 
 	 */
 	auto correct_answer = "/home/perry/Downloads";
-	Mold<fs::path::PathsInterface> dock;
-	fs::path::PathsInterface &i = dock.get();
+	Mold<fs::path::Interface> dock;
+	fs::path::Interface &i = dock.get();
 	When(Method(dock, current_path_filename))
 		.AlwaysDo([&correct_answer]() {{ 
 			system("pwd > /tmp/output.txt");

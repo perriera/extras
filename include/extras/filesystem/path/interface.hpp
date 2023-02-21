@@ -28,7 +28,7 @@ namespace extras {
 
       using Path = std::string;
 
-      interface PathsInterface {
+      interface Interface {
 
 		/**
 		 * @brief 
