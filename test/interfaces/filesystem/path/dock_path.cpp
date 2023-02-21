@@ -99,10 +99,6 @@ SCENARIO("Dock extras::fs::path::Interface", "[extras::fs::path::Interface]")
 			std::getline(in,line);
 			return correct_answer; 
 		} });
-	When(Method(dock, actualPath))
-		.AlwaysDo([&correct_answer](const Path &path) {{ 
-					return correct_answer; 
-		} });
 
 	/**
 	 * @brief 
@@ -113,11 +109,14 @@ SCENARIO("Dock extras::fs::path::Interface", "[extras::fs::path::Interface]")
 	REQUIRE(i.path_filename("filename") == correct_answer);
 	REQUIRE(i.current_path_filename() == correct_answer);
 	REQUIRE(i.directory_iterator("filename") == correct_answer);
-	REQUIRE(i.actualPath("~/Downloads") == correct_answer);
 
 	/**
 	 * @brief Construct a new Verify object
 	 * 
 	 */
-	Verify(Method(dock, actualPath));
+	Verify(Method(dock, path));
+	Verify(Method(dock, path_filename));
+	Verify(Method(dock, current_path_filename));
+	Verify(Method(dock, directory_iterator));
+
 }

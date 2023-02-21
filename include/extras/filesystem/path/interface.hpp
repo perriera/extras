@@ -53,13 +53,6 @@ namespace extras {
 		 */
 		virtual Filename path_filename(const Filename& before) const pure;
 
-        /**
-         * @brief actualPath
-         * @return replace the '~' with the value gained from getenv('home')
-         * @exception invalid path supplied
-         */
-        virtual Path actualPath(const Path& path) const pure;
-
 		/**
 		 * @brief 
 		 * 
@@ -68,19 +61,6 @@ namespace extras {
 		 */
 		virtual Filename directory_iterator(const Directory& src) const pure;
 
-        /**
-         * @brief find
-         * @param path to be found
-         * @return the full path to the actual file being requested
-         * @exception invalid path supplied
-         *
-         * In the case of running the test scripts the build/ directory is
-         * not always the place where run-unittests is executed from. In order
-         * to make sure that the test scripts run properly, we need to make
-         * an educated guess as to where the actual path, (of the file) is.
-         *
-         */
-        virtual Path find(const Path& path) const pure;
       };
 
       /**
