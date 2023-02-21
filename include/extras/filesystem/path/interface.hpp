@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef _SIS_ERROR_INTERFACE_HPP_
-#define _SIS_ERROR_INTERFACE_HPP_
+#ifndef _EXTRA_PATH_INTERFACE_HPP_
+#define _EXTRA_PATH_INTERFACE_HPP_
 
 #include <extras/interfaces.hpp>
 #include <iostream>
@@ -18,95 +18,39 @@
 
 namespace extras {
 
-  namespace fs {
+  namespace fs1 {
     namespace path {
 
       /**
-       * @brief typedefs
+       * @brief namespace base
        *
        */
 
-      typedef enum { OK = 0 } ErrorStatusValueEnum;
-      typedef enum { FACILITYMASK = 0xfffff000 } ErrorStatusMaskValueEnum;
-      typedef enum {
-        SEV_UNSPECIFIED = 0,
-        SEV_INFORMATIONAL,
-        SEV_WARNING,
-        SEV_ERROR,
-        SEV_FATAL
-      } SeverityLevel;
-      typedef unsigned long ErrorStatus;
-
-      namespace error {
+      interface Interface {
+        // status value 0 is always "success"
 
         /**
-         * @brief namespace base
-         *
+         * @brief isSuccess()
+         * @note value 0 is always "success"
+         * @return int
          */
+        virtual void isSuccess() const pure;
+      };
 
-        interface Interface {
-          // status value 0 is always "success"
+      /**
+       * @brief base::Exception
+       *
+       */
 
-          /**
-           * @brief isSuccess()
-           * @note value 0 is always "success"
-           * @return int
-           */
-          virtual int isSuccess() const pure;
+      concrete class Exception extends extras::AbstractCustomException {
+       public:
+        Exception(const std::string& msg, const extras::WhereAmI& whereAmI)
+            : AbstractCustomException(msg.c_str(), whereAmI._file.c_str(),
+                                      whereAmI._func.c_str(), whereAmI._line) {}
+      };
 
-          /**
-           * @brief
-           *
-           * @return SeverityLevel
-           */
-          virtual SeverityLevel severity() const pure;
-
-          /**
-           * @brief severityText
-           *
-           * @return const std::string
-           */
-          virtual const std::string severityText() const pure;
-
-          /**
-           * @brief text
-           *
-           * @return const std::string
-           */
-
-          virtual const std::string text() const pure;
-
-          /**
-           * @brief value
-           *
-           * @return ErrorStatus
-           */
-          virtual ErrorStatus value() const pure;
-
-          /**
-           * @brief facility
-           *
-           * @return unsigned long
-           */
-          virtual unsigned long facility() const pure;
-        };
-
-        /**
-         * @brief base::Exception
-         *
-         */
-
-        concrete class Exception extends extras::AbstractCustomException {
-         public:
-          Exception(const std::string& msg, const extras::WhereAmI& whereAmI)
-              : AbstractCustomException(msg.c_str(), whereAmI._file.c_str(),
-                                        whereAmI._func.c_str(),
-                                        whereAmI._line) {}
-        };
-
-      }  // namespace error
-    }    // namespace path
-  }      // namespace fs
+    }  // namespace path
+  }    // namespace fs1
 }  // namespace extras
 
-#endif  // _SIS_ERROR_INTERFACE_HPP_
+#endif  // _EXTRA_PATH_INTERFACE_HPP_

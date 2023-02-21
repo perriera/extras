@@ -38,7 +38,9 @@ using namespace fakeit;
 SCENARIO("Dock PathsInterface: toOctal", "[paths_support]") {
   auto correct_answer = "/home/perry/Downloads";
   Mold<PathsInterface> dock;
-  When(Method(dock, actualPath)).Return(correct_answer);
+  When(Method(dock, actualPath)).AlwaysDo([&correct_answer](const Path& path) {
+    { return correct_answer; }
+  });
 
   PathsInterface& i = dock.get();
   REQUIRE(i.actualPath("~/Downloads") == correct_answer);
