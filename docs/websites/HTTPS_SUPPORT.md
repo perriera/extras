@@ -112,6 +112,10 @@ PAY CLOSE ATTENTION to the dialog that comes up on the screen:
 curl http://freeformjs.org
 ```
 The contents of the apache server startup page should display.
+ - [ ] now setup certbot to automatically keep the certificates updated
+```
+sudo systemctl status certbot.timer
+```
 
 At this point you should back up your Ubuntu instance before continuing.
 
