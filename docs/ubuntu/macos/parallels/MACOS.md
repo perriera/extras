@@ -1,19 +1,56 @@
 
 
-## How to install a Linux Platform (Ubuntu 20.04.4) on macOS
-> While intended to be cross-platform, at this point in time all instructions are based upon a Ubuntu 20.04.4 installation. This can be achived in multiple ways be that a native installation or a virtual machine made possible via a tool such as [Parallels Desktop for the iMac](https://www.parallels.com/ca/pd/general/?gclid=CjwKCAjwjZmTBhB4EiwAynRmD6SV4LdfM_DXaYiwTJhJJBddfc6JM_bDuAuWsUyyHUMj5zEQnC3wjBoCfgcQAvD_BwE) (try it for free).
 
- 1. **GIVEN** we need to have a Linux installation to develop C++11/17 code
- 2. **WHEN** we install the latest Ubuntu using Parallels Desktop
- 3. **THEN** we can have all the benefits that come with a Linux environment
+## How To Set Up Apache Virtual Hosts with certbot (Ubuntu 20.04.4)
+> To be able to host multiple websites off one single web server and for those to be https compliant is worth it's weight in gold. This How-To describes how to set up such a platform using Apache, certbot and a well established version of Ubuntu.
+
+ 1. **GIVEN** we would like to have multiple websites off one single web server
+ 2. **WHEN** we use certbot on an apache server on a stable Ubuntu platform
+ 3. **THEN** we can have all the benefits that come with https for multiple websites
 
 ### Prerequisites
-  - [Preferably a late model iMac](https://www.apple.com/ca/imac-24/?afid=p238%7CsOluZynmu-dc_mtid_1870765e38482_pcrid_571348307644_pgrid_125362851562_pntwk_g_pchan__pexid__&cid=aos-ca-kwGO-mac--slid---product-) (with a large screen)
-  - [Parallels Desktop installed](https://www.parallels.com/ca/pd/general/?gclid=CjwKCAjwjZmTBhB4EiwAynRmD6SV4LdfM_DXaYiwTJhJJBddfc6JM_bDuAuWsUyyHUMj5zEQnC3wjBoCfgcQAvD_BwE)
+ - Ubuntu 20.04 instance
+ - Access to the Internet
+ - ssh key access 
 
- 
 ### Wish Case
-Assuming you have an iMac with Parallels Desktop installed
+Assuming you have an Ubuntu instance with ssh key access ready to go:
+ - [ ] ssh into the Ubuntu instance:
+```
+ssh root@your_server_ip
+```
+ - [ ] make sure it is up to date
+```
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y autoremove
+sudo reboot
+```
+ - [ ] relog back into Ubuntu instance
+ - [ ] now add a user account
+```
+adduser sammy
+```
+ - [ ] supply a password and add to the sudo users group
+```
+usermod -aG sudo sammy
+```
+ - [ ] now activate your firewall
+```
+ufw app list
+ufw allow OpenSSH
+ufw enable
+ufw status
+```
+ - [ ] now give the new user ssh access
+```
+rsync --archive --chown=sammy:sammy ~/.ssh /home/sammy
+```
+ - [ ] now relog into the Ubuntu instance with the user account
+```
+ssh sammy@your_server_ip
+```
+
 
  - [ ] Goto Ubuntu.com and download [Ubuntu 20.04.4](https://releases.ubuntu.com/20.04/)
  - [ ] Press the + button to the top right corner of Parallels Desktop Control Center
@@ -64,6 +101,7 @@ Assuming you have an iMac with Parallels Desktop installed
 Now you have a platform with which to install the C++11/17 tools necessary for *(perriera) /  extras_dbo* cloned projects.
 
 ### Next Steps
- - [How to install the tools necessary for C++11/17 projects](https://github.com/perriera/extras_dbo/blob/dev/docs/INSTALL.md)
+ - [Initial Server Setup with Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04)
 
-
+  ### References
+ - [Initial Server Setup with Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04)
