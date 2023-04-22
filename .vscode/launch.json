@@ -10,12 +10,12 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "run-unittests_i386",
+			"name": "run-unittests",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/build/run-unittests-extras_i386",
+			"program": "${workspaceFolder}/build/run-unittests-extras",
 			"args": [
-				"[extras::fs::path::Interface]"
+				"[syncfile::Interface]"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
@@ -33,10 +33,10 @@
 			"miDebuggerPath": "/usr/bin/gdb"
 		},
 		{
-			"name": "run-unittests",
+			"name": "run-unittests_i386",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/build/run-unittests-extras",
+			"program": "${workspaceFolder}/build/run-unittests-extras_i386",
 			"args": [
 				"[extras::fs::path::Interface]"
 			],
