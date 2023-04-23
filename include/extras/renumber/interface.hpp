@@ -1,5 +1,5 @@
 /**
- * @syncfile FileInterface.hpp
+ * @renumber FileInterface.hpp
  * @author Perry Anderson (perryand@yorku.ca)
  * @brief define standard methods for FileInterface
  * @version 0.1
@@ -22,7 +22,7 @@ struct ldap;
 
 namespace extras
 {
-  namespace syncfile
+  namespace renumber
   {
 
     /**
@@ -39,20 +39,20 @@ namespace extras
     interface Interface
     {
       /**
-       * @brief the name of the syncfile
+       * @brief the name of the renumber
        *
        * @return Filename
        */
       virtual Filename filename() const pure;
       /**
-       * @brief test that syncfile exists
+       * @brief test that renumber exists
        *
-       * @return true the syncfile exists
+       * @return true the renumber exists
        * @return false otherwise
        */
       virtual bool exists() const pure;
       /**
-       * @brief copy a syncfile
+       * @brief copy a renumber
        *
        * @param destination
        */
@@ -97,7 +97,7 @@ namespace extras
                          const extras::WhereAmI &whereAmI)
           : Exception(msg, whereAmI) {}
       virtual char const *what() const noexcept { return _msg.c_str(); }
-      static void assertion(const syncfile::Interface &, const extras::WhereAmI &);
+      static void assertion(const renumber::Interface &, const extras::WhereAmI &);
     };
 
     /**
@@ -140,7 +140,7 @@ namespace extras
                             const extras::WhereAmI &whereAmI)
           : Exception(msg, whereAmI) {}
       virtual char const *what() const noexcept { return _msg.c_str(); }
-      static void assertion(const syncfile::Interface &,
+      static void assertion(const renumber::Interface &,
                             const extras::WhereAmI &ref);
       static void assertion(const Filename &, const extras::WhereAmI &ref);
     };
@@ -181,7 +181,7 @@ namespace extras
                               const extras::WhereAmI &whereAmI)
           : Exception(msg, whereAmI) {}
       virtual char const *what() const noexcept { return _msg.c_str(); }
-      static void assertion(const syncfile::Interface &,
+      static void assertion(const renumber::Interface &,
                             const extras::WhereAmI &ref);
     };
 
@@ -196,7 +196,7 @@ namespace extras
                           const extras::WhereAmI &whereAmI)
           : Exception(msg, whereAmI) {}
       virtual char const *what() const noexcept { return _msg.c_str(); }
-      static void assertion(const syncfile::Interface &,
+      static void assertion(const renumber::Interface &,
                             const extras::WhereAmI &ref);
     };
 
@@ -211,11 +211,11 @@ namespace extras
                         const extras::WhereAmI &whereAmI)
           : Exception(msg, whereAmI) {}
       virtual char const *what() const noexcept { return _msg.c_str(); }
-      static void assertion(const syncfile::Interface &,
+      static void assertion(const renumber::Interface &,
                             const extras::WhereAmI &ref);
     };
 
-  } // namespace syncfile
+  } // namespace renumber
 } // namespace extras
 
 #endif // _EXTRAS_SYNCFILE_INTERFACE_HPP

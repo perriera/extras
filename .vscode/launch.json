@@ -15,7 +15,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/build/run-unittests-extras",
 			"args": [
-				"[syncfile::Interface]"
+				"[renumber::Interface]"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

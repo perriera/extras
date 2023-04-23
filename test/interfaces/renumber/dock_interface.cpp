@@ -17,7 +17,7 @@
  */
 
 #include <extras/docking/DockIt.hpp>
-#include <extras/syncfile/interface.hpp>
+#include <extras/renumber/interface.hpp>
 #include <iostream>
 
 #include "../../vendor/catch.hpp"
@@ -28,16 +28,16 @@
 //
 
 using namespace std;
-using namespace extras::syncfile;
+using namespace extras::renumber;
 using namespace fakeit;
 
 /**
- * @brief dock syncfile::Interface
+ * @brief dock renumber::Interface
  *
  */
-SCENARIO("Dock syncfile::Interface", "[syncfile::Interface]")
+SCENARIO("Dock renumber::Interface", "[renumber::Interface]")
 {
-  auto correct_answer = "test/syncfile/etc/some_file.txt";
+  auto correct_answer = "test/renumber/etc/some_file.txt";
 
   Dock<Interface> mold;
   When(Method(mold, filename)).Return(correct_answer);
