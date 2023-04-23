@@ -39,6 +39,10 @@ SCENARIO("Dock renumber::Interface", "[renumber::Interface]")
 {
   auto correct_answer = "test/etc/renumber/librandom.sol";
 
+  system("rm -rf build/testarea");
+  system("mkdir build/testarea");
+  system("cp test/etc/renumber/librandom.sol build/testarea");
+
   Dock<Interface> mold;
   When(Method(mold, filename)).Return(correct_answer);
   When(Method(mold, exists)).AlwaysDo([]()
