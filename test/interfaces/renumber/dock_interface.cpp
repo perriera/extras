@@ -37,7 +37,7 @@ using namespace fakeit;
  */
 SCENARIO("Dock renumber::Interface", "[renumber::Interface]")
 {
-  auto correct_answer = "test/renumber/etc/some_file.txt";
+  auto correct_answer = "test/etc/renumber/librandom.sol";
 
   Dock<Interface> mold;
   When(Method(mold, filename)).Return(correct_answer);
