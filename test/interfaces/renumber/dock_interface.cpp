@@ -17,6 +17,7 @@
  */
 
 #include <extras/docking/DockIt.hpp>
+#include <extras/file/interface.hpp>
 #include <extras/renumber/interface.hpp>
 #include <extras/version.hpp>
 #include <iostream>
@@ -29,6 +30,7 @@
 //
 
 using namespace extras::renumber;
+using namespace extras;
 using namespace fakeit;
 
 /**
@@ -48,6 +50,8 @@ SCENARIO("Dock renumber::Interface", "[renumber::Interface]") {
    correct_answer += "." + std::to_string(major) + ".";
    correct_answer += std::to_string(minor) + ".";
    correct_answer += std::to_string(patch);
+   Filename testarea = "build/testarea/";
+   Filename before = testarea + filename;
 
    /**
     * @brief prepare test area
@@ -85,6 +89,8 @@ SCENARIO("Dock renumber::Interface", "[renumber::Interface]") {
     * @brief test the interface
     *
     */
+
+   file::NotFoundException::assertion(before, __INFO__);
    REQUIRE(i.fullname(filename) == correct_answer);
    i.relink(filename);
 
