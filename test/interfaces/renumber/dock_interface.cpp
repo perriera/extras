@@ -18,6 +18,7 @@
 
 #include <extras/docking/DockIt.hpp>
 #include <extras/renumber/interface.hpp>
+#include <extras/version.hpp>
 #include <iostream>
 
 #include "../../vendor/catch.hpp"
@@ -27,7 +28,6 @@
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
 //
 
-using namespace std;
 using namespace extras::renumber;
 using namespace fakeit;
 
@@ -35,23 +35,63 @@ using namespace fakeit;
  * @brief dock renumber::Interface
  *
  */
-SCENARIO("Dock renumber::Interface", "[renumber::Interface]")
-{
-  auto correct_answer = "test/etc/renumber/librandom.sol";
+SCENARIO("Dock renumber::Interface", "[renumber::Interface]") {
+   /**
+    * @brief determine correct_answer
+    *
+    */
+   auto major = EXTRAS_VER_MAJOR;
+   auto minor = EXTRAS_VER_MINOR;
+   auto patch = EXTRAS_VER_PATCH;
+   Filename filename = "librandom.so";
+   Value correct_answer = filename;
+   correct_answer += "." + std::to_string(major) + ".";
+   correct_answer += std::to_string(minor) + ".";
+   correct_answer += std::to_string(patch);
 
-  system("rm -rf build/testarea");
-  system("mkdir build/testarea");
-  system("cp test/etc/renumber/librandom.sol build/testarea");
+   /**
+    * @brief prepare test area
+    *
+    */
 
-  Dock<Interface> mold;
-  When(Method(mold, filename)).Return(correct_answer);
-  When(Method(mold, exists)).AlwaysDo([]()
-                                      { return true; });
+   system("rm -rf build/testarea");
+   system("mkdir build/testarea");
+   system("cp test/etc/renumber/librandom.sol build/testarea/librandom.so");
 
-  Interface &i = mold.get();
-  REQUIRE(i.filename() == correct_answer);
-  REQUIRE(i.exists() == true);
+   /**
+    * @brief construct dock for interface
+    *
+    */
+   Dock<Interface> mold;
+   Interface &i = mold.get();
+   When(Method(mold, fullname))
+       .AlwaysDo([&major, &minor, &patch](const Filename &filename) {
+          {
+             Value result = filename;
+             result += "." + std::to_string(major) + ".";
+             result += std::to_string(minor) + ".";
+             result += std::to_string(patch);
+             return result;
+          }
+       });
+   When(Method(mold, relink)).AlwaysDo([&i](const Filename &filename) {
+      {
+         Filename result = i.fullname(filename);
+         CMD cmd1 = "rm " + filename;
+      }
+   });
 
-  Verify(Method(mold, filename));
-  Verify(Method(mold, exists));
+   /**
+    * @brief test the interface
+    *
+    */
+   REQUIRE(i.fullname(filename) == correct_answer);
+   i.relink(filename);
+
+   /**
+    * @brief verify the desired methods were tested
+    *
+    */
+   Verify(Method(mold, fullname));
+   Verify(Method(mold, relink));
 }
