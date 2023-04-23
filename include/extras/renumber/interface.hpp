@@ -43,6 +43,7 @@ namespace extras {
           * @return Filename
           */
          virtual Value fullname(const Filename &filename) const pure;
+
          /**
           * @brief test that renumber exists
           *
@@ -50,12 +51,6 @@ namespace extras {
           * @return false otherwise
           */
          virtual void relink(const Filename &filename) const pure;
-         /**
-          * @brief copy a renumber
-          *
-          * @param destination
-          */
-         virtual void copy(const Interface &destination) const pure;
       };
 
       /**
