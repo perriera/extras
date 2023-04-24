@@ -312,6 +312,31 @@ namespace extras {
                                const extras::WhereAmI& ref);
       };
 
+      /**
+       * @brief CouldNotCreateTempnameException
+       *
+       */
+      concrete class CouldNotCreateTempnameException extends Exception
+      {
+       public:
+
+         CouldNotCreateTempnameException(const Pathname& filename,
+                                         const extras::WhereAmI& whereAmI)
+           : Exception(filename, whereAmI)
+         {
+         }
+
+         virtual char const* what() const noexcept { return _msg.c_str(); }
+
+         static void assertion(int fd,
+                               const Pathname& filename,
+                               const extras::WhereAmI& ref)
+         {
+            if (fd == -1)
+               throw CouldNotCreateTempnameException(filename, ref);
+         }
+      };
+
    } // namespace file
 } // namespace extras
 

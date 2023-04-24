@@ -65,12 +65,10 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
    When(Method(mold, tempname)).AlwaysDo([]() {
       char filename[] = "/tmp/mytemp.XXXXXX";
       int fd = mkstemp(filename);
-      if (fd != -1) {
-         close(fd);
-         unlink(filename);
-      } else
-         std::cerr << "i.tempname() returns " << fd << std::endl;
       extras::Pathname tn = filename;
+      CouldNotCreateTempnameException::assertion(fd, tn, __INFO__);
+      close(fd);
+      unlink(filename);
       return tn;
    });
    When(Method(mold, pathname)).AlwaysDo([&i]() {
