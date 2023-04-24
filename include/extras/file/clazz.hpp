@@ -28,29 +28,44 @@ namespace extras {
        * @brief File class
        *
        */
-      concrete class File implements Interface {
+      concrete class File implements Interface
+      {
          Filename _fn;
 
-        public:
-         File(const Filename& fn) : _fn(fn){};
+       public:
+
+         File(const Filename& fn)
+           : _fn(fn){};
 
          /**
           * @brief FileInterface
           *
           */
          virtual Filename filename() const { return _fn; };
-         virtual bool exists() const;
-         virtual void copy(const Interface&) const {
-            throw extras::feature::NotImplementedException("copy", __INFO__);
+
+         virtual Pathname pathname() const
+         {
+            throw extras::feature::NotImplementedException("pathname",
+                                                           __INFO__);
          };
-         virtual Pathname path() const {
-            throw extras::feature::NotImplementedException("path", __INFO__);
+
+         virtual Pathname fullpath() const
+         {
+            throw extras::feature::NotImplementedException("fullpath",
+                                                           __INFO__);
+         };
+
+         virtual bool exists() const;
+
+         virtual void copy(const Interface&) const
+         {
+            throw extras::feature::NotImplementedException("copy", __INFO__);
          };
 
          operator const Filename&() const { return _fn; }
       };
 
-   }  // namespace file
-}  // namespace extras
+   } // namespace file
+} // namespace extras
 
-#endif  // _EXTRAS_FILE_CLASS_HPP
+#endif // _EXTRAS_FILE_CLASS_HPP

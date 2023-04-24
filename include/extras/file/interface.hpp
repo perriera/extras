@@ -24,24 +24,33 @@ namespace extras {
    namespace file {
 
       /**
-       * @brief
-       *
-       */
-      using Filename = std::string;
-      using Directory = std::vector<Filename>;
-
-      /**
        * @brief file::Interface
        *
        */
       interface Interface
       {
+
+         /**
+          * @brief the name of the renumber
+          *
+          * @return Filename
+          */
+         virtual Pathname pathname() const pure;
+
          /**
           * @brief the name of the file
           *
           * @return Filename
           */
          virtual Filename filename() const pure;
+
+         /**
+          * @brief the name of the file
+          *
+          * @return Filename
+          */
+         virtual Pathname fullpath() const pure;
+
          /**
           * @brief test that file exists
           *
@@ -49,18 +58,13 @@ namespace extras {
           * @return false otherwise
           */
          virtual bool exists() const pure;
+
          /**
           * @brief copy a file
           *
           * @param destination
           */
          virtual void copy(const Interface& destination) const pure;
-         /**
-          * @brief the name of the renumber
-          *
-          * @return Filename
-          */
-         virtual Pathname path() const pure;
       };
 
       /**

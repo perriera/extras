@@ -28,6 +28,7 @@
 //
 
 using namespace std;
+using namespace extras;
 using namespace extras::file;
 using namespace fakeit;
 
@@ -42,7 +43,9 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
     *
     */
 
-   auto correct_answer = "test/file/etc/some_file.txt";
+   Pathname pathname = "test/file/etc/";
+   Filename filename = "some_file.txt";
+   auto fullpath = pathname + filename;
 
    /**
     * @brief construct dock for interface
@@ -50,18 +53,19 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
     */
 
    Dock<Interface> mold;
-   When(Method(mold, filename)).AlwaysDo([&correct_answer]() {
-      return correct_answer;
-   });
-
    Interface& i = mold.get();
+   When(Method(mold, pathname)).AlwaysDo([&pathname]() { return pathname; });
+   When(Method(mold, filename)).AlwaysDo([&filename]() { return filename; });
+   When(Method(mold, fullpath)).AlwaysDo([&fullpath]() { return fullpath; });
 
    /**
     * @brief test the interface
     *
     */
 
-   REQUIRE(i.filename() == correct_answer);
+   REQUIRE(i.pathname() == pathname);
+   REQUIRE(i.filename() == filename);
+   REQUIRE(i.fullpath() == fullpath);
 
    /**
     * @brief verify the desired methods were tested
@@ -69,29 +73,6 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
     */
 
    Verify(Method(mold, filename));
-}
-
-/**
- * @brief dock FolderNotFoundException
- *
- */
-SCENARIO("Dock FolderNotFoundException", "[mold file::Interface]")
-{
-   auto correct_answer = "test/file/etc/some_file.txt";
-
-   Dock<Interface> mold;
-   When(Method(mold, filename)).Return(correct_answer);
-   When(Method(mold, exists)).AlwaysDo([]() { return true; });
-
-   Interface& i = mold.get();
-   REQUIRE(i.filename() == correct_answer);
-   REQUIRE(i.exists() == true);
-
-   /**
-    * @brief verify the desired methods were tested
-    *
-    */
-
-   Verify(Method(mold, filename));
-   Verify(Method(mold, exists));
+   Verify(Method(mold, pathname));
+   Verify(Method(mold, fullpath));
 }
