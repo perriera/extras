@@ -16,21 +16,82 @@
  *
  */
 
+#include "../../vendor/catch.hpp"
+#include "../../vendor/fakeit.hpp"
+
 #include <extras/docking/DockIt.hpp>
-#include <extras/file/clazz.hpp>
-#include <fstream>
+#include <extras/file/interface.hpp>
 #include <iostream>
 
-#include "../../vendor/catch.hpp"
+//
+// https://github.com/eranpeer/FakeIt/wiki/Quickstart
+//
 
 using namespace std;
-using namespace extras;
+using namespace extras::file;
+using namespace fakeit;
 
 /**
- * @brief file::Interface NotFoundException
+ * @brief dock file::Interface
  *
  */
-SCENARIO("mold file::Interface::path", "[mold file::Interface]") {
-   REQUIRE_THROWS_AS(file::NotFoundException::assertion("/usr/abc", __INFO__),
-                     file::NotFoundException);
+SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
+{
+   /**
+    * @brief determine correct_answer
+    *
+    */
+
+   auto correct_answer = "test/file/etc/some_file.txt";
+
+   /**
+    * @brief construct dock for interface
+    *
+    */
+
+   Dock<Interface> mold;
+   When(Method(mold, filename)).AlwaysDo([&correct_answer]() {
+      return correct_answer;
+   });
+
+   Interface& i = mold.get();
+
+   /**
+    * @brief test the interface
+    *
+    */
+
+   REQUIRE(i.filename() == correct_answer);
+
+   /**
+    * @brief verify the desired methods were tested
+    *
+    */
+
+   Verify(Method(mold, filename));
+}
+
+/**
+ * @brief dock FolderNotFoundException
+ *
+ */
+SCENARIO("Dock FolderNotFoundException", "[mold file::Interface]")
+{
+   auto correct_answer = "test/file/etc/some_file.txt";
+
+   Dock<Interface> mold;
+   When(Method(mold, filename)).Return(correct_answer);
+   When(Method(mold, exists)).AlwaysDo([]() { return true; });
+
+   Interface& i = mold.get();
+   REQUIRE(i.filename() == correct_answer);
+   REQUIRE(i.exists() == true);
+
+   /**
+    * @brief verify the desired methods were tested
+    *
+    */
+
+   Verify(Method(mold, filename));
+   Verify(Method(mold, exists));
 }

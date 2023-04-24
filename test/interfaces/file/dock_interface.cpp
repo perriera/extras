@@ -16,55 +16,25 @@
  *
  */
 
+#include "../../vendor/catch.hpp"
+
 #include <extras/docking/DockIt.hpp>
-#include <extras/file/interface.hpp>
+#include <extras/file/clazz.hpp>
+#include <fstream>
 #include <iostream>
 
-#include "../../vendor/catch.hpp"
-#include "../../vendor/fakeit.hpp"
-
-//
-// https://github.com/eranpeer/FakeIt/wiki/Quickstart
-//
-
 using namespace std;
-using namespace extras::file;
-using namespace fakeit;
+using namespace extras;
 
 /**
- * @brief dock file::Interface
+ * @brief file::Interface NotFoundException
  *
  */
-SCENARIO("Dock file::Interface", "[PE-40]") {
-  auto correct_answer = "test/file/etc/some_file.txt";
-
-  Dock<Interface> mold;
-  When(Method(mold, filename)).Return(correct_answer);
-  When(Method(mold, exists)).AlwaysDo([]() { return true; });
-
-  Interface& i = mold.get();
-  REQUIRE(i.filename() == correct_answer);
-  REQUIRE(i.exists() == true);
-
-  Verify(Method(mold, filename));
-  Verify(Method(mold, exists));
-}
-
-/**
- * @brief dock FolderNotFoundException
- *
- */
-SCENARIO("Dock FolderNotFoundException", "[PE-40]") {
-  auto correct_answer = "test/file/etc/some_file.txt";
-
-  Dock<Interface> mold;
-  When(Method(mold, filename)).Return(correct_answer);
-  When(Method(mold, exists)).AlwaysDo([]() { return true; });
-
-  Interface& i = mold.get();
-  REQUIRE(i.filename() == correct_answer);
-  REQUIRE(i.exists() == true);
-
-  Verify(Method(mold, filename));
-  Verify(Method(mold, exists));
+SCENARIO("mold file::Interface::path", "[dock file::Interface]")
+{
+   Filename f1 = "build/libextras.so";
+   file::File file(f1);
+   // Pathname p1 = file.path();
+   REQUIRE_THROWS_AS(file::NotFoundException::assertion("/usr/abc", __INFO__),
+                     file::NotFoundException);
 }

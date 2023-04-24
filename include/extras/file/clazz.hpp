@@ -43,7 +43,7 @@ namespace extras {
          virtual void copy(const Interface&) const {
             throw extras::feature::NotImplementedException("copy", __INFO__);
          };
-         virtual Pathname path(const Filename&) const {
+         virtual Pathname path() const {
             throw extras::feature::NotImplementedException("path", __INFO__);
          };
 

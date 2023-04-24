@@ -31,7 +31,7 @@ using namespace extras;
  *
  */
 SCENARIO("mold file::Interface NotFoundException",
-         "[mold file::Interface::assertions]") {
+         "[dock file::Interface::assertions]") {
    REQUIRE_THROWS_AS(file::NotFoundException::assertion("/usr/abc", __INFO__),
                      file::NotFoundException);
 }

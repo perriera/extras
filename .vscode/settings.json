@@ -70,5 +70,7 @@
         "filesystem": "cpp",
         "list": "cpp"
     },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
     "editor.formatOnSave": true
 }

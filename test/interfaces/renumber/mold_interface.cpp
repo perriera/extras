@@ -38,7 +38,7 @@ using namespace fakeit;
  * @brief dock renumber::Interface
  *
  */
-SCENARIO("Dock renumber::Interface", "[renumber::Interface]") {
+SCENARIO("Mold renumber::Interface", "[mold renumber::Interface]") {
    /**
     * @brief determine correct_answer
     *

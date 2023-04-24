@@ -1,4 +1,8 @@
-BasedOnStyle: Google
+BasedOnStyle: Mozilla
 IncludeBlocks: Regroup
 NamespaceIndentation: All
 IndentWidth: 3
+SeparateDefinitionBlocks: Always
+EmptyLineBeforeAccessModifier: LogicalBlock
+EmptyLineBeforeAccessModifier: Always
+EmptyLineAfterAccessModifier: Always
