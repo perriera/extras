@@ -21,14 +21,17 @@
 
 #include <extras/docking/DockIt.hpp>
 #include <extras/file/interface.hpp>
+#include <extras/strings.hpp>
 #include <iostream>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
 //
 
 using namespace std;
-using namespace extras;
 using namespace extras::file;
 using namespace fakeit;
 
@@ -43,9 +46,9 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
     *
     */
 
-   Pathname pathname = "test/file/etc/";
-   Filename filename = "some_file.txt";
-   auto fullpath = pathname + filename;
+   extras::Pathname pathname = "test/file/etc/";
+   extras::Filename filename = "some_file.txt";
+   extras::Filename fullpath = pathname + filename;
 
    /**
     * @brief construct dock for interface
@@ -54,8 +57,26 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
 
    Dock<Interface> mold;
    Interface& i = mold.get();
-   When(Method(mold, pathname)).AlwaysDo([&pathname]() { return pathname; });
-   When(Method(mold, filename)).AlwaysDo([&filename]() { return filename; });
+   When(Method(mold, seperator)).AlwaysDo([]() { return '/'; });
+   When(Method(mold, pathname)).AlwaysDo([&i, &fullpath]() {
+      if (fullpath.length() == 0)
+         return fullpath;
+      auto parts = extras::str::split(fullpath, i.seperator());
+      parts.pop_back();
+      extras::Filename result;
+      for (auto part : parts) {
+         result += part;
+         result += i.seperator();
+      }
+      return result;
+   });
+   When(Method(mold, filename)).AlwaysDo([&i, &fullpath]() {
+      if (fullpath.length() == 0)
+         return fullpath;
+      auto parts = extras::str::split(fullpath, i.seperator());
+      extras::Filename result = parts.back();
+      return result;
+   });
    When(Method(mold, fullpath)).AlwaysDo([&fullpath]() { return fullpath; });
 
    /**
@@ -76,3 +97,15 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
    Verify(Method(mold, pathname));
    Verify(Method(mold, fullpath));
 }
+
+//  struct stat s;
+//   if (stat(fullpath.c_str(), &s) == 0) {
+//      if (s.st_mode & S_IFDIR) {
+//         return fullpath;
+//      } else if (s.st_mode & S_IFREG) {
+//      } else {
+//         throw "It's something else";
+//      }
+//   } else {
+//      throw "It's an error";
+//   }

@@ -31,6 +31,13 @@ namespace extras {
       {
 
          /**
+          * @briefseperator
+          *
+          * @return Pathname
+          */
+         virtual char seperator() const pure;
+
+         /**
           * @brief the name of the renumber
           *
           * @return Filename
