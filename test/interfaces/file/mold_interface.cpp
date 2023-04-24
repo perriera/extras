@@ -77,7 +77,32 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
       extras::Filename result = parts.back();
       return result;
    });
-   When(Method(mold, fullpath)).AlwaysDo([&fullpath]() { return fullpath; });
+   When(Method(mold, fullpath)).AlwaysDo([&i, &fullpath]() {
+      return fullpath;
+   });
+   When(Method(mold, is_dir)).AlwaysDo([&fullpath]() {
+      struct stat s;
+      if (stat(fullpath.c_str(), &s) == 0) {
+         if (s.st_mode & S_IFDIR)
+            return true;
+      }
+      return false;
+   });
+   When(Method(mold, is_file)).AlwaysDo([&fullpath]() {
+      struct stat s;
+      if (stat(fullpath.c_str(), &s) == 0) {
+         if (s.st_mode & S_IFREG)
+            return true;
+      }
+      return false;
+   });
+   When(Method(mold, exists)).AlwaysDo([&fullpath]() {
+      struct stat s;
+      if (stat(fullpath.c_str(), &s) == 0) {
+         return true;
+      }
+      return false;
+   });
 
    /**
     * @brief test the interface
@@ -87,6 +112,9 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
    REQUIRE(i.pathname() == pathname);
    REQUIRE(i.filename() == filename);
    REQUIRE(i.fullpath() == fullpath);
+   REQUIRE_FALSE(i.is_dir());
+   REQUIRE_FALSE(i.is_file());
+   REQUIRE_FALSE(i.exists());
 
    /**
     * @brief verify the desired methods were tested
@@ -96,16 +124,7 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
    Verify(Method(mold, filename));
    Verify(Method(mold, pathname));
    Verify(Method(mold, fullpath));
+   Verify(Method(mold, is_dir));
+   Verify(Method(mold, is_file));
+   Verify(Method(mold, exists));
 }
-
-//  struct stat s;
-//   if (stat(fullpath.c_str(), &s) == 0) {
-//      if (s.st_mode & S_IFDIR) {
-//         return fullpath;
-//      } else if (s.st_mode & S_IFREG) {
-//      } else {
-//         throw "It's something else";
-//      }
-//   } else {
-//      throw "It's an error";
-//   }

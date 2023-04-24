@@ -59,6 +59,22 @@ namespace extras {
          virtual Pathname fullpath() const pure;
 
          /**
+          * @brief is_dir
+          *
+          * @return true
+          * @return false
+          */
+         virtual bool is_dir() const pure;
+
+         /**
+          * @brief is_file
+          *
+          * @return true
+          * @return false
+          */
+         virtual bool is_file() const pure;
+
+         /**
           * @brief test that file exists
           *
           * @return true the file exists

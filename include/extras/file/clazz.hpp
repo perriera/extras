@@ -47,6 +47,16 @@ namespace extras {
                                                            __INFO__);
          };
 
+         virtual bool is_dir() const
+         {
+            throw extras::feature::NotImplementedException("is_dir", __INFO__);
+         };
+
+         virtual bool is_file() const
+         {
+            throw extras::feature::NotImplementedException("is_file", __INFO__);
+         };
+
          virtual Filename filename() const { return _fn; };
 
          virtual Pathname pathname() const
