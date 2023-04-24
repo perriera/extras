@@ -28,6 +28,7 @@ namespace extras {
        *
        */
       using Number = std::string;
+      using Cmd = std::string;
 
       /**
        * @brief LoginInterface
@@ -50,6 +51,13 @@ namespace extras {
          virtual Number major() const pure;
          virtual Number minor() const pure;
          virtual Number patch() const pure;
+
+         /**
+          * @brief
+          *
+          * @return Filename
+          */
+         virtual Filename rebranded() const pure;
       };
 
       /**

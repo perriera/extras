@@ -25,6 +25,7 @@
 #include <extras/strings.hpp>
 #include <extras/version.hpp>
 #include <iostream>
+#include <sstream>
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
@@ -48,13 +49,14 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
    auto minor = EXTRAS_VER_MINOR;
    auto patch = EXTRAS_VER_PATCH;
    Filename testarea = "build/testarea/";
-   Filename filename = "librandom.so";
-   Filename fullpath = filename;
-   fullpath += "." + std::to_string(major);
+   Filename filename = "libsisutil.so";
+   Filename fullpath = testarea + filename;
+   Filename correct_answer = fullpath;
+   correct_answer += "." + std::to_string(major);
    Filename sym1 = testarea + fullpath;
-   fullpath += "." + std::to_string(minor);
+   correct_answer += "." + std::to_string(minor);
    Filename sym2 = testarea + fullpath;
-   fullpath += "." + std::to_string(patch);
+   correct_answer += "." + std::to_string(patch);
    Filename sym3 = testarea + fullpath;
    Filename before = testarea + filename;
    Filename after = testarea + fullpath;
@@ -67,10 +69,23 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
    Interface& i = mold.get();
    When(Method(mold, execute)).AlwaysDo([&i, &fullpath]() {
       extras::file::File file(fullpath);
-      auto filename = file.filename();
-      filename += "." + i.major();
-      filename += "." + i.minor();
-      filename += "." + i.patch();
+      Pathname original = file.filename();
+      Pathname symlink1 = original + "." + i.major();
+      Pathname symlink2 = symlink1 + "." + i.minor();
+      Pathname symlink3 = symlink2 + "." + i.patch();
+      std::stringstream script;
+      {
+         script << "cd " << file.pathname() << std::endl;
+         script << "rm " << symlink3 << std::endl;
+         script << "rm " << symlink2 << std::endl;
+         script << "rm " << symlink1 << std::endl;
+         script << "mv " << original << ' ' << symlink3 << std::endl;
+         script << "ln -s " << symlink3 << ' ' << symlink2 << std::endl;
+         script << "ln -s " << symlink2 << ' ' << symlink1 << std::endl;
+         script << "ln -s " << symlink1 << ' ' << original << std::endl;
+      }
+      std::cout << script.str() << std::endl;
+      std::cout << std::endl;
    });
    When(Method(mold, major)).AlwaysDo([&major]() {
       {
@@ -87,6 +102,15 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
          return std::to_string(patch);
       }
    });
+   When(Method(mold, rebranded)).AlwaysDo([&i, &fullpath]() {
+      extras::file::File file(fullpath);
+      auto filename = file.filename();
+      filename += "." + i.major();
+      filename += "." + i.minor();
+      filename += "." + i.patch();
+      filename = file.pathname() + filename;
+      return filename;
+   });
 
    /**
     * @brief prepare test area
@@ -95,7 +119,7 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
 
    system("rm -rf build/testarea");
    system("mkdir build/testarea");
-   system("cp test/etc/rebrand/librandom.sol build/testarea/librandom.so");
+   system("cp test/etc/rebrand/librandom.sol build/testarea/libsisutil.so");
    file::NotFoundException::assertion(before, __INFO__);
 
    /**
