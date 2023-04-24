@@ -62,13 +62,21 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
       return fullpath;
    });
    When(Method(mold, seperator)).AlwaysDo([]() { return '/'; });
-   When(Method(mold, tempname)).AlwaysDo([]() {
-      char filename[] = "/tmp/mytemp.XXXXXX";
-      int fd = mkstemp(filename);
-      extras::Pathname tn = filename;
+   When(Method(mold, tempname)).AlwaysDo([](const extras::Pathname& fn) {
+      int fd;
+      extras::Pathname tn;
+      if (fn.empty()) {
+         char filename[] = "/tmp/mytemp.XXXXXX";
+         fd = mkstemp(filename);
+         tn = filename;
+      } else {
+         char* filename = const_cast<char*>(fn.c_str());
+         fd = mkstemp(filename);
+         tn = filename;
+      }
       CouldNotCreateTempnameException::assertion(fd, tn, __INFO__);
       close(fd);
-      unlink(filename);
+      unlink(tn.c_str());
       return tn;
    });
    When(Method(mold, pathname)).AlwaysDo([&i]() {
@@ -113,7 +121,8 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
     *
     */
 
-   REQUIRE(extras::str::starts_with(i.tempname(), "/tmp/mytemp."));
+   REQUIRE(extras::str::starts_with(i.tempname(""), "/tmp/mytemp."));
+   REQUIRE(extras::str::starts_with(i.tempname("sample.XXXXXX"), "sample."));
    REQUIRE(i.pathname() == pathname);
    REQUIRE(i.filename() == filename);
    REQUIRE(i.fullpath() == fullpath);

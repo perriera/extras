@@ -35,7 +35,7 @@ namespace extras {
           *
           * @return Pathname
           */
-         virtual Pathname tempname() const pure;
+         virtual Pathname tempname(const Pathname&) const pure;
 
          /**
           * @brief seperator

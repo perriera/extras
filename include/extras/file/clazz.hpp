@@ -51,14 +51,22 @@ namespace extras {
           * @brief FileInterface
           *
           */
-         virtual Pathname tempname() const
+         virtual Pathname tempname(const Pathname& fn) const
          {
-            char filename[] = "/tmp/mytemp.XXXXXX";
-            int fd = mkstemp(filename);
-            extras::Pathname tn = filename;
+            int fd;
+            extras::Pathname tn;
+            if (fn.empty()) {
+               char filename[] = "/tmp/mytemp.XXXXXX";
+               fd = mkstemp(filename);
+               tn = filename;
+            } else {
+               char* filename = const_cast<char*>(fn.c_str());
+               fd = mkstemp(filename);
+               tn = filename;
+            }
             CouldNotCreateTempnameException::assertion(fd, tn, __INFO__);
             close(fd);
-            unlink(filename);
+            unlink(tn.c_str());
             return tn;
          };
 

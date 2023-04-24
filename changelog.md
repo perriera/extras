@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.10.19 -m "added syncfile interface"</br>
-> > git push origin v8.10.19
+> > git tag -a v8.11.0 -m "added rebrand interface"</br>
+> > git push origin v8.11.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,10 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.11.0 (2023-03-23)
+### Refactored 
+- added rebrand interface
 
 #### 8.10.0 (2023-03-23)
 ### Refactored 
@@ -909,7 +913,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.10.1..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.11.0..HEAD
+[8.11.0]: https://github.com/perriera/extras/compare/v8.10.1...v8.11.0
 [8.10.1]: https://github.com/perriera/extras/compare/v8.10.0...v8.10.1
 [8.10.0]: https://github.com/perriera/extras/compare/v8.9.3...v8.10.0
 [8.9.3]: https://github.com/perriera/extras/compare/v8.9.2...v8.9.3

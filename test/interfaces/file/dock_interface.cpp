@@ -45,7 +45,8 @@ SCENARIO("mold file::Interface::path", "[dock file::Interface]")
       extras::file::File dock(fullpath);
       Interface& i = dock;
 
-      REQUIRE(extras::str::starts_with(i.tempname(), "/tmp/mytemp."));
+      REQUIRE(extras::str::starts_with(i.tempname(""), "/tmp/mytemp."));
+      REQUIRE(extras::str::starts_with(i.tempname("sample.XXXXXX"), "sample."));
       REQUIRE(i.pathname() == pathname);
       REQUIRE(i.filename() == filename);
       REQUIRE(i.fullpath() == fullpath);

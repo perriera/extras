@@ -15,7 +15,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/build/run-unittests-extras",
 			"args": [
-				"[mold rebrand::Interface]"
+				"[mold file::Interface]"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
