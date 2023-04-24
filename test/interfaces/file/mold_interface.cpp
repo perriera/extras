@@ -62,6 +62,17 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
       return fullpath;
    });
    When(Method(mold, seperator)).AlwaysDo([]() { return '/'; });
+   When(Method(mold, tempname)).AlwaysDo([]() {
+      char filename[] = "/tmp/mytemp.XXXXXX";
+      int fd = mkstemp(filename);
+      if (fd != -1) {
+         close(fd);
+         unlink(filename);
+      } else
+         std::cerr << "i.tempname() returns " << fd << std::endl;
+      extras::Pathname tn = filename;
+      return tn;
+   });
    When(Method(mold, pathname)).AlwaysDo([&i]() {
       if (i.fullpath().length() == 0)
          return i.fullpath();
@@ -82,12 +93,9 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
       return result;
    });
    When(Method(mold, is_dir)).AlwaysDo([&i]() {
-      extras::Filename fp = i.fullpath();
-      const char* file = fp.c_str();
-      struct stat sb;
-      if (stat(file, &sb) == 0 && !(sb.st_mode & S_IFDIR))
-         return true;
-      return false;
+      if (!i.exists())
+         return false;
+      return true;
    });
    When(Method(mold, is_file)).AlwaysDo([&i]() {
       return i.exists() && !i.is_dir();
@@ -103,12 +111,13 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
     *
     */
 
+   REQUIRE(extras::str::starts_with(i.tempname(), "/tmp/mytemp."));
    REQUIRE(i.pathname() == pathname);
    REQUIRE(i.filename() == filename);
    REQUIRE(i.fullpath() == fullpath);
+   REQUIRE_FALSE(i.exists());
    REQUIRE_FALSE(i.is_dir());
    REQUIRE_FALSE(i.is_file());
-   REQUIRE_FALSE(i.exists());
 
    /**
     * @brief test case #2

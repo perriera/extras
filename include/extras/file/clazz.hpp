@@ -41,6 +41,12 @@ namespace extras {
           * @brief FileInterface
           *
           */
+         virtual Pathname tempname() const
+         {
+            throw extras::feature::NotImplementedException("tempname",
+                                                           __INFO__);
+         };
+
          virtual char seperator() const
          {
             throw extras::feature::NotImplementedException("seperator",

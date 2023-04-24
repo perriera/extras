@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.10.12 -m "added syncfile interface"</br>
-> > git push origin v8.10.12
+> > git tag -a v8.10.13 -m "added syncfile interface"</br>
+> > git push origin v8.10.13
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/

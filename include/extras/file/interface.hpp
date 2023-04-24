@@ -31,7 +31,14 @@ namespace extras {
       {
 
          /**
-          * @briefseperator
+          * @brief tempname
+          *
+          * @return Pathname
+          */
+         virtual Pathname tempname() const pure;
+
+         /**
+          * @brief seperator
           *
           * @return Pathname
           */
