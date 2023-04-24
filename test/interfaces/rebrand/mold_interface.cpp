@@ -51,15 +51,11 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
    Filename testarea = "build/testarea/";
    Filename filename = "libsisutil.so";
    Filename fullpath = testarea + filename;
-   Filename correct_answer = fullpath;
-   correct_answer += "." + std::to_string(major);
-   Filename sym1 = testarea + fullpath;
-   correct_answer += "." + std::to_string(minor);
-   Filename sym2 = testarea + fullpath;
-   correct_answer += "." + std::to_string(patch);
-   Filename sym3 = testarea + fullpath;
+   Filename symlink1 = fullpath + "." + std::to_string(major);
+   Filename symlink2 = symlink1 + "." + std::to_string(minor);
+   Filename symlink3 = symlink2 + "." + std::to_string(patch);
    Filename before = testarea + filename;
-   Filename after = testarea + fullpath;
+   Filename after = symlink3;
 
    /**
     * @brief construct dock for interface
@@ -73,18 +69,24 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
       Pathname symlink1 = original + "." + i.major();
       Pathname symlink2 = symlink1 + "." + i.minor();
       Pathname symlink3 = symlink2 + "." + i.patch();
-      std::stringstream script;
+      Pathname script_name = file.tempname("rebrand.XXXXXX");
       {
+         std::ofstream script(script_name);
          script << "cd " << file.pathname() << std::endl;
-         script << "rm " << symlink3 << std::endl;
-         script << "rm " << symlink2 << std::endl;
-         script << "rm " << symlink1 << std::endl;
+         script << "rm " << symlink3 << " 2>/dev/null" << std::endl;
+         script << "rm " << symlink2 << " 2>/dev/null" << std::endl;
+         script << "rm " << symlink1 << " 2>/dev/null" << std::endl;
          script << "mv " << original << ' ' << symlink3 << std::endl;
          script << "ln -s " << symlink3 << ' ' << symlink2 << std::endl;
          script << "ln -s " << symlink2 << ' ' << symlink1 << std::endl;
          script << "ln -s " << symlink1 << ' ' << original << std::endl;
       }
-      std::cout << script.str() << std::endl;
+      Cmd cat = "cat " + script_name;
+      system(cat.c_str());
+      Cmd bash = "bash " + script_name;
+      system(bash.c_str());
+      Cmd rm = "rm " + script_name;
+      system(rm.c_str());
       std::cout << std::endl;
    });
    When(Method(mold, major)).AlwaysDo([&major]() {
@@ -127,7 +129,17 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
     *
     */
 
+   file::NotFoundException::assertion(before, __INFO__);
+   file::NewFoundException::assertion(after, __INFO__);
+   file::NewFoundException::assertion(symlink1, __INFO__);
+   file::NewFoundException::assertion(symlink2, __INFO__);
+   file::NewFoundException::assertion(symlink3, __INFO__);
    i.execute();
+   file::NotFoundException::assertion(before, __INFO__);
+   file::NotFoundException::assertion(after, __INFO__);
+   file::NotFoundException::assertion(symlink1, __INFO__);
+   file::NotFoundException::assertion(symlink2, __INFO__);
+   file::NotFoundException::assertion(symlink3, __INFO__);
 
    /**
     * @brief verify the desired methods were tested

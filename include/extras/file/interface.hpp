@@ -14,6 +14,7 @@
 
 #include <algorithm>
 #include <extras/interfaces.hpp>
+#include <fstream>
 #include <iostream>
 #include <list>
 
@@ -132,6 +133,57 @@ namespace extras {
 
          static void assertion(const Filename& filename,
                                const extras::WhereAmI& ref);
+      };
+
+      /**
+       * @brief FoundException
+       *
+       */
+      concrete class FoundException extends Exception
+      {
+       public:
+
+         FoundException(const std::string& msg,
+                        const extras::WhereAmI& whereAmI)
+           : Exception(msg, whereAmI)
+         {
+         }
+
+         virtual char const* what() const noexcept { return _msg.c_str(); }
+
+         static void assertion(const Filename& filename,
+                               const extras::WhereAmI& ref)
+         {
+            std::ifstream in(filename);
+            if (in.good())
+               throw FoundException(filename, ref);
+         }
+      };
+
+      /**
+       * @brief NewFoundException
+       * @note file exists (but not suppose to)
+       * @note (aka. great for test case setups)
+       */
+      concrete class NewFoundException extends Exception
+      {
+       public:
+
+         NewFoundException(const std::string& msg,
+                           const extras::WhereAmI& whereAmI)
+           : Exception(msg, whereAmI)
+         {
+         }
+
+         virtual char const* what() const noexcept { return _msg.c_str(); }
+
+         static void assertion(const Filename& filename,
+                               const extras::WhereAmI& ref)
+         {
+            std::ifstream in(filename);
+            if (in.good())
+               throw NewFoundException(filename, ref);
+         }
       };
 
       /**
