@@ -15,7 +15,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/build/run-unittests-extras",
 			"args": [
-				"[mold file::Interface]"
+				"[dock file::Interface::assertions]"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

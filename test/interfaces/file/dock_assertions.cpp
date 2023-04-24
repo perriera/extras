@@ -16,12 +16,12 @@
  *
  */
 
+#include "../../vendor/catch.hpp"
+
 #include <extras/docking/DockIt.hpp>
 #include <extras/file/clazz.hpp>
 #include <fstream>
 #include <iostream>
-
-#include "../../vendor/catch.hpp"
 
 using namespace std;
 using namespace extras;
@@ -31,7 +31,8 @@ using namespace extras;
  *
  */
 SCENARIO("mold file::Interface NotFoundException",
-         "[dock file::Interface::assertions]") {
+         "[dock file::Interface::assertions]")
+{
    REQUIRE_THROWS_AS(file::NotFoundException::assertion("/usr/abc", __INFO__),
                      file::NotFoundException);
 }
@@ -40,17 +41,21 @@ SCENARIO("mold file::Interface NotFoundException",
  * @brief file::Interface NotCopiedException
  *
  */
-SCENARIO("mold file::Interface NotCopiedException", "[PE-40]") {
+SCENARIO("mold file::Interface NotCopiedException",
+         "[dock file::Interface::assertions]")
+{
    REQUIRE_THROWS_AS(
-       file::NotCopiedException::assertion(file::File("/usr/abc"), __INFO__),
-       file::NotCopiedException);
+     file::NotCopiedException::assertion(file::File("/usr/abc"), __INFO__),
+     file::NotCopiedException);
 }
 
 /**
  * @brief file::Interface InvalidNameException
  *
  */
-SCENARIO("mold file::Interface InvalidNameException", "[PE-40]") {
+SCENARIO("mold file::Interface InvalidNameException",
+         "[dock file::Interface::assertions]")
+{
    REQUIRE_THROWS_AS(file::InvalidNameException::assertion("", __INFO__),
                      file::InvalidNameException);
    REQUIRE_THROWS_AS(file::InvalidNameException::assertion("?", __INFO__),
@@ -69,7 +74,9 @@ SCENARIO("mold file::Interface InvalidNameException", "[PE-40]") {
  * @brief file::Interface ExistsException
  *
  */
-SCENARIO("mold file::Interface ExistsException", "[PE-40]") {
+SCENARIO("mold file::Interface ExistsException",
+         "[dock file::Interface::assertions]")
+{
    REQUIRE_THROWS_AS(file::ExistsException::assertion(".", __INFO__),
                      file::ExistsException);
    REQUIRE_THROWS_AS(file::ExistsException::assertion("..", __INFO__),
@@ -81,38 +88,40 @@ SCENARIO("mold file::Interface ExistsException", "[PE-40]") {
  * @brief file::Interface FolderExistsException
  *
  */
-SCENARIO("mold file::Interface FolderExistsException", "[PE-40]") {
+SCENARIO("mold file::Interface FolderExistsException",
+         "[dock file::Interface::assertions]")
+{
    /**
     * @brief throw an exception if no filename is specified
     *
     */
    REQUIRE_THROWS_AS(
-       file::FolderExistsException::assertion(file::File(""), __INFO__),
-       file::FolderNotSpecifiedException);
+     file::FolderExistsException::assertion(file::File(""), __INFO__),
+     file::FolderNotSpecifiedException);
 
    /**
     * @brief throw an exception if a wildcard is specified
     *
     */
-   REQUIRE_THROWS_AS(file::FolderExistsException::assertion(
-                         file::File("/usr/abc/*"), __INFO__),
-                     file::NotAFolderNameException);
+   REQUIRE_THROWS_AS(
+     file::FolderExistsException::assertion(file::File("/usr/abc/*"), __INFO__),
+     file::NotAFolderNameException);
 
    /**
     * @brief throw an exception if the folder does not exist
     *
     */
    REQUIRE_THROWS_AS(
-       file::FolderExistsException::assertion(file::File("/usr/abc"), __INFO__),
-       file::NotFoundException);
+     file::FolderExistsException::assertion(file::File("/usr/abc"), __INFO__),
+     file::NotFoundException);
 
    /**
     * @brief throw an exception if the folder is not a folder
     *
     */
-   REQUIRE_THROWS_AS(file::FolderExistsException::assertion(
-                         file::File("/etc/hosts"), __INFO__),
-                     file::NotAFolderException);
+   REQUIRE_THROWS_AS(
+     file::FolderExistsException::assertion(file::File("/etc/hosts"), __INFO__),
+     file::NotAFolderException);
 
    /**
     * @brief do NOT throw an exception if the folder exists

@@ -24,7 +24,7 @@
 #include <iostream>
 
 using namespace std;
-using namespace extras;
+using namespace extras::file;
 
 /**
  * @brief file::Interface NotFoundException
@@ -32,9 +32,48 @@ using namespace extras;
  */
 SCENARIO("mold file::Interface::path", "[dock file::Interface]")
 {
-   Filename f1 = "build/libextras.so";
-   file::File file(f1);
-   // Pathname p1 = file.path();
-   REQUIRE_THROWS_AS(file::NotFoundException::assertion("/usr/abc", __INFO__),
-                     file::NotFoundException);
+
+   /**
+    * @brief test case #1
+    *
+    */
+
+   extras::Pathname pathname = "test/file/etc/";
+   extras::Filename filename = "some_file.txt";
+   extras::Filename fullpath = pathname + filename;
+   {
+      extras::file::File dock(fullpath);
+      Interface& i = dock;
+
+      REQUIRE(extras::str::starts_with(i.tempname(), "/tmp/mytemp."));
+      REQUIRE(i.pathname() == pathname);
+      REQUIRE(i.filename() == filename);
+      REQUIRE(i.fullpath() == fullpath);
+      REQUIRE_FALSE(i.exists());
+      REQUIRE_FALSE(i.is_dir());
+      REQUIRE_FALSE(i.is_file());
+   }
+
+   /**
+    * @brief test case #2
+    *
+    */
+
+   system("rm -rf build/testarea");
+   system("mkdir build/testarea");
+   system("cp test/etc/renumber/librandom.sol build/testarea/librandom.so");
+   pathname = "build/testarea/";
+   filename = "librandom.so";
+   fullpath = pathname + filename;
+   {
+      extras::file::File dock(fullpath);
+      Interface& i = dock;
+
+      REQUIRE(i.pathname() == pathname);
+      REQUIRE(i.filename() == filename);
+      REQUIRE(i.fullpath() == fullpath);
+      REQUIRE(i.exists());
+      REQUIRE_FALSE(i.is_dir());
+      REQUIRE(i.is_file());
+   }
 }

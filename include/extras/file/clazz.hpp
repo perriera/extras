@@ -15,8 +15,13 @@
 #include <algorithm>
 #include <extras/feature/interface.hpp>
 #include <extras/file/interface.hpp>
+#include <extras/strings.hpp>
+#include <fstream>
 #include <iostream>
 #include <list>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 struct user_id;
 struct ldap;
@@ -34,6 +39,11 @@ namespace extras {
 
        public:
 
+         /**
+          * @brief Construct a new File object
+          *
+          * @param fn
+          */
          File(const Filename& fn)
            : _fn(fn){};
 
@@ -43,41 +53,66 @@ namespace extras {
           */
          virtual Pathname tempname() const
          {
-            throw extras::feature::NotImplementedException("tempname",
-                                                           __INFO__);
+            char filename[] = "/tmp/mytemp.XXXXXX";
+            int fd = mkstemp(filename);
+            extras::Pathname tn = filename;
+            CouldNotCreateTempnameException::assertion(fd, tn, __INFO__);
+            close(fd);
+            unlink(filename);
+            return tn;
          };
 
-         virtual char seperator() const
-         {
-            throw extras::feature::NotImplementedException("seperator",
-                                                           __INFO__);
-         };
+         virtual char seperator() const { return '/'; };
 
          virtual bool is_dir() const
          {
-            throw extras::feature::NotImplementedException("is_dir", __INFO__);
+            if (!this->exists())
+               return false;
+            extras::Filename fp = this->fullpath();
+            struct stat sb;
+            if (stat(fp.c_str(), &sb) == 0 && (sb.st_mode & S_IFDIR))
+               return true;
+            return false;
          };
 
          virtual bool is_file() const
          {
-            throw extras::feature::NotImplementedException("is_file", __INFO__);
+            return this->exists() && !this->is_dir();
          };
 
-         virtual Filename filename() const { return _fn; };
+         virtual Filename filename() const
+         {
+            if (this->fullpath().length() == 0)
+               return this->fullpath();
+            auto parts =
+              extras::str::split(this->fullpath(), this->seperator());
+            extras::Filename result = parts.back();
+            return result;
+         };
 
          virtual Pathname pathname() const
          {
-            throw extras::feature::NotImplementedException("pathname",
-                                                           __INFO__);
+            if (this->fullpath().length() == 0)
+               return this->fullpath();
+            auto parts =
+              extras::str::split(this->fullpath(), this->seperator());
+            parts.pop_back();
+            extras::Filename result;
+            for (auto part : parts) {
+               result += part;
+               result += this->seperator();
+            }
+            return result;
          };
 
-         virtual Pathname fullpath() const
+         virtual Pathname fullpath() const { return _fn; };
+
+         virtual bool exists() const
          {
-            throw extras::feature::NotImplementedException("fullpath",
-                                                           __INFO__);
-         };
-
-         virtual bool exists() const;
+            extras::Filename fp = this->fullpath();
+            std::ifstream in(fp);
+            return in.good();
+         }
 
          virtual void copy(const Interface&) const
          {
