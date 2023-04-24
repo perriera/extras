@@ -95,7 +95,11 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
    When(Method(mold, is_dir)).AlwaysDo([&i]() {
       if (!i.exists())
          return false;
-      return true;
+      extras::Filename fp = i.fullpath();
+      struct stat sb;
+      if (stat(fp.c_str(), &sb) == 0 && (sb.st_mode & S_IFDIR))
+         return true;
+      return false;
    });
    When(Method(mold, is_file)).AlwaysDo([&i]() {
       return i.exists() && !i.is_dir();
@@ -124,22 +128,20 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
     *
     */
 
-   // system("rm -rf build/testarea");
-   // system("mkdir build/testarea");
-   // system("cp test/etc/renumber/librandom.sol build/testarea/librandom.so");
+   system("rm -rf build/testarea");
+   system("mkdir build/testarea");
+   system("cp test/etc/renumber/librandom.sol build/testarea/librandom.so");
 
-   // pathname = "/home/perry/dev/extras/build/testarea/";
-   // filename = "librandom.sol";
-   // fullpath = pathname + filename;
+   pathname = "build/testarea/";
+   filename = "librandom.so";
+   fullpath = pathname + filename;
 
-   // REQUIRE(i.pathname() == pathname);
-   // REQUIRE(i.filename() == filename);
-   // REQUIRE(i.fullpath() == fullpath);
-   // i.is_dir();
-   // REQUIRE_FALSE(i.is_dir());
-   // i.is_file();
-   // REQUIRE(i.is_file());
-   // REQUIRE(i.exists());
+   REQUIRE(i.pathname() == pathname);
+   REQUIRE(i.filename() == filename);
+   REQUIRE(i.fullpath() == fullpath);
+   REQUIRE(i.exists());
+   REQUIRE_FALSE(i.is_dir());
+   REQUIRE(i.is_file());
 
    /**
     * @brief verify the desired methods were tested
