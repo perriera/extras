@@ -30,7 +30,8 @@ using namespace extras;
  * @brief file::Interface NotFoundException
  *
  */
-SCENARIO("mold file::Interface NotFoundException", "[mold file::Interface]") {
+SCENARIO("mold file::Interface NotFoundException",
+         "[mold file::Interface::assertions]") {
    REQUIRE_THROWS_AS(file::NotFoundException::assertion("/usr/abc", __INFO__),
                      file::NotFoundException);
 }

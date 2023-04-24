@@ -31,7 +31,7 @@ namespace extras {
       using Directory = std::vector<Filename>;
 
       /**
-       * @brief LoginInterface
+       * @brief file::Interface
        *
        */
       interface Interface {
