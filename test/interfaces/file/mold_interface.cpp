@@ -22,6 +22,7 @@
 #include <extras/docking/DockIt.hpp>
 #include <extras/file/interface.hpp>
 #include <extras/strings.hpp>
+#include <fstream>
 #include <iostream>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -57,11 +58,14 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
 
    Dock<Interface> mold;
    Interface& i = mold.get();
+   When(Method(mold, fullpath)).AlwaysDo([&i, &fullpath]() {
+      return fullpath;
+   });
    When(Method(mold, seperator)).AlwaysDo([]() { return '/'; });
-   When(Method(mold, pathname)).AlwaysDo([&i, &fullpath]() {
-      if (fullpath.length() == 0)
-         return fullpath;
-      auto parts = extras::str::split(fullpath, i.seperator());
+   When(Method(mold, pathname)).AlwaysDo([&i]() {
+      if (i.fullpath().length() == 0)
+         return i.fullpath();
+      auto parts = extras::str::split(i.fullpath(), i.seperator());
       parts.pop_back();
       extras::Filename result;
       for (auto part : parts) {
@@ -70,42 +74,32 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
       }
       return result;
    });
-   When(Method(mold, filename)).AlwaysDo([&i, &fullpath]() {
-      if (fullpath.length() == 0)
-         return fullpath;
-      auto parts = extras::str::split(fullpath, i.seperator());
+   When(Method(mold, filename)).AlwaysDo([&i]() {
+      if (i.fullpath().length() == 0)
+         return i.fullpath();
+      auto parts = extras::str::split(i.fullpath(), i.seperator());
       extras::Filename result = parts.back();
       return result;
    });
-   When(Method(mold, fullpath)).AlwaysDo([&i, &fullpath]() {
-      return fullpath;
-   });
-   When(Method(mold, is_dir)).AlwaysDo([&fullpath]() {
-      struct stat s;
-      if (stat(fullpath.c_str(), &s) == 0) {
-         if (s.st_mode & S_IFDIR)
-            return true;
-      }
-      return false;
-   });
-   When(Method(mold, is_file)).AlwaysDo([&fullpath]() {
-      struct stat s;
-      if (stat(fullpath.c_str(), &s) == 0) {
-         if (s.st_mode & S_IFREG)
-            return true;
-      }
-      return false;
-   });
-   When(Method(mold, exists)).AlwaysDo([&fullpath]() {
-      struct stat s;
-      if (stat(fullpath.c_str(), &s) == 0) {
+   When(Method(mold, is_dir)).AlwaysDo([&i]() {
+      extras::Filename fp = i.fullpath();
+      const char* file = fp.c_str();
+      struct stat sb;
+      if (stat(file, &sb) == 0 && !(sb.st_mode & S_IFDIR))
          return true;
-      }
       return false;
+   });
+   When(Method(mold, is_file)).AlwaysDo([&i]() {
+      return i.exists() && !i.is_dir();
+   });
+   When(Method(mold, exists)).AlwaysDo([&i]() {
+      extras::Filename fp = i.fullpath();
+      std::ifstream in(fp);
+      return in.good();
    });
 
    /**
-    * @brief test the interface
+    * @brief test case
     *
     */
 
@@ -115,6 +109,28 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
    REQUIRE_FALSE(i.is_dir());
    REQUIRE_FALSE(i.is_file());
    REQUIRE_FALSE(i.exists());
+
+   /**
+    * @brief test case #2
+    *
+    */
+
+   // system("rm -rf build/testarea");
+   // system("mkdir build/testarea");
+   // system("cp test/etc/renumber/librandom.sol build/testarea/librandom.so");
+
+   // pathname = "/home/perry/dev/extras/build/testarea/";
+   // filename = "librandom.sol";
+   // fullpath = pathname + filename;
+
+   // REQUIRE(i.pathname() == pathname);
+   // REQUIRE(i.filename() == filename);
+   // REQUIRE(i.fullpath() == fullpath);
+   // i.is_dir();
+   // REQUIRE_FALSE(i.is_dir());
+   // i.is_file();
+   // REQUIRE(i.is_file());
+   // REQUIRE(i.exists());
 
    /**
     * @brief verify the desired methods were tested

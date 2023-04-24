@@ -68,7 +68,8 @@
         "stop_token": "cpp",
         "codecvt": "cpp",
         "filesystem": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "numbers": "cpp"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
