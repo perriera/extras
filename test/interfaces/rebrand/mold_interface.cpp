@@ -20,7 +20,7 @@
 #include "../../vendor/fakeit.hpp"
 
 #include <extras/docking/DockIt.hpp>
-#include <extras/file/interface.hpp>
+#include <extras/file/clazz.hpp>
 #include <extras/rebrand/interface.hpp>
 #include <extras/strings.hpp>
 #include <extras/version.hpp>
@@ -41,7 +41,7 @@ using namespace fakeit;
 SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
 {
    /**
-    * @brief determine correct_answer
+    * @brief determine fullpath
     *
     */
    auto major = EXTRAS_VER_MAJOR;
@@ -49,15 +49,44 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
    auto patch = EXTRAS_VER_PATCH;
    Filename testarea = "build/testarea/";
    Filename filename = "librandom.so";
-   Value correct_answer = filename;
-   correct_answer += "." + std::to_string(major);
-   Filename sym1 = testarea + correct_answer;
-   correct_answer += "." + std::to_string(minor);
-   Filename sym2 = testarea + correct_answer;
-   correct_answer += "." + std::to_string(patch);
-   Filename sym3 = testarea + correct_answer;
+   Filename fullpath = filename;
+   fullpath += "." + std::to_string(major);
+   Filename sym1 = testarea + fullpath;
+   fullpath += "." + std::to_string(minor);
+   Filename sym2 = testarea + fullpath;
+   fullpath += "." + std::to_string(patch);
+   Filename sym3 = testarea + fullpath;
    Filename before = testarea + filename;
-   Filename after = testarea + correct_answer;
+   Filename after = testarea + fullpath;
+
+   /**
+    * @brief construct dock for interface
+    *
+    */
+   Dock<Interface> mold;
+   Interface& i = mold.get();
+   When(Method(mold, execute)).AlwaysDo([&i, &fullpath]() {
+      extras::file::File file(fullpath);
+      auto filename = file.filename();
+      filename += "." + i.major();
+      filename += "." + i.minor();
+      filename += "." + i.patch();
+   });
+   When(Method(mold, major)).AlwaysDo([&major]() {
+      {
+         return std::to_string(major);
+      }
+   });
+   When(Method(mold, minor)).AlwaysDo([&minor]() {
+      {
+         return std::to_string(minor);
+      }
+   });
+   When(Method(mold, patch)).AlwaysDo([&patch]() {
+      {
+         return std::to_string(patch);
+      }
+   });
 
    /**
     * @brief prepare test area
@@ -67,55 +96,21 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
    system("rm -rf build/testarea");
    system("mkdir build/testarea");
    system("cp test/etc/rebrand/librandom.sol build/testarea/librandom.so");
-
-   /**
-    * @brief construct dock for interface
-    *
-    */
-   Dock<Interface> mold;
-   Interface& i = mold.get();
-   When(Method(mold, path))
-     .AlwaysDo([&major, &minor, &patch](const Filename& filename) {
-        {
-           auto parts = extras::str::split(filename, '/');
-           Value result = filename;
-           result += "." + std::to_string(major);
-           result += "." + std::to_string(minor);
-           result += "." + std::to_string(patch);
-           return result;
-        }
-     });
-   When(Method(mold, fullname))
-     .AlwaysDo([&major, &minor, &patch](const Filename& filename) {
-        {
-           Value result = filename;
-           result += "." + std::to_string(major);
-           result += "." + std::to_string(minor);
-           result += "." + std::to_string(patch);
-           return result;
-        }
-     });
-   When(Method(mold, relink)).AlwaysDo([&i](const Filename& filename) {
-      {
-         Filename result = i.fullname(filename);
-         CMD cmd1 = "rm " + filename;
-      }
-   });
+   file::NotFoundException::assertion(before, __INFO__);
 
    /**
     * @brief test the interface
     *
     */
 
-   file::NotFoundException::assertion(before, __INFO__);
-   //   REQUIRE(i.path(correct_answer) == testarea);
-   REQUIRE(i.fullname(filename) == correct_answer);
-   i.relink(filename);
+   i.execute();
 
    /**
     * @brief verify the desired methods were tested
     *
     */
-   Verify(Method(mold, fullname));
-   Verify(Method(mold, relink));
+   Verify(Method(mold, execute));
+   Verify(Method(mold, major));
+   Verify(Method(mold, minor));
+   Verify(Method(mold, patch));
 }

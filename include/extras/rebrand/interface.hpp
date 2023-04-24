@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef _EXTRAS_SYNCFILE_INTERFACE_HPP
-#define _EXTRAS_SYNCFILE_INTERFACE_HPP
+#ifndef _EXTRAS_REBRAND_INTERFACE_HPP
+#define _EXTRAS_REBRAND_INTERFACE_HPP
 
 #include <algorithm>
 #include <extras/interfaces.hpp>
@@ -27,11 +27,7 @@ namespace extras {
        * @brief
        *
        */
-      using Filename = std::string;
-      using CMD = std::string;
-      using Pathname = std::string;
-      using Value = std::string;
-      using Directory = std::vector<Filename>;
+      using Number = std::string;
 
       /**
        * @brief LoginInterface
@@ -39,27 +35,21 @@ namespace extras {
        */
       interface Interface
       {
-         /**
-          * @brief the name of the rebrand
-          *
-          * @return Filename
-          */
-         virtual Pathname path(const Filename& filename) const pure;
 
          /**
-          * @brief the name of the rebrand
+          * @brief execute
           *
-          * @return Filename
           */
-         virtual Value fullname(const Filename& filename) const pure;
+         virtual void execute() const pure;
 
          /**
-          * @brief test that rebrand exists
+          * @brief major, minor, patch
           *
-          * @return true the rebrand exists
-          * @return false otherwise
+          * @return Number
           */
-         virtual void relink(const Filename& filename) const pure;
+         virtual Number major() const pure;
+         virtual Number minor() const pure;
+         virtual Number patch() const pure;
       };
 
       /**
@@ -99,186 +89,7 @@ namespace extras {
                                const extras::WhereAmI& ref);
       };
 
-      /**
-       * @brief FileNotCopiedException
-       *
-       */
-      concrete class NotCopiedException extends Exception
-      {
-       public:
-
-         NotCopiedException(const std::string& msg,
-                            const extras::WhereAmI& whereAmI)
-           : Exception(msg, whereAmI)
-         {
-         }
-
-         virtual char const* what() const noexcept { return _msg.c_str(); }
-
-         static void assertion(const rebrand::Interface&,
-                               const extras::WhereAmI&);
-      };
-
-      /**
-       * @brief FilenameInvalidException
-       *
-       */
-      concrete class InvalidNameException extends Exception
-      {
-       public:
-
-         InvalidNameException(const std::string& msg,
-                              const extras::WhereAmI& whereAmI)
-           : Exception(msg, whereAmI)
-         {
-         }
-
-         virtual char const* what() const noexcept { return _msg.c_str(); }
-
-         static void assertion(const Filename& filename,
-                               const extras::WhereAmI& ref);
-      };
-
-      /**
-       * @brief FileExistsException
-       *
-       */
-      concrete class ExistsException extends Exception
-      {
-       public:
-
-         ExistsException(const std::string& msg,
-                         const extras::WhereAmI& whereAmI)
-           : Exception(msg, whereAmI)
-         {
-         }
-
-         virtual char const* what() const noexcept { return _msg.c_str(); }
-
-         static void assertion(const Filename& filename,
-                               const extras::WhereAmI& ref);
-      };
-
-      /**
-       * @brief FolderExistsException
-       *
-       */
-      concrete class FolderExistsException extends Exception
-      {
-       public:
-
-         FolderExistsException(const std::string& msg,
-                               const extras::WhereAmI& whereAmI)
-           : Exception(msg, whereAmI)
-         {
-         }
-
-         virtual char const* what() const noexcept { return _msg.c_str(); }
-
-         static void assertion(const rebrand::Interface&,
-                               const extras::WhereAmI& ref);
-         static void assertion(const Filename&, const extras::WhereAmI& ref);
-      };
-
-      concrete class FolderNotSpecifiedException extends FolderExistsException
-      {
-       public:
-
-         FolderNotSpecifiedException(const extras::WhereAmI& whereAmI)
-           : FolderExistsException("no filename specified", whereAmI)
-         {
-         }
-
-         virtual char const* what() const noexcept { return _msg.c_str(); }
-      };
-
-      concrete class NotAFolderException extends FolderExistsException
-      {
-       public:
-
-         NotAFolderException(const Filename& msg,
-                             const extras::WhereAmI& whereAmI)
-           : FolderExistsException(msg, whereAmI)
-         {
-         }
-
-         virtual char const* what() const noexcept { return _msg.c_str(); }
-      };
-
-      concrete class NotAFolderNameException extends FolderExistsException
-      {
-       public:
-
-         NotAFolderNameException(const Filename& msg,
-                                 const extras::WhereAmI& whereAmI)
-           : FolderExistsException(msg, whereAmI)
-         {
-         }
-
-         virtual char const* what() const noexcept { return _msg.c_str(); }
-      };
-
-      /**
-       * @brief FolderNotFoundException
-       *
-       */
-      concrete class FolderNotFoundException extends Exception
-      {
-       public:
-
-         FolderNotFoundException(const std::string& msg,
-                                 const extras::WhereAmI& whereAmI)
-           : Exception(msg, whereAmI)
-         {
-         }
-
-         virtual char const* what() const noexcept { return _msg.c_str(); }
-
-         static void assertion(const rebrand::Interface&,
-                               const extras::WhereAmI& ref);
-      };
-
-      /**
-       * @brief NotaFolderException
-       *
-       */
-      concrete class NotaFolderException extends Exception
-      {
-       public:
-
-         NotaFolderException(const std::string& msg,
-                             const extras::WhereAmI& whereAmI)
-           : Exception(msg, whereAmI)
-         {
-         }
-
-         virtual char const* what() const noexcept { return _msg.c_str(); }
-
-         static void assertion(const rebrand::Interface&,
-                               const extras::WhereAmI& ref);
-      };
-
-      /**
-       * @brief NotaFileException
-       *
-       */
-      concrete class NotaFileException extends Exception
-      {
-       public:
-
-         NotaFileException(const std::string& msg,
-                           const extras::WhereAmI& whereAmI)
-           : Exception(msg, whereAmI)
-         {
-         }
-
-         virtual char const* what() const noexcept { return _msg.c_str(); }
-
-         static void assertion(const rebrand::Interface&,
-                               const extras::WhereAmI& ref);
-      };
-
    } // namespace rebrand
 } // namespace extras
 
-#endif // _EXTRAS_SYNCFILE_INTERFACE_HPP
+#endif // _EXTRAS_REBRAND_INTERFACE_HPP
