@@ -19,6 +19,7 @@
 #include <extras/docking/DockIt.hpp>
 #include <extras/file/interface.hpp>
 #include <extras/renumber/interface.hpp>
+#include <extras/strings.hpp>
 #include <extras/version.hpp>
 #include <iostream>
 
@@ -45,13 +46,17 @@ SCENARIO("Dock renumber::Interface", "[renumber::Interface]") {
    auto major = EXTRAS_VER_MAJOR;
    auto minor = EXTRAS_VER_MINOR;
    auto patch = EXTRAS_VER_PATCH;
+   Filename testarea = "build/testarea/";
    Filename filename = "librandom.so";
    Value correct_answer = filename;
-   correct_answer += "." + std::to_string(major) + ".";
-   correct_answer += std::to_string(minor) + ".";
-   correct_answer += std::to_string(patch);
-   Filename testarea = "build/testarea/";
+   correct_answer += "." + std::to_string(major);
+   Filename sym1 = testarea + correct_answer;
+   correct_answer += "." + std::to_string(minor);
+   Filename sym2 = testarea + correct_answer;
+   correct_answer += "." + std::to_string(patch);
+   Filename sym3 = testarea + correct_answer;
    Filename before = testarea + filename;
+   Filename after = testarea + correct_answer;
 
    /**
     * @brief prepare test area
@@ -68,13 +73,24 @@ SCENARIO("Dock renumber::Interface", "[renumber::Interface]") {
     */
    Dock<Interface> mold;
    Interface &i = mold.get();
+   When(Method(mold, path))
+       .AlwaysDo([&major, &minor, &patch](const Filename &filename) {
+          {
+             auto parts = extras::str::split(filename, '/');
+             Value result = filename;
+             result += "." + std::to_string(major);
+             result += "." + std::to_string(minor);
+             result += "." + std::to_string(patch);
+             return result;
+          }
+       });
    When(Method(mold, fullname))
        .AlwaysDo([&major, &minor, &patch](const Filename &filename) {
           {
              Value result = filename;
-             result += "." + std::to_string(major) + ".";
-             result += std::to_string(minor) + ".";
-             result += std::to_string(patch);
+             result += "." + std::to_string(major);
+             result += "." + std::to_string(minor);
+             result += "." + std::to_string(patch);
              return result;
           }
        });
@@ -91,6 +107,7 @@ SCENARIO("Dock renumber::Interface", "[renumber::Interface]") {
     */
 
    file::NotFoundException::assertion(before, __INFO__);
+   //   REQUIRE(i.path(correct_answer) == testarea);
    REQUIRE(i.fullname(filename) == correct_answer);
    i.relink(filename);
 

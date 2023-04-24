@@ -29,6 +29,7 @@ namespace extras {
        */
       using Filename = std::string;
       using CMD = std::string;
+      using Pathname = std::string;
       using Value = std::string;
       using Directory = std::vector<Filename>;
 
@@ -37,6 +38,13 @@ namespace extras {
        *
        */
       interface Interface {
+         /**
+          * @brief the name of the renumber
+          *
+          * @return Filename
+          */
+         virtual Pathname path(const Filename &filename) const pure;
+
          /**
           * @brief the name of the renumber
           *

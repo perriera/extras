@@ -30,9 +30,9 @@ using namespace extras;
  * @brief file::Interface NotFoundException
  *
  */
-SCENARIO("mold file::Interface NotFoundException", "[PE-40]") {
-  REQUIRE_THROWS_AS(file::NotFoundException::assertion("/usr/abc", __INFO__),
-                    file::NotFoundException);
+SCENARIO("mold file::Interface NotFoundException", "[mold file::Interface]") {
+   REQUIRE_THROWS_AS(file::NotFoundException::assertion("/usr/abc", __INFO__),
+                     file::NotFoundException);
 }
 
 /**
@@ -40,9 +40,9 @@ SCENARIO("mold file::Interface NotFoundException", "[PE-40]") {
  *
  */
 SCENARIO("mold file::Interface NotCopiedException", "[PE-40]") {
-  REQUIRE_THROWS_AS(
-      file::NotCopiedException::assertion(file::File("/usr/abc"), __INFO__),
-      file::NotCopiedException);
+   REQUIRE_THROWS_AS(
+       file::NotCopiedException::assertion(file::File("/usr/abc"), __INFO__),
+       file::NotCopiedException);
 }
 
 /**
@@ -50,18 +50,18 @@ SCENARIO("mold file::Interface NotCopiedException", "[PE-40]") {
  *
  */
 SCENARIO("mold file::Interface InvalidNameException", "[PE-40]") {
-  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("", __INFO__),
-                    file::InvalidNameException);
-  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("?", __INFO__),
-                    file::InvalidNameException);
-  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("*", __INFO__),
-                    file::InvalidNameException);
-  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("\\", __INFO__),
-                    file::InvalidNameException);
-  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("//", __INFO__),
-                    file::InvalidNameException);
-  REQUIRE_THROWS_AS(file::InvalidNameException::assertion("/", __INFO__),
-                    file::InvalidNameException);
+   REQUIRE_THROWS_AS(file::InvalidNameException::assertion("", __INFO__),
+                     file::InvalidNameException);
+   REQUIRE_THROWS_AS(file::InvalidNameException::assertion("?", __INFO__),
+                     file::InvalidNameException);
+   REQUIRE_THROWS_AS(file::InvalidNameException::assertion("*", __INFO__),
+                     file::InvalidNameException);
+   REQUIRE_THROWS_AS(file::InvalidNameException::assertion("\\", __INFO__),
+                     file::InvalidNameException);
+   REQUIRE_THROWS_AS(file::InvalidNameException::assertion("//", __INFO__),
+                     file::InvalidNameException);
+   REQUIRE_THROWS_AS(file::InvalidNameException::assertion("/", __INFO__),
+                     file::InvalidNameException);
 }
 
 /**
@@ -69,11 +69,11 @@ SCENARIO("mold file::Interface InvalidNameException", "[PE-40]") {
  *
  */
 SCENARIO("mold file::Interface ExistsException", "[PE-40]") {
-  REQUIRE_THROWS_AS(file::ExistsException::assertion(".", __INFO__),
-                    file::ExistsException);
-  REQUIRE_THROWS_AS(file::ExistsException::assertion("..", __INFO__),
-                    file::ExistsException);
-  file::ExistsException::assertion("/>?/", __INFO__);
+   REQUIRE_THROWS_AS(file::ExistsException::assertion(".", __INFO__),
+                     file::ExistsException);
+   REQUIRE_THROWS_AS(file::ExistsException::assertion("..", __INFO__),
+                     file::ExistsException);
+   file::ExistsException::assertion("/>?/", __INFO__);
 }
 
 /**
@@ -81,53 +81,53 @@ SCENARIO("mold file::Interface ExistsException", "[PE-40]") {
  *
  */
 SCENARIO("mold file::Interface FolderExistsException", "[PE-40]") {
-  /**
-   * @brief throw an exception if no filename is specified
-   *
-   */
-  REQUIRE_THROWS_AS(
-      file::FolderExistsException::assertion(file::File(""), __INFO__),
-      file::FolderNotSpecifiedException);
+   /**
+    * @brief throw an exception if no filename is specified
+    *
+    */
+   REQUIRE_THROWS_AS(
+       file::FolderExistsException::assertion(file::File(""), __INFO__),
+       file::FolderNotSpecifiedException);
 
-  /**
-   * @brief throw an exception if a wildcard is specified
-   *
-   */
-  REQUIRE_THROWS_AS(file::FolderExistsException::assertion(
-                        file::File("/usr/abc/*"), __INFO__),
-                    file::NotAFolderNameException);
+   /**
+    * @brief throw an exception if a wildcard is specified
+    *
+    */
+   REQUIRE_THROWS_AS(file::FolderExistsException::assertion(
+                         file::File("/usr/abc/*"), __INFO__),
+                     file::NotAFolderNameException);
 
-  /**
-   * @brief throw an exception if the folder does not exist
-   *
-   */
-  REQUIRE_THROWS_AS(
-      file::FolderExistsException::assertion(file::File("/usr/abc"), __INFO__),
-      file::NotFoundException);
+   /**
+    * @brief throw an exception if the folder does not exist
+    *
+    */
+   REQUIRE_THROWS_AS(
+       file::FolderExistsException::assertion(file::File("/usr/abc"), __INFO__),
+       file::NotFoundException);
 
-  /**
-   * @brief throw an exception if the folder is not a folder
-   *
-   */
-  REQUIRE_THROWS_AS(file::FolderExistsException::assertion(
-                        file::File("/etc/hosts"), __INFO__),
-                    file::NotAFolderException);
+   /**
+    * @brief throw an exception if the folder is not a folder
+    *
+    */
+   REQUIRE_THROWS_AS(file::FolderExistsException::assertion(
+                         file::File("/etc/hosts"), __INFO__),
+                     file::NotAFolderException);
 
-  /**
-   * @brief do NOT throw an exception if the folder exists
-   *
-   */
-  file::FolderExistsException::assertion(file::File("/usr"), __INFO__);
-  file::FolderExistsException::assertion("/usr", __INFO__);
+   /**
+    * @brief do NOT throw an exception if the folder exists
+    *
+    */
+   file::FolderExistsException::assertion(file::File("/usr"), __INFO__);
+   file::FolderExistsException::assertion("/usr", __INFO__);
 
-  /**
-   * @brief do throw an exception if the folder exists
-   *
-   */
-  // std::string relative_dir = "test/data/project";
-  // file::FolderNotFoundException::assertion(relative_dir, __INFO__);
-  // system("mkdir -p test/data/project");
-  // REQUIRE_THROWS_AS(file::FolderNotFoundException::assertion(
-  //                       file::File(relative_dir), __INFO__),
-  //                   file::NotAFolderException);
+   /**
+    * @brief do throw an exception if the folder exists
+    *
+    */
+   // std::string relative_dir = "test/data/project";
+   // file::FolderNotFoundException::assertion(relative_dir, __INFO__);
+   // system("mkdir -p test/data/project");
+   // REQUIRE_THROWS_AS(file::FolderNotFoundException::assertion(
+   //                       file::File(relative_dir), __INFO__),
+   //                   file::NotAFolderException);
 }
