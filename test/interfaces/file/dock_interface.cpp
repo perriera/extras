@@ -61,7 +61,7 @@ SCENARIO("mold file::Interface::path", "[dock file::Interface]")
 
    system("rm -rf build/testarea");
    system("mkdir build/testarea");
-   system("cp test/etc/renumber/librandom.sol build/testarea/librandom.so");
+   system("cp test/etc/rebrand/librandom.sol build/testarea/librandom.so");
    pathname = "build/testarea/";
    filename = "librandom.so";
    fullpath = pathname + filename;

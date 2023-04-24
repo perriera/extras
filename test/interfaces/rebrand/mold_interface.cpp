@@ -16,29 +16,30 @@
  *
  */
 
+#include "../../vendor/catch.hpp"
+#include "../../vendor/fakeit.hpp"
+
 #include <extras/docking/DockIt.hpp>
 #include <extras/file/interface.hpp>
-#include <extras/renumber/interface.hpp>
+#include <extras/rebrand/interface.hpp>
 #include <extras/strings.hpp>
 #include <extras/version.hpp>
 #include <iostream>
-
-#include "../../vendor/catch.hpp"
-#include "../../vendor/fakeit.hpp"
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
 //
 
-using namespace extras::renumber;
+using namespace extras::rebrand;
 using namespace extras;
 using namespace fakeit;
 
 /**
- * @brief dock renumber::Interface
+ * @brief dock rebrand::Interface
  *
  */
-SCENARIO("Mold renumber::Interface", "[mold renumber::Interface]") {
+SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
+{
    /**
     * @brief determine correct_answer
     *
@@ -65,36 +66,36 @@ SCENARIO("Mold renumber::Interface", "[mold renumber::Interface]") {
 
    system("rm -rf build/testarea");
    system("mkdir build/testarea");
-   system("cp test/etc/renumber/librandom.sol build/testarea/librandom.so");
+   system("cp test/etc/rebrand/librandom.sol build/testarea/librandom.so");
 
    /**
     * @brief construct dock for interface
     *
     */
    Dock<Interface> mold;
-   Interface &i = mold.get();
+   Interface& i = mold.get();
    When(Method(mold, path))
-       .AlwaysDo([&major, &minor, &patch](const Filename &filename) {
-          {
-             auto parts = extras::str::split(filename, '/');
-             Value result = filename;
-             result += "." + std::to_string(major);
-             result += "." + std::to_string(minor);
-             result += "." + std::to_string(patch);
-             return result;
-          }
-       });
+     .AlwaysDo([&major, &minor, &patch](const Filename& filename) {
+        {
+           auto parts = extras::str::split(filename, '/');
+           Value result = filename;
+           result += "." + std::to_string(major);
+           result += "." + std::to_string(minor);
+           result += "." + std::to_string(patch);
+           return result;
+        }
+     });
    When(Method(mold, fullname))
-       .AlwaysDo([&major, &minor, &patch](const Filename &filename) {
-          {
-             Value result = filename;
-             result += "." + std::to_string(major);
-             result += "." + std::to_string(minor);
-             result += "." + std::to_string(patch);
-             return result;
-          }
-       });
-   When(Method(mold, relink)).AlwaysDo([&i](const Filename &filename) {
+     .AlwaysDo([&major, &minor, &patch](const Filename& filename) {
+        {
+           Value result = filename;
+           result += "." + std::to_string(major);
+           result += "." + std::to_string(minor);
+           result += "." + std::to_string(patch);
+           return result;
+        }
+     });
+   When(Method(mold, relink)).AlwaysDo([&i](const Filename& filename) {
       {
          Filename result = i.fullname(filename);
          CMD cmd1 = "rm " + filename;
