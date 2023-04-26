@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.12.0 -m "set(MAKE64BITONLY 1)"</br>
-> > git push origin v8.12.10
+> > git tag -a v8.12.1 -m "set(MAKE64BITONLY 1)"</br>
+> > git push origin v8.12.1
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
