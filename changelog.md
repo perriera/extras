@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.12.1 -m "set(MAKE64BITONLY 1)"</br>
-> > git push origin v8.12.1
+> > git tag -a v8.14.0 -m "added docs on Windows 11 / Virtualbox"</br>
+> > git push origin v8.14.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -26,7 +26,15 @@ IMPORTANT:
 ## [Unreleased]
 - replacement for filesystem include file 
 
-#### 8.12.0 (2023-03-23)
+#### 8.14.0 (2023-04-25)
+### Refactored 
+- added docs on Windows 11 / Virtualbox
+
+#### 8.12.1 (2023-04-25)
+### Refactored 
+- set(MAKE64BITONLY 1)
+
+#### 8.12.0 (2023-04-25)
 ### Refactored 
 - set(MAKE64BITONLY 1)
 
@@ -917,7 +925,10 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.11.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.14.0..HEAD
+[8.14.0]: https://github.com/perriera/extras/compare/v8.12.1...v8.14.0
+[8.12.1]: https://github.com/perriera/extras/compare/v8.12.0...v8.12.1
+[8.12.0]: https://github.com/perriera/extras/compare/v8.11.0...v8.12.0
 [8.11.0]: https://github.com/perriera/extras/compare/v8.10.1...v8.11.0
 [8.10.1]: https://github.com/perriera/extras/compare/v8.10.0...v8.10.1
 [8.10.0]: https://github.com/perriera/extras/compare/v8.9.3...v8.10.0

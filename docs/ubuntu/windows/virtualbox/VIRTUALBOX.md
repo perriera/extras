@@ -24,6 +24,8 @@
 5. [Index of /virtualbox/6.1.32](http://download.virtualbox.org/virtualbox/6.1.32/)<br/>
 6. [Index of /virtualbox/6.1.34](http://download.virtualbox.org/virtualbox/6.1.34/)<br/>
 7. [Index of /virtualbox/6.1.36](http://download.virtualbox.org/virtualbox/6.1.36/)<br/>
+8. [Index of /virtualbox](https://download.virtualbox.org/virtualbox/)<br/>
+9. [Index of /virtualbox/7.0.6](https://download.virtualbox.org/virtualbox/7.0.6)<br/>
 
 ### Wish Case ([Download Ubuntu 20.04.4 LTS](https://releases.ubuntu.com/20.04/))
 	•	On Windows Download Ubuntu 20.04.4 LTS to Downloads folder
