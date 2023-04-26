@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.14.2 -m "added docs"</br>
-> > git push origin v8.14.2
+> > git tag -a v8.14.3 -m "added docs on nVidia support"</br>
+> > git push origin v8.14.3
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,10 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.14.3 (2023-04-25)
+### Refactored 
+- added docs on nVidia support
 
 #### 8.14.2 (2023-04-25)
 ### Refactored 
@@ -933,7 +937,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.14.2..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.14.3..HEAD
+[8.14.3]: https://github.com/perriera/extras/compare/v8.14.2...v8.14.3
 [8.14.2]: https://github.com/perriera/extras/compare/v8.14.1...v8.14.2
 [8.14.1]: https://github.com/perriera/extras/compare/v8.14.0...v8.14.1
 [8.14.0]: https://github.com/perriera/extras/compare/v8.12.1...v8.14.0
