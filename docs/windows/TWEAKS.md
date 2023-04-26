@@ -4,4 +4,6 @@
 [How to Generate SSH Keys in Windows 10 and Windows 11](https://www.howtogeek.com/762863/how-to-generate-ssh-keys-in-windows-10-and-windows-11/)
 [Install & Use SSH under Windows 11 to connect remote server](https://www.how2shout.com/how-to/install-use-ssh-under-windows-11-to-connect-remote-server.html)
 
+[Black Pull Down and Titlebar Menus ](https://github.com/microsoft/vscode/issues/98924)
+
 #### see ubuntu/windows for more
