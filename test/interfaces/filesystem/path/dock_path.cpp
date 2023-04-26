@@ -16,13 +16,13 @@
  *
  */
 
-#include <extras/docking/DockIt.hpp>
-#include <extras/filesystem/path/interface.hpp>
-#include <iostream>
-#include <fstream>
-
 #include "../../../vendor/catch.hpp"
 #include "../../../vendor/fakeit.hpp"
+
+#include <extras/docking/DockIt.hpp>
+#include <extras/filesystem/path/interface.hpp>
+#include <fstream>
+#include <iostream>
 
 //
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
@@ -51,7 +51,6 @@ using namespace fakeit;
 //   throw "not implelmented yet";
 // }
 
-
 /**
  *
  * @brief Mock FakeIt AlwaysDo demonstration
@@ -60,63 +59,68 @@ using namespace fakeit;
 SCENARIO("Dock extras::fs::path::Interface", "[extras::fs::path::Interface]")
 {
 
-	/**
-	 * @brief 
-	 * 
-	 */
-	auto correct_answer = "/home/perry/Downloads";
-	Mold<fs::path::Interface> dock;
-	fs::path::Interface &i = dock.get();
-	When(Method(dock, path))
-		.AlwaysDo([&correct_answer](const Filename& before) {{ 
-			system("pwd > /tmp/output.txt");
-			std::ifstream in("/tmp/output.txt");
-			std::string line;
-			std::getline(in,line);
-			return correct_answer; 
-		} });
-	When(Method(dock, current_path_filename))
-		.AlwaysDo([&correct_answer]() {{ 
-			system("pwd > /tmp/output.txt");
-			std::ifstream in("/tmp/output.txt");
-			std::string line;
-			std::getline(in,line);
-			return correct_answer; 
-		} });
-	When(Method(dock, path_filename))
-		.AlwaysDo([&correct_answer](const Filename& before) {{ 
-			system("pwd > /tmp/output.txt");
-			std::ifstream in("/tmp/output.txt");
-			std::string line;
-			std::getline(in,line);
-			return correct_answer; 
-		} });
-	When(Method(dock, directory_iterator))
-		.AlwaysDo([&correct_answer](const Filename& before) {{ 
-			system("pwd > /tmp/output.txt");
-			std::ifstream in("/tmp/output.txt");
-			std::string line;
-			std::getline(in,line);
-			return correct_answer; 
-		} });
+   /**
+    * @brief
+    *
+    */
+   auto correct_answer = "/home/perry/Downloads";
+   Mold<fs::path::Interface> dock;
+   fs::path::Interface& i = dock.get();
+   When(Method(dock, path)).AlwaysDo([&correct_answer](const Filename&) {
+      {
+         system("pwd > /tmp/output.txt");
+         std::ifstream in("/tmp/output.txt");
+         std::string line;
+         std::getline(in, line);
+         return correct_answer;
+      }
+   });
+   When(Method(dock, current_path_filename)).AlwaysDo([&correct_answer]() {
+      {
+         system("pwd > /tmp/output.txt");
+         std::ifstream in("/tmp/output.txt");
+         std::string line;
+         std::getline(in, line);
+         return correct_answer;
+      }
+   });
+   When(Method(dock, path_filename))
+     .AlwaysDo([&correct_answer](const Filename&) {
+        {
+           system("pwd > /tmp/output.txt");
+           std::ifstream in("/tmp/output.txt");
+           std::string line;
+           std::getline(in, line);
+           return correct_answer;
+        }
+     });
+   When(Method(dock, directory_iterator))
+     .AlwaysDo([&correct_answer](const Filename&) {
+        {
+           system("pwd > /tmp/output.txt");
+           std::ifstream in("/tmp/output.txt");
+           std::string line;
+           std::getline(in, line);
+           return correct_answer;
+        }
+     });
 
-	/**
-	 * @brief 
-	 * 
-	 */
+   /**
+    * @brief
+    *
+    */
 
-	REQUIRE(i.path("filename") == correct_answer);
-	REQUIRE(i.path_filename("filename") == correct_answer);
-	REQUIRE(i.current_path_filename() == correct_answer);
-	REQUIRE(i.directory_iterator("filename") == correct_answer);
+   REQUIRE(i.path("filename") == correct_answer);
+   REQUIRE(i.path_filename("filename") == correct_answer);
+   REQUIRE(i.current_path_filename() == correct_answer);
+   REQUIRE(i.directory_iterator("filename") == correct_answer);
 
-	/**
-	 * @brief Construct a new Verify object
-	 * 
-	 */
-	Verify(Method(dock, path));
-	Verify(Method(dock, path_filename));
-	Verify(Method(dock, current_path_filename));
-	Verify(Method(dock, directory_iterator));
-
+   /**
+    * @brief Construct a new Verify object
+    *
+    */
+   Verify(Method(dock, path));
+   Verify(Method(dock, path_filename));
+   Verify(Method(dock, current_path_filename));
+   Verify(Method(dock, directory_iterator));
 }

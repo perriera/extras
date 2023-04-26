@@ -11,7 +11,7 @@ print(STATUS "GITHUB_ENV detected")
 set(MAKE64BITONLY 1)
 else()
 set(MAKE32BITONLY $ENV{MAKE32BITONLY})
-set(MAKE64BITONLY $ENV{MAKE64BITONLY})
+set(MAKE64BITONLY 1)
 endif()
 
 if (MAKE32BITONLY AND MAKE64BITONLY)
@@ -37,4 +37,3 @@ endif()
 if (MAKE64BIT)
   print(STATUS "64bit make requested")
 endif()
-
