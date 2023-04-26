@@ -20,7 +20,7 @@ Now that you have your project cloned we need to make sure you have the tools ne
  - [ ] Now copy and paste the following for a Linux environment
 
 		sudo apt update
-		sudo apt install -y build-essential libtool autotools-dev automake pkg-config git clangd cppcheck clang-tidy python3-pip checkinstall
+		sudo apt install -y build-essential libtool autotools-dev automake pkg-config git clangd cppcheck clang-tidy gdb  python3-pip checkinstall
 
  - [ ] Install CMake 3.21
 
@@ -53,5 +53,3 @@ Now you have all the tools necessary to compile your new C++17 project complete 
 
 ### Next Steps
  - [How to setup your changelog.md](https://github.com/perriera/extras_dbo/blob/dev/docs/CHANGELOG.md)
-
-

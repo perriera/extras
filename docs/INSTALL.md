@@ -22,7 +22,7 @@ Now that you have your project cloned we need to make sure you have the tools ne
  - [ ] Now copy and paste the following for a Linux environment
 
 		sudo apt update
-		sudo apt install -y build-essential libtool autotools-dev automake pkg-config git clangd cppcheck clang-tidy python3-pip checkinstall
+		sudo apt install -y build-essential libtool autotools-dev automake pkg-config git clangd cppcheck clang-tidy python3-pip checkinstall gdb
 
  - [ ] Assuming that was successful, install CMake 3.21
 
@@ -63,5 +63,3 @@ Now you have instaled the development environment and editor for a C++17 project
  - [How to generate a new SSH key for your GitHub.com account](https://github.com/perriera/extras_dbo/blob/dev/docs/SSHKEY.md)
  - [How to clone your project (with this template)](https://github.com/perriera/extras_dbo/blob/dev/docs/CLONE.md)
  - [How to setup your changelog.md](https://github.com/perriera/extras_dbo/blob/dev/docs/CHANGELOG.md)
-
-
