@@ -2,8 +2,6 @@
 
 This is a collection of C++ based tools to simplify the software development process. Among the many nifty tools that have been added here is the **extras/interfaces.hpp** file that adds the pseudo keyword '**interface**' to support C++ frameworks.</br>
 
-[![CMake](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml/badge.svg?branch=dev)](https://github.com/mattcoding4days/extras/actions/workflows/cmake.yml)
-
 <div align="center">
   <img width="442" height="320" src="assets/extras.png">
   <br>
