@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.15.1 -m "added tagit.sh and SSD.md"</br>
-> > git push origin v8.15.1
+> > git tag -a v8.16.0 -m "added IMAGES.md"</br>
+> > git push origin v8.16.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,10 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.16.0 (2023-05-04)
+### Refactored 
+- added docs/IMAGES.md
 
 #### 8.15.1 (2023-04-28)
 ### Refactored 
@@ -942,8 +946,9 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.15.1..HEAD
-[8.15.0]: https://github.com/perriera/extras/compare/v8.14.3...v8.15.1
+[unreleased]: https://github.com/perriera/extras/compare/v8.16.0..HEAD
+[8.16.0]: https://github.com/perriera/extras/compare/v8.15.1...v8.16.0
+[8.15.1]: https://github.com/perriera/extras/compare/v8.14.3...v8.15.1
 [8.14.3]: https://github.com/perriera/extras/compare/v8.14.2...v8.14.3
 [8.14.2]: https://github.com/perriera/extras/compare/v8.14.1...v8.14.2
 [8.14.1]: https://github.com/perriera/extras/compare/v8.14.0...v8.14.1
