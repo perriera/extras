@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.17.01 -m "made demangle public"</br>
-> > git push origin v8.17.01
+> > git tag -a v8.17.04 -m "added to IMAGES.md"</br>
+> > git push origin v8.17.04
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,10 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.17.04 (2023-05-06)
+### Refactored 
+- added to IMAGES.md
 
 #### 8.17.01 (2023-05-06)
 ### Refactored 
