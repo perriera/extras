@@ -36,123 +36,167 @@
 
 namespace extras {
 
-  /**
-   * @brief StatusLineInterface
-   *
-   */
+   /**
+    * @brief StatusLineInterface
+    *
+    */
 
-  using StatusLineMsg = std::string;
+   using StatusLineMsg = std::string;
 
-  interface StatusLineInterface {
-    virtual StatusLineMsg start(const StatusLineMsg& msg) const pure;
-    virtual StatusLineMsg pass(const StatusLineMsg& msg) const pure;
-    virtual StatusLineMsg fail(const StatusLineMsg& msg) const pure;
-    virtual StatusLineMsg end(const StatusLineMsg& msg) const pure;
-  };
+   interface StatusLineInterface
+   {
+      virtual StatusLineMsg start(const StatusLineMsg& msg) const pure;
+      virtual StatusLineMsg pass(const StatusLineMsg& msg) const pure;
+      virtual StatusLineMsg fail(const StatusLineMsg& msg) const pure;
+      virtual StatusLineMsg end(const StatusLineMsg& msg) const pure;
+   };
 
-  concrete class StatusLine implements StatusLineInterface {
-   public:
-    virtual StatusLineMsg start(const StatusLineMsg& msg) const override;
-    virtual StatusLineMsg pass(const StatusLineMsg& msg) const override;
-    virtual StatusLineMsg fail(const StatusLineMsg& msg) const override;
-    virtual StatusLineMsg end(const StatusLineMsg& msg) const override;
-  };
+   concrete class StatusLine implements StatusLineInterface
+   {
+    public:
 
-  /**
-   * @brief start std::ostream& manipulator
-   *
-   */
-  class start {
-    friend std::ostream& operator<<(std::ostream& out, const start& obj) {
-      out << StatusLine().start(obj._msg);
-      return out;
-    }
+      virtual StatusLineMsg start(const StatusLineMsg& msg) const override;
+      virtual StatusLineMsg pass(const StatusLineMsg& msg) const override;
+      virtual StatusLineMsg fail(const StatusLineMsg& msg) const override;
+      virtual StatusLineMsg end(const StatusLineMsg& msg) const override;
+   };
 
-   public:
-    start(const StatusLineMsg& msg) : _msg(msg) {}
-    std::ostream& operator()(std::ostream& out) const {
-      out << StatusLine().start(_msg);
-      return out;
-    }
+   /**
+    * @brief start std::ostream& manipulator
+    *
+    */
+   class start
+   {
+      friend std::ostream& operator<<(std::ostream& out, const start& obj)
+      {
+         out << StatusLine().start(obj._msg);
+         return out;
+      }
 
-   private:
-    StatusLineMsg _msg;
-  };
+    public:
 
-  /**
-   * @brief pass std::ostream& manipulator
-   *
-   */
-  class pass {
-    friend std::ostream& operator<<(std::ostream& out, const pass& obj) {
-      out << StatusLine().pass(obj._msg);
-      return out;
-    }
+      start(const StatusLineMsg& msg)
+        : _msg(msg)
+      {
+      }
 
-   public:
-    pass(const StatusLineMsg& msg) : _msg(msg) {}
-    std::ostream& operator()(std::ostream& out) const {
-      out << StatusLine().pass(_msg);
-      return out;
-    }
+      std::ostream& operator()(std::ostream& out) const
+      {
+         out << StatusLine().start(_msg);
+         return out;
+      }
 
-   private:
-    StatusLineMsg _msg;
-  };
+    private:
 
-  /**
-   * @brief fail std::ostream& manipulator
-   *
-   */
-  class fail {
-    friend std::ostream& operator<<(std::ostream& out, const fail& obj) {
-      out << StatusLine().pass(obj._msg);
-      return out;
-    }
+      StatusLineMsg _msg;
+   };
 
-   public:
-    fail(const StatusLineMsg& msg) : _msg(msg) {}
-    std::ostream& operator()(std::ostream& out) const {
-      out << StatusLine().fail(_msg);
-      return out;
-    }
+   /**
+    * @brief pass std::ostream& manipulator
+    *
+    */
+   class pass
+   {
+      friend std::ostream& operator<<(std::ostream& out, const pass& obj)
+      {
+         out << StatusLine().pass(obj._msg);
+         return out;
+      }
 
-   private:
-    StatusLineMsg _msg;
-  };
+    public:
 
-  /**
-   * @brief start std::ostream& manipulator
-   *
-   */
-  class end {
-    friend std::ostream& operator<<(std::ostream& out, const end& obj) {
-      out << StatusLine().end(obj._msg);
-      return out;
-    }
+      pass(const StatusLineMsg& msg)
+        : _msg(msg)
+      {
+      }
 
-   public:
-    end(const StatusLineMsg& msg) : _msg(msg) {}
-    std::ostream& operator()(std::ostream& out) const {
-      out << StatusLine().start(_msg);
-      return out;
-    }
+      std::ostream& operator()(std::ostream& out) const
+      {
+         out << StatusLine().pass(_msg);
+         return out;
+      }
 
-   private:
-    StatusLineMsg _msg;
-  };
+    private:
 
-  /**
-   * @brief PackedException
-   *
-   */
-  concrete class StatusLineException extends AbstractCustomException {
-   public:
-    StatusLineException(std::string msg, const extras::WhereAmI& whereAmI)
-        : AbstractCustomException(msg.c_str(), whereAmI) {}
-    static void assertion(int status, const extras::WhereAmI& ref);
-  };
+      StatusLineMsg _msg;
+   };
 
-}  // namespace extras
+   /**
+    * @brief fail std::ostream& manipulator
+    *
+    */
+   class fail
+   {
+      friend std::ostream& operator<<(std::ostream& out, const fail& obj)
+      {
+         out << StatusLine().pass(obj._msg);
+         return out;
+      }
 
-#endif  // _EXPARX_STATUSLINE_HPP
+    public:
+
+      fail(const StatusLineMsg& msg)
+        : _msg(msg)
+      {
+      }
+
+      std::ostream& operator()(std::ostream& out) const
+      {
+         out << StatusLine().fail(_msg);
+         return out;
+      }
+
+    private:
+
+      StatusLineMsg _msg;
+   };
+
+   /**
+    * @brief start std::ostream& manipulator
+    *
+    */
+   class end
+   {
+      friend std::ostream& operator<<(std::ostream& out, const end& obj)
+      {
+         out << StatusLine().end(obj._msg);
+         return out;
+      }
+
+    public:
+
+      end(const StatusLineMsg& msg)
+        : _msg(msg)
+      {
+      }
+
+      std::ostream& operator()(std::ostream& out) const
+      {
+         out << StatusLine().start(_msg);
+         return out;
+      }
+
+    private:
+
+      StatusLineMsg _msg;
+   };
+
+   /**
+    * @brief PackedException
+    *
+    */
+   concrete class StatusLineException extends AbstractCustomException
+   {
+    public:
+
+      StatusLineException(std::string msg, const extras::WhereAmI& whereAmI)
+        : AbstractCustomException(msg.c_str(), whereAmI)
+      {
+      }
+
+      static void assertion(int status, const extras::WhereAmI& ref);
+   };
+
+} // namespace extras
+
+#endif // _EXPARX_STATUSLINE_HPP

@@ -38,37 +38,39 @@
 //
 namespace extras {
 
-  struct colors {
-    const char *black();
-    const char *red();
-    const char *green();
-    const char *yellow();
-    const char *blue();
-    const char *magenta();
-    const char *cyan();
-    const char *white();
-    const char *set();
-    const char *reset();
-  };
+   struct colors
+   {
+      const char* black();
+      const char* red();
+      const char* green();
+      const char* yellow();
+      const char* blue();
+      const char* magenta();
+      const char* cyan();
+      const char* white();
+      const char* set();
+      const char* reset();
+   };
 
-#define declare_color(n, v) std::ostream &n(std::ostream &out)
+#define declare_color(n, v) std::ostream& n(std::ostream& out)
 
-  declare_color(black, 30);
-  declare_color(red, 31);
-  declare_color(green, 32);
-  declare_color(yellow, 33);
-  declare_color(blue, 34);
-  declare_color(magenta, 35);
-  declare_color(cyan, 36);
-  declare_color(white, 37);
-  declare_color(reset, 0);
+   declare_color(black, 30);
+   declare_color(red, 31);
+   declare_color(green, 32);
+   declare_color(yellow, 33);
+   declare_color(blue, 34);
+   declare_color(magenta, 35);
+   declare_color(cyan, 36);
+   declare_color(white, 37);
+   declare_color(reset, 0);
 
-#define define_color(n, v)                    \
-  std::ostream &n(std::ostream &out) {        \
-    out << "\u001b[" << std::dec << v << "m"; \
-    return out;                               \
-  }
+#define define_color(n, v)                                                     \
+   std::ostream& n(std::ostream& out)                                          \
+   {                                                                           \
+      out << "\u001b[" << std::dec << v << "m";                                \
+      return out;                                                              \
+   }
 
-}  // namespace extras
+} // namespace extras
 
-#endif  // _EXTRA_COLORS_HPP
+#endif // _EXTRA_COLORS_HPP

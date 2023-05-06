@@ -184,6 +184,6 @@ namespace extras {
 #define ensure if
 #define otherwise
 
-}  // namespace extras
+} // namespace extras
 
-#endif  // _EXTRA_LANGUAGE_INTERFACES_HPP
+#endif // _EXTRA_LANGUAGE_INTERFACES_HPP

@@ -134,7 +134,7 @@ struct position_t
     #undef JSON_HEDLEY_STRINGIFY
 #endif
 #define JSON_HEDLEY_STRINGIFY(x) JSON_HEDLEY_STRINGIFY_EX(x)
-
+ 
 #if defined(JSON_HEDLEY_CONCAT_EX)
     #undef JSON_HEDLEY_CONCAT_EX
 #endif

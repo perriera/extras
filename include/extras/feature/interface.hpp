@@ -21,38 +21,52 @@ struct user_id;
 struct ldap;
 
 namespace extras {
-  namespace feature {
+   namespace feature {
 
-    /**
-     * @brief LoginInterface
-     *
-     */
-    interface FeatureInterface {};
+      /**
+       * @brief LoginInterface
+       *
+       */
+      interface FeatureInterface
+      {
+      };
 
-    /**
-     * @brief FileException
-     *
-     */
-    concrete class FeatureException extends extras::AbstractCustomException {
-     public:
-      FeatureException(const std::string& msg, const extras::WhereAmI& whereAmI)
-          : AbstractCustomException(msg.c_str(), whereAmI._file.c_str(),
-                                    whereAmI._func.c_str(), whereAmI._line) {}
-    };
+      /**
+       * @brief FileException
+       *
+       */
+      concrete class FeatureException extends extras::AbstractCustomException
+      {
+       public:
 
-    /**
-     * @brief NotImplementedException
-     *
-     */
-    concrete class NotImplementedException extends FeatureException {
-     public:
-      NotImplementedException(const std::string& msg,
-                              const extras::WhereAmI& whereAmI)
-          : FeatureException(msg, whereAmI) {}
-      virtual char const* what() const noexcept { return _msg.c_str(); }
-    };
+         FeatureException(const std::string& msg,
+                          const extras::WhereAmI& whereAmI)
+           : AbstractCustomException(msg.c_str(),
+                                     whereAmI._file.c_str(),
+                                     whereAmI._func.c_str(),
+                                     whereAmI._line)
+         {
+         }
+      };
 
-  }  // namespace feature
-}  // namespace extras
+      /**
+       * @brief NotImplementedException
+       *
+       */
+      concrete class NotImplementedException extends FeatureException
+      {
+       public:
 
-#endif  // _EXTRAS_FEATURE_INTERFACE_HPP
+         NotImplementedException(const std::string& msg,
+                                 const extras::WhereAmI& whereAmI)
+           : FeatureException(msg, whereAmI)
+         {
+         }
+
+         virtual char const* what() const noexcept { return _msg.c_str(); }
+      };
+
+   } // namespace feature
+} // namespace extras
+
+#endif // _EXTRAS_FEATURE_INTERFACE_HPP

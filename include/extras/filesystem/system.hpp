@@ -35,4 +35,4 @@
 #include <extras/keywords.hpp>
 #include <extras/strings.hpp>
 
-#endif  // _EXTRA_SYSTEM_HPP
+#endif // _EXTRA_SYSTEM_HPP

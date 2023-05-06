@@ -21,70 +21,83 @@ struct user_id;
 struct ldap;
 
 namespace extras {
-  namespace etc {
+   namespace etc {
 
-    /**
-     * @brief
-     *
-     */
-    using Filename = std::string;
-    using Directory = std::vector<Filename>;
-
-    /**
-     * @brief etc::Interface
-     *
-     *    Given we need to keep configuration entires in a file
-     *    When we arrange configuration items in keypair format
-     *    Then we can retrieve values quickly.
-     *
-     */
-    interface Interface {
       /**
-       * @brief the name of the file
+       * @brief
        *
-       * @return Filename
        */
-      virtual Filename filename() const pure;
+      using Filename = std::string;
+      using Directory = std::vector<Filename>;
+
       /**
-       * @brief test that file exists
+       * @brief etc::Interface
        *
-       * @return true the file exists
-       * @return false otherwise
+       *    Given we need to keep configuration entires in a file
+       *    When we arrange configuration items in keypair format
+       *    Then we can retrieve values quickly.
+       *
        */
-      virtual bool exists() const pure;
+      interface Interface
+      {
+         /**
+          * @brief the name of the file
+          *
+          * @return Filename
+          */
+         virtual Filename filename() const pure;
+         /**
+          * @brief test that file exists
+          *
+          * @return true the file exists
+          * @return false otherwise
+          */
+         virtual bool exists() const pure;
+         /**
+          * @brief copy a file
+          *
+          * @param destination
+          */
+         virtual void copy(const Interface& destination) const pure;
+      };
+
       /**
-       * @brief copy a file
+       * @brief FileException
        *
-       * @param destination
        */
-      virtual void copy(const Interface& destination) const pure;
-    };
+      concrete class Exception extends extras::AbstractCustomException
+      {
+       protected:
 
-    /**
-     * @brief FileException
-     *
-     */
-    concrete class Exception extends extras::AbstractCustomException {
-     protected:
-      Exception(const std::string& msg, const extras::WhereAmI& whereAmI)
-          : AbstractCustomException(msg.c_str(), whereAmI._file.c_str(),
-                                    whereAmI._func.c_str(), whereAmI._line) {}
-    };
+         Exception(const std::string& msg, const extras::WhereAmI& whereAmI)
+           : AbstractCustomException(msg.c_str(),
+                                     whereAmI._file.c_str(),
+                                     whereAmI._func.c_str(),
+                                     whereAmI._line)
+         {
+         }
+      };
 
-    /**
-     * @brief FileNotFoundException
-     *
-     */
-    concrete class NotFoundException extends Exception {
-     public:
-      NotFoundException(const std::string& msg,
-                        const extras::WhereAmI& whereAmI)
-          : Exception(msg, whereAmI) {}
-      virtual char const* what() const noexcept { return _msg.c_str(); }
-      static void assertion(const Filename& filename,
-                            const extras::WhereAmI& ref);
-    };
-  }  // namespace etc
-}  // namespace extras
+      /**
+       * @brief FileNotFoundException
+       *
+       */
+      concrete class NotFoundException extends Exception
+      {
+       public:
 
-#endif  // _EXTRAS_ETC_INTERFACE_HPP
+         NotFoundException(const std::string& msg,
+                           const extras::WhereAmI& whereAmI)
+           : Exception(msg, whereAmI)
+         {
+         }
+
+         virtual char const* what() const noexcept { return _msg.c_str(); }
+
+         static void assertion(const Filename& filename,
+                               const extras::WhereAmI& ref);
+      };
+   } // namespace etc
+} // namespace extras
+
+#endif // _EXTRAS_ETC_INTERFACE_HPP

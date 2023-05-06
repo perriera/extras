@@ -43,4 +43,4 @@
  */
 #include <extras/strings/string_support.hpp>
 
-#endif  // _EXTRA_STRINGS_HPP
+#endif // _EXTRA_STRINGS_HPP

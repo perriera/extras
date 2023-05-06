@@ -43,4 +43,4 @@
 #define Dock Mock
 #define Mold Mock
 
-#endif  // _EXTRA_KEYWORDS_HPP
+#endif // _EXTRA_KEYWORDS_HPP

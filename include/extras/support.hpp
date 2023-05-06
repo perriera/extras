@@ -41,6 +41,7 @@
  * All Rights Reserved, MIT License.
  *
  */
+
 #include <extras/crcs.hpp>
 #include <extras/filesystem/paths.hpp>
 #include <extras/keywords.hpp>
@@ -48,4 +49,4 @@
 #include <extras/vendor/cxxopts.hpp>
 #include <extras/vendor/json.hpp>
 
-#endif  // _EXTRA_SUPPORT_HPP
+#endif // _EXTRA_SUPPORT_HPP

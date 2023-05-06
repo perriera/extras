@@ -36,20 +36,21 @@
 
 namespace extras {
 
-  /**
-   * @brief DiagnosticsInterface
-   *
-   * This interface is intended for command line utilities
-   * that wish to add a diagnostics option.
-   *
-   */
+   /**
+    * @brief DiagnosticsInterface
+    *
+    * This interface is intended for command line utilities
+    * that wish to add a diagnostics option.
+    *
+    */
 
-  using DiagnosticsLine = std::string;
+   using DiagnosticsLine = std::string;
 
-  interface DiagnosticsInterface {
-    virtual void diagnostics(DiagnosticsLine) const pure;
-  };
+   interface DiagnosticsInterface
+   {
+      virtual void diagnostics(DiagnosticsLine) const pure;
+   };
 
-}  // namespace extras
+} // namespace extras
 
-#endif  // _EXPARX_DIAGNOSTICS_HPP
+#endif // _EXPARX_DIAGNOSTICS_HPP

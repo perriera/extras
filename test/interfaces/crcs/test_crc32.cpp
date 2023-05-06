@@ -16,10 +16,10 @@
  *
  */
 
+#include "../../vendor/catch.hpp"
+
 #include <cstdint>
 #include <extras/crcs/crc32_support.hpp>
-
-#include "../../vendor/catch.hpp"
 
 using namespace extras;
 using namespace std;
@@ -1260,58 +1260,60 @@ using namespace std;
 //   for (auto entry : logger1.search("event")) cout << entry << endl;
 // }
 
-SCENARIO("Verify crc32 default", "[crc32]") {
-  // const char *argv[] = {"const"};
-  // int argc = sizeof(argv) / sizeof(const char *);
-  // mainx();
-  std::cout << std::flush;
-  std::cout << std::endl;
+SCENARIO("Verify crc32 default", "[crc32]")
+{
+   // const char *argv[] = {"const"};
+   // int argc = sizeof(argv) / sizeof(const char *);
+   // mainx();
+   std::cout << std::flush;
+   std::cout << std::endl;
 
-  {
-    const char *data_piece4 = "data_piece2;";
-    crc32 crc;
-    std::uint32_t crc4 = crc.update(data_piece4);
-    REQUIRE(crc4 == 2874410684);
-  }
-  {
-    crc32 crc;
-    const char *data_piece4 = "data_piece2;";
-    std::uint32_t crc4 = crc.update(data_piece4);
-    REQUIRE(crc4 == 2874410684);
-  }
-  {
-    crc32 crc("generate_table(table);");
-    const char *data_piece4 = "data_piece2;";
-    std::uint32_t crc4 = crc.update(data_piece4);
-    REQUIRE(crc4 == 3312197600);
-  }
-  {
-    crc32 crc("abcdefg");
-    const char *data_piece4 = "data_piece2;";
-    std::uint32_t crc4 = crc.update(data_piece4);
-    REQUIRE(crc4 == 341281716);
-  }
-  {
-    crc32 crc;
-    const char *data_piece4 = "data_piece2;";
-    std::uint32_t crc4 = crc.update(data_piece4);
-    REQUIRE(crc4 == 2874410684);
-  }
+   {
+      const char* data_piece4 = "data_piece2;";
+      crc32 crc;
+      std::uint32_t crc4 = crc.update(data_piece4);
+      REQUIRE(crc4 == 2874410684);
+   }
+   {
+      crc32 crc;
+      const char* data_piece4 = "data_piece2;";
+      std::uint32_t crc4 = crc.update(data_piece4);
+      REQUIRE(crc4 == 2874410684);
+   }
+   {
+      crc32 crc("generate_table(table);");
+      const char* data_piece4 = "data_piece2;";
+      std::uint32_t crc4 = crc.update(data_piece4);
+      REQUIRE(crc4 == 3312197600);
+   }
+   {
+      crc32 crc("abcdefg");
+      const char* data_piece4 = "data_piece2;";
+      std::uint32_t crc4 = crc.update(data_piece4);
+      REQUIRE(crc4 == 341281716);
+   }
+   {
+      crc32 crc;
+      const char* data_piece4 = "data_piece2;";
+      std::uint32_t crc4 = crc.update(data_piece4);
+      REQUIRE(crc4 == 2874410684);
+   }
 }
 
-SCENARIO("Verify crc32 bit collision", "[crc32X]") {
-  {
-    const char *data_piece4 =
+SCENARIO("Verify crc32 bit collision", "[crc32X]")
+{
+   {
+      const char* data_piece4 =
         "r1bq1rk1/2p1bppp/p2p1n2/np2p3/4P3/1BPP1N2/PP3PPP/RNBQR1K";
-    crc32 crc;
-    std::uint32_t crc4 = crc.update(data_piece4);
-    REQUIRE(crc4 == 4171189273);
-  }
-  {
-    crc32 crc;
-    const char *data_piece4 =
+      crc32 crc;
+      std::uint32_t crc4 = crc.update(data_piece4);
+      REQUIRE(crc4 == 4171189273);
+   }
+   {
+      crc32 crc;
+      const char* data_piece4 =
         "2r2k2/p2bpp2/3p2p1/1pr4p/4PN1P/1P3P2/P1PR2P1/1K2R";
-    std::uint32_t crc4 = crc.update(data_piece4);
-    REQUIRE(crc4 == 4171189273);
-  }
+      std::uint32_t crc4 = crc.update(data_piece4);
+      REQUIRE(crc4 == 4171189273);
+   }
 }

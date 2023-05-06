@@ -44,4 +44,4 @@
 
 #include <extras/keywords.hpp>
 
-#endif  // _EXTRA_INTERFACES_HPP
+#endif // _EXTRA_INTERFACES_HPP

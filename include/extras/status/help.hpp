@@ -36,18 +36,19 @@
 
 namespace extras {
 
-  /**
-   * @brief HelpInterface
-   *
-   * This interface is intended for command line utilities
-   * that wish to add a help option.
-   * 
-   */
+   /**
+    * @brief HelpInterface
+    *
+    * This interface is intended for command line utilities
+    * that wish to add a help option.
+    *
+    */
 
-  interface HelpInterface {
-    virtual void help() const pure;
-  };
+   interface HelpInterface
+   {
+      virtual void help() const pure;
+   };
 
-}  // namespace extras
+} // namespace extras
 
-#endif  // _EXPARX_HELP_HPP
+#endif // _EXPARX_HELP_HPP
