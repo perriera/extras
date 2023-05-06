@@ -4,4 +4,14 @@
 ### how to compress images from command line
 ```
 mogrify -format jpg *.png
+
+mogrify -format jpg *.png
+rm *.png
+find . -type f -exec md5sum '{}' ';' | sort | uniq --all-repeated=separate -w 15 > dupes.txt 
+cat dupes.txt
+fdupes -d -N .
+find . -type f -exec md5sum '{}' ';' | sort | uniq --all-repeated=separate -w 15 > dupres.txt 
+cat dupres.txt
+
+
 ```
