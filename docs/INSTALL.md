@@ -1,5 +1,3 @@
-
-
 ## How to install the tools necessary for C++11/17 projects
 > In this step we need to install all the tools used by this project (that you may or may not already have installed.
 
@@ -24,7 +22,7 @@ Now that you have your project cloned we need to make sure you have the tools ne
 		sudo apt update
 		sudo apt install -y build-essential libtool autotools-dev automake pkg-config git clangd cppcheck clang-tidy python3-pip checkinstall gdb
 
- - [ ] Assuming that was successful, install CMake 3.21
+ - [ ] Assuming that was successful, install CMake 
 
 		pip install clang-format
 		pip install cmake-format
@@ -50,6 +48,7 @@ Now that you have your project cloned we need to make sure you have the tools ne
 
  - [ ] Now start Visual Studio Code
 
+		cd <into your project directory>
 		code .
 
 ### Alternate Case 
@@ -70,3 +69,4 @@ Now you have instaled the development environment and editor for a C++17 project
  - [How to generate a new SSH key for your GitHub.com account](https://github.com/perriera/extras_dbo/blob/dev/docs/SSHKEY.md)
  - [How to clone your project (with this template)](https://github.com/perriera/extras_dbo/blob/dev/docs/CLONE.md)
  - [How to setup your changelog.md](https://github.com/perriera/extras_dbo/blob/dev/docs/CHANGELOG.md)
+ - [How to tag your latest revisions](https://github.com/perriera/extras_dbo/blob/dev/docs/TAGIT.md)
