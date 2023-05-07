@@ -56,6 +56,13 @@ Now that you have your project cloned we need to make sure you have the tools ne
 > **Visual Studio Code Extensions** </br>
 >	Visual Studio Code will detect whatever language you are using and offer to install extentions automatically. Feel free to allow all recommendations as they appear to the bottom right of the Visual Studio Code environment.
 
+### Alternate Case 
+> **Ubuntu 18.04** </br>
+>	Slightly different parameters required
+```
+sudo apt install -y build-essential libtool autotools-dev automake pkg-config git clang-9 cppcheck clang-tidy python3-pip checkinstall gdb
+```
+
 ### Summary 
 Now you have instaled the development environment and editor for a C++17 project (complete with cmake 3.21 support). The next steps are now to clone the project then setup your changelog.md (for accurate version control).
 
