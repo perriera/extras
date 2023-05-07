@@ -20,7 +20,7 @@ Now that you have your project cloned we need to make sure you have the tools ne
  - [ ] Now copy and paste the following for a Linux environment
 
 		sudo apt update
-		sudo apt install -y build-essential libtool autotools-dev automake pkg-config git clangd cppcheck clang-tidy python3-pip checkinstall gdb
+		sudo apt install -y build-essential libtool autotools-dev automake pkg-config git clangd cppcheck clang-tidy python3-pip checkinstall gdb gcc-multilib g++-multilib
 
  - [ ] Assuming that was successful, install CMake 
 
@@ -59,9 +59,12 @@ Now that you have your project cloned we need to make sure you have the tools ne
 > **Ubuntu 18.04** </br>
 >	Slightly different parameters required
 ```
-sudo apt install -y build-essential libtool autotools-dev automake pkg-config git clang-9 cppcheck clang-tidy python3-pip checkinstall gdb
+sudo apt install -y build-essential libtool autotools-dev automake pkg-config git clang-9 cppcheck clang-tidy python3-pip checkinstall gdb gcc-multilib g++-multilib
 ```
-
+> In the case you've installed a version of gcc / g++ that doesn't ship by default (such as g++-4.8 on lucid) you'll want to match the version as well:
+```
+sudo apt-get install gcc-4.8-multilib g++-4.8-multilib
+```
 ### Summary 
 Now you have instaled the development environment and editor for a C++17 project (complete with cmake 3.21 support). The next steps are now to clone the project then setup your changelog.md (for accurate version control).
 

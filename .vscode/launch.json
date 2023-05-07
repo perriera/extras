@@ -38,7 +38,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/build/run-unittests-extras_i386",
 			"args": [
-				"[extras::fs::path::Interface]"
+				"[mold rebrand::Interface]"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

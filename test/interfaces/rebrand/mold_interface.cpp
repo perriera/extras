@@ -45,15 +45,15 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
     * @brief determine fullpath
     *
     */
-   auto major = EXTRAS_VER_MAJOR;
-   auto minor = EXTRAS_VER_MINOR;
-   auto patch = EXTRAS_VER_PATCH;
+   auto major_no = EXTRAS_VER_MAJOR;
+   auto minor_no = EXTRAS_VER_MINOR;
+   auto patch_no = EXTRAS_VER_PATCH;
    Filename testarea = "build/testarea/";
    Filename filename = "libsisutil.so";
    Filename fullpath = testarea + filename;
-   Filename symlink1 = fullpath + "." + std::to_string(major);
-   Filename symlink2 = symlink1 + "." + std::to_string(minor);
-   Filename symlink3 = symlink2 + "." + std::to_string(patch);
+   Filename symlink1 = fullpath + "." + std::to_string(major_no);
+   Filename symlink2 = symlink1 + "." + std::to_string(minor_no);
+   Filename symlink3 = symlink2 + "." + std::to_string(patch_no);
    Filename before = testarea + filename;
    Filename after = symlink3;
 
@@ -66,9 +66,9 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
    When(Method(mold, execute)).AlwaysDo([&i, &fullpath]() {
       extras::file::File file(fullpath);
       Pathname original = file.filename();
-      Pathname symlink1 = original + "." + i.major();
-      Pathname symlink2 = symlink1 + "." + i.minor();
-      Pathname symlink3 = symlink2 + "." + i.patch();
+      Pathname symlink1 = original + "." + i.major_no();
+      Pathname symlink2 = symlink1 + "." + i.minor_no();
+      Pathname symlink3 = symlink2 + "." + i.patch_no();
       Pathname script_name = file.tempname("rebrand.XXXXXX");
       {
          std::ofstream script(script_name);
@@ -89,27 +89,27 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
       system(rm.c_str());
       std::cout << std::endl;
    });
-   When(Method(mold, major)).AlwaysDo([&major]() {
+   When(Method(mold, major_no)).AlwaysDo([&major_no]() {
       {
-         return std::to_string(major);
+         return std::to_string(major_no);
       }
    });
-   When(Method(mold, minor)).AlwaysDo([&minor]() {
+   When(Method(mold, minor_no)).AlwaysDo([&minor_no]() {
       {
-         return std::to_string(minor);
+         return std::to_string(minor_no);
       }
    });
-   When(Method(mold, patch)).AlwaysDo([&patch]() {
+   When(Method(mold, patch_no)).AlwaysDo([&patch_no]() {
       {
-         return std::to_string(patch);
+         return std::to_string(patch_no);
       }
    });
    When(Method(mold, rebranded)).AlwaysDo([&i, &fullpath]() {
       extras::file::File file(fullpath);
       auto filename = file.filename();
-      filename += "." + i.major();
-      filename += "." + i.minor();
-      filename += "." + i.patch();
+      filename += "." + i.major_no();
+      filename += "." + i.minor_no();
+      filename += "." + i.patch_no();
       filename = file.pathname() + filename;
       return filename;
    });
@@ -146,7 +146,7 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
     *
     */
    Verify(Method(mold, execute));
-   Verify(Method(mold, major));
-   Verify(Method(mold, minor));
-   Verify(Method(mold, patch));
+   Verify(Method(mold, major_no));
+   Verify(Method(mold, minor_no));
+   Verify(Method(mold, patch_no));
 }

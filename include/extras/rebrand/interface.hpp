@@ -48,9 +48,9 @@ namespace extras {
           *
           * @return Number
           */
-         virtual Number major() const pure;
-         virtual Number minor() const pure;
-         virtual Number patch() const pure;
+         virtual Number major_no() const pure;
+         virtual Number minor_no() const pure;
+         virtual Number patch_no() const pure;
 
          /**
           * @brief
