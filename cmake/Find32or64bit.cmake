@@ -17,7 +17,7 @@ else()
 endif()
 
 if (NOT MAKE32BITONLY AND NOT MAKE64BITONLY)
-  print(STATUS "neither MAKE32BITONLY or MAKE64BITONLY requested")
+  print(STATUS "neither MAKE32BITONLY or MAKE64BITONLY detected")
 endif()
 
 if (MAKE32BITONLY AND MAKE64BITONLY)
@@ -37,9 +37,9 @@ if (MAKE64BITONLY)
 endif()
 
 if (MAKE32BIT)
-  print(STATUS "32bit make requested")
+  print(STATUS "32bit make requested: build/libextras_i386.so")
 endif()
 
 if (MAKE64BIT)
-  print(STATUS "64bit make requested")
+  print(STATUS "64bit make requested: build/libextras.so")
 endif()
