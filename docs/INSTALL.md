@@ -28,7 +28,7 @@ Now that you have your project cloned we need to make sure you have the tools ne
 
 		pip install clang-format
 		pip install cmake-format
-		pip install cmake
+		sudo snap install cmake --classic 
 
  - [ ] Now open the vi editor 
 
