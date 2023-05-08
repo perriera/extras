@@ -1,6 +1,18 @@
 #
 # Determining 32 or 64 (and/or both) from environment variables
 # 
+# Notes on INTEL 32 BIT SUPPORT 
+#
+# By default the perriera/extras shared libraries and the perriera/extras_cpp template
+# will compile to a 64bit platform. In modern applications this is rarely an issue. 
+# But in the case were older architectures require 32bit support or perhaps dual 32bit
+# and 64bit targets (simultaneously) all that needs to be done to build for the desired
+# platforms are to set EITHER (not both) MAKE64BITONLY or MAKE32BITONLY, (see lines 21/22).
+#
+# In the case where GitHub.com testing is required these libraries will select 64bit.
+#
+# In the case where both MAKE64BITONLY and MAKE32BITONLY is desired COMMENT OUT BOTH.
+#
 
 include(cmake/print.cmake)
 
