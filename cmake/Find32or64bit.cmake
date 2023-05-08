@@ -13,6 +13,9 @@
 #
 # In the case where both MAKE64BITONLY and MAKE32BITONLY is desired COMMENT OUT BOTH.
 #
+# FOR PROPER INCLUSION via CPM see lines 120-142 of CMakeLists.txt 
+# of perriera/extras_cpp
+#
 
 include(cmake/print.cmake)
 
