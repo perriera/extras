@@ -32,7 +32,7 @@
  */
 
 #define EXTRAS_VER_MAJOR 8
-#define EXTRAS_VER_MINOR 19
+#define EXTRAS_VER_MINOR 20
 #define EXTRAS_VER_PATCH 0
 
 #define EXTRAS_VERSION                                                         \

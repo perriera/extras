@@ -1,2 +1,0 @@
-### duplicate 
-See INSTALL.md
