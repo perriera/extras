@@ -21,7 +21,7 @@
 
 #include <extras/docking/DockIt.hpp>
 #include <extras/file/clazz.hpp>
-#include <extras/rebrand/interface.hpp>
+#include <extras/retag/interface.hpp>
 #include <extras/strings.hpp>
 #include <extras/version.hpp>
 #include <iostream>
@@ -31,15 +31,15 @@
 // https://github.com/eranpeer/FakeIt/wiki/Quickstart
 //
 
-using namespace extras::rebrand;
+using namespace extras::retag;
 using namespace extras;
 using namespace fakeit;
 
 /**
- * @brief dock rebrand::Interface
+ * @brief dock retag::Interface
  *
  */
-SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
+SCENARIO("Mold retag::Interface", "[mold retag::Interface]")
 {
    /**
     * @brief determine fullpath
@@ -69,7 +69,7 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
       Pathname symlink1 = original + "." + i.major_no();
       Pathname symlink2 = symlink1 + "." + i.minor_no();
       Pathname symlink3 = symlink2 + "." + i.patch_no();
-      Pathname script_name = file.tempname("rebrand.XXXXXX");
+      Pathname script_name = file.tempname("retag.XXXXXX");
       {
          std::ofstream script(script_name);
          script << "cd " << file.pathname() << std::endl;
@@ -104,7 +104,7 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
          return std::to_string(patch_no);
       }
    });
-   When(Method(mold, rebranded)).AlwaysDo([&i, &fullpath]() {
+   When(Method(mold, newTag)).AlwaysDo([&i, &fullpath]() {
       extras::file::File file(fullpath);
       auto filename = file.filename();
       filename += "." + i.major_no();
@@ -121,7 +121,7 @@ SCENARIO("Mold rebrand::Interface", "[mold rebrand::Interface]")
 
    system("rm -rf build/testarea");
    system("mkdir build/testarea");
-   system("cp test/etc/rebrand/librandom.sol build/testarea/libsisutil.so");
+   system("cp test/etc/retag/librandom.sol build/testarea/libsisutil.so");
    file::NotFoundException::assertion(before, __INFO__);
 
    /**

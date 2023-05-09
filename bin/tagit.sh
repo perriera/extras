@@ -2,6 +2,8 @@
 if [ $# -eq 0 ]
   then
     echo "No arguments supplied"
+    echo "but here's the last tag:"
+    git describe --tags --abbrev=0 
     exit
 fi
 

@@ -1,5 +1,5 @@
 /**
- * @rebrand FileInterface.hpp
+ * @retag FileInterface.hpp
  * @author Perry Anderson (perryand@yorku.ca)
  * @brief define standard methods for FileInterface
  * @version 0.1
@@ -21,7 +21,7 @@ struct user_id;
 struct ldap;
 
 namespace extras {
-   namespace rebrand {
+   namespace retag {
 
       /**
        * @brief
@@ -31,7 +31,7 @@ namespace extras {
       using Cmd = std::string;
 
       /**
-       * @brief LoginInterface
+       * @brief retag::Interface
        *
        */
       interface Interface
@@ -57,7 +57,7 @@ namespace extras {
           *
           * @return Filename
           */
-         virtual Filename rebranded() const pure;
+         virtual Filename newTag() const pure;
       };
 
       /**
@@ -97,7 +97,7 @@ namespace extras {
                                const extras::WhereAmI& ref);
       };
 
-   } // namespace rebrand
+   } // namespace retag
 } // namespace extras
 
 #endif // _EXTRAS_REBRAND_INTERFACE_HPP

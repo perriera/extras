@@ -33,7 +33,7 @@ IMPORTANT:
 
 #### 8.19.00 (2023-05-07)
 ### Refactored 
-- ported rebrand to 18.04
+- ported retag to 18.04
 
 #### 8.17.04 (2023-05-06)
 ### Refactored 
@@ -86,7 +86,7 @@ IMPORTANT:
 
 #### 8.11.0 (2023-03-23)
 ### Refactored 
-- added rebrand interface
+- added retag interface
 
 #### 8.10.0 (2023-03-23)
 ### Refactored 
