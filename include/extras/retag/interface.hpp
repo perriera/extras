@@ -61,6 +61,14 @@ namespace extras {
       };
 
       /**
+       * @brief test
+       * @note available only under test/
+       *
+       * @param i
+       */
+      void test(Interface& i);
+
+      /**
        * @brief FileException
        *
        */

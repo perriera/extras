@@ -119,27 +119,7 @@ SCENARIO("Mold retag::Interface", "[mold retag::Interface]")
     *
     */
 
-   system("rm -rf build/testarea");
-   system("mkdir build/testarea");
-   system("cp test/etc/retag/librandom.sol build/testarea/libsisutil.so");
-   file::NotFoundException::assertion(before, __INFO__);
-
-   /**
-    * @brief test the interface
-    *
-    */
-
-   file::NotFoundException::assertion(before, __INFO__);
-   file::NewFoundException::assertion(after, __INFO__);
-   file::NewFoundException::assertion(symlink1, __INFO__);
-   file::NewFoundException::assertion(symlink2, __INFO__);
-   file::NewFoundException::assertion(symlink3, __INFO__);
-   i.execute();
-   file::NotFoundException::assertion(before, __INFO__);
-   file::NotFoundException::assertion(after, __INFO__);
-   file::NotFoundException::assertion(symlink1, __INFO__);
-   file::NotFoundException::assertion(symlink2, __INFO__);
-   file::NotFoundException::assertion(symlink3, __INFO__);
+   test(i);
 
    /**
     * @brief verify the desired methods were tested
