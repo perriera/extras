@@ -42,18 +42,18 @@ using namespace fakeit;
 SCENARIO("Mold retag::Interface", "[mold retag::Interface]")
 {
    /**
-    * @brief determine fullpath
+    * @brief determine _fullpath
     *
     */
-   auto major_no = EXTRAS_VER_MAJOR;
-   auto minor_no = EXTRAS_VER_MINOR;
-   auto patch_no = EXTRAS_VER_PATCH;
+   Number major_no = std::to_string(EXTRAS_VER_MAJOR);
+   Number minor_no = std::to_string(EXTRAS_VER_MINOR);
+   Number patch_no = std::to_string(EXTRAS_VER_PATCH);
    Filename testarea = "build/testarea/";
    Filename filename = "libsisutil.so";
-   Filename fullpath = testarea + filename;
-   Filename symlink1 = fullpath + "." + std::to_string(major_no);
-   Filename symlink2 = symlink1 + "." + std::to_string(minor_no);
-   Filename symlink3 = symlink2 + "." + std::to_string(patch_no);
+   Filename _fullpath = testarea + filename;
+   Filename symlink1 = _fullpath + "." + major_no;
+   Filename symlink2 = symlink1 + "." + minor_no;
+   Filename symlink3 = symlink2 + "." + patch_no;
    Filename before = testarea + filename;
    Filename after = symlink3;
 
@@ -63,8 +63,8 @@ SCENARIO("Mold retag::Interface", "[mold retag::Interface]")
     */
    Dock<Interface> mold;
    Interface& i = mold.get();
-   When(Method(mold, execute)).AlwaysDo([&i, &fullpath]() {
-      extras::file::File file(fullpath);
+   When(Method(mold, execute)).AlwaysDo([&i, &_fullpath]() {
+      extras::file::File file(_fullpath);
       Pathname original = file.filename();
       Pathname symlink1 = original + "." + i.major_no();
       Pathname symlink2 = symlink1 + "." + i.minor_no();
@@ -91,21 +91,21 @@ SCENARIO("Mold retag::Interface", "[mold retag::Interface]")
    });
    When(Method(mold, major_no)).AlwaysDo([&major_no]() {
       {
-         return std::to_string(major_no);
+         return major_no;
       }
    });
    When(Method(mold, minor_no)).AlwaysDo([&minor_no]() {
       {
-         return std::to_string(minor_no);
+         return minor_no;
       }
    });
    When(Method(mold, patch_no)).AlwaysDo([&patch_no]() {
       {
-         return std::to_string(patch_no);
+         return patch_no;
       }
    });
-   When(Method(mold, newTag)).AlwaysDo([&i, &fullpath]() {
-      extras::file::File file(fullpath);
+   When(Method(mold, newTag)).AlwaysDo([&i, &_fullpath]() {
+      extras::file::File file(_fullpath);
       auto filename = file.filename();
       filename += "." + i.major_no();
       filename += "." + i.minor_no();

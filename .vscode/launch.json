@@ -15,7 +15,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/build/run-unittests-extras",
 			"args": [
-				"[mold retag::Interface]"
+				"[dock retag::Interface]"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
