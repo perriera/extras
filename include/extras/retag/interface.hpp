@@ -1,7 +1,7 @@
 /**
- * @retag FileInterface.hpp
+ * @file interface.hpp
  * @author Perry Anderson (perryand@yorku.ca)
- * @brief define standard methods for FileInterface
+ * @brief retag::Interface
  * @version 0.1
  * @date 2022-07-29
  *
