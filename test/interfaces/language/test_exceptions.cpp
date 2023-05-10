@@ -67,7 +67,7 @@ SCENARIO("Test ExceptionInterface: GroupCustomException (args)",
    REQUIRE(ends_with(_exception.getfile(), "test_exceptions.cpp"));
    REQUIRE(contains(_exception.getfunc(), "____C_A_T_C_H____T_E_S_T____2"));
    auto x = _exception.getline();
-   REQUIRE(x == 59);
+   REQUIRE(x == 65);
 }
 
 SCENARIO("Test ExceptionInterface: SpecificCustomException (no args)",
@@ -78,7 +78,7 @@ SCENARIO("Test ExceptionInterface: SpecificCustomException (no args)",
    REQUIRE(contains(_exception.what(), test));
    REQUIRE(ends_with(_exception.getfile(), "test_exceptions.cpp"));
    REQUIRE(contains(_exception.getfunc(), "____C_A_T_C_H____T_E_S_T____4"));
-   REQUIRE(_exception.getline() == 71);
+   REQUIRE(_exception.getline() == 77);
 }
 
 SCENARIO("Test ExceptionInterface: SpecificCustomException (args)",
@@ -90,7 +90,7 @@ SCENARIO("Test ExceptionInterface: SpecificCustomException (args)",
    REQUIRE(contains(_exception.what(), "Port: 8080 wasn't found"));
    REQUIRE(ends_with(_exception.getfile(), "test_exceptions.cpp"));
    REQUIRE(contains(_exception.getfunc(), "____C_A_T_C_H____T_E_S_T____6"));
-   REQUIRE(_exception.getline() == 82);
+   REQUIRE(_exception.getline() == 88);
 }
 
 SCENARIO("Test SpecificCustomException: assertion", "[exceptions_testcases]")
