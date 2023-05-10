@@ -1,6 +1,8 @@
 # Prerequisites
 *.d
 
+docs/for_extras/
+
 build/
 .cache/
 
@@ -48,4 +50,3 @@ send_*.txt
 .vscode/configurationCache.log
 .vscode/dryrun.log
 .vscode/targets.log
-
