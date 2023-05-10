@@ -5,7 +5,7 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.20.0 -m "added for_extras.git (under docs)"</br>
+> > git tag -a v8.21.0 -m "changed license to standard MIT license"</br>
 > > git push origin v8.19.0
 >
 > > POPULAR LINKS:
@@ -25,6 +25,16 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.22.0 (2023-05-10)
+### Refactored 
+- changed license to standard MIT license
+- removed docs 
+
+#### 8.21.0 (2023-05-09)
+### Refactored 
+- added details to tagit.sh
+- removed docs 
 
 #### 8.20.0 (2023-05-08)
 ### Refactored 
@@ -971,7 +981,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.20.0..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.21.0..HEAD
+[8.21.0]: https://github.com/perriera/extras/compare/v8.20.0...v8.21.0
 [8.20.0]: https://github.com/perriera/extras/compare/v8.19.00...v8.20.0
 [8.19.0]: https://github.com/perriera/extras/compare/v8.16.0...v8.19.00
 [8.16.1]: https://github.com/perriera/extras/compare/v8.16.0...v8.16.1
