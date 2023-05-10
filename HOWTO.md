@@ -348,7 +348,7 @@ Copyright (c) 2019 Lars Melchior
 https://github.com/cpm-cmake/CPM.cmake
 
 ## Todo List:
-The following are a series of features to be added to (perriera) extras in the near future. If there is anything you'd like to see added to the extras package please email us at perry.anderson@gmail.com, (or perry@exparx.com)
+The following are a series of features to be added to (perriera) extras in the near future. If there is anything you'd like to see added to the extras package please email us at perry.anderson@gmail.com, (or perry@exparx.ca)
 
 ## Android support
 Expect support for the Android platform in the near future

@@ -1,11 +1,11 @@
 /**
  * @file exceptions.hpp
- * @author Perry Anderson (perry@exparx.com)
+ * @author Perry Anderson (perry@exparx.ca)
  * @brief C++ defined custom exceptions specific to this package
  * @version 0.1
  * @date 2021-11-30
  *
- * @copyright (C) November 22, 2021 EXPARX INCORPORATED
+ * @copyright © 2023 Perry Anderson, (perry@exparx.ca)
  *
  */
 
@@ -33,37 +33,6 @@
  * LIABILITY,  WHETHER IN  AN ACTION  OF CONTRACT,  TORT OR  OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
- *
- */
-
-/**
- * @file exceptions.hpp
- *
- * @author Matt Williams, (matt@dmgblockchain.com)
- *
- * @brief ExtrasExceptionInterface is needed for polymorphic reasons,
- * passing exact error subclasses into functions is cumberson, I will
- * either have to template the function, or overload it. This way I can
- * just make a a AbstractCustomException pointer to the subclass in
- * question and pass that around instead. I'm also a huge fan of knowing
- * the file, function signature and line where the error happend, with
- * this being said an ADT isZnatural as it forces the CDT to give an
- * exact implementation.
- *
- * @see test/mock_exceptions.cpp & test/test_exceptions.cpp
- *
- * @ref
- * https://stackoverflow.com/questions/348833/how-to-know-the-exact-line-of-code-where-an-exception-has-been-caused/348862#348862
- * @ref
- * https://stackoverflow.com/questions/37227300/why-doesnt-c-use-stdnested-exception-to-allow-throwing-from-destructor/37227893#37227893
- * @ref
- * https://stackoverflow.com/questions/691719/c-display-stack-trace-on-exception
- *
- * @version 1.0.0
- * @date 2021-08-11
- *
- * @copyright (C) November 22, 2021 EXPARX INCORPORATED, Matt Williams, (MIT
- * License)
  *
  */
 

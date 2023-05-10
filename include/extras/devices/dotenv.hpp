@@ -1,11 +1,11 @@
 /**
  * @file dotenv.hpp
- * @author Perry Anderson (perry@exparx.com)
+ * @author Perry Anderson (perry@exparx.ca)
  * @brief DOTENV implementation
  * @version 0.1
  * @date 2021-11-30
  *
- * @copyright (C) November 22, 2021 EXPARX INCORPORATED
+ * @copyright © 2023 Perry Anderson, (perry@exparx.ca)
  *
  */
 
@@ -48,7 +48,7 @@
  * with mocks and unit tests) THEN we can utilize DotENVInterface inside
  * applications that depend on environment variables
  *
- * @copyright (C) November 22, 2021 EXPARX INCORPORATED, Perry Anderson
+ * @copyright © 2023 Perry Anderson, (perry@exparx.ca), Perry Anderson
  * (perry.anderson@gmail.com)
  * @license MIT, (see LICENSE)
  *

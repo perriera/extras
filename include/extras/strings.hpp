@@ -1,11 +1,11 @@
 /**
  * @file strings.hpp
- * @author Perry Anderson (perry@exparx.com)
+ * @author Perry Anderson (perry@exparx.ca)
  * @brief string uspport
  * @version 0.1
  * @date 2021-11-30
  *
- * @copyright (C) November 22, 2021 EXPARX INCORPORATED
+ * @copyright © 2023 Perry Anderson, (perry@exparx.ca)
  *
  */
 
@@ -43,7 +43,7 @@
  * @version 1.2.1
  * @date 2021-07-25
  *
- * @copyright (C) November 22, 2021 EXPARX INCORPORATED Perry Anderson,
+ * @copyright © 2023 Perry Anderson, (perry@exparx.ca) Perry Anderson,
  * All Rights Reserved, MIT License.
  *
  */
