@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _EXTRAS_FEATURE_INTERFACE_HPP
-#define _EXTRAS_FEATURE_INTERFACE_HPP
+#ifndef _EXTRAS_PARAMS_INTERFACE_HPP
+#define _EXTRAS_PARAMS_INTERFACE_HPP
 
 #include <algorithm>
 #include <extras/interfaces.hpp>
@@ -34,26 +34,42 @@ struct user_id;
 struct ldap;
 
 namespace extras {
-   namespace feature {
+   namespace params {
 
       /**
-       * @brief LoginInterface
+       * @brief
        *
        */
-      interface FeatureInterface
+      using Number = std::string;
+      using Cmd = std::string;
+
+      /**
+       * @brief params::Interface
+       *
+       */
+      interface Interface
       {
+
+         virtual void execute() const pure;
       };
 
       /**
-       * @brief feature::Exception
+       * @brief test
+       * @note available only under test/
+       *
+       * @param i
+       */
+      void test(Interface& i);
+
+      /**
+       * @brief params::Exception
        *
        */
-      concrete class FeatureException extends extras::AbstractCustomException
+      concrete class Exception extends extras::AbstractCustomException
       {
-       public:
+       protected:
 
-         FeatureException(const std::string& msg,
-                          const extras::WhereAmI& whereAmI)
+         Exception(const std::string& msg, const extras::WhereAmI& whereAmI)
            : AbstractCustomException(msg.c_str(),
                                      whereAmI._file.c_str(),
                                      whereAmI._func.c_str(),
@@ -63,23 +79,26 @@ namespace extras {
       };
 
       /**
-       * @brief NotImplementedException
+       * @brief FileNotFoundException
        *
        */
-      concrete class NotImplementedException extends FeatureException
+      concrete class NotFoundException extends Exception
       {
        public:
 
-         NotImplementedException(const std::string& msg,
-                                 const extras::WhereAmI& whereAmI)
-           : FeatureException(msg, whereAmI)
+         NotFoundException(const std::string& msg,
+                           const extras::WhereAmI& whereAmI)
+           : Exception(msg, whereAmI)
          {
          }
 
          virtual char const* what() const noexcept { return _msg.c_str(); }
+
+         static void assertion(const Filename& filename,
+                               const extras::WhereAmI& ref);
       };
 
-   } // namespace feature
+   } // namespace params
 } // namespace extras
 
-#endif // _EXTRAS_FEATURE_INTERFACE_HPP
+#endif // _EXTRAS_PARAMS_INTERFACE_HPP

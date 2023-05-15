@@ -75,7 +75,7 @@ namespace extras {
       };
 
       /**
-       * @brief FileException
+       * @brief etc::Exception
        *
        */
       concrete class Exception extends extras::AbstractCustomException

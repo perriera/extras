@@ -136,7 +136,7 @@ file(GLOB_RECURSE EXTRAS_SOURCE CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/s
 # shared or static)
 #
 
-set(EXTRAS_LIBS_NEEDED stdc++fs std=c++17)
+set(EXTRAS_LIBS_NEEDED stdc++fs)
 
 if(MAKE32BIT)
   add_library(${PROJECT_NAME}_i386 SHARED ${EXTRAS_HEADERS} ${EXTRAS_SOURCE})
@@ -155,6 +155,9 @@ if (NOT MAKE_EXTRAS_LIBRARY_ONLY)
   if(BUILD_TESTS)
     message(STATUS "Building tests")
     file(GLOB_RECURSE TESTS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
+    #
+    # run-unittests
+    #
     if(MAKE32BIT)
       add_executable(run-unittests-extras_i386 ${TESTS})
       target_include_directories(run-unittests-extras_i386 PUBLIC test/)
@@ -168,6 +171,30 @@ if (NOT MAKE_EXTRAS_LIBRARY_ONLY)
       target_link_libraries(run-unittests-extras ${PROJECT_NAME} stdc++fs  ${CMAKE_THREAD_LIBS_INIT})
     endif()
   endif()
+endif()
+
+#
+# TODO: declare example client usage application code here, this is where regression tests should
+# ultimately be written. as well, this make file uses a GLOB_RECURSE macro which automatically 
+# includes ALL headers and sources under include/ and src/. So, to keep two or more main() 
+# declarations seperate, we place any sources that have a main() in the instances/ folder
+#
+if( NOT MAKE_EXTRAS_LIBRARY_ONLY OR MAKE_EXTRAS_LIBRARY_TOOLS)
+
+  if (MAKE32BIT)
+    add_executable(retag_i386 instances/retag.cpp) 
+    target_include_directories(retag_i386 PUBLIC ${INCLUDES} ${ORACLE_INCLUDE})
+    target_link_libraries(retag_i386 PRIVATE ${PROJECT_NAME}_i386 ${EXTRAS_LIBS_NEEDED})
+    target_compile_options(retag_i386 PUBLIC -m32)
+    target_link_options(retag_i386 PRIVATE -m32)
+  endif()
+
+  if (MAKE64BIT)
+    add_executable(retag instances/retag.cpp) 
+    target_include_directories(retag PUBLIC ${INCLUDES} ${ORACLE_INCLUDE})
+    target_link_libraries(retag PRIVATE ${PROJECT_NAME} ${EXTRAS_LIBS_NEEDED})
+  endif()
+
 endif()
 
 # Library Note: may not work on windows

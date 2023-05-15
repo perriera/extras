@@ -1,21 +1,6 @@
 /**
- * @file version.hpp
- * @author Matt Williams, (mattltf@protonmail.com)
- * @brief Adds version support for Cmake script
- * @version 3.2.0
- * @date 2021-08-08
- *
- * @copyright (C) August 8, 2021 Matt Williams
- *
- */
-
-#ifndef _EXTRAS_VERSION_HPP
-#define _EXTRAS_VERSION_HPP
-
-/**
  * @brief The MIT License (MIT)
- * @copyright © 2021 Matt Williams, (mattltf@protonmail.com)
- * @ref https://github.com/thebashpotato
+ * @copyright © 2023 Perry Anderson, (perry@exparx.ca)
  *
  * Permission  is  hereby  granted, free  of  charge, to  any person  obtaining
  * a copy of this software and associated documentation files (the “Software”),
@@ -37,11 +22,54 @@
  *
  */
 
-#define EXTRAS_VER_MAJOR 8
-#define EXTRAS_VER_MINOR 24
-#define EXTRAS_VER_PATCH 0
+#include "../../vendor/catch.hpp"
+#include "../../vendor/fakeit.hpp"
 
-#define EXTRAS_VERSION                                                         \
-   (EXTRAS_VER_MAJOR * 10000 + EXTRAS_VER_MINOR * 100 + EXTRAS_VER_PATCH)
+#include <extras/docking/DockIt.hpp>
+#include <extras/file/clazz.hpp>
+#include <extras/params/interface.hpp>
+#include <extras/strings.hpp>
+#include <extras/version.hpp>
+#include <iostream>
+#include <sstream>
 
-#endif // _EXTRAS_VERSION_HPP
+//
+// https://github.com/eranpeer/FakeIt/wiki/Quickstart
+//
+
+using namespace extras::params;
+using namespace extras;
+using namespace fakeit;
+
+/**
+ * @brief dock params::Interface
+ *
+ */
+SCENARIO("Mold params::Interface", "[mold params::Interface]")
+{
+   /**
+    * @brief determine _fullpath
+    *
+    */
+
+   /**
+    * @brief construct dock for interface
+    *
+    */
+   Dock<Interface> mold;
+   Interface& i = mold.get();
+   When(Method(mold, execute)).AlwaysDo([&i]() {});
+
+   /**
+    * @brief prepare test area
+    *
+    */
+
+   test(i);
+
+   /**
+    * @brief verify the desired methods were tested
+    *
+    */
+   Verify(Method(mold, execute));
+}

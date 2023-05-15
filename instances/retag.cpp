@@ -22,28 +22,15 @@
  *
  */
 
-#include "../../vendor/catch.hpp"
-
-#include <extras/docking/DockIt.hpp>
-#include <extras/file/clazz.hpp>
 #include <extras/retag/clazz.hpp>
-#include <extras/strings.hpp>
 #include <extras/version.hpp>
 #include <iostream>
-#include <sstream>
-
-//
-// https://github.com/eranpeer/FakeIt/wiki/Quickstart
-//
 
 using namespace extras::retag;
 using namespace extras;
 
-/**
- * @brief dock retag::Interface
- *
- */
-SCENARIO("Dock retag::Interface", "[dock retag::Interface]")
+int
+main(int, const char**)
 {
    /**
     * @brief determine fullpath
@@ -65,11 +52,16 @@ SCENARIO("Dock retag::Interface", "[dock retag::Interface]")
     * @brief construct dock for interface
     *
     */
-   retag::Instance dock(fullpath, major_no, minor_no, patch_no);
-   retag::Interface& i = dock;
-   retag::test(i);
+   try {
+      retag::Instance dock(fullpath, major_no, minor_no, patch_no);
+      std::cout << "retag utility (for 32bit Linux)" << std::endl;
+      std::cout << "Using " << fullpath << std::endl;
+      dock.execute();
+   } catch (const extras::exception& ex) {
+      std::cout << ex << std::endl;
+   } catch (const std::exception& ex) {
+      std::cout << ex.what() << std::endl;
+   }
 
-   /**
-    * @brief missing parameter test
-    */
+   return 0;
 }

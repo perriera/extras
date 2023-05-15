@@ -22,10 +22,11 @@
  *
  */
 
-#ifndef _EXTRAS_REBRAND_CLAZZ_HPP
-#define _EXTRAS_REBRAND_CLAZZ_HPP
+#ifndef _EXTRAS_RETAG_CLAZZ_HPP
+#define _EXTRAS_RETAG_CLAZZ_HPP
 
 #include <bits/stdc++.h>
+#include <extras/file/clazz.hpp>
 #include <extras/retag/interface.hpp>
 #include <iostream>
 #include <sstream>
@@ -129,4 +130,4 @@ namespace extras {
    } // namespace retag
 } // namespace extras
 
-#endif // _EXTRAS_REBRAND_CLAZZ_HPP
+#endif // _EXTRAS_RETAG_CLAZZ_HPP

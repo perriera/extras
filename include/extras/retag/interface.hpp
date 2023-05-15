@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _EXTRAS_REBRAND_INTERFACE_HPP
-#define _EXTRAS_REBRAND_INTERFACE_HPP
+#ifndef _EXTRAS_RETAG_INTERFACE_HPP
+#define _EXTRAS_RETAG_INTERFACE_HPP
 
 #include <algorithm>
 #include <extras/interfaces.hpp>
@@ -82,7 +82,7 @@ namespace extras {
       void test(Interface& i);
 
       /**
-       * @brief FileException
+       * @brief retag::Exception
        *
        */
       concrete class Exception extends extras::AbstractCustomException
@@ -121,4 +121,4 @@ namespace extras {
    } // namespace retag
 } // namespace extras
 
-#endif // _EXTRAS_REBRAND_INTERFACE_HPP
+#endif // _EXTRAS_RETAG_INTERFACE_HPP
