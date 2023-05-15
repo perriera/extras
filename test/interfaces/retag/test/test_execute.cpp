@@ -22,8 +22,8 @@
  *
  */
 
-#include "../../vendor/catch.hpp"
-#include "../../vendor/fakeit.hpp"
+#include "../../../vendor/catch.hpp"
+#include "../../../vendor/fakeit.hpp"
 
 #include <extras/docking/DockIt.hpp>
 #include <extras/file/clazz.hpp>
@@ -48,7 +48,7 @@ using namespace fakeit;
 namespace extras {
    namespace retag {
 
-      void test(Interface& i)
+      void test_execute(Interface& i)
       {
 
          /**

@@ -67,7 +67,7 @@ SCENARIO("Dock retag::Interface", "[dock retag::Interface]")
     */
    retag::Instance dock(fullpath, major_no, minor_no, patch_no);
    retag::Interface& i = dock;
-   retag::test(i);
+   retag::test_execute(i);
 
    /**
     * @brief missing parameter test

@@ -79,7 +79,7 @@ namespace extras {
        *
        * @param i
        */
-      void test(Interface& i);
+      void test_execute(Interface& i);
 
       /**
        * @brief retag::Exception
