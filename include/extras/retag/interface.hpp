@@ -80,6 +80,7 @@ namespace extras {
        * @param i
        */
       void test_execute(Interface& i);
+      void test_parameters(Interface& i);
 
       /**
        * @brief retag::Exception
