@@ -68,6 +68,17 @@ namespace extras {
          }
 
          /**
+          * @brief parameters
+          *
+          * @param argc
+          * @param argv
+          */
+         virtual void parameters(int argc, const char* argv[])
+         {
+            throw "not implemented yet";
+         }
+
+         /**
           * @brief execute
           *
           */
