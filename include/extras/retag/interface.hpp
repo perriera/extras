@@ -42,6 +42,8 @@ namespace extras {
        */
       using Number = std::string;
       using Cmd = std::string;
+      using Param = std::string;
+      using ParameterList = std::vector<std::string>;
 
       /**
        * @brief retag::Interface

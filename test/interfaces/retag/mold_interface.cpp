@@ -64,6 +64,12 @@ SCENARIO("Mold retag::Interface", "[mold retag::Interface]")
    Filename after = symlink3;
 
    /**
+    * @brief class members
+    *
+    */
+   ParameterList _list;
+
+   /**
     * @brief construct dock for interface
     *
     */
@@ -96,31 +102,9 @@ SCENARIO("Mold retag::Interface", "[mold retag::Interface]")
       std::cout << std::endl;
    });
    When(Method(mold, parameters))
-     .AlwaysDo([&i, &_fullpath](int argc, const char* argv[]) {
-        extras::file::File file(_fullpath);
-        Pathname original = file.filename();
-        Pathname symlink1 = original + "." + i.major_no();
-        Pathname symlink2 = symlink1 + "." + i.minor_no();
-        Pathname symlink3 = symlink2 + "." + i.patch_no();
-        Pathname script_name = file.tempname("retag.XXXXXX");
-        {
-           std::ofstream script(script_name);
-           script << "cd " << file.pathname() << std::endl;
-           script << "rm " << symlink3 << " 2>/dev/null" << std::endl;
-           script << "rm " << symlink2 << " 2>/dev/null" << std::endl;
-           script << "rm " << symlink1 << " 2>/dev/null" << std::endl;
-           script << "mv " << original << ' ' << symlink3 << std::endl;
-           script << "ln -s " << symlink3 << ' ' << symlink2 << std::endl;
-           script << "ln -s " << symlink2 << ' ' << symlink1 << std::endl;
-           script << "ln -s " << symlink1 << ' ' << original << std::endl;
-        }
-        Cmd cat = "cat " + script_name;
-        system(cat.c_str());
-        Cmd bash = "bash " + script_name;
-        system(bash.c_str());
-        Cmd rm = "rm " + script_name;
-        system(rm.c_str());
-        std::cout << std::endl;
+     .AlwaysDo([&i, &_list](int argc, const char* argv[]) {
+        for (int j = 0; j < argc; j++)
+           _list.push_back(argv[j]);
      });
    When(Method(mold, major_no)).AlwaysDo([&major_no]() {
       {
@@ -152,8 +136,8 @@ SCENARIO("Mold retag::Interface", "[mold retag::Interface]")
     *
     */
 
-   test_execute(i);
    test_parameters(i);
+   test_execute(i);
 
    /**
     * @brief verify the desired methods were tested

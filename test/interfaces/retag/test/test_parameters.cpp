@@ -55,44 +55,10 @@ namespace extras {
           * @brief determine fullpath
           *
           */
-         auto major_no = EXTRAS_VER_MAJOR;
-         auto minor_no = EXTRAS_VER_MINOR;
-         auto patch_no = EXTRAS_VER_PATCH;
-         Filename testarea = "build/testarea/";
-         Filename filename = "libsisutil.so";
-         Filename fullpath = testarea + filename;
-         Filename symlink1 = fullpath + "." + std::to_string(major_no);
-         Filename symlink2 = symlink1 + "." + std::to_string(minor_no);
-         Filename symlink3 = symlink2 + "." + std::to_string(patch_no);
-         Filename before = testarea + filename;
-         Filename after = symlink3;
 
-         /**
-          * @brief prepare test area
-          *
-          */
-
-         system("rm -rf build/testarea");
-         system("mkdir build/testarea");
-         system("cp test/etc/retag/librandom.sol build/testarea/libsisutil.so");
-         file::NotFoundException::assertion(before, __INFO__);
-
-         /**
-          * @brief test the interface
-          *
-          */
-
-         file::NotFoundException::assertion(before, __INFO__);
-         file::NewFoundException::assertion(after, __INFO__);
-         file::NewFoundException::assertion(symlink1, __INFO__);
-         file::NewFoundException::assertion(symlink2, __INFO__);
-         file::NewFoundException::assertion(symlink3, __INFO__);
-         i.execute();
-         file::NotFoundException::assertion(before, __INFO__);
-         file::NotFoundException::assertion(after, __INFO__);
-         file::NotFoundException::assertion(symlink1, __INFO__);
-         file::NotFoundException::assertion(symlink2, __INFO__);
-         file::NotFoundException::assertion(symlink3, __INFO__);
+         const char* argv[] = { "libsisutil.so", "9.24.0" };
+         int argc = 2;
+         i.parameters(argc, argv);
       }
 
    }
