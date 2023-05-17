@@ -23,6 +23,12 @@
 # IN THE SOFTWARE.
 #
 
+FILE=docs/for_extras/SETUP.md
+
+if [ ! -f $FILE ]; then
+    git clone https://github.com/perriera/for_extras.git
+fi
+
 cd docs/for_extras
 git pull
 cd ../..
