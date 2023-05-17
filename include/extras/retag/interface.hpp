@@ -109,24 +109,72 @@ namespace extras {
          }
       };
 
+      // /**
+      //  * @brief FileNotFoundException
+      //  *
+      //  */
+      // concrete class NotFoundException extends Exception
+      // {
+      //  public:
+
+      //    NotFoundException(const std::string& msg,
+      //                      const extras::WhereAmI& whereAmI)
+      //      : Exception(msg, whereAmI)
+      //    {
+      //    }
+
+      //    virtual char const* what() const noexcept { return _msg.c_str(); }
+
+      //    static void assertion(const Filename& filename,
+      //                          const extras::WhereAmI& ref);
+      // };
+
       /**
-       * @brief FileNotFoundException
+       * @brief IncorrectParametersException
        *
        */
-      concrete class NotFoundException extends Exception
+      concrete class IncorrectParametersException extends Exception
       {
        public:
 
-         NotFoundException(const std::string& msg,
-                           const extras::WhereAmI& whereAmI)
+         IncorrectParametersException(const std::string& msg,
+                                      const extras::WhereAmI& whereAmI)
            : Exception(msg, whereAmI)
          {
          }
 
          virtual char const* what() const noexcept { return _msg.c_str(); }
 
-         static void assertion(const Filename& filename,
-                               const extras::WhereAmI& ref);
+         static void assertion(const ParameterList& list,
+                               const extras::WhereAmI& ref)
+         {
+            assume(list.size() != 2) ensure IncorrectParametersException(
+              "syntax: filename version", ref);
+         }
+      };
+
+      /**
+       * @brief IncorrectNumbersException
+       *
+       */
+      concrete class IncorrectNumbersException extends Exception
+      {
+       public:
+
+         IncorrectNumbersException(const std::string& msg,
+                                   const extras::WhereAmI& whereAmI)
+           : Exception(msg, whereAmI)
+         {
+         }
+
+         virtual char const* what() const noexcept { return _msg.c_str(); }
+
+         static void assertion(const std::vector<std::string> parts,
+                               const extras::WhereAmI& ref)
+         {
+            assume(parts.size() != 3)
+              ensure IncorrectNumbersException("syntax: ##.##.##", ref);
+         }
       };
 
    } // namespace retag

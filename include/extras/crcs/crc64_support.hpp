@@ -151,7 +151,7 @@ namespace extras {
    //             // is current coefficient set?
    //             if (crc & 1)
    //             {
-   //                 // yes, then assume it gets zero'd (by implied x^64
+   //                 // yes, then ensure it gets zero'd (by implied x^64
    //                 coefficient of dividend) crc >>= 1;
 
    //                 // and add rest of the divisor

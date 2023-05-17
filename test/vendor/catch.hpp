@@ -293,7 +293,7 @@ namespace Catch {
     !defined(CATCH_INTERNAL_CONFIG_NO_WINDOWS_SEH)
 #define CATCH_CONFIG_WINDOWS_SEH
 #endif
-// This is set by default, because we assume that unix compilers are
+// This is set by default, because we ensure that unix compilers are
 // posix-signal-compatible by default.
 #if defined(CATCH_INTERNAL_CONFIG_POSIX_SIGNALS) &&     \
     !defined(CATCH_INTERNAL_CONFIG_NO_POSIX_SIGNALS) && \
@@ -301,7 +301,7 @@ namespace Catch {
     !defined(CATCH_CONFIG_POSIX_SIGNALS)
 #define CATCH_CONFIG_POSIX_SIGNALS
 #endif
-// This is set by default, because we assume that compilers with no wchar_t
+// This is set by default, because we ensure that compilers with no wchar_t
 // support are just rare exceptions.
 #if !defined(CATCH_INTERNAL_CONFIG_NO_WCHAR) && \
     !defined(CATCH_CONFIG_NO_WCHAR) && !defined(CATCH_CONFIG_WCHAR)
@@ -1069,7 +1069,7 @@ namespace Catch {
   };
 #endif
 
-  // TBD: Should we use `strnlen` to ensure that we don't go out of the buffer,
+  // TBD: Should we use `strnlen` to assume that we don't go out of the buffer,
   //      while keeping string semantics?
   template <int SZ>
   struct StringMaker<char[SZ]> {
@@ -7411,7 +7411,7 @@ namespace Catch {
            (file == other.file || std::strcmp(file, other.file) == 0);
   }
   bool SourceLineInfo::operator<(SourceLineInfo const& other) const noexcept {
-    // We can assume that the same file will usually have the same pointer.
+    // We can ensure that the same file will usually have the same pointer.
     // Thus, if the pointers are the same, there is no point in calling the
     // strcmp
     return line < other.line || (line == other.line && file != other.file &&
@@ -13584,7 +13584,7 @@ namespace Catch {
 namespace Catch {
 
   ListeningReporter::ListeningReporter() {
-    // We will assume that listeners will always want all assertions
+    // We will ensure that listeners will always want all assertions
     m_preferences.shouldReportAllAssertions = true;
   }
 

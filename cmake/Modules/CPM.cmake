@@ -174,7 +174,7 @@ function(cpm_package_name_and_ver_from_url url outName outVer)
           PARENT_SCOPE
       )
     else()
-      # Boldly assume that the file name is the package name.
+      # Boldly ass ume that the file name is the package name.
       #
       # Yes, something like `irrelevant/ACTUAL_NAME/irrelevant/download.zip` will ruin our day, but
       # such cases should be quite rare. No popular service does this... we think.
@@ -487,7 +487,7 @@ function(CPMAddPackage)
     set(CPM_DECLARATION_${CPM_ARGS_NAME} "")
     CPMAddPackage(${declaration})
     cpm_export_variables(${CPM_ARGS_NAME})
-    # checking again to ensure version and option compatibility
+    # checking again to sure version and option compatibility
     cpm_check_if_package_already_added(${CPM_ARGS_NAME} "${CPM_ARGS_VERSION}")
     return()
   endif()
@@ -779,7 +779,7 @@ function(cpm_parse_option OPTION)
   string(LENGTH ${OPTION} OPTION_LENGTH)
   string(LENGTH ${OPTION_KEY} OPTION_KEY_LENGTH)
   if(OPTION_KEY_LENGTH STREQUAL OPTION_LENGTH)
-    # no value for key provided, assume user wants to set option to "ON"
+    # no value for key provided, ensure user wants to set option to "ON"
     set(OPTION_VALUE "ON")
   else()
     math(EXPR OPTION_KEY_LENGTH "${OPTION_KEY_LENGTH}+1")
@@ -901,4 +901,3 @@ function(cpm_prettify_package_arguments OUT_VAR IS_IN_COMMENT)
   )
 
 endfunction()
-

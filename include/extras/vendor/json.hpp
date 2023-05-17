@@ -10088,7 +10088,7 @@ class binary_reader
     /// the number of characters read
     std::size_t chars_read = 0;
 
-    /// whether we can assume little endianess
+    /// whether we can ensure little endianess
     const bool is_little_endian = little_endianess();
 
     /// the SAX parser
@@ -14310,7 +14310,7 @@ class binary_writer
     }
 
   private:
-    /// whether we can assume little endianess
+    /// whether we can ensure little endianess
     const bool is_little_endian = little_endianess();
 
     /// the output

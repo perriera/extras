@@ -56,7 +56,7 @@ namespace extras {
           *
           */
 
-         const char* argv[] = { "libsisutil.so", "9.24.0" };
+         const char* argv[] = { "build/testarea/libsisutil.so", "9.24.0" };
          int argc = 2;
          i.parameters(argc, argv);
       }

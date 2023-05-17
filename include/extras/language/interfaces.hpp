@@ -182,13 +182,13 @@ namespace extras {
 #define with , public
 
 /**
- * @brief ensure (glorified 'assert')
+ * @brief assume (glorified 'assert')
  *
- *     ensure (the condition does NOT exist)
+ *     assume (the condition does NOT exist)
  *        otherwise throw an exception
  */
-#define ensure if
-#define otherwise
+#define assume if
+#define ensure throw
 
 } // namespace extras
 

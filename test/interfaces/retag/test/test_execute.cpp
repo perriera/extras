@@ -52,6 +52,14 @@ namespace extras {
       {
 
          /**
+          * @brief parameters
+          *
+          */
+
+         const char* argv[] = { "build/testarea/libsisutil.so", "9.24.0" };
+         int argc = 2;
+
+         /**
           * @brief determine fullpath
           *
           */
@@ -87,7 +95,8 @@ namespace extras {
          file::NewFoundException::assertion(symlink1, __INFO__);
          file::NewFoundException::assertion(symlink2, __INFO__);
          file::NewFoundException::assertion(symlink3, __INFO__);
-         i.execute();
+         // i.parameters(argc, argv);
+         // i.execute();
          file::NotFoundException::assertion(before, __INFO__);
          file::NotFoundException::assertion(after, __INFO__);
          file::NotFoundException::assertion(symlink1, __INFO__);

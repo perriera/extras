@@ -38,7 +38,7 @@ namespace extras {
          for (std::uint8_t j = 0; j < 8; ++j) {
             // is current coefficient set?
             if (crc & 1) {
-               // yes, then assume it gets zero'd (by implied x^64 coefficient
+               // yes, then ensure it gets zero'd (by implied x^64 coefficient
                // of dividend)
                crc >>= 1;
 
