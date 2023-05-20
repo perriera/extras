@@ -23,8 +23,8 @@
 #
 
 #
-# determine required cmake here (use 'pip install cmake') to get the latest
-# and greates versin, (regardless of platform)
+# "determine required cmake here (use 'pip install cmake') to get the latest
+# and greatest version, (regardless of platform)" -- Matt Williams, 2021
 #
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 
