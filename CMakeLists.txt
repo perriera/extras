@@ -23,8 +23,8 @@
 #
 
 #
-# "determine required cmake here (use 'pip install cmake') to get the latest
-# and greatest version, (regardless of platform)" -- Matt Williams, 2021
+# "determine required cmake here (use 'sudo snap install cmake') to get the 
+# latest and greatest version, (regardless of platform)" -- Matt Williams, 2021
 #
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 
