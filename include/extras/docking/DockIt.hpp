@@ -15,6 +15,7 @@
 /**
  * @brief The MIT License (MIT)
  * @copyright © 2023 Perry Anderson, (perry@exparx.ca)
+ * @ref https://github.com/perriera
  *
  * Permission  is  hereby  granted, free  of  charge, to  any person  obtaining
  * a copy of this software and associated documentation files (the “Software”),
@@ -36,16 +37,6 @@
  *
  */
 
-/**
- * @brief Dock, (instead of Mock)
- *
- * It makes more sense to consider creating software in terms of
- * a dock yard, (where great sailing vessels are pieced together)
- * than the word 'Mock'. This appears to be easier on the mind as
- * 'docking software' and 'writing docks for software' sounds so much
- * more constructive than 'mocking software' or 'writing mocks'.
- *
- */
 #define Dock Mock
 #define Mold Mock
 

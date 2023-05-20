@@ -15,6 +15,7 @@
 /**
  * @brief The MIT License (MIT)
  * @copyright © 2023 Perry Anderson, (perry@exparx.ca)
+ * @ref https://github.com/perriera
  *
  * Permission  is  hereby  granted, free  of  charge, to  any person  obtaining
  * a copy of this software and associated documentation files (the “Software”),
@@ -37,18 +38,6 @@
  */
 
 namespace extras {
-
-/**
- * @file interfaces.hpp
- * @author Perry Anderson (perryanderson.com)
- * @brief Adds 'interface' keywords to the C++ programming language
- * @version 1.2.1
- * @date 2021-07-25
- *
- * @copyright © 2023 Perry Anderson, (perry@exparx.ca) Perry Anderson,
- * All Rights Reserved, MIT License.
- *
- */
 
 ///
 /// What does “program to interfaces, not implementations” mean?

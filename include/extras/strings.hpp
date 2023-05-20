@@ -15,6 +15,7 @@
 /**
  * @brief The MIT License (MIT)
  * @copyright © 2023 Perry Anderson, (perry@exparx.ca)
+ * @ref https://github.com/perriera
  *
  * Permission  is  hereby  granted, free  of  charge, to  any person  obtaining
  * a copy of this software and associated documentation files (the “Software”),
@@ -36,17 +37,6 @@
  *
  */
 
-/**
- * @file strings.hpp
- * @author Perry Anderson (perryanderson.com)
- * @brief Adds extra std::string support to C++ applications
- * @version 1.2.1
- * @date 2021-07-25
- *
- * @copyright © 2023 Perry Anderson, (perry@exparx.ca) Perry Anderson,
- * All Rights Reserved, MIT License.
- *
- */
 #include <extras/strings/string_support.hpp>
 
 #endif // _EXTRA_STRINGS_HPP

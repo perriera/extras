@@ -15,6 +15,7 @@
 /**
  * @brief The MIT License (MIT)
  * @copyright © 2023 Perry Anderson, (perry@exparx.ca)
+ * @ref https://github.com/perriera
  *
  * Permission  is  hereby  granted, free  of  charge, to  any person  obtaining
  * a copy of this software and associated documentation files (the “Software”),
@@ -33,24 +34,6 @@
  * LIABILITY,  WHETHER IN  AN ACTION  OF CONTRACT,  TORT OR  OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
- *
- */
-
-/**
- * @file dotenv.hpp
- * @author Perry Anderson (perry.anderson@gmail.com)
- * @brief Matt recommended we make DotENVInterface as part of extras.
- * @version 0.1
- * @date 2021-08-14
- *
- * GIVEN traditional Linux applications (usually) depend heavily on environment
- * variables WHEN we wrap the STL map<> construct inside an interface, (complete
- * with mocks and unit tests) THEN we can utilize DotENVInterface inside
- * applications that depend on environment variables
- *
- * @copyright © 2023 Perry Anderson, (perry@exparx.ca), Perry Anderson
- * (perry.anderson@gmail.com)
- * @license MIT, (see LICENSE)
  *
  */
 

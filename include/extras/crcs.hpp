@@ -15,6 +15,7 @@
 /**
  * @brief The MIT License (MIT)
  * @copyright © 2023 Perry Anderson, (perry@exparx.ca)
+ * @ref https://github.com/perriera
  *
  * Permission  is  hereby  granted, free  of  charge, to  any person  obtaining
  * a copy of this software and associated documentation files (the “Software”),
@@ -36,17 +37,6 @@
  *
  */
 
-/**
- * @file crcs.hpp
- * @author Perry Anderson (perryanderson.com)
- * @brief Defacto standard interface for CRCInterface.
- * @version 1.2.1
- * @date 2021-07-25
- *
- * @copyright © 2023 Perry Anderson, (perry@exparx.ca) Perry Anderson,
- * All Rights Reserved, MIT License.
- *
- */
 #include "extras/crcs/crc16_support.hpp"
 #include "extras/crcs/crc32_support.hpp"
 #include "extras/crcs/crc64_support.hpp"

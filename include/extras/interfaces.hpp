@@ -15,6 +15,7 @@
 /**
  * @brief The MIT License (MIT)
  * @copyright © 2023 Perry Anderson, (perry@exparx.ca)
+ * @ref https://github.com/perriera
  *
  * Permission  is  hereby  granted, free  of  charge, to  any person  obtaining
  * a copy of this software and associated documentation files (the “Software”),
@@ -33,18 +34,6 @@
  * LIABILITY,  WHETHER IN  AN ACTION  OF CONTRACT,  TORT OR  OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
- *
- */
-
-/**
- * @file interfaces.hpp
- * @author Perry Anderson (perryanderson.com)
- * @brief Adds extra keywords for C++ applications
- * @version 1.2.1
- * @date 2021-07-25
- *
- * @copyright © 2023 Perry Anderson, (perry@exparx.ca) Perry Anderson,
- * All Rights Reserved, MIT License.
  *
  */
 
