@@ -65,8 +65,8 @@ SCENARIO("Dock retag::Interface", "[dock retag::Interface]")
     * @brief construct dock for interface
     *
     */
-   retag::Instance dock(fullpath, major_no, minor_no, patch_no);
-   retag::Interface& i = dock;
+   //    retag::Instance dock(fullpath, major_no, minor_no, patch_no);
+   //    retag::Interface& i = dock;
    //    retag::test_execute(i);
 
    /**

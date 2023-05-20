@@ -149,7 +149,7 @@ namespace extras {
          static void assertion(const ParameterList& list,
                                const extras::WhereAmI& ref)
          {
-            assume(list.size() != 2) ensure IncorrectParametersException(
+            _assume(list.size() != 2) _ensure IncorrectParametersException(
               "syntax: filename version", ref);
          }
       };
@@ -173,8 +173,8 @@ namespace extras {
          static void assertion(const std::vector<std::string> parts,
                                const extras::WhereAmI& ref)
          {
-            assume(parts.size() != 3)
-              ensure IncorrectNumbersException("syntax: ##.##.##", ref);
+            _assume(parts.size() != 3)
+              _ensure IncorrectNumbersException("syntax: ##.##.##", ref);
          }
       };
 

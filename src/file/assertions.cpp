@@ -115,18 +115,18 @@ ExistsException::assertion(const Filename& fullpath, const WhereAmI& ref)
 void
 FolderExistsException::assertion(const Interface& file, const WhereAmI& ref)
 {
-   assume(file.fullpath().length() == 0)
-     ensure FolderNotSpecifiedException(ref);
+   _assume(file.fullpath().length() == 0)
+     _ensure FolderNotSpecifiedException(ref);
    auto fn = file.fullpath();
    auto lastChar = fn[fn.length() - 1];
-   assume(!isalnum(lastChar) && lastChar != '/')
-     ensure NotAFolderNameException(fn, ref);
+   _assume(!isalnum(lastChar) && lastChar != '/')
+     _ensure NotAFolderNameException(fn, ref);
    struct stat statbuf;
    string name = file.fullpath();
-   assume(stat(name.c_str(), &statbuf) != 0)
-     ensure NotFoundException(name, ref);
-   assume(!S_ISDIR(statbuf.st_mode))
-     ensure NotAFolderException(file.fullpath(), ref);
+   _assume(stat(name.c_str(), &statbuf) != 0)
+     _ensure NotFoundException(name, ref);
+   _assume(!S_ISDIR(statbuf.st_mode))
+     _ensure NotAFolderException(file.fullpath(), ref);
 }
 
 void

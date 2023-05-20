@@ -48,7 +48,7 @@ using namespace fakeit;
 namespace extras {
    namespace retag {
 
-      void test_execute(Interface& i)
+      void test_execute(Interface&)
       {
 
          /**
@@ -56,8 +56,8 @@ namespace extras {
           *
           */
 
-         const char* argv[] = { "build/testarea/libsisutil.so", "9.24.0" };
-         int argc = 2;
+         // const char* argv[] = { "build/testarea/libsisutil.so", "9.24.0" };
+         // int argc = 2;
 
          /**
           * @brief determine fullpath

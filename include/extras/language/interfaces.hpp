@@ -176,8 +176,8 @@ namespace extras {
  *     assume (the condition does NOT exist)
  *        otherwise throw an exception
  */
-#define assume if
-#define ensure throw
+#define _assume if
+#define _ensure throw
 
 } // namespace extras
 

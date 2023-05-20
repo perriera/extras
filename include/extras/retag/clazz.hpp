@@ -73,7 +73,7 @@ namespace extras {
           * @param argc
           * @param argv
           */
-         virtual void parameters(int argc, const char* argv[])
+         virtual void parameters(int, const char*[])
          {
             throw "not implemented yet";
          }
