@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.24.12 -m "updated copyrights"</br>
-> > git push origin v8.24.12
+> > git tag -a v8.25.0 -m "added ignoreX keywords"</br>
+> > git push origin v8.25.0
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,10 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.25.0 (2023-05-21)
+### Refactored 
+- added ignoreX keywords
 
 #### 8.24.12 (2023-05-20)
 ### Refactored 
@@ -989,7 +993,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.24.12..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.25.0..HEAD
+[8.25.0]: https://github.com/perriera/extras/compare/v8.24.12...v8.25.0
 [8.24.12]: https://github.com/perriera/extras/compare/v8.24.0...v8.24.12
 [8.24.0]: https://github.com/perriera/extras/compare/v8.23.0...v8.24.0
 [8.23.0]: https://github.com/perriera/extras/compare/v8.22.0...v8.23.0
