@@ -182,7 +182,7 @@ namespace extras {
 #define ensure if
 
 /**
- * @brief ignore keyword
+ * @brief ignore keywords
  *
  */
 #define ignore0(a, b) a##Exception::assertion(b)
@@ -198,6 +198,21 @@ namespace extras {
 #define ignore8(a, b, c, d, e, f, g, h, i, j)                                  \
    a##Exception::assertion(b, c, d, e, f, g, h, i, j)
    // #define ignore(a, b, c) ignore1(a, b, c)
+
+/**
+ * @brief inject keywords
+ *
+ */
+#define inject0 ingore0
+#define inject1 ingore1
+#define inject2 ingore2
+#define inject3 ingore3
+#define inject4 ingore4
+#define inject5 ingore5
+#define inject6 ingore6
+#define inject7 ingore7
+#define inject8 ingore8
+#define inject ingore1
 
 } // namespace extras
 
