@@ -178,53 +178,7 @@ namespace extras {
  */
 #define _assume if
 #define _ensure throw
-#define assume throw
-#define ensure(x) if (!(x))
-
-/**
- * @brief ignore keywords
- *
- */
-#define ignore0(a, b) a##Exception::assertion(b)
-#define ignore1(a, b, c) a##Exception::assertion(b, c)
-#define ignore2(a, b, c, d) a##Exception::assertion(b, c, d)
-#define ignore3(a, b, c, d, e) a##Exception::assertion(b, c, d, e)
-#define ignore4(a, b, c, d, e, f) a##Exception::assertion(b, c, d, e, f)
-#define ignore5(a, b, c, d, e, f, g) a##Exception::assertion(b, c, d, e, f, g)
-#define ignore6(a, b, c, d, e, f, g, h)                                        \
-   a##Exception::assertion(b, c, d, e, f, g, h)
-#define ignore7(a, b, c, d, e, f, g, h, i)                                     \
-   a##Exception::assertion(b, c, d, e, f, g, h, i)
-#define ignore8(a, b, c, d, e, f, g, h, i, j)                                  \
-   a##Exception::assertion(b, c, d, e, f, g, h, i, j)
-   // #define ignore(a, b, c) ignore1(a, b, c)
-
-/**
- * @brief inject keywords
- *
- */
-#define inject0 ignore0
-#define inject1 ignore1
-#define inject2 ignore2
-#define inject3 ignore3
-#define inject4 ignore4
-#define inject5 ignore5
-#define inject6 ignore6
-#define inject7 ignore7
-#define inject8 ignore8
-#define inject ignore1
 
 } // namespace extras
-
-/**
- * @brief mask
- *
- */
-#define mask(a, b, c, d)                                                       \
-   try {                                                                       \
-      inject(a, c, d);                                                         \
-   } catch (const a##Exception& ex) {                                          \
-      assume b##Exception(c, d);                                               \
-   }
 
 #endif // _EXTRA_LANGUAGE_INTERFACES_HPP
