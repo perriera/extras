@@ -216,4 +216,15 @@ namespace extras {
 
 } // namespace extras
 
+/**
+ * @brief mask
+ *
+ */
+#define mask(a, b, c, d)                                                       \
+   try {                                                                       \
+      inject(a, c, d);                                                         \
+   } catch (const a##Exception& ex) {                                          \
+      assume b##Exception(c, d);                                               \
+   }
+
 #endif // _EXTRA_LANGUAGE_INTERFACES_HPP
