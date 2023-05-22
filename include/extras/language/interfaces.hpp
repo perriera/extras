@@ -203,16 +203,16 @@ namespace extras {
  * @brief inject keywords
  *
  */
-#define inject0 ingore0
-#define inject1 ingore1
-#define inject2 ingore2
-#define inject3 ingore3
-#define inject4 ingore4
-#define inject5 ingore5
-#define inject6 ingore6
-#define inject7 ingore7
-#define inject8 ingore8
-#define inject ingore1
+#define inject0 ignore0
+#define inject1 ignore1
+#define inject2 ignore2
+#define inject3 ignore3
+#define inject4 ignore4
+#define inject5 ignore5
+#define inject6 ignore6
+#define inject7 ignore7
+#define inject8 ignore8
+#define inject ignore1
 
 } // namespace extras
 
