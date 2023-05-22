@@ -179,7 +179,7 @@ namespace extras {
 #define _assume if
 #define _ensure throw
 #define assume throw
-#define ensure if
+#define ensure(x) if (!(x))
 
 /**
  * @brief ignore keywords
