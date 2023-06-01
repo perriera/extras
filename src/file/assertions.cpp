@@ -40,21 +40,6 @@ using namespace extras;
 using namespace extras::file;
 
 /**
- * @brief FileNotFoundException::assertion
- *
- * @param fullpath
- * @param ref
- */
-void
-file::NotFoundException::assertion(const Filename& fullpath,
-                                   const WhereAmI& ref)
-{
-   ifstream f(fullpath.c_str());
-   if (!f.good())
-      throw file::NotFoundException(fullpath, ref);
-}
-
-/**
  * @brief FilenameInvalidException::assertion
  *
  * @param fullpath

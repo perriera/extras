@@ -146,7 +146,12 @@ namespace extras {
          virtual char const* what() const noexcept { return _msg.c_str(); }
 
          static void assertion(const Filename& filename,
-                               const extras::WhereAmI& ref);
+                               const extras::WhereAmI& ref)
+         {
+            std::ifstream f(filename.c_str());
+            if (!f.good())
+               throw file::NotFoundException(filename, ref);
+         }
       };
 
       /**
