@@ -31,27 +31,6 @@ namespace extras {
    namespace str {
 
       /**
-       * @brief left trim, right trim & trim
-       *
-       * @param s
-       * @return std::string
-       */
-      std::string ltrim(const std::string& s)
-      {
-         return extras::ltrim_copy(s);
-      }
-
-      std::string rtrim(const std::string& s)
-      {
-         return extras::rtrim_copy(s);
-      }
-
-      std::string trim(const std::string& s)
-      {
-         return extras::trim_copy(s);
-      }
-
-      /**
        * @brief split string
        *
        * @param s
