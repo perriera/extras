@@ -88,12 +88,12 @@ namespace extras {
       static void assertion(const std::string& key, const WhereAmI& ref);
    };
 
-   concrete class DotENVNoKeyException extends DotENVLineKeyException
+   concrete class DotENVNoKeyException extends AbstractCustomException
    {
     public:
 
       DotENVNoKeyException(const char* msg, const WhereAmI& whereAmI)
-        : DotENVLineKeyException(msg, whereAmI)
+        : AbstractCustomException(msg, whereAmI)
       {
       }
 
@@ -105,12 +105,12 @@ namespace extras {
       }
    };
 
-   concrete class DotENVBadFormatException extends DotENVLineKeyException
+   concrete class DotENVBadFormatException extends AbstractCustomException
    {
     public:
 
       DotENVBadFormatException(const char* msg, const WhereAmI& whereAmI)
-        : DotENVLineKeyException(msg, whereAmI)
+        : AbstractCustomException(msg, whereAmI)
       {
       }
 

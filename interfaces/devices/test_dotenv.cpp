@@ -82,7 +82,7 @@ SCENARIO("Test DotENVLine", "[test_dotenv]")
       extras::DotENVLine dotENVLine;
       std::stringstream ss;
       ss << "# FULL_SYNC accepted values [ on : off ]" << std::endl;
-      REQUIRE_THROWS_AS(operator>>(ss, dotENVLine), DotENVLineKeyException);
+      REQUIRE_THROWS_AS(operator>>(ss, dotENVLine), AbstractCustomException);
    }
    {
       extras::DotENVLine dotENVLine;
@@ -104,7 +104,7 @@ SCENARIO("Test DotENVLine", "[test_dotenv]")
       extras::DotENVLine dotENVLine;
       std::stringstream ss;
       ss << "# YOURAPPTOKEN accepted " << std::endl;
-      REQUIRE_THROWS_AS(operator>>(ss, dotENVLine), DotENVLineKeyException);
+      REQUIRE_THROWS_AS(operator>>(ss, dotENVLine), AbstractCustomException);
    }
    {
       extras::DotENVLine dotENVLine;
