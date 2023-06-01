@@ -179,8 +179,8 @@ endif()
 # Create a target for executing the Catch2 unit tests.
 if (NOT MAKE_EXTRAS_LIBRARY_ONLY)
   if(BUILD_TESTS)
-    message(STATUS "Building tests")
-    file(GLOB_RECURSE TESTS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp")
+    message(STATUS "Building interfaces")
+    file(GLOB_RECURSE TESTS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/interfaces/*.cpp")
     #
     # run-unittests
     #

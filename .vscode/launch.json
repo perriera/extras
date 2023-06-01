@@ -14,9 +14,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/build/run-unittests-extras",
-			"args": [
-				"[mold retag::Interface]"
-			],
+			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
@@ -37,9 +35,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/build/run-unittests-extras_i386",
-			"args": [
-				"[mold retag::Interface]"
-			],
+			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
