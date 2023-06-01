@@ -31,14 +31,6 @@
 namespace extras {
 
    /**
-    * @brief DotENV istream&
-    *
-    * @param out
-    * @param obj
-    * @return std::ostream&
-    */
-
-   /**
     * @brief DotENVLineKeyException::assertion()
     *
     * @param out
@@ -68,26 +60,6 @@ namespace extras {
    {
       if (key.length() == 0) {
          throw DotENVNoKeyException("No key specified", ref);
-      }
-   }
-
-   /**
-    * @brief DotENVBadFormatException::assertion()
-    *
-    * Thrown if the KEY starts with anything but a letter
-    *
-    * @param out
-    * @param obj
-    * @return std::ostream&
-    */
-
-   void DotENVBadFormatException::assertion(const std::string& key,
-                                            const WhereAmI& ref)
-   {
-      if (key.length() > 0 && !isalpha(key[0])) {
-         std::string msg = "Bad format for key: ";
-         msg += key;
-         throw DotENVBadFormatException(msg.c_str(), ref);
       }
    }
 

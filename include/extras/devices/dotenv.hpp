@@ -109,7 +109,14 @@ namespace extras {
       {
       }
 
-      static void assertion(const std::string& key, const WhereAmI& ref);
+      static void assertion(const std::string& key, const WhereAmI& ref)
+      {
+         if (key.length() > 0 && !isalpha(key[0])) {
+            std::string msg = "Bad format for key: ";
+            msg += key;
+            throw DotENVBadFormatException(msg.c_str(), ref);
+         }
+      }
    };
 
    /**
