@@ -40,29 +40,6 @@ using namespace extras;
 using namespace extras::file;
 
 /**
- * @brief FilenameInvalidException::assertion
- *
- * @param fullpath
- * @param ref
- */
-void
-file::InvalidNameException::assertion(const Filename& fullpath,
-                                      const WhereAmI& ref)
-{
-   if (fullpath.length() == 0)
-      throw file::InvalidNameException("no fullpath specified", ref);
-   string valid_filename = "^[^<>:;,?\"*|/]+$";
-   auto parts = extras::str::split(fullpath, '/');
-   regex valid_filename_expr(valid_filename);
-   for (auto part : parts) {
-      if (part.length() == 0)
-         throw file::InvalidNameException("no folder name specified", ref);
-      if (!regex_match(part, valid_filename_expr) || part == "\\")
-         throw file::InvalidNameException(fullpath, ref);
-   }
-}
-
-/**
  * @brief FileNotCopiedException::assertion
  *
  * @param fi

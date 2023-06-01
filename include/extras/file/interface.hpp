@@ -27,10 +27,17 @@
 #define _EXTRAS_FILE_INTERFACE_HPP
 
 #include <algorithm>
+#include <extras/filesystem/files.hpp>
 #include <extras/interfaces.hpp>
+#include <extras/strings/string_support.hpp>
 #include <fstream>
 #include <iostream>
 #include <list>
+#include <regex>
+#include <string>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 struct user_id;
 struct ldap;
@@ -241,7 +248,21 @@ namespace extras {
          virtual char const* what() const noexcept { return _msg.c_str(); }
 
          static void assertion(const Filename& filename,
-                               const extras::WhereAmI& ref);
+                               const extras::WhereAmI& ref)
+         {
+            if (filename.length() == 0)
+               throw file::InvalidNameException("no fullpath specified", ref);
+            std::string valid_filename = "^[^<>:;,?\"*|/]+$";
+            auto parts = extras::str::split(filename, '/');
+            std::regex valid_filename_expr(valid_filename);
+            for (auto part : parts) {
+               if (part.length() == 0)
+                  throw file::InvalidNameException("no folder name specified",
+                                                   ref);
+               if (!regex_match(part, valid_filename_expr) || part == "\\")
+                  throw file::InvalidNameException(filename, ref);
+            }
+         }
       };
 
       /**
