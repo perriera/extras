@@ -233,8 +233,32 @@ namespace extras {
 
    concrete class DotENV implements DotENVInterface
    {
-      friend std::ostream& operator<<(std::ostream& out, const DotENV& obj);
-      friend std::istream& operator>>(std::istream& in, DotENV& obj);
+      friend std::ostream& operator<<(std::ostream& out, const DotENV& obj)
+      {
+         for (auto entry : obj._map) {
+            out << entry.first << "=" << entry.second << std::endl;
+         }
+         return out;
+      }
+
+      friend std::istream& operator>>(std::istream& in, DotENV& obj)
+      {
+         std::string line;
+         while (in.good()) {
+            std::getline(in, line);
+            if (line[0] == '#' || line[0] == ' ' || line[0] == '\n') {
+               continue;
+            }
+            if (line.empty())
+               break;
+            std::stringstream ss;
+            ss << line;
+            DotENVLine dotENVLine;
+            ss >> dotENVLine;
+            obj.put(dotENVLine);
+         }
+         return in;
+      }
 
       friend inline bool operator==(const DotENV& a, const DotENV& b)
       {
