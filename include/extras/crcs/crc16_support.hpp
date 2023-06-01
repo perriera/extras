@@ -50,15 +50,40 @@ namespace extras {
 
    class crc16
    {
+
+      /*constexpr auto*/ int POLY = 0x1021;
+
     public:
 
-      crc16();
-      uint16_t update(const std::string& str);
-      uint16_t processBuffer(const char* data_p, uint16_t length);
+      crc16() { crc = 0; }
+
+      uint16_t update(const std::string& str)
+      {
+         return processBuffer(str.c_str(), str.size());
+      }
+
+      uint16_t processBuffer(const char* data_p, uint16_t length)
+      {
+         while (length--)
+            processByte(*data_p++);
+         return crc;
+      }
 
     private:
 
-      uint16_t processByte(uint8_t data);
+      uint16_t processByte(uint8_t data)
+      {
+         std::uint8_t i;
+
+         crc = crc ^ ((std::uint16_t)data << 8);
+         for (i = 0; i < 8; i++) {
+            if (crc & 0x8000)
+               crc = (crc << 1) ^ POLY;
+            else
+               crc <<= 1;
+         }
+         return crc;
+      }
 
       uint16_t getCrc() { return crc; };
 
