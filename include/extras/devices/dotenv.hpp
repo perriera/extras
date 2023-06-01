@@ -67,27 +67,6 @@ namespace extras {
       virtual const EnvironmentVariableValue& value() const pure;
    };
 
-   /**
-    * @brief DotENVLineKeyException
-    *
-    * To be thrown if either string or value supplied is out of range.
-    *
-    */
-   concrete class DotENVLineKeyException extends AbstractCustomException
-   {
-    public:
-
-      DotENVLineKeyException(const char* msg, const WhereAmI& whereAmI)
-        : AbstractCustomException(msg,
-                                  whereAmI._file.c_str(),
-                                  whereAmI._func.c_str(),
-                                  whereAmI._line)
-      {
-      }
-
-      static void assertion(const std::string& key, const WhereAmI& ref);
-   };
-
    concrete class DotENVNoKeyException extends AbstractCustomException
    {
     public:
@@ -121,6 +100,31 @@ namespace extras {
             msg += key;
             throw DotENVBadFormatException(msg.c_str(), ref);
          }
+      }
+   };
+
+   /**
+    * @brief DotENVLineKeyException
+    *
+    * To be thrown if either string or value supplied is out of range.
+    *
+    */
+   concrete class DotENVLineKeyException extends AbstractCustomException
+   {
+    public:
+
+      DotENVLineKeyException(const char* msg, const WhereAmI& whereAmI)
+        : AbstractCustomException(msg,
+                                  whereAmI._file.c_str(),
+                                  whereAmI._func.c_str(),
+                                  whereAmI._line)
+      {
+      }
+
+      static void assertion(const std::string& key, const WhereAmI& ref)
+      {
+         DotENVNoKeyException::assertion(key, ref);
+         DotENVBadFormatException::assertion(key, ref);
       }
    };
 

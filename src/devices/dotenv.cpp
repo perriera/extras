@@ -30,19 +30,4 @@
 
 namespace extras {
 
-   /**
-    * @brief DotENVLineKeyException::assertion()
-    *
-    * @param out
-    * @param obj
-    * @return std::ostream&
-    */
-
-   void DotENVLineKeyException::assertion(const std::string& key,
-                                          const WhereAmI& ref)
-   {
-      DotENVNoKeyException::assertion(key, ref);
-      DotENVBadFormatException::assertion(key, ref);
-   }
-
 } // namespace extras
