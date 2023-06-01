@@ -97,7 +97,12 @@ namespace extras {
       {
       }
 
-      static void assertion(const std::string& key, const WhereAmI& ref);
+      static void assertion(const std::string& key, const WhereAmI& ref)
+      {
+         if (key.length() == 0) {
+            throw DotENVNoKeyException("No key specified", ref);
+         }
+      }
    };
 
    concrete class DotENVBadFormatException extends DotENVLineKeyException

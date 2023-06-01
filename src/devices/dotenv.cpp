@@ -45,22 +45,4 @@ namespace extras {
       DotENVBadFormatException::assertion(key, ref);
    }
 
-   /**
-    * @brief DotENVNoKeyException::assertion()
-    *
-    * Thrown if no KEY is specified
-    *
-    * @param out
-    * @param obj
-    * @return std::ostream&
-    */
-
-   void DotENVNoKeyException::assertion(const std::string& key,
-                                        const WhereAmI& ref)
-   {
-      if (key.length() == 0) {
-         throw DotENVNoKeyException("No key specified", ref);
-      }
-   }
-
 } // namespace extras
