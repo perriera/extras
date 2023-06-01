@@ -26,6 +26,7 @@
 #include <cstdint>
 #include <extras/crcs/crc32_support.hpp>
 #include <extras/crcs/crc64_support.hpp>
+#include <extras/devices/ansi_colors.hpp>
 #include <string>
 
 namespace extras {
@@ -38,4 +39,10 @@ namespace extras {
    std::uint32_t crc32::initial;
    crc32 default_crc32;
 
+} // namespace extras
+
+namespace extras {
+   define_color(black, 30) define_color(red, 31) define_color(green, 32)
+     define_color(yellow, 33) define_color(blue, 34) define_color(magenta, 35)
+       define_color(cyan, 36) define_color(white, 37) define_color(reset, 0)
 } // namespace extras
