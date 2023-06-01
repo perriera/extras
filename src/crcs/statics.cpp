@@ -77,4 +77,72 @@ namespace extras {
         _ensure NotAFolderException(file.fullpath(), ref);
    }
 
+   std::string replace_last(const std::string& str,
+                            const std::string& from,
+                            const std::string& to,
+                            char delim)
+   {
+      extras::StringContainsDelimException::assertion(str, delim, __INFO__);
+      if (!contains(str, from))
+         return str;
+      if (from.size() == 0)
+         return str;
+      std::string dup_str = str;
+      std::string dup_from = from;
+      std::string dup_to = to;
+      reverse(dup_str.begin(), dup_str.end());
+      reverse(dup_from.begin(), dup_from.end());
+      reverse(dup_to.begin(), dup_to.end());
+      auto it = dup_str.find(dup_from);
+      if (it != std::string::npos) {
+         auto parta = dup_str.substr(0, it);
+         auto partb = dup_str.substr(it + dup_from.size());
+         auto newStr = parta + dup_to + partb;
+         reverse(newStr.begin(), newStr.end());
+         return newStr;
+      }
+      return str;
+   }
+
+   void ScriptException::assertion(const std::string& script,
+                                   const extras::WhereAmI& ref)
+   {
+      if (!extras::str::contains(script, ".sh")) {
+         std::string msg = "[" + script + "] does not end in .sh ";
+         throw ScriptException(msg + script, ref);
+      }
+      auto chmod = "chmod +x " + script;
+      if (system(chmod.c_str()) != 0) {
+         std::string msg = "[" + script + "] chmod +x failed ";
+         throw ScriptException(msg + script, ref);
+      }
+      auto code = 0;
+      if (extras::str::contains(script, "/"))
+         code = system(script.c_str());
+      else {
+         auto extrascript = "./" + script;
+         code = system(extrascript.c_str());
+      }
+      if (code != 0) {
+         std::string msg = "[" + script + "] failed with error code: ";
+         throw ScriptException(msg + std::to_string(code), ref);
+      } else {
+         // std::filesystem::remove(script);
+         // if (std::filesystem::exists(script)) {
+         //   std::string msg = "[" + script + "] rm failed with error code:
+         //   "; throw ScriptException(msg + std::to_string(code), ref);
+         // }
+      }
+   }
+
+          void StringContainsDelimException::assertion(const std::string& str,
+                            char delim,
+                            const extras::WhereAmI& ref)
+      {
+         std::string test;
+         test += delim;
+         if (extras::str::contains(str, test))
+            throw StringContainsDelimException(str, delim, ref);
+      }
+
 }

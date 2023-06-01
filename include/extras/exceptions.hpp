@@ -465,35 +465,7 @@ namespace extras {
       }
 
       static void assertion(const std::string& script,
-                            const extras::WhereAmI& ref)
-      {
-         if (!extras::contains(script, ".sh")) {
-            std::string msg = "[" + script + "] does not end in .sh ";
-            throw ScriptException(msg + script, ref);
-         }
-         auto chmod = "chmod +x " + script;
-         if (system(chmod.c_str()) != 0) {
-            std::string msg = "[" + script + "] chmod +x failed ";
-            throw ScriptException(msg + script, ref);
-         }
-         auto code = 0;
-         if (extras::contains(script, "/"))
-            code = system(script.c_str());
-         else {
-            auto extrascript = "./" + script;
-            code = system(extrascript.c_str());
-         }
-         if (code != 0) {
-            std::string msg = "[" + script + "] failed with error code: ";
-            throw ScriptException(msg + std::to_string(code), ref);
-         } else {
-            // std::filesystem::remove(script);
-            // if (std::filesystem::exists(script)) {
-            //   std::string msg = "[" + script + "] rm failed with error code:
-            //   "; throw ScriptException(msg + std::to_string(code), ref);
-            // }
-         }
-      }
+                            const extras::WhereAmI& ref);
    };
 
    /**

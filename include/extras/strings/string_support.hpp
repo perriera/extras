@@ -40,6 +40,7 @@
 #include <algorithm>
 #include <cctype>
 #include <deque>
+#include <extras/exceptions.hpp>
 #include <locale>
 #include <sstream>
 #include <string>
@@ -96,12 +97,45 @@ namespace extras {
       return dup;
    }
 
-   std::deque<std::string> split(const std::string& s, char delim);
-   std::string replace_all(const std::string& s, char a, char b);
-   std::string remove_all(const std::string& s, char a);
-   std::string replace_all(std::string str,
-                           const std::string& from,
-                           const std::string& to);
+   static inline std::deque<std::string> split(const std::string& s, char delim)
+   {
+      std::deque<std::string> result;
+      std::stringstream ss(s);
+      std::string item;
+
+      while (std::getline(ss, item, delim)) {
+         result.push_back(item);
+      }
+
+      return result;
+   }
+
+   static inline std::string replace_all(const std::string& s, char a, char b)
+   {
+      std::string dup = s;
+      replace(dup.begin(), dup.end(), a, b);
+      return dup;
+   }
+
+   static inline std::string remove_all(const std::string& s, char a)
+   {
+      std::string dup = s;
+      dup.erase(std::remove(dup.begin(), dup.end(), a), dup.end());
+      return dup;
+   }
+
+   static inline std::string replace_all(std::string str,
+                                         const std::string& from,
+                                         const std::string& to)
+   {
+      std::size_t start_pos = 0;
+      while ((start_pos = str.find(from, start_pos)) != std::string::npos) {
+         str.replace(start_pos, from.length(), to);
+         start_pos +=
+           to.length(); // Handles case where 'to' is a substring of 'from'
+      }
+      return str;
+   }
 
    /**
     * @brief replace_last()
