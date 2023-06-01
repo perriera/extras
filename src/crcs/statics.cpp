@@ -24,9 +24,13 @@
  */
 
 #include <cstdint>
+#include <ctype.h>
 #include <extras/crcs/crc32_support.hpp>
 #include <extras/crcs/crc64_support.hpp>
 #include <extras/devices/ansi_colors.hpp>
+#include <extras/file/clazz.hpp>
+#include <extras/filesystem/files.hpp>
+#include <extras/strings/string_support.hpp>
 #include <string>
 
 namespace extras {
@@ -46,3 +50,31 @@ namespace extras {
      define_color(yellow, 33) define_color(blue, 34) define_color(magenta, 35)
        define_color(cyan, 36) define_color(white, 37) define_color(reset, 0)
 } // namespace extras
+
+namespace extras {
+   void file::FolderExistsException::assertion(const Filename& fn,
+                                               const WhereAmI& ref)
+   {
+      file::File file(fn);
+      Interface& i = file;
+      assertion(i, ref);
+   }
+
+   void file::FolderExistsException::assertion(const Interface& file,
+                                               const WhereAmI& ref)
+   {
+      _assume(file.fullpath().length() == 0)
+        _ensure FolderNotSpecifiedException(ref);
+      auto fn = file.fullpath();
+      auto lastChar = fn[fn.length() - 1];
+      _assume(!isalnum(lastChar) && lastChar != '/')
+        _ensure NotAFolderNameException(fn, ref);
+      struct stat statbuf;
+      std::string name = file.fullpath();
+      _assume(stat(name.c_str(), &statbuf) != 0)
+        _ensure NotFoundException(name, ref);
+      _assume(!S_ISDIR(statbuf.st_mode))
+        _ensure NotAFolderException(file.fullpath(), ref);
+   }
+
+}

@@ -27,6 +27,7 @@
 #define _EXTRAS_FILE_INTERFACE_HPP
 
 #include <algorithm>
+#include <extras/feature/interface.hpp>
 #include <extras/filesystem/files.hpp>
 #include <extras/interfaces.hpp>
 #include <extras/strings/string_support.hpp>
@@ -287,8 +288,12 @@ namespace extras {
 
          virtual char const* what() const noexcept { return _msg.c_str(); }
 
-         static void assertion(const Filename& filename,
-                               const extras::WhereAmI& ref);
+         static void assertion(const Filename& fullpath, const WhereAmI& ref)
+         {
+            std::ifstream f(fullpath);
+            if (f.good())
+               throw ExistsException(fullpath, ref);
+         }
       };
 
       /**
@@ -307,9 +312,9 @@ namespace extras {
 
          virtual char const* what() const noexcept { return _msg.c_str(); }
 
-         static void assertion(const file::Interface&,
-                               const extras::WhereAmI& ref);
-         static void assertion(const Filename&, const extras::WhereAmI& ref);
+         static void assertion(const Interface& file, const WhereAmI& ref);
+
+         static void assertion(const Filename& fn, const WhereAmI& ref);
       };
 
       concrete class FolderNotSpecifiedException extends FolderExistsException
@@ -366,8 +371,10 @@ namespace extras {
 
          virtual char const* what() const noexcept { return _msg.c_str(); }
 
-         static void assertion(const file::Interface&,
-                               const extras::WhereAmI& ref);
+         static void assertion(const Interface& i, const WhereAmI& ref)
+         {
+            FolderExistsException::assertion(i, ref);
+         }
       };
 
       /**
@@ -386,8 +393,16 @@ namespace extras {
 
          virtual char const* what() const noexcept { return _msg.c_str(); }
 
-         static void assertion(const file::Interface&,
-                               const extras::WhereAmI& ref);
+         static void assertion(const Interface&, const WhereAmI&)
+         {
+            // struct stat statbuf;
+            // if (stat(fi.fullpath().c_str(), &statbuf) != 0)
+            //   throw NotaFolderException(fi.fullpath(), ref);
+            // if (!S_ISDIR(statbuf.st_mode)) throw
+            // NotaFolderException(fi.fullpath(), ref);
+            throw extras::feature::NotImplementedException(
+              "NotaFolderException::assertion()", __INFO__);
+         }
       };
 
       /**
@@ -406,8 +421,13 @@ namespace extras {
 
          virtual char const* what() const noexcept { return _msg.c_str(); }
 
-         static void assertion(const file::Interface&,
-                               const extras::WhereAmI& ref);
+         static void assertion(const Interface&, const WhereAmI&)
+         {
+            // ifstream f(fi.fullpath().c_str());
+            // if (!f.good()) throw NotaFileException(fi.fullpath(), ref);
+            throw extras::feature::NotImplementedException(
+              "NotaFileException::assertion()", __INFO__);
+         }
       };
 
       /**
