@@ -221,7 +221,10 @@ namespace extras {
        * @param delim
        * @return std::deque<std::string>
        */
-      std::deque<std::string> split(const std::string& s, char delim);
+      inline std::deque<std::string> split(const std::string& s, char delim)
+      {
+         return extras::split(s, delim);
+      }
 
       /**
        * @brief split
@@ -230,8 +233,22 @@ namespace extras {
        * @param delimiter
        * @return std::vector<std::string>
        */
-      std::vector<std::string> split(std::string s,
-                                     const std::string& delimiter);
+      inline std::vector<std::string> split(std::string s,
+                                            const std::string& delimiter)
+      {
+         size_t pos_start = 0, pos_end, delim_len = delimiter.length();
+         std::string token;
+         std::vector<std::string> res;
+
+         while ((pos_end = s.find(delimiter, pos_start)) != std::string::npos) {
+            token = s.substr(pos_start, pos_end - pos_start);
+            pos_start = pos_end + delim_len;
+            res.push_back(token);
+         }
+
+         res.push_back(s.substr(pos_start));
+         return res;
+      }
 
       /**
        * @brief replace_all, remove_all
@@ -241,11 +258,22 @@ namespace extras {
        * @param b
        * @return std::string
        */
-      std::string replace_all(const std::string& s, char a, char b);
-      std::string replace_all(std::string str,
-                              const std::string& from,
-                              const std::string& to);
-      std::string remove_all(const std::string& s, char a);
+      inline std::string replace_all(const std::string& s, char a, char b)
+      {
+         return extras::replace_all(s, a, b);
+      }
+
+      inline std::string replace_all(std::string str,
+                                     const std::string& from,
+                                     const std::string& to)
+      {
+         return extras::replace_all(str, from, to);
+      }
+
+      inline std::string remove_all(const std::string& s, char a)
+      {
+         return extras::remove_all(s, a);
+      }
 
       inline std::string strip(const std::string& s, char a)
       {
@@ -265,14 +293,29 @@ namespace extras {
        * @param delim
        * @return std::string
        */
-      std::string replace_last(const std::string& str,
-                               const std::string& from,
-                               const std::string& to,
-                               char delim = '\r');
-      std::string replace_first(const std::string& str,
-                                const std::string& from,
-                                const std::string& to,
-                                char delim = '\r');
+      inline std::string replace_last(const std::string& str,
+                                      const std::string& from,
+                                      const std::string& to,
+                                      char delim = '\r')
+      {
+         return extras::replace_last(str, from, to, delim);
+      }
+
+      inline std::string replace_first(const std::string& str,
+                                       const std::string& from,
+                                       const std::string& to,
+                                       char delim = '\r')
+      {
+         auto dupa = str;
+         auto dupb = from;
+         auto dupc = to;
+         reverse(dupa.begin(), dupa.end());
+         reverse(dupb.begin(), dupb.end());
+         reverse(dupc.begin(), dupc.end());
+         auto answer = replace_last(dupa, dupb, dupc, delim);
+         reverse(answer.begin(), answer.end());
+         return answer;
+      }
 
       /**
        * @brief ends_with, starts_with, contains
@@ -282,9 +325,21 @@ namespace extras {
        * @return true
        * @return false
        */
-      bool ends_with(std::string const& value, std::string const& ending);
-      bool starts_with(std::string const& value, std::string const& beginning);
-      bool contains(std::string const& s1, std::string const& s2);
+      inline bool ends_with(std::string const& value, std::string const& ending)
+      {
+         return extras::ends_with(value, ending);
+      }
+
+      inline bool starts_with(std::string const& value,
+                              std::string const& beginning)
+      {
+         return extras::starts_with(value, beginning);
+      }
+
+      inline bool contains(std::string const& s1, std::string const& s2)
+      {
+         return extras::contains(s1, s2);
+      }
 
       /**
        * @brief to_lower
@@ -292,8 +347,20 @@ namespace extras {
        * @param data
        * @return std::string
        */
-      std::string to_lower(const std::string& data);
-      std::string to_upper(const std::string& data);
+      inline std::string to_lower(const std::string& data)
+      {
+         return extras::to_lower(data);
+      }
+
+      inline std::string to_upper(const std::string& data)
+      {
+         std::string dup = data;
+         std::transform(dup.begin(),
+                        dup.end(),
+                        dup.begin(),
+                        [](unsigned char c) { return std::toupper(c); });
+         return dup;
+      }
 
       /**
        * @brief sample template
