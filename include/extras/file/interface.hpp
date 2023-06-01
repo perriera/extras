@@ -228,7 +228,13 @@ namespace extras {
 
          virtual char const* what() const noexcept { return _msg.c_str(); }
 
-         static void assertion(const file::Interface&, const extras::WhereAmI&);
+         static void assertion(const Interface& fi, const WhereAmI& ref)
+         {
+            std::ifstream f(fi.fullpath().c_str());
+            if (!f.good()) {
+               throw NotCopiedException(fi.fullpath(), ref);
+            }
+         }
       };
 
       /**

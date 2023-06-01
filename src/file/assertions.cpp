@@ -40,21 +40,6 @@ using namespace extras;
 using namespace extras::file;
 
 /**
- * @brief FileNotCopiedException::assertion
- *
- * @param fi
- * @param ref
- */
-void
-NotCopiedException::assertion(const Interface& fi, const WhereAmI& ref)
-{
-   ifstream f(fi.fullpath().c_str());
-   if (!f.good()) {
-      throw NotCopiedException(fi.fullpath(), ref);
-   }
-}
-
-/**
  * @brief FileExistsException::assertion
  *
  * @param fullpath
