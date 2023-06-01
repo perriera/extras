@@ -37,8 +37,10 @@
  *
  */
 
+#include <extras/devices/ansi_colors.hpp>
 #include <extras/exceptions.hpp>
 #include <extras/interfaces.hpp>
+#include <extras/strings.hpp>
 #include <iostream>
 
 namespace extras {
@@ -47,6 +49,31 @@ namespace extras {
     * @brief StatusLineInterface
     *
     */
+
+   namespace statusline {
+
+      inline std::string right()
+      {
+         std::stringstream ss;
+         ss << extras::green << '[';
+         return ss.str();
+      }
+
+      inline std::string left()
+      {
+         std::stringstream ss;
+         ss << extras::green << ']';
+         return ss.str();
+      }
+
+      inline std::string status(char c)
+      {
+         std::stringstream ss;
+         ss << right() << extras::yellow << c << left();
+         return ss.str();
+      }
+
+   }
 
    using StatusLineMsg = std::string;
 
@@ -62,10 +89,39 @@ namespace extras {
    {
     public:
 
-      virtual StatusLineMsg start(const StatusLineMsg& msg) const override;
-      virtual StatusLineMsg pass(const StatusLineMsg& msg) const override;
-      virtual StatusLineMsg fail(const StatusLineMsg& msg) const override;
-      virtual StatusLineMsg end(const StatusLineMsg& msg) const override;
+      virtual StatusLineMsg start(const StatusLineMsg& msg) const override
+      {
+         auto parts = extras::split(msg, '/');
+         std::stringstream ss;
+         ss << statusline::status('+') << extras::cyan << " "
+            << parts[parts.size() - 1] << " started " << extras::blue;
+         return ss.str();
+      }
+
+      virtual StatusLineMsg pass(const StatusLineMsg& msg) const override
+      {
+         std::stringstream ss;
+         ss << statusline::status('+') << extras::magenta << " " << msg << "."
+            << extras::reset;
+         return ss.str();
+      }
+
+      virtual StatusLineMsg fail(const StatusLineMsg& msg) const override
+      {
+         std::stringstream ss;
+         ss << statusline::status('-') << extras::red << " " << msg << "."
+            << extras::reset;
+         return ss.str();
+      }
+
+      virtual StatusLineMsg end(const StatusLineMsg& msg) const override
+      {
+         auto parts = extras::split(msg, '/');
+         std::stringstream ss;
+         ss << statusline::status('+') << extras::cyan << " "
+            << parts[parts.size() - 1] << " ended " << extras::blue;
+         return ss.str();
+      }
    };
 
    /**
