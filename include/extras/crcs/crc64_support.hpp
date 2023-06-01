@@ -53,20 +53,81 @@ namespace extras {
    {
     public:
 
-      crc64(const char* randomString = "default seed");
-      uint64_t update(const std::string& str);
-      uint32_t update(const byte* buffer, int len);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+
+      crc64(const char* randomString = nullptr)
+      {
+         crc64::generate_table(crc64::table);
+         // crc64::initial = crc64::update(table, 0, randomString);
+      }
+
+#pragma GCC diagnostic pop
+
+      uint64_t update(const std::string& str)
+      {
+         return update(table,
+                       crc64::initial,
+                       (const std::uint8_t*)str.c_str(),
+                       str.length());
+      }
+
+      uint32_t update(const byte* buffer, int len)
+      {
+         return update(table, crc64::initial, buffer, len);
+      }
 
     private:
 
-      static void generate_table(uint64_t (&table)[256]);
+      static void generate_table(uint64_t (&table)[256])
+      {
+         for (int i = 0; i < 256; ++i) {
+            std::uint64_t crc = i;
+
+            for (std::uint8_t j = 0; j < 8; ++j) {
+               // is current coefficient set?
+               if (crc & 1) {
+                  // yes, then ensure it gets zero'd (by implied x^64
+                  // coefficient of dividend)
+                  crc >>= 1;
+
+                  // and add rest of the divisor
+                  crc ^= initial;
+               } else {
+                  // no? then move to next coefficient
+                  crc >>= 1;
+               }
+
+               table[i] = crc;
+            }
+         }
+      }
+
       static uint64_t update(uint64_t (&table)[256],
-                             uint64_t initial,
+                             uint64_t,
                              const uint8_t* buf,
-                             size_t len);
+                             size_t len)
+      {
+         std::uint64_t crc = 0;
+
+         for (std::size_t i = 0; i < len; ++i) {
+            std::uint8_t index = buf[i] ^ crc;
+            std::uint64_t lookup = table[index];
+
+            crc >>= 8;
+            crc ^= lookup;
+         }
+
+         return crc;
+      }
+
       static uint64_t update(uint64_t (&table)[256],
                              uint64_t initial,
-                             const std::string& str);
+                             const std::string& str)
+      {
+         return update(
+           table, initial, (const std::uint8_t*)str.c_str(), str.length());
+      }
 
       static uint64_t table[256];
       static uint64_t initial;
