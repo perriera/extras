@@ -37,11 +37,11 @@ namespace extras {
     * @param obj
     * @return std::ostream&
     */
-   std::ostream& operator<<(std::ostream& out, const DotENVLine& obj)
-   {
-      out << obj._key << '=' << obj._value;
-      return out;
-   }
+   // std::ostream& operator<<(std::ostream& out, const DotENVLine& obj)
+   // {
+   //    out << obj._key << '=' << obj._value;
+   //    return out;
+   // }
 
    /**
     * @brief  DotENVLine istream&
@@ -50,25 +50,25 @@ namespace extras {
     * @param obj
     * @return std::istream&
     */
-   std::istream& operator>>(std::istream& in, DotENVLine& obj)
-   {
-      std::stringstream key;
-      std::string value;
-      char c = ' ';
-      in >> std::skipws;
-      while (in.good() && c != '=') {
-         in >> c;
-         if (c == '#')
-            break;
-         if (isalnum(c) || c == '_')
-            key << c;
-      }
-      DotENVLineKeyException::assertion(key.str(), __INFO__);
-      obj._key = key.str();
-      getline(in, value);
-      obj._value = value;
-      return in;
-   }
+   // std::istream& operator>>(std::istream& in, DotENVLine& obj)
+   // {
+   //    std::stringstream key;
+   //    std::string value;
+   //    char c = ' ';
+   //    in >> std::skipws;
+   //    while (in.good() && c != '=') {
+   //       in >> c;
+   //       if (c == '#')
+   //          break;
+   //       if (isalnum(c) || c == '_')
+   //          key << c;
+   //    }
+   //    DotENVLineKeyException::assertion(key.str(), __INFO__);
+   //    obj._key = key.str();
+   //    getline(in, value);
+   //    obj._value = value;
+   //    return in;
+   // }
 
    /**
     * @brief DotENV ostream&
