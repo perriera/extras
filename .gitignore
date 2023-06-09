@@ -2,6 +2,7 @@
 *.d
 
 build/
+docs/
 .cache/
 
 # editors

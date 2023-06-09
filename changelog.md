@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.27.3 -m "refactored code"</br>
-> > git push origin v8.27.3
+> > git tag -a v8.27.6 -m "refactored code"</br>
+> > git push origin v8.27.6
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,10 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.27.6 (2023-06-09)
+### Refactored 
+- removed docs
 
 #### 8.27.3 (2023-06-09)
 ### Refactored 
@@ -1001,7 +1005,8 @@ IMPORTANT:
 ### Removed
 - nothing
 
-[unreleased]: https://github.com/perriera/extras/compare/v8.27.3..HEAD
+[unreleased]: https://github.com/perriera/extras/compare/v8.27.6..HEAD
+[8.27.6]: https://github.com/perriera/extras/compare/v8.27.3...v8.27.6
 [8.27.3]: https://github.com/perriera/extras/compare/v8.27.0...v8.27.3
 [8.27.0]: https://github.com/perriera/extras/compare/v8.25.0...v8.27.0
 [8.25.0]: https://github.com/perriera/extras/compare/v8.24.12...v8.25.0
