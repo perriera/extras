@@ -85,6 +85,11 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
       unlink(tn.c_str());
       return tn;
    });
+   When(Method(mold, tmpFile)).AlwaysDo([&i]() {
+      extras::Pathname tn;
+      tn = i.tempname(tn);
+      return tn;
+   });
    When(Method(mold, pathname)).AlwaysDo([&i]() {
       if (i.fullpath().length() == 0)
          return i.fullpath();
@@ -135,6 +140,10 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
    REQUIRE_FALSE(i.exists());
    REQUIRE_FALSE(i.is_dir());
    REQUIRE_FALSE(i.is_file());
+
+   auto tn = i.tmpFile();
+   REQUIRE(!tn.empty());
+   extras::file::NotFoundException(tn, __INFO__);
 
    /**
     * @brief test case #2

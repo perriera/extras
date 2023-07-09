@@ -59,6 +59,10 @@ SCENARIO("mold file::Interface::path", "[dock file::Interface]")
       REQUIRE_FALSE(i.exists());
       REQUIRE_FALSE(i.is_dir());
       REQUIRE_FALSE(i.is_file());
+
+      auto tn = i.tmpFile();
+      REQUIRE(!tn.empty());
+      extras::file::NotFoundException(tn, __INFO__);
    }
 
    /**

@@ -84,6 +84,13 @@ namespace extras {
             return tn;
          };
 
+         virtual Pathname tmpFile() const
+         {
+            extras::Pathname tn;
+            tn = this->tempname(tn);
+            return tn;
+         }
+
          virtual char seperator() const { return '/'; };
 
          virtual bool is_dir() const
@@ -142,6 +149,38 @@ namespace extras {
          };
 
          operator const Filename&() const { return _fn; }
+      };
+
+      /**
+       * @brief DeleteAfterUse
+       *
+       */
+      concrete class DeleteAfterUse
+      {
+         Pathname _filename;
+
+       public:
+
+         /**
+          * @brief Construct a new Delete After Use object
+          *
+          * @param filename
+          */
+         DeleteAfterUse(const Pathname& filename)
+           : _filename(filename)
+         {
+         }
+
+         ~DeleteAfterUse()
+         {
+            try {
+               extras::file::NotFoundException::assertion(_filename, __INFO__);
+               std::string rm_cmd = "rm -rf " + _filename;
+               system(rm_cmd.c_str());
+               extras::file::FoundException::assertion(_filename, __INFO__);
+            } catch (const extras::file::NotFoundException& ex) {
+            }
+         }
       };
 
    } // namespace file

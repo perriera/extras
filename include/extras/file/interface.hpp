@@ -61,6 +61,13 @@ namespace extras {
          virtual Pathname tempname(const Pathname&) const pure;
 
          /**
+          * @brief tmpFile
+          *
+          * @return Pathname
+          */
+         virtual Pathname tmpFile() const pure;
+
+         /**
           * @brief seperator
           *
           * @return Pathname
