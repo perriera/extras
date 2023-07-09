@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.29.0 -m "added TmpFile class "</br>
-> > git push origin v8.29.0
+> > git tag -a v8.29.1 -m "added TmpFile class again "</br>
+> > git push origin v8.29.1
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,10 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.29.1 (2023-07-09)
+### Refactored 
+- removed docs
 
 #### 8.29.0 (2023-07-09)
 ### Refactored 
