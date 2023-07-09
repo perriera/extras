@@ -38,8 +38,8 @@
  */
 
 #define EXTRAS_VER_MAJOR 8
-#define EXTRAS_VER_MINOR 27
-#define EXTRAS_VER_PATCH 7
+#define EXTRAS_VER_MINOR 28
+#define EXTRAS_VER_PATCH 1
 
 #define EXTRAS_VERSION                                                         \
    (EXTRAS_VER_MAJOR * 10000 + EXTRAS_VER_MINOR * 100 + EXTRAS_VER_PATCH)

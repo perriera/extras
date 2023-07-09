@@ -5,8 +5,8 @@
 > and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).</br>
 > To add a tag to the git repository do:
 >
-> > git tag -a v8.27.7 -m "dual 32/64 builds"</br>
-> > git push origin v8.27.7
+> > git tag -a v8.28.1 -m "added DeleteAfterUse class "</br>
+> > git push origin v8.28.1
 >
 > > POPULAR LINKS:
 > > https://zed0.co.uk/clang-format-configurator/
@@ -25,6 +25,10 @@ IMPORTANT:
 
 ## [Unreleased]
 - replacement for filesystem include file 
+
+#### 8.28.1 (2023-07-09)
+### Refactored 
+- removed docs
 
 #### 8.27.7 (2023-06-09)
 ### Refactored 

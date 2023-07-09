@@ -63,6 +63,15 @@ SCENARIO("mold file::Interface::path", "[dock file::Interface]")
       auto tn = i.tmpFile();
       REQUIRE(!tn.empty());
       extras::file::NotFoundException(tn, __INFO__);
+
+      {
+         extras::file::DeleteAfterUse rm_cmd(tn);
+         extras::file::FoundException::assertion(tn, __INFO__);
+         std::string mkdir = "mkdir " + tn;
+         system(mkdir.c_str());
+         extras::file::NotFoundException::assertion(tn, __INFO__);
+      }
+      extras::file::FoundException::assertion(tn, __INFO__);
    }
 
    /**

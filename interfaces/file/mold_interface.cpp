@@ -143,7 +143,7 @@ SCENARIO("Dock file::Interface::filename", "[mold file::Interface]")
 
    auto tn = i.tmpFile();
    REQUIRE(!tn.empty());
-   extras::file::NotFoundException(tn, __INFO__);
+   extras::file::FoundException::assertion(tn, __INFO__);
 
    /**
     * @brief test case #2
