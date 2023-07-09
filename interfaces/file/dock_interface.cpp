@@ -60,9 +60,13 @@ SCENARIO("mold file::Interface::path", "[dock file::Interface]")
       REQUIRE_FALSE(i.is_dir());
       REQUIRE_FALSE(i.is_file());
 
+      /**
+       * @brief i.tmpFile();
+       *
+       */
       auto tn = i.tmpFile();
       REQUIRE(!tn.empty());
-      extras::file::NotFoundException(tn, __INFO__);
+      extras::file::FoundException::assertion(tn, __INFO__);
 
       {
          extras::file::DeleteAfterUse rm_cmd(tn);
@@ -72,6 +76,23 @@ SCENARIO("mold file::Interface::path", "[dock file::Interface]")
          extras::file::NotFoundException::assertion(tn, __INFO__);
       }
       extras::file::FoundException::assertion(tn, __INFO__);
+
+      /**
+       * @brief TmpFile
+       *
+       */
+      std::string nameOfTempFile;
+      {
+         TmpFile a;
+         tn = a;
+         nameOfTempFile = tn;
+         REQUIRE(!tn.empty());
+         extras::file::FoundException::assertion(tn, __INFO__);
+         std::string mkdir = "mkdir " + tn;
+         system(mkdir.c_str());
+         extras::file::NotFoundException::assertion(tn, __INFO__);
+      }
+      extras::file::FoundException::assertion(nameOfTempFile, __INFO__);
    }
 
    /**

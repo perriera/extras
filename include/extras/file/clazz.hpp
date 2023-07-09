@@ -157,7 +157,15 @@ namespace extras {
        */
       concrete class DeleteAfterUse
       {
+       protected:
+
          Pathname _filename;
+
+         DeleteAfterUse()
+         {
+            extras::file::File dock("random");
+            _filename = dock.tmpFile();
+         }
 
        public:
 
@@ -171,7 +179,7 @@ namespace extras {
          {
          }
 
-         ~DeleteAfterUse()
+         virtual ~DeleteAfterUse()
          {
             try {
                extras::file::NotFoundException::assertion(_filename, __INFO__);
@@ -181,6 +189,25 @@ namespace extras {
             } catch (const extras::file::NotFoundException& ex) {
             }
          }
+      };
+
+      /**
+       * @brief TmpFile
+       *
+       */
+      concrete class TmpFile extends DeleteAfterUse
+      {
+
+       public:
+
+         /**
+          * @brief Construct a new Delete After Use object
+          *
+          * @param filename
+          */
+         TmpFile() {}
+
+         operator std::string() const { return _filename; }
       };
 
    } // namespace file
